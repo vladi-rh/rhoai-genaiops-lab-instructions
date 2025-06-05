@@ -1,3 +1,4 @@
 * [Intro](/)
 * [The AI Orientation](1-the-ai-orientation/README.md)
-  * [Testing Gradio](1-the-ai-orientation/1-testing-gradio.md)
+  * [🧙 Deploy LLMs](1-the-ai-orientation/1-deploy-llms.md)
+  * [🌱 Prompt Engineering](1-the-ai-orientation/2-prompt-engineering.md)

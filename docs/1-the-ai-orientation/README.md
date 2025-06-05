@@ -1,0 +1,1 @@
+In this chapter we'll deploy a models and do some prompt engineerings
