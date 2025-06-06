@@ -26,28 +26,31 @@ Follow these instructions to get your own instance of Canopy AI up and running i
 
 Apply the deployment, service, and route with a single command:
 
+```bash
 oc apply -k https://github.com/rhoai-genaiops/canopy-ai/tree/main/deployment
+```
 
 ✅ This will create:
 
-    A UBI9-based Streamlit app
+- A UBI9-based Streamlit app
+- A service exposing port 8501
+- A secure OpenShift route (TLS termination: edge)
 
-    A service exposing port 8501
-
-    A secure OpenShift route (TLS termination: edge)
-
-📸 Insert screenshot of OpenShift topology view here
+Run this to see that the frontend has been deployed:
+```bash
+oc get po -l app.kubernetes.io/name=canopy-ai -n <USER_NAME>-canopy
+```
 
 ### ⚙️ 2. Configure Your Environment Variables
 
-Once deployed, edit the deployment or use oc set env to configure your LLM connection:
+Once deployed, go to:
+- OpenShift Console
+- Workloads -> Deployment -> canopy-ai
+- Environment tab
 
-oc set env deployment/canopy-ai \
-  LLM_ENDPOINT=https://<your-model-url> \
-  SYSTEM_PROMPT="<The system prompt you have iterated forth>" \
-  MODEL_NAME=tinyllama
+In here you need to modify the `LLM_ENDPOINT` and `SYSTEM_PROMPT` to reflect yours:
 
-📸 Insert screenshot of Deployment Environment tab
+![change-env-vars](./images/change-env-vars.png)
 
 ### 🧪 3. Try the Summarization UI
 
@@ -64,3 +67,16 @@ Inside the app, you can:
     See how different prompts affect the output
 
 📸 Insert screenshot of the running UI with input & output
+
+
+✅ Your Goal
+
+By the end of this module, you should:
+
+Deploy the Canopy AI frontend on OpenShift
+
+Connect it to your own LLM endpoint
+
+Use the system prompt to shape the assistant's behavior
+
+Understand the relationship between prompting and summarization style
