@@ -8,13 +8,13 @@ This frontend gives you a clean, playful UI built in Streamlit, powered by your 
 
 ## 🎯 Why This Frontend Matters for Prompt Engineering
 
-Just like a good prompt shapes a great model response, a good UI shapes great exploration.
+Just like a good prompt shapes a great model response, **a good user interface shapes great exploration**.
 
-In GenAI applications, the way users interact with the model is often just as important — sometimes more — than the model itself.
+In GenAI applications, **how people interact with the model often matters more than which model you use**.
 
-You can have the most powerful LLM under the hood, but if the interface makes it awkward to experiment, hard to understand responses, or unclear how to steer behavior... it fails.
+You can have the smartest LLM in the world, but if the UI doesn’t help users guide or understand it — the value is lost.
 
-This Canopy AI interface gives you a starting point to test how prompting changes behavior — and how LLMs can support real educational tasks. It supports:
+This first iteration of **Canopy AI** is built to support:
 
 - System prompts 🧠 to define model behavior.
 
