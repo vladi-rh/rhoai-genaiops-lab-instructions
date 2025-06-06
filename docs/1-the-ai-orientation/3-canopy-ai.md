@@ -43,8 +43,8 @@ oc apply -k https://github.com/rhoai-genaiops/canopy-ai/tree/main/deployment
 Once deployed, edit the deployment or use oc set env to configure your LLM connection:
 
 oc set env deployment/canopy-ai \
-  LLM_ENDPOINT=https://<your-model-url>/v1/chat/completions \
-  SYSTEM_PROMPT="You are a helpful assistant for university-level teaching." \
+  LLM_ENDPOINT=https://<your-model-url> \
+  SYSTEM_PROMPT="<The system prompt you have iterated forth>" \
   MODEL_NAME=tinyllama
 
 📸 Insert screenshot of Deployment Environment tab
