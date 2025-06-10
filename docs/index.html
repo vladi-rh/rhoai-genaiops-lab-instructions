@@ -347,10 +347,10 @@
 
     /* Gradio embed styling */
     #gradio-app-container {
-      margin: 20px 0;
-      padding: 20px;
+      margin: 1px 0;
+      padding: 1px;
       background-color: #f9f9f9;
-      border-radius: 8px;
+      border-radius: 1px;
       border: 1px solid #ddd;
     }
     
@@ -364,6 +364,16 @@
       --sidebar-nav-pagelink-background-image--active     : ;
       --sidebar-nav-pagelink-background-image--collapse   : ;
       --sidebar-nav-pagelink-background-image--loaded     : ;
+    }
+    .markdown-section iframe {
+      display: block;
+      max-width: none; /* prevent width constraint */
+      min-width: 1200px; /* or whatever fits your 3-box layout */
+    }
+
+    .iframe-scroll-container {
+      overflow-x: auto;
+      width: 100%;
     }
   </style>
 </body>
