@@ -63,8 +63,37 @@ Serving a model means making it accessible via an endpoint that applications (li
 
 In OpenShift AI, we can use **KServe** to deploy models as containerized workloads.
 
-WIP: dpeloyment steps
+You get to choose between and try a few different models, to pick the one you think fits best.
 
+Here's how to deploy the model(s):
+
+#TODO: Go through Model Catalog instead
+
+1. Go to OpenShift AI -> Data Science Projects -> <USER_NAME>-canopy -> Models
+![rhoai-project](./images/rhoai-project.png)
+2. Click Deploy model
+![deploy-model](./images/deploy-model.png)
+3. Fill in the form with the following settings (depending on what model you want to deploy):
+- Model deployment name: `tinyllama`, `llama3.2-3b` or `granite-2b`
+- Serving runtime: `vLLM-CPU`
+- Deployment Mode: `Standard`
+- Number of model server replicas to deploy: `1`
+- Model server size: `Medium`
+- Accelerator: `None`
+- Model route:
+  -  **Uncheck** `Make deployed models available through an external route`
+  -  **Uncheck** `Require token authentication`
+- Source model location: `Existing connection` -> `tinyllama`, `llama3.2-3b` or `granite-2b`
+
+
+    ..leave the rest as it is and hit `Deploy`
+
+![deploy-from-form.png](./images/deploy-from-form.png)
+
+You should now see a model start deploying, wait until it turns green.
+![model-deployed.png](./images/model-deployed.png)
+
+Feel free to deploy the other models as well, so that you can compare them and choose which one you like the most.
 
 
 ## 🌐 How Do I Access the Model?
