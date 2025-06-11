@@ -33,7 +33,9 @@ Follow these instructions to get your own instance of Canopy AI up and running i
 Apply the deployment, service, and route with a single command:
 
 ```bash
-oc apply -k https://github.com/rhoai-genaiops/canopy-ai/tree/main/deployment
+git clone https://github.com/rhoai-genaiops/canopy-ui
+cd canopy-ui/chart
+helm install canopy-ui . --namespace <USER_NAME>-canopy
 ```
 
 ✅ This will create:
