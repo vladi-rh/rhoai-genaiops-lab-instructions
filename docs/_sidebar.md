@@ -1,5 +1,6 @@
 * [Intro](/)
 * [The AI Orientation](1-the-ai-orientation/README.md)
+  * [🧑‍🎓 LLM 101](1-the-ai-orientation/0-llm-101.md)
   * [✨ Into to OpenShift AI](1-the-ai-orientation/1-into-openshift-ai.md)
   * [🧙 Deploy LLMs](1-the-ai-orientation/2-deploy-llms.md)
   * [🌱 Prompt Engineering](1-the-ai-orientation/3-prompt-engineering.md)
