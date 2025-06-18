@@ -12,16 +12,16 @@ This guide is divided into four main sections:
    - Understanding tokens
    - How LLMs maintain state
    - Next-token prediction process
-
-2. [🧠 Memory and Processing](2-llm-memory-processing.md)
-   - Attention mechanism
-   - Context windows
-   - KV Cache optimization
-
-3. [💭 Using and Controlling LLMs](3-llm-usage-control.md)
+  
+2. [💭 Using and Controlling LLMs](3-llm-usage-control.md)
    - Prompting techniques
    - Handling hallucinations
    - Implementing guardrails
+  
+3. [🧠 Memory and Processing](2-llm-memory-processing.md)
+   - Attention mechanism
+   - Context windows
+   - KV Cache optimization
 
 4. [📊 Performance and Hardware](4-llm-performance.md)
    - Key performance metrics
