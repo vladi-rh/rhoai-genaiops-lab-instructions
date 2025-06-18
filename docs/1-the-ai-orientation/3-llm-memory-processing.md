@@ -28,8 +28,8 @@ Attention is why LLMs feel smart — it allows them to **track meaning and refer
 .quiz-container-attention { position: relative; }
 .quiz-option-attention {
   display: block;
-  margin: 8px 0;
-  padding: 12px 16px;
+  margin: 4px 0;
+  padding: 8px 16px;
   background: #f8f9fa;
   border-radius: 6px;
   cursor: pointer;
@@ -39,33 +39,35 @@ Attention is why LLMs feel smart — it allows them to **track meaning and refer
 }
 .quiz-option-attention:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
 .quiz-radio-attention { display: none; }
-.quiz-radio-attention:checked + .quiz-option-attention { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-attention[value="wrong"]:checked + .quiz-option-attention { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+.quiz-radio-attention:checked + .quiz-option-attention[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+.quiz-radio-attention:checked + .quiz-option-attention:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
 .feedback-attention {
-  margin-top: 15px;
-  padding: 12px;
+  margin: 4px 0;
+  padding: 8px 16px;
   border-radius: 6px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  display: none;
 }
-#attention-correct:checked ~ .feedback-attention.success { opacity: 1; }
-#attention-wrong1:checked ~ .feedback-attention.error, #attention-wrong2:checked ~ .feedback-attention.error { opacity: 1; }
-.feedback-attention.success { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-attention.error { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+#attention-correct:checked ~ .feedback-attention[data-feedback="correct"],
+#attention-wrong1:checked ~ .feedback-attention[data-feedback="wrong"],
+#attention-wrong2:checked ~ .feedback-attention[data-feedback="wrong"] {
+  display: block;
+}
+.feedback-attention[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
+.feedback-attention[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
 </style>
 
 <div class="quiz-container-attention">
-  <input type="radio" name="quiz-attention" id="attention-wrong1" class="quiz-radio-attention" value="wrong">
-  <label for="attention-wrong1" class="quiz-option-attention">🎯 Focus only on the most recent tokens in the sequence</label>
+   <input type="radio" name="quiz-attention" id="attention-wrong1" class="quiz-radio-attention">
+   <label for="attention-wrong1" class="quiz-option-attention" data-correct="false">🎯 Focus only on the most recent tokens in the sequence</label>
 
-  <input type="radio" name="quiz-attention" id="attention-correct" class="quiz-radio-attention" value="correct">
-  <label for="attention-correct" class="quiz-option-attention" data-correct="true">🔗 Focus on relevant tokens throughout the input to understand relationships</label>
-  
-  <input type="radio" name="quiz-attention" id="attention-wrong2" class="quiz-radio-attention" value="wrong">
-  <label for="attention-wrong2" class="quiz-option-attention">📊 Calculate mathematical operations between tokens</label>
+   <input type="radio" name="quiz-attention" id="attention-wrong2" class="quiz-radio-attention">
+   <label for="attention-wrong2" class="quiz-option-attention" data-correct="false">📊 Calculate mathematical operations between tokens</label>
 
-  <div class="feedback-attention success">✅ <strong>Great job!</strong> Attention helps models understand which parts of the input are most relevant for generating each output token.</div>
-  <div class="feedback-attention error">❌ <strong>Try again!</strong> Think about how attention helps models understand relationships across the entire input.</div>
+   <input type="radio" name="quiz-attention" id="attention-correct" class="quiz-radio-attention">
+   <label for="attention-correct" class="quiz-option-attention" data-correct="true">🔗 Focus on relevant tokens throughout the input to understand relationships</label>
+
+   <div class="feedback-attention" data-feedback="correct">✅ <strong>Great job!</strong> Attention helps models understand which parts of the input are most relevant for generating each output token.</div>
+   <div class="feedback-attention" data-feedback="wrong">❌ <strong>Try again!</strong> Think about how attention helps models understand relationships across the entire input.</div>
 </div>
 </div>
 
@@ -94,8 +96,8 @@ But it comes at a cost:
 .quiz-container-context { position: relative; }
 .quiz-option-context {
   display: block;
-  margin: 8px 0;
-  padding: 12px 16px;
+  margin: 4px 0;
+  padding: 8px 16px;
   background: #f8f9fa;
   border-radius: 6px;
   cursor: pointer;
@@ -105,33 +107,35 @@ But it comes at a cost:
 }
 .quiz-option-context:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
 .quiz-radio-context { display: none; }
-.quiz-radio-context:checked + .quiz-option-context { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-context[value="wrong"]:checked + .quiz-option-context { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+.quiz-radio-context:checked + .quiz-option-context[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+.quiz-radio-context:checked + .quiz-option-context:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
 .feedback-context {
-  margin-top: 15px;
-  padding: 12px;
+  margin: 4px 0;
+  padding: 8px 16px;
   border-radius: 6px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  display: none;
 }
-#context-correct:checked ~ .feedback-context.success { opacity: 1; }
-#context-wrong1:checked ~ .feedback-context.error, #context-wrong2:checked ~ .feedback-context.error { opacity: 1; }
-.feedback-context.success { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-context.error { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+#context-correct:checked ~ .feedback-context[data-feedback="correct"],
+#context-wrong1:checked ~ .feedback-context[data-feedback="wrong"],
+#context-wrong2:checked ~ .feedback-context[data-feedback="wrong"] {
+  display: block;
+}
+.feedback-context[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
+.feedback-context[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
 </style>
 
 <div class="quiz-container-context">
-  <input type="radio" name="quiz-context" id="context-wrong1" class="quiz-radio-context" value="wrong">
-  <label for="context-wrong1" class="quiz-option-context">🚀 Models run faster and use less memory</label>
+   <input type="radio" name="quiz-context" id="context-wrong1" class="quiz-radio-context">
+   <label for="context-wrong1" class="quiz-option-context" data-correct="false">🚀 Models run faster and use less memory</label>
 
-  <input type="radio" name="quiz-context" id="context-wrong2" class="quiz-radio-context" value="wrong">
-  <label for="context-wrong2" class="quiz-option-context">📈 Only output quality improves with no downsides</label>
-  
-  <input type="radio" name="quiz-context" id="context-correct" class="quiz-radio-context" value="correct">
-  <label for="context-correct" class="quiz-option-context" data-correct="true">⚡ Better understanding but slower performance and higher VRAM usage</label>
+   <input type="radio" name="quiz-context" id="context-correct" class="quiz-radio-context">
+   <label for="context-correct" class="quiz-option-context" data-correct="true">⚡ Better understanding but slower performance and higher VRAM usage</label>
 
-  <div class="feedback-context success">✅ <strong>Spot on!</strong> Larger context windows provide better understanding but come with performance and resource trade-offs.</div>
-  <div class="feedback-context error">❌ <strong>Not quite!</strong> Remember: larger context = better understanding but more resources needed.</div>
+   <input type="radio" name="quiz-context" id="context-wrong2" class="quiz-radio-context">
+   <label for="context-wrong2" class="quiz-option-context" data-correct="false">📈 Only output quality improves with no downsides</label>
+
+   <div class="feedback-context" data-feedback="correct">✅ <strong>Spot on!</strong> Larger context windows provide better understanding but come with performance and resource trade-offs.</div>
+   <div class="feedback-context" data-feedback="wrong">❌ <strong>Not quite!</strong> Remember: larger context = better understanding but more resources needed.</div>
 </div>
 </div>
 
@@ -159,8 +163,8 @@ Benefits:
 .quiz-container-kvcache { position: relative; }
 .quiz-option-kvcache {
   display: block;
-  margin: 8px 0;
-  padding: 12px 16px;
+  margin: 4px 0;
+  padding: 8px 16px;
   background: #f8f9fa;
   border-radius: 6px;
   cursor: pointer;
@@ -170,33 +174,35 @@ Benefits:
 }
 .quiz-option-kvcache:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
 .quiz-radio-kvcache { display: none; }
-.quiz-radio-kvcache:checked + .quiz-option-kvcache { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-kvcache[value="wrong"]:checked + .quiz-option-kvcache { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+.quiz-radio-kvcache:checked + .quiz-option-kvcache[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+.quiz-radio-kvcache:checked + .quiz-option-kvcache:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
 .feedback-kvcache {
-  margin-top: 15px;
-  padding: 12px;
+  margin: 4px 0;
+  padding: 8px 16px;
   border-radius: 6px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  display: none;
 }
-#kvcache-correct:checked ~ .feedback-kvcache.success { opacity: 1; }
-#kvcache-wrong1:checked ~ .feedback-kvcache.error, #kvcache-wrong2:checked ~ .feedback-kvcache.error { opacity: 1; }
-.feedback-kvcache.success { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-kvcache.error { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+#kvcache-correct:checked ~ .feedback-kvcache[data-feedback="correct"],
+#kvcache-wrong1:checked ~ .feedback-kvcache[data-feedback="wrong"],
+#kvcache-wrong2:checked ~ .feedback-kvcache[data-feedback="wrong"] {
+  display: block;
+}
+.feedback-kvcache[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
+.feedback-kvcache[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
 </style>
 
 <div class="quiz-container-kvcache">
-  <input type="radio" name="quiz-kvcache" id="kvcache-wrong1" class="quiz-radio-kvcache" value="wrong">
-  <label for="kvcache-wrong1" class="quiz-option-kvcache">📊 It improves the quality of generated text</label>
+   <input type="radio" name="quiz-kvcache" id="kvcache-wrong2" class="quiz-radio-kvcache">
+   <label for="kvcache-wrong2" class="quiz-option-kvcache" data-correct="false">🧠 It increases the model's context window capacity</label>
 
-  <input type="radio" name="quiz-kvcache" id="kvcache-wrong2" class="quiz-radio-kvcache" value="wrong">
-  <label for="kvcache-wrong2" class="quiz-option-kvcache">🧠 It increases the model's context window capacity</label>
-  
-  <input type="radio" name="quiz-kvcache" id="kvcache-correct" class="quiz-radio-kvcache" value="correct">
-  <label for="kvcache-correct" class="quiz-option-kvcache" data-correct="true">🚀 It avoids recomputing attention for previous tokens, speeding up generation</label>
+   <input type="radio" name="quiz-kvcache" id="kvcache-wrong1" class="quiz-radio-kvcache">
+   <label for="kvcache-wrong1" class="quiz-option-kvcache" data-correct="false">📊 It improves the quality of generated text</label>
 
-  <div class="feedback-kvcache success">✅ <strong>Perfect!</strong> KV Cache stores previous computations to avoid redundant calculations during token generation.</div>
-  <div class="feedback-kvcache error">❌ <strong>Think again!</strong> KV Cache is about performance optimization, not content quality or capacity.</div>
+   <input type="radio" name="quiz-kvcache" id="kvcache-correct" class="quiz-radio-kvcache">
+   <label for="kvcache-correct" class="quiz-option-kvcache" data-correct="true">🚀 It avoids recomputing attention for previous tokens, speeding up generation</label>
+
+   <div class="feedback-kvcache" data-feedback="correct">✅ <strong>Perfect!</strong> KV Cache stores previous computations to avoid redundant calculations during token generation.</div>
+   <div class="feedback-kvcache" data-feedback="wrong">❌ <strong>Think again!</strong> KV Cache is about performance optimization, not content quality or capacity.</div>
 </div>
 </div>
 
