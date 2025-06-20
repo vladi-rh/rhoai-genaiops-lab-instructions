@@ -37,6 +37,5 @@ Here’s what you have _for now_:
 * Provides tools like terminals, code editors, and notebooks for building and testing AI workflows
 * Allows you to write scripts, develop prompt playgrounds, and interact with deployed models without leaving the platform
 
-
 ➡️ **Up Next:**
 Now that you’re familiar with OpenShift AI and your environment, let’s dive into **LLM 101**—understanding the models we will use and how to deploy them.

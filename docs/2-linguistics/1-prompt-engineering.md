@@ -53,7 +53,7 @@ Use the Prompt Playground to:
 
 <div class="iframe-scroll-container">
   <iframe 
-    src="http://localhost:7860"  
+    src="http://localhost:7860/prompt-playground"  
     width="1400px" 
     height="800px" 
     frameborder="0"
