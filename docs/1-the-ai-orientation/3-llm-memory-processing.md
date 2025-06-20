@@ -5,6 +5,7 @@
   - [📚 Contents](#-contents)
   - [👀 Attention Mechanism](#-attention-mechanism)
   - [🧠 Context Length and Window](#-context-length-and-window)
+    - [🔍 Hands-on Exercises](#-hands-on-exercises)
   - [⚡ KV Cache and Performance](#-kv-cache-and-performance)
 
 ## 👀 Attention Mechanism
@@ -139,6 +140,22 @@ But it comes at a cost:
 </div>
 </div>
 
+
+### 🔍 Hands-on Exercises
+
+Why context window is important?
+
+<div class="iframe-scroll-container">
+  <iframe 
+    src="http://localhost:7860/context-demo"  
+    width="600px" 
+    height="700px" 
+    frameborder="0"
+    style="border: 1px solid transparent; border-radius: 1px;">
+  </iframe>
+</div>
+
+
 ---
 
 ## ⚡ KV Cache and Performance
@@ -205,5 +222,6 @@ Benefits:
    <div class="feedback-kvcache" data-feedback="wrong">❌ <strong>Think again!</strong> KV Cache is about performance optimization, not content quality or capacity.</div>
 </div>
 </div>
+
 
 [🔝 Back to Contents](#contents)

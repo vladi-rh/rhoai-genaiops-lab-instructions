@@ -6,7 +6,7 @@
   - [💭 Prompting Techniques](#-prompting-techniques)
   - [🚨 Understanding Hallucinations](#-understanding-hallucinations)
   - [🛡️ Implementing Guardrails](#️-implementing-guardrails)
-  - [🔍 Hands-on Exercises](#-hands-on-exercises)
+    - [🔍 Hands-on Exercises](#-hands-on-exercises)
 
 ## 💭 Prompting Techniques
 
@@ -197,17 +197,34 @@ For Canopy AI, these guardrails are essential to ensure alignment with education
 </div>
 </div>
 
-## 🔍 Hands-on Exercises
 
-**Exercise 1**: Memory Test
-1. In Gradio, send a message asking "What did you learn today?"
-2. Send a new message asking "What did I say in the last message?"
-3. Compare this with how Canopy UI handles conversation memory
+### 🔍 Hands-on Exercises
 
-**Exercise 2**: Consistency Check
-1. Ask the model a specific question
-2. Note the response
-3. Ask the same question again
-4. Compare the responses to understand how consistency works in LLMs
+Send a message asking "What did you learn today?". And then send another message asking "What did I say in the last message?" 
+What response did you get?
+
+<div class="iframe-scroll-container">
+  <iframe 
+    src="http://localhost:7860/chat-interface"  
+    width="600px" 
+    height="600px" 
+    frameborder="0"
+    style="border: 1px solid #ddd; border-radius: 1px;">
+  </iframe>
+</div>
+
+
+And now do the same thing with Canopy AI and compare your experience.
+Now ask the model a specific question. Note the response and ask the same question again. Compare your responses to understand how consistency works in LLMs.
+
+<div class="iframe-scroll-container">
+  <iframe 
+    src="http://localhost:7860/chat-interface"  
+    width="600px" 
+    height="600px" 
+    frameborder="0"
+    style="border: 1px solid #ddd; border-radius: 1px;">
+  </iframe>
+</div>
 
 [🔝 Back to Contents](#contents)

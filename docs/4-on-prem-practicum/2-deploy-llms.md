@@ -1,4 +1,4 @@
-## 📘 LLM 101: Understanding and Deploying Language Models
+<!-- ## 📘 LLM 101: Understanding and Deploying Language Models
 
 Before we start building adaptive, student-centered learning tools with Canopy AI, we need to understand the foundational technology behind it: **Large Language Models (LLMs)**.
 
@@ -15,7 +15,10 @@ A **Large Language Model (LLM)** is a type of AI model trained on vast amounts o
 
 LLMs power many educational tools—from tutoring chatbots to automatic feedback systems—because they can adapt responses based on input and context.
 
----
+--- -->
+
+## What models are available to me to run on prem? 
+QQ: should we address local development?
 
 ### 📄 How to Read a Model Card
 

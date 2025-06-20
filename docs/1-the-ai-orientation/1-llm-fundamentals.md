@@ -5,7 +5,6 @@
   - [📚 Contents](#-contents)
   - [🔍 What is a Token?](#-what-is-a-token)
   - [🔮 Are LLMs Fixed or Do They Change?](#-are-llms-fixed-or-do-they-change)
-    - [🔍 Hands-on Exercises](#-hands-on-exercises)
   - [🔄 Next-Token Prediction](#-next-token-prediction)
 
 ## 🔍 What is a Token?
@@ -153,19 +152,6 @@ So let's do a quiz!
 
 </div>
 
-### 🔍 Hands-on Exercises
-
-**Exercise 1**: Memory Test
-1. In Gradio, send a message asking "What did you learn today?"
-2. Send a new message asking "What did I say in the last message?"
-3. Compare this with how Canopy UI handles conversation memory
-
-**Exercise 2**: Consistency Check
-1. Ask the model a specific question
-2. Note the response
-3. Ask the same question again
-4. Compare the responses to understand how consistency works in LLMs
-
 ---
 
 ## 🔄 Next-Token Prediction
@@ -230,3 +216,4 @@ This generation happens one token at a time, using **probabilities** and **conte
 </div>
 
 </div>
+
