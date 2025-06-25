@@ -1,1 +1,0 @@
-- first GitOps deployment for UI (through Argo CD UI)

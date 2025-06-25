@@ -30,6 +30,13 @@ Follow these instructions to get your own instance of Canopy AI up and running i
 
 ### 📦 1. Deploy the Frontend to OpenShift
 
+Structure:
+    usecase/
+        model/
+            prompt/
+
+Check https://www.promptlayer.com/ for inspiration
+
 Apply the deployment, service, and route with a single command:
 
 ```bash

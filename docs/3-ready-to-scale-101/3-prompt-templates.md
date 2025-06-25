@@ -1,3 +1,5 @@
+Intro to backend as well?
+
 # 🗂️ Prompt Templates
 
 > *Organizing ideas into repeatable, structured formats.*
@@ -46,13 +48,18 @@ Each template lives in its own file and folder in the prompt registry, stored in
 
 ---
 
+Maybe we ask them to iterate here? like figure out what kind of tags, key / values etc needs to here? and our pipeline can only relky on `name` and `system_prompt` keys? 
+and next chapter we do the hands on?
+
+---
+
 ## 🧪 Hands-On: Your Prompt Registry
 
 1. **Clone the Prompt Registry Repo**
 
 ```bash
-git clone https://github.com/rhoai-genaiops/prompt-registry
-cd prompt-registry/templates
+git clone https://github.com/rhoai-genaiops/canopy-prompts
+cd canopy-prompts/templates
 ```
 
 2. **Create a New Prompt Template**
