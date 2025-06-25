@@ -1,3 +1,13 @@
+---
+intro to OpenShift AI and Workbench concept
+
+"this is where we are going to do develop the continuous model evaluation stuff"
+
+intro to GitOps a bit?
+
+intro to repos we have
+
+
 ## 📘 Introduction to Red Hat OpenShift AI
 
 Welcome to the foundation of our adaptive learning platform, Canopy AI! To build smart, scalable AI solutions for students and educators, we use **Red Hat OpenShift AI**—a powerful, enterprise-grade platform for developing, deploying, and managing AI and machine learning workloads on Kubernetes.

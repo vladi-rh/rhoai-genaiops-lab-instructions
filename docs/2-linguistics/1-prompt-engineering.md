@@ -54,7 +54,7 @@ Use the Prompt Playground to:
 <div class="iframe-scroll-container">
   <iframe 
     src="http://localhost:7860/prompt-playground"  
-    width="1400px" 
+    width="1800px" 
     height="800px" 
     frameborder="0"
     style="border: 1px solid #ddd; border-radius: 1px;">

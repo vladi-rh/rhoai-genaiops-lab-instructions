@@ -1,4 +1,4 @@
-# Module 3 - Ops 101
+# Module 3 - Ready to Scale 101
 
 > 
 
