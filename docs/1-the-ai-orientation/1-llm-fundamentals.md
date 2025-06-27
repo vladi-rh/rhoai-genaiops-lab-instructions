@@ -37,7 +37,7 @@ Let's test your understanding with a quiz!
 
 <!-- 🔍 Token‐capacity calculation (typed answer) -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
-  <h3 style="margin:0 0 8px;color:#5a5a5a;">🔤 Quiz (Scenario – type your answer)</h3>
+  <h3 style="margin:0 0 8px;color:#5a5a5a;">🔤 Quiz</h3>
   <p style="color:#495057; font-weight:500;">
     <strong>Scenario:</strong> The model’s context window is <b>4 096 tokens</b>.<br>
     Your “overhead” prompt text already uses <b>96 tokens</b>.<br>
@@ -112,7 +112,7 @@ So let's do a quiz!
 <!-- 🔮 Frozen-model memory dilemma (harder) -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="margin:0 0 8px;color:#5a5a5a;">🧠 Quiz (Scenario)</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">🧠 Quiz</h3>
 <p style="color:#495057; font-weight:500;"><strong>Scenario:</strong> Warehouse staff type new SKUs during today’s chat.  
 Tomorrow, in a brand-new session, the assistant must recall them instantly.</p>
 <p style="color:#495057; font-weight:500;">Pick the <em>most practical</em> way to achieve that.</p>
@@ -168,7 +168,7 @@ This generation happens one token at a time, using **probabilities** and **conte
 <!-- 🔄 Next token – tricky semantic cue -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz (Scenario – tricky)</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz</h3>
 <p style="color:#495057; font-weight:500;">
 <strong>Scenario:</strong> The prompt sent to the model reads exactly like this:
 </p>

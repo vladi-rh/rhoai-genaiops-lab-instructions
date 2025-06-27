@@ -22,7 +22,7 @@ Small changes in wording can **dramatically** change the output. That's why prom
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
             padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz (Scenario)</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz</h3>
 
 <p style="color:#495057;font-weight:500;">
 <strong>Prompt sent to the model:</strong></p>
@@ -99,7 +99,7 @@ Mitigation tips:
 
 <!-- 🚨 Hallucination – realistic prevention options -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
-  <h3 style="margin:0 0 8px;color:#5a5a5a;">🚨 Quiz (Scenario)</h3>
+  <h3 style="margin:0 0 8px;color:#5a5a5a;">🚨 Quiz</h3>
   <p style="color:#495057;font-weight:500;">
     <strong>Scenario:</strong> A teacher asks, “Give me a NASA citation for the tallest mountain on Mars.”<br>
     The model replies with a non-existent 2023 NASA white paper.
@@ -165,9 +165,10 @@ For Canopy AI, these guardrails are essential to ensure alignment with education
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
             padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-  <h3 style="margin:0 0 10px;color:#5a5a5a;">🛡️ Quiz: When do guardrails pay off?</h3>
+  <h3 style="margin:0 0 10px;color:#5a5a5a;">🛡️ Quiz</h3>
 
   <p style="color:#495057;font-weight:500;">
+    <strong>When do guardrails pay off?</strong><br>
     For each scenario, choose whether adding standard safety guardrails is the better architectural choice.
     Consider abuse-risk, latency budget, and false-positive cost.
   </p>
