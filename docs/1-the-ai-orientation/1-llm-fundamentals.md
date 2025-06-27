@@ -37,33 +37,63 @@ Let's test your understanding with a quiz!
 
 <!-- 🔍 Token‐capacity calculation (typed answer) -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+  <h3 style="margin:0 0 8px;color:#5a5a5a;">🔤 Quiz (Scenario – type your answer)</h3>
+  <p style="color:#495057; font-weight:500;">
+    <strong>Scenario:</strong> The model’s context window is <b>4 096 tokens</b>.<br>
+    Your “overhead” prompt text already uses <b>96 tokens</b>.<br>
+    Each trimmed 80-character line of code costs exactly <b>12 tokens</b>.
+  </p>
+  <p style="color:#495057; font-weight:500;">
+    👉 <strong>How many <em>full</em> lines of code can you still paste?</strong>
+  </p>
 
+  <style>
+    /* hide the native number-input arrows */
+    #cap-input::-webkit-inner-spin-button,
+    #cap-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    #cap-input {
+      -moz-appearance: textfield;
+    }
+    /* your existing valid/invalid styling… */
+    #cap-input { margin:6px 0 4px; padding:6px 10px; border:2px solid #e9ecef; border-radius:6px; width:120px; font-size:1em; }
+    #cap-input:focus { outline:none; border-color:#6ea8fe; }
+    #cap-input:valid { background:#d4edda; border-color:#28a745; color:#155724; }
+    #cap-input:invalid:not(:placeholder-shown) { background:#f8d7da; border-color:#dc3545; color:#721c24; }
+    .feedback-cap { display:none; margin:4px 0; padding:8px 16px; border-radius:6px; }
+    #cap-input:valid + .feedback-cap[data-feedback="correct"],
+    #cap-input:invalid:not(:placeholder-shown) + .feedback-cap[data-feedback="wrong"] {
+      display:block;
+    }
+    .feedback-cap[data-feedback="correct"] { background:#d1f2eb; color:#0c5d56; border:1px solid #a3d9cc; }
+    .feedback-cap[data-feedback="wrong"]   { background:#fce8e6; color:#58151c; border:1px solid #f5b7b1; }
+  </style>
 
-<h3 style="margin:0 0 8px;color:#5a5a5a;">🔤 Quiz (Scenario – type your answer)</h3>
-<p style="color:#495057; font-weight:500;"><strong>Scenario:</strong> The model’s context window is <b>4 096 tokens</b>.  
-Your “overhead” prompt text already uses <b>96 tokens</b>.  
-Each trimmed 80-character line of code costs exactly <b>12 tokens</b>.</p>
-<p style="color:#495057; font-weight:500;">👉 <strong>How many <em>full</em> lines of code can you still paste?</strong></p>
+  <input
+    id="cap-input"
+    type="number"
+    placeholder="---"
+    min="333"
+    max="333"
+    step="1"
+    required>
 
-<style>
-/* self-check styling (delete if you already load a global quiz style) */
-#cap-input{margin:6px 0 4px;padding:6px 10px;border:2px solid #e9ecef;border-radius:6px;width:120px;font-size:1em}
-#cap-input:focus{outline:none;border-color:#6ea8fe}
-#cap-input:valid{background:#d4edda;border-color:#28a745;color:#155724}
-#cap-input:invalid:not(:placeholder-shown){background:#f8d7da;border-color:#dc3545;color:#721c24}
-.feedback-cap{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
-#cap-input:valid + .feedback-cap[data-feedback="correct"],
-#cap-input:invalid:not(:placeholder-shown) + .feedback-cap[data-feedback="wrong"]{display:block}
-.feedback-cap[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.feedback-cap[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
-</style>
-
-<!--   min = max = 333 means only 333 is accepted as valid            -->
-<input  id="cap-input"
-        type="number"
-        placeholder="---"
-        min="333" max="333" step="1" required>
+  <div class="feedback-cap" data-feedback="correct">✅ Right! 333 lines.</div>
+  <div class="feedback-cap" data-feedback="wrong">❌ Nope, that’s not it.</div>
 </div>
+
+<script>
+  // prevent Up/Down arrows from jumping to 333 when empty
+  document.getElementById('cap-input')
+    .addEventListener('keydown', function(e) {
+      if ((e.key === 'ArrowUp' || e.key === 'ArrowDown') && this.value === '') {
+        e.preventDefault();
+      }
+    });
+</script>
+
 
 
 ## 🔮 Are LLMs Fixed or Do They Change?
