@@ -18,56 +18,69 @@ Small changes in wording can **dramatically** change the output. That's why prom
 
 📚 We'll dive much deeper into **prompt engineering strategies** in later chapters.
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- 💭 Prompting – what will happen? -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
+            padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="color: #5a5a5a; margin-top: 0;">📝 Quiz: What's the difference between system and user prompts?</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz (Scenario)</h3>
+
+<p style="color:#495057;font-weight:500;">
+<strong>Prompt sent to the model:</strong></p>
+
+<pre style="background:#f8f9fa;border:1px solid #ccc;border-radius:6px;padding:10px;font-size:.9em;color:#495057;font-weight:500;">
+{"role":"system",
+ "content":"You are a strict grader. Respond with only the single word PASS or FAIL."}
+
+{"role":"user",
+ "content":"Explain IN DETAIL how you would grade this homework."}
+</pre>
+
+<p style="color:#495057;font-weight:500;">
+The model has no temperature tricks and uses default sampling.<br>
+<strong>What output is the model most likely to produce?</strong></p>
 
 <style>
-.quiz-container-prompting { position: relative; }
-.quiz-option-prompting {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option-prompting:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio-prompting { display: none; }
-.quiz-radio-prompting:checked + .quiz-option-prompting[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-prompting:checked + .quiz-option-prompting:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback-prompting {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#prompting-correct:checked ~ .feedback-prompting[data-feedback="correct"],
-#prompting-wrong1:checked ~ .feedback-prompting[data-feedback="wrong"],
-#prompting-wrong2:checked ~ .feedback-prompting[data-feedback="wrong"] {
-  display: block;
-}
-.feedback-prompting[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-prompting[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+.quiz-container-prompt-out{position:relative}
+.quiz-option-prompt-out{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;
+  cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-prompt-out:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.quiz-radio-prompt-out{display:none}
+.quiz-radio-prompt-out:checked+.quiz-option-prompt-out[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-prompt-out:checked+.quiz-option-prompt-out:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.feedback-prompt-out{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#prompt-out-correct:checked~.feedback-prompt-out[data-feedback="correct"],
+#prompt-out-wrong1:checked~.feedback-prompt-out[data-feedback="wrong"],
+#prompt-out-wrong2:checked~.feedback-prompt-out[data-feedback="wrong"]{display:block}
+.feedback-prompt-out[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.feedback-prompt-out[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
-<div class="quiz-container-prompting">
-   <input type="radio" name="quiz-prompting" id="prompting-wrong2" class="quiz-radio-prompting">
-   <label for="prompting-wrong2" class="quiz-option-prompting" data-correct="false">📊 Both system and user prompts serve the same purpose and can be used interchangeably</label>
+<div class="quiz-container-prompt-out">
+  <input type="radio" name="quiz-prompt-out" id="prompt-out-wrong1" class="quiz-radio-prompt-out">
+  <label for="prompt-out-wrong1" class="quiz-option-prompt-out" data-correct="false">
+    📝 A multi-paragraph explanation
+  </label>
 
-   <input type="radio" name="quiz-prompting" id="prompting-wrong1" class="quiz-radio-prompting">
-   <label for="prompting-wrong1" class="quiz-option-prompting" data-correct="false">🔄 System prompts are user questions and user prompts define the assistant's role</label>
+  <input type="radio" name="quiz-prompt-out" id="prompt-out-correct" class="quiz-radio-prompt-out">
+  <label for="prompt-out-correct" class="quiz-option-prompt-out" data-correct="true">
+    ✔️ Just one word: <code>PASS</code> <em>or</em> <code>FAIL</code>
+  </label>
 
-   <input type="radio" name="quiz-prompting" id="prompting-correct" class="quiz-radio-prompting">
-   <label for="prompting-correct" class="quiz-option-prompting" data-correct="true">🎭 System prompts define the assistant's role, user prompts are the actual questions or inputs</label>
+  <input type="radio" name="quiz-prompt-out" id="prompt-out-wrong2" class="quiz-radio-prompt-out">
+  <label for="prompt-out-wrong2" class="quiz-option-prompt-out" data-correct="false">
+    🚫 A refusal message
+  </label>
 
-   <div class="feedback-prompting" data-feedback="correct">✅ <strong>Perfect!</strong> System prompts establish the AI's behavior and role, while user prompts provide the specific task or question.</div>
-   <div class="feedback-prompting" data-feedback="wrong">❌ <strong>Try again!</strong> Think about how system prompts set the context and user prompts provide the specific input.</div>
+  <div class="feedback-prompt-out" data-feedback="correct">
+    ✅ <strong>Exactly.</strong> The system instruction outranks the user request, so the model sticks to the one-word format.
+  </div>
+  <div class="feedback-prompt-out" data-feedback="wrong">
+    ❌ Remember: system-role text sets the policy the model follows.
+  </div>
 </div>
 </div>
+
+
 
 ---
 
@@ -84,54 +97,56 @@ Mitigation tips:
 - Use guardrails (see below)
 - Add retrieval or validation layers
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- 🚨 Hallucination – realistic prevention options -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+  <h3 style="margin:0 0 8px;color:#5a5a5a;">🚨 Quiz (Scenario)</h3>
+  <p style="color:#495057;font-weight:500;">
+    <strong>Scenario:</strong> A teacher asks, “Give me a NASA citation for the tallest mountain on Mars.”<br>
+    The model replies with a non-existent 2023 NASA white paper.
+  </p>
 
-<h3 style="color: #5a5a5a; margin-top: 0;">🚨 Quiz: Why do LLMs hallucinate?</h3>
+  <p style="color:#495057;font-weight:500;">
+    You're an engineer who needs to prevent this kind of hallucination. Which solution below would be most effective?
+  </p>
 
-<style>
-.quiz-container-hallucination { position: relative; }
-.quiz-option-hallucination {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option-hallucination:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio-hallucination { display: none; }
-.quiz-radio-hallucination:checked + .quiz-option-hallucination[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-hallucination:checked + .quiz-option-hallucination:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback-hallucination {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#hallucination-correct:checked ~ .feedback-hallucination[data-feedback="correct"],
-#hallucination-wrong1:checked ~ .feedback-hallucination[data-feedback="wrong"],
-#hallucination-wrong2:checked ~ .feedback-hallucination[data-feedback="wrong"] {
-  display: block;
-}
-.feedback-hallucination[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-hallucination[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
-</style>
+  <style>
+  .hall-fix-row{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;
+                border:2px solid #e9ecef;color:#495057;cursor:pointer;transition:.2s}
+  .hall-fix-row:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+  .hall-fix-radio{display:none}
+  .hall-fix-radio:checked + .hall-fix-row[data-good="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+  .hall-fix-radio:checked + .hall-fix-row[data-good="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+  .hall-fix-feedback{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+  #hall-fix-correct:checked ~ .hall-fix-feedback[data-type="good"],
+  #hall-fix-w1:checked     ~ .hall-fix-feedback[data-type="bad"],
+  #hall-fix-w2:checked     ~ .hall-fix-feedback[data-type="bad"]{display:block}
+  .hall-fix-feedback[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+  .hall-fix-feedback[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+  </style>
 
-<div class="quiz-container-hallucination">
-   <input type="radio" name="quiz-hallucination" id="hallucination-wrong1" class="quiz-radio-hallucination">
-   <label for="hallucination-wrong1" class="quiz-option-hallucination" data-correct="false">🐛 It's a bug that will be fixed in future models</label>
+  <div class="quiz-container-prompt-out">
+  <input type="radio" id="hall-fix-w1" name="hall-fix" class="hall-fix-radio">
+  <label for="hall-fix-w1" class="hall-fix-row" data-good="false">
+    🚧 Fine-tune the model overnight.
+  </label>
 
-   <input type="radio" name="quiz-hallucination" id="hallucination-correct" class="quiz-radio-hallucination">
-   <label for="hallucination-correct" class="quiz-option-hallucination" data-correct="true">🎯 They optimize for coherence and predict likely token sequences, not factual accuracy</label>
+  <input type="radio" id="hall-fix-correct" name="hall-fix" class="hall-fix-radio">
+  <label for="hall-fix-correct" class="hall-fix-row" data-good="true">
+    📝 Rewrite the prompt to include <b>correct info + real URL</b><br>
+    e.g. “According to NASA, <em>Olympus Mons</em> is tallest. Cite that source.”
+  </label>
 
-   <input type="radio" name="quiz-hallucination" id="hallucination-wrong2" class="quiz-radio-hallucination">
-   <label for="hallucination-wrong2" class="quiz-option-hallucination" data-correct="false">💾 They have corrupted training data</label>
+  <input type="radio" id="hall-fix-w2" name="hall-fix" class="hall-fix-radio">
+  <label for="hall-fix-w2" class="hall-fix-row" data-good="false">
+    📢 Add “Don’t hallucinate!” as the first sentence of the prompt.
+  </label>
 
-   <div class="feedback-hallucination" data-feedback="correct">✅ <strong>Excellent!</strong> LLMs generate plausible-sounding text based on patterns, not facts they "know" to be true.</div>
-   <div class="feedback-hallucination" data-feedback="wrong">❌ <strong>Try again!</strong> Think about how LLMs fundamentally work - they predict tokens, not retrieve facts.</div>
+  <div class="hall-fix-feedback" data-type="good">
+    ✅ Correct – giving the model the <em>true fact and real link</em> steers its next-token guesses toward reality. This is called "grounding" the model.
+  </div>
+  <div class="hall-fix-feedback" data-type="bad">
+    ❌ Not ideal. Consider a solution that explicitly provides verified facts directly into the prompt to eliminate fabrications. Warnings alone won’t supply missing facts.
+  </div>
 </div>
 </div>
 
@@ -146,56 +161,121 @@ To keep your assistant safe and on-task, you can apply **guardrails**, such as:
 
 For Canopy AI, these guardrails are essential to ensure alignment with educational standards.
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- 🛡️ Guardrails – architectural quiz -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
+            padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="color: #5a5a5a; margin-top: 0;">🛡️ Quiz: What are guardrails in AI systems?</h3>
+  <h3 style="margin:0 0 10px;color:#5a5a5a;">🛡️ Quiz: When do guardrails pay off?</h3>
 
-<style>
-.quiz-container-guardrails { position: relative; }
-.quiz-option-guardrails {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option-guardrails:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio-guardrails { display: none; }
-.quiz-radio-guardrails:checked + .quiz-option-guardrails[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-guardrails:checked + .quiz-option-guardrails:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback-guardrails {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#guardrails-correct:checked ~ .feedback-guardrails[data-feedback="correct"],
-#guardrails-wrong1:checked ~ .feedback-guardrails[data-feedback="wrong"],
-#guardrails-wrong2:checked ~ .feedback-guardrails[data-feedback="wrong"] {
-  display: block;
-}
-.feedback-guardrails[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-guardrails[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
-</style>
+  <p style="color:#495057;font-weight:500;">
+    For each scenario, choose whether adding standard safety guardrails is the better architectural choice.
+    Consider abuse-risk, latency budget, and false-positive cost.
+  </p>
 
-<div class="quiz-container-guardrails">
-   <input type="radio" name="quiz-guardrails" id="guardrails-wrong1" class="quiz-radio-guardrails">
-   <label for="guardrails-wrong1" class="quiz-option-guardrails" data-correct="false">🚀 Performance optimizations that make models run faster</label>
+  <style>
+    .gtbl{border-collapse:collapse;width:100%;font-size:.94em;color:#495057}
+    .gtbl th,.gtbl td{border:1px solid #d1e7dd;padding:10px}
+    .gtbl th{background:#eef5ff;text-align:center}
+    .grad{display:none}
 
-   <input type="radio" name="quiz-guardrails" id="guardrails-wrong2" class="quiz-radio-guardrails">
-   <label for="guardrails-wrong2" class="quiz-option-guardrails" data-correct="false">📊 Data preprocessing techniques used during model training</label>
+    /* initial neutral cell */
+    .gopt{display:block;height:32px;line-height:30px;border-radius:6px;
+          background:#f8f9fa;border:2px solid #e9ecef;cursor:pointer}
 
-   <input type="radio" name="quiz-guardrails" id="guardrails-correct" class="quiz-radio-guardrails">
-   <label for="guardrails-correct" class="quiz-option-guardrails" data-correct="true">🛡️ Safety mechanisms that control and constrain model behavior and outputs</label>
+    .gopt:hover{background:#fff;border-color:#dee2e6}
 
-   <div class="feedback-guardrails" data-feedback="correct">✅ <strong>Excellent!</strong> Guardrails are essential safety measures that help ensure AI systems behave appropriately and safely in production environments.</div>
-   <div class="feedback-guardrails" data-feedback="wrong">❌ <strong>Try again!</strong> Think about how guardrails help control what an AI system can and cannot do or say.</div>
+    /* right pick */
+    .grad:checked + .gopt[data-good="yes"]{
+      background:#d4edda;border-color:#c3e6cb;color:#155724}
+    .grad:checked + .gopt[data-good="yes"]::after{content:"✓";font-weight:600}
+
+    /* wrong pick + explanation */
+    .grad:checked + .gopt[data-good="no"]{
+      background:#f8d7da;border-color:#f5b7b1;color:#721c24}
+    .grad:checked + .gopt[data-good="no"]::after{
+      content:"✗  → " attr(data-msg);
+      font-weight:600;
+      margin-left:6px}
+  </style>
+
+  <table class="gtbl">
+    <tr>
+      <th style="width:45%">Scenario</th>
+      <th>Guardrails<br><small>(YES)</small></th>
+      <th>Guardrails<br><small>(NO)</small></th>
+    </tr>
+
+  <!-- 1 Public bot -->
+  <tr>
+    <td>🌐 <b>Public Q&amp;A Bot</b></td>
+
+  <td align="center">
+    <input type="radio" id="r1y" name="r1" class="grad">
+    <label for="r1y" class="gopt" data-good="yes"></label>
+  </td>
+
+  <td align="center">
+    <input type="radio" id="r1n" name="r1" class="grad">
+    <label for="r1n" class="gopt" data-good="no"
+            data-msg="Unsafe without filters"></label>
+  </td>
+  </tr>
+
+  <!-- 2 Latency-critical internal -->
+  <tr>
+    <td>⚡ <b>Internal Alert Router</b></td>
+
+  <td align="center">
+    <input type="radio" id="r2y" name="r2" class="grad">
+    <label for="r2y" class="gopt" data-good="no"
+            data-msg="Adds avoidable delay"></label>
+  </td>
+
+  <td align="center">
+    <input type="radio" id="r2n" name="r2" class="grad">
+    <label for="r2n" class="gopt" data-good="yes"></label>
+  </td>
+  </tr>
+
+  <!-- 3 Medical assistant -->
+  <tr>
+    <td>🏥 <b>Health-Advice Assistant</b></td>
+
+  <td align="center">
+    <input type="radio" id="r3y" name="r3" class="grad">
+    <label for="r3y" class="gopt" data-good="yes"></label>
+  </td>
+
+  <td align="center">
+    <input type="radio" id="r3n" name="r3" class="grad">
+    <label for="r3n" class="gopt" data-good="no"
+            data-msg="Risk of harmful advice"></label>
+  </td>
+  </tr>
+
+  <!-- 4 Dev code helper -->
+  <tr>
+    <td>💻 <b>Dev-only Code Helper</b></td>
+
+  <td align="center">
+    <input type="radio" id="r4y" name="r4" class="grad">
+    <label for="r4y" class="gopt" data-good="no"
+            data-msg="Blocks harmless snippets"></label>
+  </td>
+
+  <td align="center">
+    <input type="radio" id="r4n" name="r4" class="grad">
+    <label for="r4n" class="gopt" data-good="yes"></label>
+  </td>
+  </tr>
+  </table>
+
+  <p style="margin-top:8px;font-size:.9em;color:#495057;">
+    Green ✓ marks the architecturally sound choice; red ✗ explains why the alternative is sub-optimal.
+  </p>
 </div>
-</div>
+
+
 
 
 ### 🔍 Hands-on Exercises

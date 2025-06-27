@@ -35,57 +35,36 @@ LLMs don't read full sentences—they process token sequences. The total number 
 
 Let's test your understanding with a quiz!
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- 🔍 Token‐capacity calculation (typed answer) -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="color: #5a5a5a; margin-top: 0;">🔤 Quiz: How do tokens impact LLM performance?</h3>
+
+<h3 style="margin:0 0 8px;color:#5a5a5a;">🔤 Quiz (Scenario – type your answer)</h3>
+<p style="color:#495057; font-weight:500;"><strong>Scenario:</strong> The model’s context window is <b>4 096 tokens</b>.  
+Your “overhead” prompt text already uses <b>96 tokens</b>.  
+Each trimmed 80-character line of code costs exactly <b>12 tokens</b>.</p>
+<p style="color:#495057; font-weight:500;">👉 <strong>How many <em>full</em> lines of code can you still paste?</strong></p>
 
 <style>
-.quiz-container-tokens { position: relative; }
-.quiz-option-tokens {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option-tokens:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio-tokens { display: none; }
-.quiz-radio-tokens:checked + .quiz-option-tokens[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-tokens:checked + .quiz-option-tokens:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback-tokens {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#tokens-correct:checked ~ .feedback-tokens[data-feedback="correct"],
-#tokens-wrong1:checked ~ .feedback-tokens[data-feedback="wrong"],
-#tokens-wrong2:checked ~ .feedback-tokens[data-feedback="wrong"] {
-  display: block;
-}
-.feedback-tokens[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-tokens[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+/* self-check styling (delete if you already load a global quiz style) */
+#cap-input{margin:6px 0 4px;padding:6px 10px;border:2px solid #e9ecef;border-radius:6px;width:120px;font-size:1em}
+#cap-input:focus{outline:none;border-color:#6ea8fe}
+#cap-input:valid{background:#d4edda;border-color:#28a745;color:#155724}
+#cap-input:invalid:not(:placeholder-shown){background:#f8d7da;border-color:#dc3545;color:#721c24}
+.feedback-cap{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#cap-input:valid + .feedback-cap[data-feedback="correct"],
+#cap-input:invalid:not(:placeholder-shown) + .feedback-cap[data-feedback="wrong"]{display:block}
+.feedback-cap[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.feedback-cap[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
-<div class="quiz-container-tokens">
-   <input type="radio" name="quiz-tokens" id="tokens-wrong2" class="quiz-radio-tokens">
-   <label for="tokens-wrong2" class="quiz-option-tokens" data-correct="false">🔢 Token count doesn't affect processing speed</label>
-
-   <input type="radio" name="quiz-tokens" id="tokens-wrong1" class="quiz-radio-tokens">
-   <label for="tokens-wrong1" class="quiz-option-tokens" data-correct="false">🚀 More tokens always improve output quality</label>
-
-   <input type="radio" name="quiz-tokens" id="tokens-correct" class="quiz-radio-tokens">
-   <label for="tokens-correct" class="quiz-option-tokens" data-correct="true">⚡ More tokens increase memory usage and slow down inference</label>
-
-   <div class="feedback-tokens" data-feedback="correct">✅ <strong>Perfect!</strong> You understand that tokens directly impact performance and costs.</div>
-   <div class="feedback-tokens" data-feedback="wrong">❌ <strong>Not quite!</strong> Remember: more tokens = more memory + slower processing.</div>
+<!--   min = max = 333 means only 333 is accepted as valid            -->
+<input  id="cap-input"
+        type="number"
+        placeholder="---"
+        min="333" max="333" step="1" required>
 </div>
 
-</div>
 
 ## 🔮 Are LLMs Fixed or Do They Change?
 
@@ -100,57 +79,48 @@ You can't "teach" an LLM new facts mid-conversation unless it's part of the prom
 
 So let's do a quiz!
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- 🔮 Frozen-model memory dilemma (harder) -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="color: #5a5a5a; margin-top: 0;">🧠 Quiz: Do LLMs learn new information during conversations?</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">🧠 Quiz (Scenario)</h3>
+<p style="color:#495057; font-weight:500;"><strong>Scenario:</strong> Warehouse staff type new SKUs during today’s chat.  
+Tomorrow, in a brand-new session, the assistant must recall them instantly.</p>
+<p style="color:#495057; font-weight:500;">Pick the <em>most practical</em> way to achieve that.</p>
 
 <style>
-.quiz-container-learning { position: relative; }
-.quiz-option-learning {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option-learning:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio-learning { display: none; }
-.quiz-radio-learning:checked + .quiz-option-learning[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-learning:checked + .quiz-option-learning:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback-learning {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#learning-correct:checked ~ .feedback-learning[data-feedback="correct"],
-#learning-wrong1:checked ~ .feedback-learning[data-feedback="wrong"],
-#learning-wrong2:checked ~ .feedback-learning[data-feedback="wrong"] {
-  display: block;
-}
-.feedback-learning[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-learning[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+.quiz-container-sku{position:relative}
+.quiz-option-sku{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-sku:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.quiz-radio-sku{display:none}
+.quiz-radio-sku:checked+.quiz-option-sku[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-sku:checked+.quiz-option-sku:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.feedback-sku{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#sku-correct:checked~.feedback-sku[data-feedback="correct"],
+#sku-wrong1:checked~.feedback-sku[data-feedback="wrong"],
+#sku-wrong2:checked~.feedback-sku[data-feedback="wrong"],
+#sku-wrong3:checked~.feedback-sku[data-feedback="wrong"]{display:block}
+.feedback-sku[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.feedback-sku[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
-<div class="quiz-container-learning">
-   <input type="radio" name="quiz-learning" id="learning-wrong2" class="quiz-radio-learning">
-   <label for="learning-wrong2" class="quiz-option-learning" data-correct="false">🔄 They learn gradually but only remember within the same session</label>
+<div class="quiz-container-sku">
+  <input type="radio" name="quiz-sku" id="sku-wrong1" class="quiz-radio-sku">
+  <label for="sku-wrong1" class="quiz-option-sku" data-correct="false">🔖 Append “Remember these forever” to the end of today’s prompt</label>
 
-   <input type="radio" name="quiz-learning" id="learning-wrong1" class="quiz-radio-learning">
-   <label for="learning-wrong1" class="quiz-option-learning" data-correct="false">📚 Yes, they continuously update their knowledge from each conversation</label>
+  <input type="radio" name="quiz-sku" id="sku-wrong2" class="quiz-radio-sku">
+  <label for="sku-wrong2" class="quiz-option-sku" data-correct="false">🧹 Increase the context window so <em>today’s</em> chat fits in tomorrow’s prompt untouched</label>
 
-   <input type="radio" name="quiz-learning" id="learning-correct" class="quiz-radio-learning">
-   <label for="learning-correct" class="quiz-option-learning" data-correct="true">🔒 No, they are frozen after training and don't learn new information</label>
+  <input type="radio" name="quiz-sku" id="sku-wrong3" class="quiz-radio-sku">
+  <label for="sku-wrong3" class="quiz-option-sku" data-correct="false">🔧 Retrain the model overnight on the new SKUs</label>
 
-   <div class="feedback-learning" data-feedback="correct">✅ <strong>Exactly right!</strong> LLMs are fixed after training and only work with their pretrained knowledge plus current context.</div>
-   <div class="feedback-learning" data-feedback="wrong">❌ <strong>Think again!</strong> LLMs don't update or learn - they're frozen after training.</div>
+  <input type="radio" name="quiz-sku" id="sku-correct" class="quiz-radio-sku">
+  <label for="sku-correct" class="quiz-option-sku" data-correct="true">📦 Store the SKUs in a database or and auto-inject them into tomorrow’s prompt (retrieval)</label>
+
+  <div class="feedback-sku" data-feedback="correct">✅ Correct! Frozen weights can’t learn overnight—you must feed yesterday’s SKUs back in (retrieval is fastest and cheapest).</div>
+  <div class="feedback-sku" data-feedback="wrong">❌ Prompts alone can’t alter weights, massive context gets expensive, and retraining the model is often overkill (especially if it's needed frequently).</div>
+</div>
 </div>
 
-</div>
 
 ---
 
@@ -165,55 +135,52 @@ For example:
 
 This generation happens one token at a time, using **probabilities** and **context** to decide what comes next.
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- 🔄 Next token – tricky semantic cue -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="color: #5a5a5a; margin-top: 0;">📝 Quiz: What does an LLM do during inference?</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz (Scenario – tricky)</h3>
+<p style="color:#495057; font-weight:500;">
+<strong>Scenario:</strong> The prompt sent to the model reads exactly like this:
+</p>
+
+<p style="color:#495057; font-weight:500;">
+"John carefully packed his bag with essentials for the desert hike: water, sunscreen, and a wide-brimmed hat. He double-checked everything twice. When he arrived, the blazing sun made him immediately grateful he'd remembered his..."
+</p>
+
+<p style="color:#495057; font-weight:500;">Which <em>single token</em> is the model most likely to produce next?</p>
 
 <style>
-.quiz-container { position: relative; }
-.quiz-option {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio { display: none; }
-.quiz-radio:checked + .quiz-option[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio:checked + .quiz-option:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#correct:checked ~ .feedback[data-feedback="correct"],
-#wrong1:checked ~ .feedback[data-feedback="wrong"],
-#wrong2:checked ~ .feedback[data-feedback="wrong"] {
-  display: block;
-}
-.feedback[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+.quiz-container-next-tricky{position:relative}
+.quiz-option-next-tricky{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-next-tricky:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.quiz-radio-next-tricky{display:none}
+.quiz-radio-next-tricky:checked+.quiz-option-next-tricky[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-next-tricky:checked+.quiz-option-next-tricky:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5c6cb}
+.feedback-next-tricky{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#next-tricky-correct:checked~.feedback-next-tricky[data-feedback="correct"],
+#next-tricky-wrong1:checked~.feedback-next-tricky[data-feedback="wrong"],
+#next-tricky-wrong2:checked~.feedback-next-tricky[data-feedback="wrong"],
+#next-tricky-wrong3:checked~.feedback-next-tricky[data-feedback="wrong"]{display:block}
+.feedback-next-tricky[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.feedback-next-tricky[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
-<div class="quiz-container">
-   <input type="radio" name="quiz" id="wrong1" class="quiz-radio">
-   <label for="wrong1" class="quiz-option" data-correct="false">📊 Classify the topic of a sentence</label>
+<div class="quiz-container-next-tricky">
+  <input type="radio" name="quiz-next-tricky" id="next-tricky-wrong1" class="quiz-radio-next-tricky">
+  <label for="next-tricky-wrong1" class="quiz-option-next-tricky" data-correct="false">🥤 water</label>
 
-   <input type="radio" name="quiz" id="wrong2" class="quiz-radio">
-   <label for="wrong2" class="quiz-option" data-correct="false">🗄️ Retrieve facts from a database</label>
+  <input type="radio" name="quiz-next-tricky" id="next-tricky-correct" class="quiz-radio-next-tricky">
+  <label for="next-tricky-correct" class="quiz-option-next-tricky" data-correct="true">🎩 hat</label>
 
-   <input type="radio" name="quiz" id="correct" class="quiz-radio">
-   <label for="correct" class="quiz-option" data-correct="true">🎯 Predict the most likely next token based on previous ones</label>
+  <input type="radio" name="quiz-next-tricky" id="next-tricky-wrong2" class="quiz-radio-next-tricky">
+  <label for="next-tricky-wrong2" class="quiz-option-next-tricky" data-correct="false">🧴 sunscreen</label>
 
-   <div class="feedback" data-feedback="correct">✅ <strong>Excellent!</strong> You understand how LLMs work during inference.</div>
-   <div class="feedback" data-feedback="wrong">❌ <strong>Try again!</strong> Think about what LLMs fundamentally do during text generation.</div>
+  <input type="radio" name="quiz-next-tricky" id="next-tricky-wrong3" class="quiz-radio-next-tricky">
+  <label for="next-tricky-wrong3" class="quiz-option-next-tricky" data-correct="false">🕶️ sunglasses</label>
+
+  <div class="feedback-next-tricky" data-feedback="correct">✅ Exactly! Context indicates intense sun ("blazing sun"), making "hat" the strongest logical continuation.</div>
+  <div class="feedback-next-tricky" data-feedback="wrong">❌ Read again carefully. What specific clue ("blazing sun") makes a particular item most relevant?<br>If you think your answer is better, that's cause it might be, but the LLM only guesses based on this limited context.</div>
+</div>
 </div>
 
-</div>
 
