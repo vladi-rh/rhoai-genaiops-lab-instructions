@@ -20,54 +20,66 @@ Understanding how your model performs helps you scale and troubleshoot.
 
 These metrics help you balance latency vs. cost in OpenShift AI deployments.
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- 📏 Latency root-cause quiz -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
+            padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="color: #5a5a5a; margin-top: 0;">📏 Quiz: What does TTFT measure in LLM inference?</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📏 Quiz (Scenario)</h3>
+
+<p style="color:#495057;font-weight:500;">
+Your demo streams an LLM answer and then appends a <b>~900 KB</b> PNG chart
+at the very end.<br>
+Telemetry shows:
+</p>
+
+<ul style="margin-left:1.2em;color:#5a5a5a;">
+  <li>~4 s TTFT</li>
+  <li>~30 ms TPOT</li>
+  <li>PNG transfer time is ~3 s</li>
+</ul>
+
+<p style="color:#495057;font-weight:500;">
+Which single change will <b>most directly</b> improve what users feel?
+</p>
 
 <style>
-.quiz-container-metrics { position: relative; }
-.quiz-option-metrics {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option-metrics:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio-metrics { display: none; }
-.quiz-radio-metrics:checked + .quiz-option-metrics[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-metrics:checked + .quiz-option-metrics:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback-metrics {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#metrics-correct:checked ~ .feedback-metrics[data-feedback="correct"],
-#metrics-wrong1:checked ~ .feedback-metrics[data-feedback="wrong"],
-#metrics-wrong2:checked ~ .feedback-metrics[data-feedback="wrong"] {
-  display: block;
-}
-.feedback-metrics[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-metrics[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+.latOpt{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;
+       border:2px solid #e9ecef;color:#495057;transition:.2s}
+.latOpt:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.latRad{display:none}
+.latRad:checked + .latOpt[data-good="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.latRad:checked + .latOpt[data-good="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.latFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#lat-good:checked ~ .latFeed[data-type="good"],
+#lat-w1:checked  ~ .latFeed[data-type="bad"],
+#lat-w2:checked  ~ .latFeed[data-type="bad"]{display:block}
+.latFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.latFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
-<div class="quiz-container-metrics">
-   <input type="radio" name="quiz-metrics" id="metrics-wrong2" class="quiz-radio-metrics">
-   <label for="metrics-wrong2" class="quiz-option-metrics" data-correct="false">📊 The number of tokens processed per second during generation</label>
+<div>
+  <input type="radio" id="lat-w1" name="lat" class="latRad">
+  <label for="lat-w1" class="latOpt" data-good="false">
+    🖼️ Compress the PNG from 900 KB → 150 KB.
+  </label>
 
-   <input type="radio" name="quiz-metrics" id="metrics-correct" class="quiz-radio-metrics">
-   <label for="metrics-correct" class="quiz-option-metrics" data-correct="true">⚡ How long it takes for the model to generate its first response token</label>
+  <input type="radio" id="lat-good" name="lat" class="latRad">
+  <label for="lat-good" class="latOpt" data-good="true">
+    ⚡ Move the model to a faster, always-warm GPU (weights & cache pre-loaded).
+  </label>
 
-   <input type="radio" name="quiz-metrics" id="metrics-wrong1" class="quiz-radio-metrics">
-   <label for="metrics-wrong1" class="quiz-option-metrics" data-correct="false">💾 The total amount of VRAM memory consumed during inference</label>
+  <input type="radio" id="lat-w2" name="lat" class="latRad">
+  <label for="lat-w2" class="latOpt" data-good="false">
+    ✏️ Reduce response length by 20 %.
+  </label>
 
-   <div class="feedback-metrics" data-feedback="correct">✅ <strong>Perfect!</strong> TTFT (Time to First Token) measures the initial latency before the model starts responding, which is crucial for user experience.</div>
-   <div class="feedback-metrics" data-feedback="wrong">❌ <strong>Not quite!</strong> TTFT specifically measures the time delay before the model produces its first output token.</div>
+  <div class="latFeed" data-type="good">
+    ✅ The biggest pain is the 4 s silence <em>before</em> any text streams.
+    Shortening model start-up on a warm GPU tackles that gap directly.
+  </div>
+  <div class="latFeed" data-type="bad">
+    ❌ Image size or per-token speed tweaks won’t fix the long initial pause.
+  </div>
 </div>
 </div>
 
@@ -85,54 +97,59 @@ Model size matters—for performance *and* capability.
 
 🧠 Larger models may be smarter, but smaller ones are often faster and easier to deploy.
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- 📦 model size / GPU trade-off -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
+            padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="color: #5a5a5a; margin-top: 0;">📦 Quiz: What's the trade-off with model sizes?</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📦 Quiz (Scenario)</h3>
+
+<p style="color:#495057;font-weight:500;">
+You need an assistant to <b>auto-tag support tickets</b> with one of 50 categories.<br>
+Traffic target: ~20 requests / sec.<br>
+GPU budget: single A10 24 GB.
+</p>
+
+<p style="color:#495057;font-weight:500;">Which model choice fits best?</p>
 
 <style>
-.quiz-container-models { position: relative; }
-.quiz-option-models {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option-models:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio-models { display: none; }
-.quiz-radio-models:checked + .quiz-option-models[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-models:checked + .quiz-option-models:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback-models {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#models-correct:checked ~ .feedback-models[data-feedback="correct"],
-#models-wrong1:checked ~ .feedback-models[data-feedback="wrong"],
-#models-wrong2:checked ~ .feedback-models[data-feedback="wrong"] {
-  display: block;
-}
-.feedback-models[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-models[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+.szOpt{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;
+       border:2px solid #e9ecef;color:#495057;transition:.2s}
+.szOpt:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.szRad{display:none}
+.szRad:checked + .szOpt[data-good="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.szRad:checked + .szOpt[data-good="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.szFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#sz-good:checked ~ .szFeed[data-type="good"],
+#sz-w1:checked  ~ .szFeed[data-type="bad"],
+#sz-w2:checked  ~ .szFeed[data-type="bad"]{display:block}
+.szFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.szFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
-<div class="quiz-container-models">
-   <input type="radio" name="quiz-models" id="models-wrong2" class="quiz-radio-models">
-   <label for="models-wrong2" class="quiz-option-models" data-correct="false">⚡ Model size doesn't affect hardware requirements</label>
+<div>
+  <input type="radio" id="sz-w1" name="sz" class="szRad">
+  <label for="sz-w1" class="szOpt" data-good="false">
+    70 B quantized to 4-bit
+  </label>
 
-   <input type="radio" name="quiz-models" id="models-correct" class="quiz-radio-models">
-   <label for="models-correct" class="quiz-option-models" data-correct="true">⚖️ Larger models may be more capable but require more GPU resources and are slower</label>
+  <input type="radio" id="sz-good" name="sz" class="szRad">
+  <label for="sz-good" class="szOpt" data-good="true">
+    7 B quantized to 16-bit
+  </label>
 
-   <input type="radio" name="quiz-models" id="models-wrong1" class="quiz-radio-models">
-   <label for="models-wrong1" class="quiz-option-models" data-correct="false">📈 Larger models are always better and should be chosen when possible</label>
+  <input type="radio" id="sz-w2" name="sz" class="szRad">
+  <label for="sz-w2" class="szOpt" data-good="false">
+    3 B unquantized (FP32) running on CPU
+  </label>
 
-   <div class="feedback-models" data-feedback="correct">✅ <strong>Great understanding!</strong> Model selection involves balancing capability with resource constraints and performance needs.</div>
-   <div class="feedback-models" data-feedback="wrong">❌ <strong>Not quite!</strong> Consider the trade-offs between model capability and deployment requirements.</div>
+  <div class="szFeed" data-type="good">
+    ✅ 7 B @ 16-bit ≈ 7 B × 2 byte ≈ 14 GB → easily fits 24 GB with some space for the KV-cache (context window) and meets 20 req/s.
+  </div>
+  <div class="szFeed" data-type="bad">
+    ❌ Reminder: rough memory rule — parameters ×4 bytes (FP32) or ×2 bytes (FP16).  <br>
+    Even at 0.5 B/param (4-bit), 70 B ≈ 35 GB → too big for 24 GB. <br>
+    For the small 3B model, accuracy/QPS drops too much.
+  </div>
 </div>
 </div>
 
