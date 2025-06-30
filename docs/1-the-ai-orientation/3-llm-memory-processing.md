@@ -21,56 +21,66 @@ Attention is why LLMs feel smart — it allows them to **track meaning and refer
 
 <img src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit1/AttentionSceneFinal.gif" alt="Visual Gif of Attention" width="60%">
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- 👀 Attention – who gets the weight? -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
+            padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="color: #5a5a5a; margin-top: 0;">👀 Quiz: What does attention help LLMs do?</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">👀 Quiz (Scenario)</h3>
+
+<p style="color:#495057;font-weight:500;">
+The model is about to generate the <em>underlined</em> word:<br>
+“<u>surprised</u> the crowd with a thunderous drum roll.”<br>
+Prompt so far:
+</p>
+
+<p style="border-left:3px solid #bbb;padding-left:10px;margin:8px 0;color:#444;">
+“The <b>drummer</b> practiced quietly backstage while the <b>singer</b> warmed up.  
+Just before the <b>finale</b>, the <b>drummer</b> nodded and then..."
+</p>
+
+<p style="color:#495057;font-weight:500;">
+Which earlier token will the attention mechanism give the <b>highest weight</b> to when predicting “surprised”?</p>
 
 <style>
-.quiz-container-attention { position: relative; }
-.quiz-option-attention {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option-attention:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio-attention { display: none; }
-.quiz-radio-attention:checked + .quiz-option-attention[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-attention:checked + .quiz-option-attention:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback-attention {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#attention-correct:checked ~ .feedback-attention[data-feedback="correct"],
-#attention-wrong1:checked ~ .feedback-attention[data-feedback="wrong"],
-#attention-wrong2:checked ~ .feedback-attention[data-feedback="wrong"] {
-  display: block;
-}
-.feedback-attention[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-attention[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+.attnOpt{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;
+        border:2px solid #e9ecef;color:#495057;transition:.2s}
+.attnOpt:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.attnRadio{display:none}
+.attnRadio:checked + .attnOpt[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.attnRadio:checked + .attnOpt[data-correct="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.attnFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#attn-good:checked ~ .attnFeed[data-type="good"],
+#attn-w1:checked  ~ .attnFeed[data-type="bad"],
+#attn-w2:checked  ~ .attnFeed[data-type="bad"]{display:block}
+.attnFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.attnFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
-<div class="quiz-container-attention">
-   <input type="radio" name="quiz-attention" id="attention-wrong1" class="quiz-radio-attention">
-   <label for="attention-wrong1" class="quiz-option-attention" data-correct="false">🎯 Focus only on the most recent tokens in the sequence</label>
+<div>
+  <input type="radio" id="attn-w1" name="attn" class="attnRadio">
+  <label for="attn-w1" class="attnOpt" data-correct="false">
+    🎤 “singer”
+  </label>
 
-   <input type="radio" name="quiz-attention" id="attention-wrong2" class="quiz-radio-attention">
-   <label for="attention-wrong2" class="quiz-option-attention" data-correct="false">📊 Calculate mathematical operations between tokens</label>
+  <input type="radio" id="attn-good" name="attn" class="attnRadio">
+  <label for="attn-good" class="attnOpt" data-correct="true">
+    🥁 “drummer”
+  </label>
 
-   <input type="radio" name="quiz-attention" id="attention-correct" class="quiz-radio-attention">
-   <label for="attention-correct" class="quiz-option-attention" data-correct="true">🔗 Focus on relevant tokens throughout the input to understand relationships</label>
+  <input type="radio" id="attn-w2" name="attn" class="attnRadio">
+  <label for="attn-w2" class="attnOpt" data-correct="false">
+    🏟️ “crowd”
+  </label>
 
-   <div class="feedback-attention" data-feedback="correct">✅ <strong>Great job!</strong> Attention helps models understand which parts of the input are most relevant for generating each output token.</div>
-   <div class="feedback-attention" data-feedback="wrong">❌ <strong>Try again!</strong> Think about how attention helps models understand relationships across the entire input.</div>
+  <div class="attnFeed" data-type="good">
+    ✅ Correct — attention focuses on the token that makes the sentence coherent: the <b>drummer</b> is the one doing the surprising.
+  </div>
+  <div class="attnFeed" data-type="bad">
+    ❌ Remember: attention gives the highest weight to the token most relevant to the word being generated, not just the most recent or random noun.
+  </div>
 </div>
 </div>
+
 
 ---
 
@@ -89,54 +99,58 @@ But it comes at a cost:
 - More VRAM usage
 - Higher latency
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- 🧠 Context window – chunking strategy -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
+            padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="color: #5a5a5a; margin-top: 0;">🧠 Quiz: What happens with larger context windows?</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">🧠 Quiz (Scenario)</h3>
+
+<p style="color:#495057;font-weight:500;">
+You need Q&amp;A over a 90-page contract (~45 000 tokens).  
+Available model window: 8 000 tokens.
+</p>
+
+<p style="color:#495057;font-weight:500;">
+Which approach is the <em>most practical</em>?</p>
 
 <style>
-.quiz-container-context { position: relative; }
-.quiz-option-context {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option-context:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio-context { display: none; }
-.quiz-radio-context:checked + .quiz-option-context[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-context:checked + .quiz-option-context:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback-context {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#context-correct:checked ~ .feedback-context[data-feedback="correct"],
-#context-wrong1:checked ~ .feedback-context[data-feedback="wrong"],
-#context-wrong2:checked ~ .feedback-context[data-feedback="wrong"] {
-  display: block;
-}
-.feedback-context[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-context[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+.ctxOpt{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;
+       border:2px solid #e9ecef;color:#495057;transition:.2s}
+.ctxOpt:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.ctxRadio{display:none}
+.ctxRadio:checked + .ctxOpt[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.ctxRadio:checked + .ctxOpt[data-correct="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.ctxFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#ctx-good:checked ~ .ctxFeed[data-type="good"],
+#ctx-w1:checked  ~ .ctxFeed[data-type="bad"],
+#ctx-w2:checked  ~ .ctxFeed[data-type="bad"]{display:block}
+.ctxFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.ctxFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
-<div class="quiz-container-context">
-   <input type="radio" name="quiz-context" id="context-wrong1" class="quiz-radio-context">
-   <label for="context-wrong1" class="quiz-option-context" data-correct="false">🚀 Models run faster and use less memory</label>
+<div>
+  <input type="radio" id="ctx-w1" name="ctx" class="ctxRadio">
+  <label for="ctx-w1" class="ctxOpt" data-correct="false">
+    📚 Fine-tune a new model overnight with the entire contract baked in.
+  </label>
 
-   <input type="radio" name="quiz-context" id="context-correct" class="quiz-radio-context">
-   <label for="context-correct" class="quiz-option-context" data-correct="true">⚡ Better understanding but slower performance and higher VRAM usage</label>
+  <input type="radio" id="ctx-good" name="ctx" class="ctxRadio">
+  <label for="ctx-good" class="ctxOpt" data-correct="true">
+    🔍 Split the contract into ~6 K-token chunks and  
+    insert only the chunks relevant to each question.
+  </label>
 
-   <input type="radio" name="quiz-context" id="context-wrong2" class="quiz-radio-context">
-   <label for="context-wrong2" class="quiz-option-context" data-correct="false">📈 Only output quality improves with no downsides</label>
+  <input type="radio" id="ctx-w2" name="ctx" class="ctxRadio">
+  <label for="ctx-w2" class="ctxOpt" data-correct="false">
+    ⛓️ Chain multiple 6 K prompts in one request; the backend will stitch them automatically.
+  </label>
 
-   <div class="feedback-context" data-feedback="correct">✅ <strong>Spot on!</strong> Larger context windows provide better understanding but come with performance and resource trade-offs.</div>
-   <div class="feedback-context" data-feedback="wrong">❌ <strong>Not quite!</strong> Remember: larger context = better understanding but more resources needed.</div>
+  <div class="ctxFeed" data-type="good">
+    ✅ Right — overlapping chunks plus on-demand retrieval respects the 8 K limit and still covers any clause.
+  </div>
+  <div class="ctxFeed" data-type="bad">
+    ❌ Fine-tuning is slow/expensive, and context resets between separate 8 K prompts.
+  </div>
 </div>
 </div>
 
@@ -172,54 +186,55 @@ Benefits:
 - Reduces latency for long responses
 - Enables responsive UIs like Canopy AI's streaming assistant
 
-<div style="background: linear-gradient(135deg, #e8f2ff 0%, #f5e6ff 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #d1e7dd;">
+<!-- ⚡ KV cache – concept focus -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
+            padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="color: #5a5a5a; margin-top: 0;">⚡ Quiz: What is the main benefit of KV Cache?</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">⚡ Quiz (Scenario)</h3>
+
+<p style="color:#495057;font-weight:500;">
+With KV-cache ON, 1 000 tokens stream in 2 s.  
+Cache OFF → 6 s.<br>
+<strong>What was actually cached, and why does it speed things up?</strong>
+</p>
 
 <style>
-.quiz-container-kvcache { position: relative; }
-.quiz-option-kvcache {
-  display: block;
-  margin: 4px 0;
-  padding: 8px 16px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid #e9ecef;
-  color: #495057;
-}
-.quiz-option-kvcache:hover { background: #fff; transform: translateY(-1px); border-color: #dee2e6; }
-.quiz-radio-kvcache { display: none; }
-.quiz-radio-kvcache:checked + .quiz-option-kvcache[data-correct="true"] { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.quiz-radio-kvcache:checked + .quiz-option-kvcache:not([data-correct="true"]) { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.feedback-kvcache {
-  margin: 4px 0;
-  padding: 8px 16px;
-  border-radius: 6px;
-  display: none;
-}
-#kvcache-correct:checked ~ .feedback-kvcache[data-feedback="correct"],
-#kvcache-wrong1:checked ~ .feedback-kvcache[data-feedback="wrong"],
-#kvcache-wrong2:checked ~ .feedback-kvcache[data-feedback="wrong"] {
-  display: block;
-}
-.feedback-kvcache[data-feedback="correct"] { background: #d1f2eb; color: #0c5d56; border: 1px solid #a3d9cc; }
-.feedback-kvcache[data-feedback="wrong"] { background: #fce8e6; color: #58151c; border: 1px solid #f5b7b1; }
+.kvOpt{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;
+       border:2px solid #e9ecef;color:#495057;transition:.2s}
+.kvOpt:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.kvRadio{display:none}
+.kvRadio:checked + .kvOpt[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.kvRadio:checked + .kvOpt[data-correct="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.kvFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#kv-good:checked ~ .kvFeed[data-type="good"],
+#kv-w1:checked  ~ .kvFeed[data-type="bad"],
+#kv-w2:checked  ~ .kvFeed[data-type="bad"]{display:block}
+.kvFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.kvFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
-<div class="quiz-container-kvcache">
-   <input type="radio" name="quiz-kvcache" id="kvcache-wrong2" class="quiz-radio-kvcache">
-   <label for="kvcache-wrong2" class="quiz-option-kvcache" data-correct="false">🧠 It increases the model's context window capacity</label>
+<div>
+  <input type="radio" id="kv-w1" name="kv" class="kvRadio">
+  <label for="kv-w1" class="kvOpt" data-correct="false">
+    📝 A copy of every output token so they don’t need to be regenerated.
+  </label>
 
-   <input type="radio" name="quiz-kvcache" id="kvcache-wrong1" class="quiz-radio-kvcache">
-   <label for="kvcache-wrong1" class="quiz-option-kvcache" data-correct="false">📊 It improves the quality of generated text</label>
+  <input type="radio" id="kv-good" name="kv" class="kvRadio">
+  <label for="kv-good" class="kvOpt" data-correct="true">
+    🔑 The results of attention for earlier tokens, so each new step reuses them instead of recalculating.
+  </label>
 
-   <input type="radio" name="quiz-kvcache" id="kvcache-correct" class="quiz-radio-kvcache">
-   <label for="kvcache-correct" class="quiz-option-kvcache" data-correct="true">🚀 It avoids recomputing attention for previous tokens, speeding up generation</label>
+  <input type="radio" id="kv-w2" name="kv" class="kvRadio">
+  <label for="kv-w2" class="kvOpt" data-correct="false">
+    📉 Compressed token-embeddings that only reduce memory, not compute.
+  </label>
 
-   <div class="feedback-kvcache" data-feedback="correct">✅ <strong>Perfect!</strong> KV Cache stores previous computations to avoid redundant calculations during token generation.</div>
-   <div class="feedback-kvcache" data-feedback="wrong">❌ <strong>Think again!</strong> KV Cache is about performance optimization, not content quality or capacity.</div>
+  <div class="kvFeed" data-type="good">
+    ✅ Exactly, KV-cache keeps a “cheat-sheet” of attention results for all internal parts of the model. With it, every new token is almost free; without it, the model re-does heavy math for <em>all</em> previous tokens.
+  </div>
+  <div class="kvFeed" data-type="bad">
+    ❌ The cache isn’t about repeating text or mere memory savings—it skips expensive attention math.
+  </div>
 </div>
 </div>
 
