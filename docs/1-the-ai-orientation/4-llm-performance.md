@@ -24,7 +24,7 @@ These metrics help you balance latency vs. cost in OpenShift AI deployments.
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
             padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="margin:0 0 8px;color:#5a5a5a;">📏 Quiz (Scenario)</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📏 Quiz</h3>
 
 <p style="color:#495057;font-weight:500;">
 Your demo streams an LLM answer and then appends a <b>~900 KB</b> PNG chart
@@ -101,7 +101,7 @@ Model size matters—for performance *and* capability.
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
             padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="margin:0 0 8px;color:#5a5a5a;">📦 Quiz (Scenario)</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📦 Quiz</h3>
 
 <p style="color:#495057;font-weight:500;">
 You need an assistant to <b>auto-tag support tickets</b> with one of 50 categories.<br>

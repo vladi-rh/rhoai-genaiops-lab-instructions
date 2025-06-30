@@ -25,7 +25,7 @@ Attention is why LLMs feel smart — it allows them to **track meaning and refer
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
             padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="margin:0 0 8px;color:#5a5a5a;">👀 Quiz (Scenario)</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">👀 Quiz</h3>
 
 <p style="color:#495057;font-weight:500;">
 The model is about to generate the <em>underlined</em> word:<br>
@@ -103,7 +103,7 @@ But it comes at a cost:
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
             padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="margin:0 0 8px;color:#5a5a5a;">🧠 Quiz (Scenario)</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">🧠 Quiz</h3>
 
 <p style="color:#495057;font-weight:500;">
 You need Q&amp;A over a 90-page contract (~45 000 tokens).  
@@ -190,7 +190,7 @@ Benefits:
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
             padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
-<h3 style="margin:0 0 8px;color:#5a5a5a;">⚡ Quiz (Scenario)</h3>
+<h3 style="margin:0 0 8px;color:#5a5a5a;">⚡ Quiz</h3>
 
 <p style="color:#495057;font-weight:500;">
 With KV-cache ON, 1 000 tokens stream in 2 s.  
