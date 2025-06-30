@@ -136,20 +136,20 @@ Which approach is the <em>most practical</em>?</p>
 
   <input type="radio" id="ctx-good" name="ctx" class="ctxRadio">
   <label for="ctx-good" class="ctxOpt" data-correct="true">
-    🔍 Split the contract into ~6 K-token chunks and  
+    🔍 Split the contract into ~1000-token chunks and  
     insert only the chunks relevant to each question.
   </label>
 
   <input type="radio" id="ctx-w2" name="ctx" class="ctxRadio">
   <label for="ctx-w2" class="ctxOpt" data-correct="false">
-    ⛓️ Chain multiple 6 K prompts in one request; the backend will stitch them automatically.
+    ⛓️ Chain multiple 6K prompts in one request; the backend will stitch them automatically.
   </label>
 
   <div class="ctxFeed" data-type="good">
-    ✅ Right — overlapping chunks plus on-demand retrieval respects the 8 K limit and still covers any clause.
+    ✅ Right — on-demand retrieval of multiple 1K chunks respects the 8K limit and allows for some extra context to be added outside the cunks.
   </div>
   <div class="ctxFeed" data-type="bad">
-    ❌ Fine-tuning is slow/expensive, and context resets between separate 8 K prompts.
+    ❌ Fine-tuning is slow/expensive, and context resets between separate 6K prompts.
   </div>
 </div>
 </div>
