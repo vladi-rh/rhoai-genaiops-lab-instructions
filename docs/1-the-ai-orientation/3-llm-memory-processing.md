@@ -157,7 +157,7 @@ Which approach is the <em>most practical</em>?</p>
 
 ### 🔍 Hands-on Exercises
 
-1. Why context window is important? Send a simple `I need a Spanish tortilla recipe.` message to the model. And observe the response.
+1. Let's see why context window is so important. Send a simple `I need a Spanish tortilla recipe.` message to the model. And observe the response.
   
 2. But maybe you want to be more sophisticated and ask the model with a bit more details:
 

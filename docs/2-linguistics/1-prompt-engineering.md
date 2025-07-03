@@ -38,7 +38,7 @@ Here’s what you can configure:
 * 🔢 **Max Tokens**: Control the length of the model’s output.
 * 🔥 **Temperature**: Adjust creativity vs. precision. Lower = more focused, Higher = more creative.
 
-Here is the prompt to summarize:
+And here is the text you want the model to summarize (i.e. the text you want to send into the User Prompt):
 
 ```
 Canopy (Biology)
@@ -64,10 +64,10 @@ Use the Prompt Playground to:
 
 Enter the following info:
 
-- Model Name: `llama32-full`
+- Model Name: `llama32`
 - Model URL: `https://llama32-ai501.<CLUSTER_DOMAIN>/v1/chat/completions`
 
-..and for the rest, it is your creativity :)
+..and for the rest, it is up to your creativity :)
 
 <div class="iframe-scroll-container">
   <iframe 

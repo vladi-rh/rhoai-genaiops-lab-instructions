@@ -6,7 +6,8 @@
   - [💭 Prompting Techniques](#-prompting-techniques)
   - [🚨 Understanding Hallucinations](#-understanding-hallucinations)
   - [🛡️ Implementing Guardrails](#️-implementing-guardrails)
-    - [🔍 Hands-on Exercises](#-hands-on-exercises)
+    - [🔍 Hands-on Exercises - Do LLMs have built in Memory?](#-hands-on-exercises---do-llms-have-built-in-memory)
+    - [🔍 Hands-on Exercises - Are LLMs deterministic?](#-hands-on-exercises---are-llms-deterministic)
 
 ## 💭 Prompting Techniques
 
@@ -278,10 +279,9 @@ For Canopy AI, these guardrails are essential to ensure alignment with education
 
 
 
+### 🔍 Hands-on Exercises - Do LLMs have built in Memory?
 
-### 🔍 Hands-on Exercises
-
-1. Send a message asking "What did you learn today?" 
+Send a message asking "What did you learn today?" 
 
 And then send another message asking "What did I say in the last message?"
 
@@ -302,7 +302,9 @@ What response did you get?
 And now do the same thing with Canopy AI and compare your experience.
 
 
-2. Now ask the model a specific question. For example: `How can I brew Turkish tea?☕️🫖`
+### 🔍 Hands-on Exercises - Are LLMs deterministic?
+
+Now ask the model a specific question. For example: `How can I brew Turkish tea?☕️🫖`
 
 Note the response and ask the same question again. Compare your responses to understand how consistency works in LLMs.
 
