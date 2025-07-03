@@ -30,10 +30,9 @@ Follow these instructions to get your own instance of Canopy AI up and running i
 
 ### 📦 1. Deploy the Frontend to OpenShift
 
-Structure:
-    usecase/
-        model/
-            prompt/
+In OpenShift, you have an experimentation environment which is called `<USER_NAME>-canopy`. You'll use this environment to iterate over Canopy AI, bring new features, update frontend when new capabilities arrive, and so on. 
+
+1. Go to [OpenShift Console](https://console-openshift-console.<CLUSTER_DOMAIN>) and use `Students` login
 
 Check https://www.promptlayer.com/ for inspiration
 

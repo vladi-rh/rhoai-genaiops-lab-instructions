@@ -157,11 +157,17 @@ Which approach is the <em>most practical</em>?</p>
 
 ### 🔍 Hands-on Exercises
 
-Why context window is important?
+1. Why context window is important? Send a simple `I need a Spanish tortilla recipe.` message to the model. And observe the response.
+  
+2. But maybe you want to be more sophisticated and ask the model with a bit more details:
+
+```
+I'm interested in learning how to make an authentic Spanish tortilla de patatas, also known as a Spanish omelette. Could you please provide a step-by-step recipe, including ingredients, preparation tips, and cooking techniques that reflect the traditional way it's made in Spain?
+```
 
 <div class="iframe-scroll-container">
   <iframe 
-    src="http://localhost:7860/context-demo"  
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/context-demo"  
     width="600px" 
     height="700px" 
     frameborder="0"
@@ -169,6 +175,8 @@ Why context window is important?
   </iframe>
 </div>
 
+
+Model is not happy, isn't it? 🥲🥲
 
 ---
 

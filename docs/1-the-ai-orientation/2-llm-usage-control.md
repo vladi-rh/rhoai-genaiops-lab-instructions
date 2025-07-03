@@ -281,17 +281,18 @@ For Canopy AI, these guardrails are essential to ensure alignment with education
 
 ### 🔍 Hands-on Exercises
 
-Send a message asking "What did you learn today?"
+1. Send a message asking "What did you learn today?" 
 
 And then send another message asking "What did I say in the last message?"
 
 What response did you get?
 
+
 <div class="iframe-scroll-container">
   <iframe 
-    src="http://localhost:7860/chat-interface"  
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/chat-interface"  
     width="600px" 
-    height="600px" 
+    height="800px" 
     frameborder="0"
     style="border: 1px solid transparent; border-radius: 1px;">
   </iframe>
@@ -301,16 +302,20 @@ What response did you get?
 And now do the same thing with Canopy AI and compare your experience.
 
 
-Now ask the model a specific question. Note the response and ask the same question again. Compare your responses to understand how consistency works in LLMs.
+2. Now ask the model a specific question. For example: `How can I brew Turkish tea?☕️🫖`
+
+Note the response and ask the same question again. Compare your responses to understand how consistency works in LLMs.
 
 <div class="iframe-scroll-container">
   <iframe 
-    src="http://localhost:7860/chat-interface"  
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/chat-interface"  
     width="600px" 
-    height="600px" 
+    height="800px" 
     frameborder="0"
     style="border: 1px solid transparent; border-radius: 1px;">
   </iframe>
 </div>
+
+Add temperature here and explain it a bit
 
 [🔝 Back to Contents](#contents)
