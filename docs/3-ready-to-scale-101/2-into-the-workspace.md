@@ -1,13 +1,20 @@
-# 📘 Data Science Project
+# 📘 Interacting with Llama Stack via Workbench
 
-Welcome to the foundation of our adaptive learning platform, Canopy AI! To build smart, scalable AI solutions for students and educators, we use **Red Hat OpenShift AI**—a powerful, enterprise-grade platform for developing, deploying, and managing AI and machine learning workloads on Kubernetes.
+Now that we’ve deployed the Llama Stack and verified it’s up and running, it’s time to get hands-on.
 
+In this section, we’ll launch a Workbench on Red Hat OpenShift AI to spin up a Code Server environment. This gives us a powerful, browser-based IDE where we can run Python notebooks and start interacting with the Llama Stack programmatically.
 
-1. Login to OpenShift AI. The link and the credentials will be provided by your instructor. You’ll see there are already two Data Science Projects created for you. 
+You’ll use this environment to:
 
-2. Click on the <USER_NAME>-canopy project. This project will be the place where we start experimenting, testing and building our Canopy AI!
+- Explore Llama Stack’s API
+- Send test prompts directly from a notebook
+- Understand how the backend handles requests from your frontend
 
-3. Let's create a workbench! A workbench is your integrated web-based development environment hosted inside OpenShift AI. Click `Create a Workbench`. OpenShift AI Dashboard is pretty intuitive, isn't it? :)
+By the end of this section, you'll have a better grasp of how to integrate Llama Stack into your own workflows and applications — and set the stage for more advanced use cases.
+
+1. Login to OpenShift AI. The link and the credentials will be provided by your instructor. You’ll see `<USER_NAME>-canopy` project there. 
+
+2. Let's create a workbench! A workbench is your integrated web-based development environment hosted inside OpenShift AI. Click on the `<USER_NAME>-canopy` project, then click `Create a Workbench`. OpenShift AI Dashboard is pretty intuitive, isn't it? :)
 
    Select a name you want, could be something like `<USER_NAME>-canopy` 🌳
 
@@ -36,9 +43,7 @@ When it is in running state, Open it and use your credentials to access it.
 
 4. Open a new terminal by hitting the hamburger menu on top left then select `Terminal` > `New Terminal` from the menu.
 
-   ![code-server-terminal.png](./images/code-server-terminal.png)
-
-5. Let's clone our GitOps repository and learn more about it!
+5. Let's clone our Canopy repository that has some Notebooks in it and learn more about Llama Stack!
 <!-- 
 
 ### 🧩 What is Red Hat OpenShift AI?
