@@ -5,7 +5,7 @@
   - [📚 Contents](#-contents)
   - [👀 Attention Mechanism](#-attention-mechanism)
   - [🧠 Context Length and Window](#-context-length-and-window)
-    - [🔍 Hands-on Exercises](#-hands-on-exercises)
+    - [🔍 Hands-on Exercises - Context Windows](#-hands-on-exercises---context-windows)
   - [⚡ KV Cache and Performance](#-kv-cache-and-performance)
 
 ## 👀 Attention Mechanism
@@ -155,13 +155,19 @@ Which approach is the <em>most practical</em>?</p>
 </div>
 
 
-### 🔍 Hands-on Exercises
+### 🔍 Hands-on Exercises - Context Windows
 
-Why context window is important?
+1. Let's see why context window is so important. Send a simple `I need a Spanish tortilla recipe.` message to the model and observe the response.
+  
+2. But maybe you want to be more sophisticated and ask the model with a bit more details, so send this next and see what happens:
+
+```
+I'm interested in learning how to make an authentic Spanish tortilla de patatas, also known as a Spanish omelette. Could you please provide a step-by-step recipe, including ingredients, preparation tips, and cooking techniques that reflect the traditional way it's made in Spain?
+```
 
 <div class="iframe-scroll-container">
   <iframe 
-    src="http://localhost:7860/context-demo"  
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/context-demo"  
     width="600px" 
     height="700px" 
     frameborder="0"
@@ -169,6 +175,10 @@ Why context window is important?
   </iframe>
 </div>
 
+
+The model is not happy with this, is it? 🥲🥲  
+
+Can you guess what the context length of this model is?
 
 ---
 

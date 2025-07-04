@@ -13,12 +13,10 @@ _an image will be inserted here._
 
 * Understand how system and user prompts shape LLM behavior and responses
 * Learn prompt engineering techniques for educational use cases
-* Explore version-controlled prompt templates using Git as a registry
 * Practice deploying and configuring Canopy AI with custom prompts
 
 # 🔨 Tools used in this module
 
 * Prompt Playground - Interactive Gradio interface for experimenting with prompt engineering
-* Git-based Prompt Registry - Version-controlled system for managing and deploying prompt templates
-* OpenShift Deployment Tools - Platform tools for configuring and running Canopy AI instances
+* OpenShift & Helm Charts - To deploy Canopy UI in a development environment
 

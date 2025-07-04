@@ -6,6 +6,8 @@
 ## Update Llama Stack Config
 
 
+## Hands on on Notebook
+
+
 ## Llama Stack Playground
 
-## Hands on & Update Backend

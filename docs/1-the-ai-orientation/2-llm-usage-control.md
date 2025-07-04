@@ -6,7 +6,8 @@
   - [💭 Prompting Techniques](#-prompting-techniques)
   - [🚨 Understanding Hallucinations](#-understanding-hallucinations)
   - [🛡️ Implementing Guardrails](#️-implementing-guardrails)
-    - [🔍 Hands-on Exercises](#-hands-on-exercises)
+    - [🔍 Hands-on Exercises - Do LLMs have built in Memory?](#-hands-on-exercises---do-llms-have-built-in-memory)
+    - [🔍 Hands-on Exercises - Are LLMs deterministic?](#-hands-on-exercises---are-llms-deterministic)
 
 ## 💭 Prompting Techniques
 
@@ -278,20 +279,20 @@ For Canopy AI, these guardrails are essential to ensure alignment with education
 
 
 
+### 🔍 Hands-on Exercises - Do LLMs have built in Memory?
 
-### 🔍 Hands-on Exercises
-
-Send a message asking "What did you learn today?"
+Send a message asking "What did you learn today?" 
 
 And then send another message asking "What did I say in the last message?"
 
 What response did you get?
 
+
 <div class="iframe-scroll-container">
   <iframe 
-    src="http://localhost:7860/chat-interface"  
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/chat-interface"  
     width="600px" 
-    height="600px" 
+    height="800px" 
     frameborder="0"
     style="border: 1px solid transparent; border-radius: 1px;">
   </iframe>
@@ -301,16 +302,22 @@ What response did you get?
 And now do the same thing with Canopy AI and compare your experience.
 
 
-Now ask the model a specific question. Note the response and ask the same question again. Compare your responses to understand how consistency works in LLMs.
+### 🔍 Hands-on Exercises - Are LLMs deterministic?
+
+Now ask the model a specific question. For example: `How can I brew Turkish tea?☕️🫖`
+
+Note the response and ask the same question again. Compare your responses to understand how consistency works in LLMs.
 
 <div class="iframe-scroll-container">
   <iframe 
-    src="http://localhost:7860/chat-interface"  
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/chat-interface"  
     width="600px" 
-    height="600px" 
+    height="800px" 
     frameborder="0"
     style="border: 1px solid transparent; border-radius: 1px;">
   </iframe>
 </div>
+
+#TODO: Add temperature here and explain it a bit ("see how you get almost the same response when temperature is low, and very different when it's high")
 
 [🔝 Back to Contents](#contents)
