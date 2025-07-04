@@ -4,10 +4,16 @@
 
     ![canopy-be-helm.png](./images/canopy-be-helm.png)
 
-2. As we discussed, backend will be the one talking to Llama Stack, therefore we need to provide its connection details:
+1. Open up the `YAML view` to update the variables.
+
+    As we discussed, backend will be the one talking to Llama Stack, therefore we need to provide its connection details:
 
     - LLAMA_STACK_URL: `http://llama-stack`
-    - MODEL_NAME: `llama32`
+
+2. We also need to provide your chosen System Prompt. Because as we did on the Notebooks, we need to include the prompt while calling Llama Stack endpoint.
+    Add your system prompt here, and mind the indentation please 🙏
+
+    ![canopy-be-values.png](./images/canopy-be-values.png)
  
     ..leave the rest default and hit `Create`.
 
