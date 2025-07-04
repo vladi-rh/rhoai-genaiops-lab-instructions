@@ -17,6 +17,6 @@ _an image will be inserted here._
 # 🔨 Tools used in this module
 
 * Canopy AI - An LLM-powered assistant for exploring model behavior and capabilities
-* LLM - <TBD>
+* LLM - Llama 3.2
 * Tokenizer Playground - Interactive tool for understanding how LLMs process text
 * Chat Interface - Playground for testing LLM conversations and responses, for experimenting with context windows and memory
