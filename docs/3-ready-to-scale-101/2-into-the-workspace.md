@@ -54,7 +54,7 @@ When it is in running state, Open it and use your credentials to access it.
 5. Let's clone our Canopy repository that has some Notebooks in it and learn more about Llama Stack!
 
    ```bash
-   git clone https://<GIT_SERVER>/<USER_NAME>/canopy-ui.git
+   git clone https://<GIT_SERVER>/<USER_NAME>/canopy.git
    ```
 
 6. Open up the notebook ...
