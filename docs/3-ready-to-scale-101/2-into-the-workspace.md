@@ -7,8 +7,8 @@ In this section, we’ll launch a Workbench on Red Hat OpenShift AI to spin up a
 You’ll use this environment to:
 
 - Explore Llama Stack’s API
-- Send test prompts directly from a notebook
-- Understand how the backend handles requests from your frontend
+- Send test prompts directly from code
+- Build a backend to handle requests from our frontend
 
 By the end of this section, you'll have a better grasp of how to integrate Llama Stack into your own workflows and applications — and set the stage for more advanced use cases.
 
@@ -16,7 +16,9 @@ By the end of this section, you'll have a better grasp of how to integrate Llama
 
    ![openshift-ai.png](./images/openshift-ai.png)
 
-2. Let's create a workbench! A workbench is your web-based development environment hosted inside OpenShift AI. Click on the `<USER_NAME>-canopy` project, then click `Create a Workbench`. OpenShift AI Dashboard is pretty intuitive, isn't it? :)
+2. Let's create a workbench!   
+
+   A workbench is your web-based development environment hosted inside OpenShift AI. Click on the `<USER_NAME>-canopy` project, then click `Create a Workbench`. OpenShift AI Dashboard is pretty intuitive, isn't it? :)
    
    ![create-workbench.png](./images/create-workbench.png)
 

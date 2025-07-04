@@ -9,7 +9,7 @@ That’s where **Llama Stack** comes in.
 Llama Stack provides a modular foundation for building LLM applications with:
 
 * 🔌 **Consistent APIs** for interacting with models (local or remote)
-* 📦 **Support for prompt templates**, routing, and adapters
+* 📦 **Support for prompt templates**, vector databases, and agentic workflows and tools
 * 🧠 **Built-in observability** and hooks for evaluation
 * 🔐 **On-prem friendly** deployment patterns
 
@@ -41,15 +41,15 @@ The Llama Stack Playground is your interactive lab for exploring what the Llama 
 
 Think of it as your control room for:
 
-🔧 Trying out different models behind the same interface
+- 🔧 Trying out different models behind the same interface
 
-🧵 Testing prompt templates stored in Git or locally
+- 🧵 Testing prompt templates stored in Git or locally
 
-🌐 Experimenting with RAG systems and different tools
+- 🌐 Experimenting with RAG systems and different tools
 
-📊 Previewing evaluation hooks, even before automating them in pipelines
+- 📊 Previewing evaluation hooks, even before automating them in pipelines
 
-It’s built to help you prototype quickly and standardize early, so you’re not starting from scratch every time you add a new LLM feature.
+It’s built to help you prototype quickly and standardize early, so you quicker can implement new LLM functionality.
 
 Use it to validate your prompts, compare responses, and debug model behavior—before anything hits production.
 
@@ -63,12 +63,16 @@ Let’s deploy the Playground to verify the integration between Llama Stack and 
 
     ![llama-satck-playground-ocp.png](./images/llama-stack-playground-ocp.png)
 
-    Then you can click the little arrow on the side and access to the playground.
+    Then you can click the little arrow on the side of the circle/icon and access to the playground.
 
     ![llama-stack-playground.png](./images/llama-stack-playground.png)
 
 3. If you scroll on the left menu, there is a `System Prompt` area. We can continue experimenting and iterating on our prompts here.
 
     ![llama-stack-playground-summary.png](./images/llama-stack-playground-summary.png)
+
+You have a few more options than in Gradio as well, try them out on the summarize task and see if you can figure out what `Top P` and `Repetition Penalty` does to your output. What are good values for these?
+
+---
 
 Now, let’s look at how we can interact with Llama Stack programmatically and what changes we need to make to the frontend.
