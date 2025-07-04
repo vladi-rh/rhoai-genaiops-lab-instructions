@@ -5,7 +5,7 @@
   - [📚 Contents](#-contents)
   - [👀 Attention Mechanism](#-attention-mechanism)
   - [🧠 Context Length and Window](#-context-length-and-window)
-    - [🔍 Hands-on Exercises](#-hands-on-exercises)
+    - [🔍 Hands-on Exercises - Context Windows](#-hands-on-exercises---context-windows)
   - [⚡ KV Cache and Performance](#-kv-cache-and-performance)
 
 ## 👀 Attention Mechanism
@@ -176,7 +176,7 @@ I'm interested in learning how to make an authentic Spanish tortilla de patatas,
 </div>
 
 
-Model is not happy, is it? 🥲🥲  
+The model is not happy with this, is it? 🥲🥲  
 
 Can you guess what the context length of this model is?
 
