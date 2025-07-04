@@ -318,6 +318,6 @@ Note the response and ask the same question again. Compare your responses to und
   </iframe>
 </div>
 
-Add temperature here and explain it a bit
+#TODO: Add temperature here and explain it a bit ("see how you get almost the same response when temperature is low, and very different when it's high")
 
 [🔝 Back to Contents](#contents)

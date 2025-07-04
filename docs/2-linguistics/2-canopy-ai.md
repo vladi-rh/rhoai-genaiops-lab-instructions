@@ -30,7 +30,7 @@ Follow these instructions to get your own instance of Canopy AI up and running i
 
 ### 📦 1. Deploy the Frontend to OpenShift
 
-In OpenShift, you have an experimentation environment which is called `<USER_NAME>-canopy`. You'll use this environment to iterate over Canopy AI, bring new features, update frontend when new capabilities arrive, and so on. 
+In OpenShift, you have an experimentation environment which is called `<USER_NAME>-canopy`. You'll use this environment to iterate over Canopy AI, bring in new features, update the frontend when new capabilities arrive, and so on. 
 
 1. Go to [OpenShift Console](https://console-openshift-console.<CLUSTER_DOMAIN>) and use `Students` login. You'll find yourself in the Developer view of Openshift Console.
 
@@ -61,7 +61,7 @@ In OpenShift, you have an experimentation environment which is called `<USER_NAM
     - A service exposing port 8501
     - A secure OpenShift route (TLS termination: edge)
 
-5. Once the application successfully running, click the arrow on the side to access the Canopy UI 🌳🌳🌳
+5. Once the application is successfully running, click on the arrow on the side of the circle to access the Canopy UI 🌳🌳🌳
 
     ![canopy-ui-ocp.png](./images/canopy-ui-ocp.png)
 

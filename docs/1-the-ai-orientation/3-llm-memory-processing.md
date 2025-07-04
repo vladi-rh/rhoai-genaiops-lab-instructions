@@ -155,11 +155,11 @@ Which approach is the <em>most practical</em>?</p>
 </div>
 
 
-### 🔍 Hands-on Exercises
+### 🔍 Hands-on Exercises - Context Windows
 
-1. Let's see why context window is so important. Send a simple `I need a Spanish tortilla recipe.` message to the model. And observe the response.
+1. Let's see why context window is so important. Send a simple `I need a Spanish tortilla recipe.` message to the model and observe the response.
   
-2. But maybe you want to be more sophisticated and ask the model with a bit more details:
+2. But maybe you want to be more sophisticated and ask the model with a bit more details, so send this next and see what happens:
 
 ```
 I'm interested in learning how to make an authentic Spanish tortilla de patatas, also known as a Spanish omelette. Could you please provide a step-by-step recipe, including ingredients, preparation tips, and cooking techniques that reflect the traditional way it's made in Spain?
@@ -176,7 +176,9 @@ I'm interested in learning how to make an authentic Spanish tortilla de patatas,
 </div>
 
 
-Model is not happy, isn't it? 🥲🥲
+Model is not happy, is it? 🥲🥲  
+
+Can you guess what the context length of this model is?
 
 ---
 

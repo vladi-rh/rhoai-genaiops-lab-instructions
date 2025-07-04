@@ -28,7 +28,7 @@ But before we can trust an AI to assist learners, we need to explore how it beha
 
 ## 🧪 Hands-On: The Prompt Playground
 
-We’ve created a **Gradio-based interface** where you can experiment with different prompting strategies. Your aim is to find the best system prompt and configuration to summarize the given text as good as possible.
+We’ve created a **Gradio-based interface** where you can experiment with different prompting strategies. Your aim is to find the best system prompt and configuration to summarize a given text.
 
 Here’s what you can configure:
 
@@ -67,7 +67,7 @@ Enter the following info:
 - Model Name: `llama32`
 - Model URL: `https://llama32-ai501.<CLUSTER_DOMAIN>/v1/chat/completions`
 
-..and for the rest, it is up to your creativity :)
+..and for the rest, it is up to what you feel like trying 🧪
 
 <div class="iframe-scroll-container">
   <iframe 
