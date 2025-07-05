@@ -48,3 +48,66 @@ We deployed our `canopy` in experiment environment manually, but for the higher 
     
 
 5. You can also go to OpenShift Console, check `<USER_NAME>-test` namespace to see if the app is deployed.
+
+
+
+
+
+
+## Git Monitor Dashboard
+
+Now let's add a Git Monitor dashboard to track changes to our model and prompt configurations in real-time. This dashboard will show you exactly what changes are being made to your `values-test.yaml` and `values-prod.yaml` files.
+
+### Setting up the Git Monitor
+
+The Git Monitor is a web application that tracks changes to your model and prompt configurations directly from your Git repository. It displays:
+
+- **Environment** (Test vs Production)
+- **Use Case** (what the model is used for)
+- **Model** (which model is being used)
+- **Prompt** (the actual prompt text)
+- **Status** (enabled/disabled)
+- **Commit Information** (when and who made the change)
+
+### Embedded Git Monitor Dashboard
+
+Below is the live Git Monitor dashboard that will automatically update when you make changes to your repository:
+
+<iframe 
+  src="http://localhost:5001/?git_repo_url=https://<GIT_SERVER>/<USER_NAME>/canopy-be.git&git_username=<USER_NAME>&git_password=<PASSWORD>&git_branch=main&monitor_interval=30" 
+  width="100%" 
+  height="600px" 
+  frameborder="0" 
+  style="border: 1px solid #ccc; border-radius: 8px;">
+</iframe>
+
+> **Note:** Replace `<GIT_SERVER>`, `<USER_NAME>`, and `<PASSWORD>` with your actual values. The dashboard will automatically refresh every 30 seconds to show the latest changes.
+
+### How to Use the Dashboard
+
+1. **Real-time Updates**: The dashboard automatically checks for new commits every 30 seconds
+2. **Manual Refresh**: Click the "🔄 Refresh" button to manually update the data
+3. **Hover for Details**: Hover over long prompts to see the full text
+4. **Track Changes**: See exactly when models or prompts were changed and by whom
+
+### Testing the Git Monitor
+
+To test the Git Monitor, try making a change to your model configuration:
+
+1. Edit your `chart/values-test.yaml` file in the `genaiops-gitops` repository
+2. Change the model or prompt text
+3. Commit and push the changes
+4. Watch the dashboard update with your new changes
+
+Example change:
+```yaml
+# chart/values-test.yaml
+LLAMA_STACK_URL: "http://llama-stack"
+summarize:
+  enabled: true
+  model: llama32  
+  prompt: | # Try changing the prompt
+    Please provide a comprehensive summary of the following text.  
+```
+
+The dashboard will automatically detect this change and display it in the table with the commit information and author details. 

@@ -36,12 +36,12 @@
         <input type="text" id="cdomain" name="clusterdomain" placeholder="Your cluster domain..">
       </div>
 
-      <div class="user-inputs">
+      <div class="user-inputs" style="display: none;">
         <label for="gitserver">Git Server (optional)</label><br/>
         <input type="text" id="gitserver" name="gitserver" placeholder="Your git server..">
       </div>
 
-      <div class="">
+      <div class="" style="margin-left: 30px;">
         <button class="storage-btns" onclick="setNamesInStorage()">Save</button>
         <button class="storage-btns" onclick="clearStorage()">Clear</button>
       </div>
@@ -60,7 +60,7 @@
       const clusterDomain = localStorage.getItem('CLUSTER_DOMAIN') ? localStorage.getItem('CLUSTER_DOMAIN') : '<CLUSTER_DOMAIN>';
       const gitServer = localStorage.getItem('GIT_SERVER') ? localStorage.getItem('GIT_SERVER') : '<GIT_SERVER>';
       const username = localStorage.getItem('USER_NAME') ? localStorage.getItem('USER_NAME') : '<USER_NAME>';
-      
+      const password = localStorage.getItem('PASSWORD') ? localStorage.getItem('PASSWORD') : '<PASSWORD>';      
       const linksContainer = document.getElementById('dynamic-links');
       if (!linksContainer) return;
       
@@ -72,7 +72,8 @@
         { name: '☕️ Git Server', url: `https://${gitServer}` },
         { name: '📺 OpenShift Console', url: `https://console-openshift-console.${clusterDomain}` },
         { name: '🧠 OpenShift AI Dashboard', url: `https://rhods-dashboard-redhat-ods-applications.${clusterDomain}` },
-        { name: '🐙 Argo CD', url: `https://argocd-server-${username}-toolings.${clusterDomain}` }
+        { name: '🐙 Argo CD', url: `https://argocd-server-${username}-toolings.${clusterDomain}` },
+        { name: '🦙 Prompt History', url: `https://prompt-history-ai501.${clusterDomain}/?git_repo_url=https://${gitServer}/${username}/canopy-be.git&git_username=${username}&git_password=${password}&git_branch=main&monitor_interval=30` }
       ];
       
       links.forEach(link => {
@@ -264,6 +265,7 @@
     }
     .user-inputs {
       flex: 1;
+      margin-right: 20px;
     }
     .user-inputs:first-child {
       /* margin-right: 30%; */
