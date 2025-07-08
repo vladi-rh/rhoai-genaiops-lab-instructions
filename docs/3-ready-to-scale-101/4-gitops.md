@@ -63,14 +63,14 @@ Let's setup the foundation of our GitOps system and deploy all the components we
 
   _You can CMD/CTRL + click on the URL to open it in a new browser tab._
   
-🪄🪄 Magic! You now have a GitOps controller - Argo CD and got it to manually deploy an application for you. Next up, we’ll make Argo CD deploy Canopy to `test` and `prod` environments 🪄🪄
+🪄🪄 Magic! You now have a GitOps controller - Argo CD - and got it to manually deploy an application for you. Next up, we’ll make Argo CD deploy Canopy to `test` and `prod` environments 🪄🪄
 
 
 ## ApplicationSets
 
 ### Get Gitea Ready for GitOps
 
-> In this exercise we'll connect Argo CD (our GitOps controller) to our Git repository to enable the GitOps workflow. We will be storing definitions of toolings and application deployments in `genaiops-gitops` repository and make Argo CD aware of that repo.
+> In this exercise we'll connect Argo CD (our GitOps controller) to our Git repository to enable the GitOps workflow. We will be storing definitions of toolings and application deployments in the `genaiops-gitops` repository and make Argo CD aware of that repo.
 
 Gitea is a lightweight, self-hosted Git server that allows teams to manage repositories, track issues, and collaborate on code efficiently. It is open-source, easy to deploy, and supports various version control operations. Gitea serves as our central repository in this workshop where your `genaiops-gitops` configurations will reside for seamless integration with Argo CD.
 
@@ -129,7 +129,9 @@ Gitea is a lightweight, self-hosted Git server that allows teams to manage repos
 
   You should see something like this if everything went well:
 
-  
+      ```bash
+    TODO
+    ```
 
   You can also check the pods running in your `<USER_NAME>-toolings` namespace:
 

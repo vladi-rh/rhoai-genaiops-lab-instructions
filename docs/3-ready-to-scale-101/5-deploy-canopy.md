@@ -2,7 +2,7 @@
 
 We deployed our `canopy` in experiment environment manually, but for the higher environments we need to store the definitions in Git and deploy our models via Argo CD to get all the benefits that GitOps brings. 
 
-But first, we need to set up our backend repository to store prompts for test and production environments.
+But first, we need to set up our backend repository to handle the GenAI application logic for test and production environments.
 
 
 1. Clone the backend repository to your workbench.
@@ -35,9 +35,9 @@ But first, we need to set up our backend repository to store prompts for test an
     git push
     ```
 
-Now let's set up Argo CD!
+Now let's set this up using ArgoCD!
 
-### Set Up Argo CCD
+### Set Up with Argo CD
 
 1. Just like we did with our toolings, we need to generate `ApplicationSet` definition for our model deployment. We will have two separated `ApplicationSet` definition; one is for `test` and one is for `prod` environment. For the enablement simplicity reasons, we keep them in the same repository. However in the real life, you may also like to take prod definitions into another repository where you only make changes via Pull Requests with a protected `main` branch. We keep `ApplicationSet` definition separate so that it'll be easy to take the prod definition into another place later on :)
 
@@ -87,7 +87,7 @@ Now let's set up Argo CD!
     chart_path: llama-stack
     ```
 
-  For now, we are happy with the default Llama Stack values. We will update it as we continue to more exciting chapters :)
+  For now, we are happy with the default Llama Stack values. We will get some exciting updates as we continue to the other chapters :)
 
 5. Let's get all of these deployed! Of course - they are not real unless they are in git!
 
@@ -114,16 +114,18 @@ Now let's set up Argo CD!
     TODO: add screenshots
 
 
-## Prompt Changes Tracker
+## Prompt Tracker
 
 We use Git to track our changes and able to tell which prompts and settings are at the moment effective in Canopy, or _were_ at a given time. But going through a Git commit history and figure out such answer can be tedious. For that reason we built and deploy a tracker for you to visualize your changes. 
 
 You can find the link in the Quick Link drop down or simply clicking [here](https://prompt-tracker-ai501.<CLUSTER_DOMAIN>/?git_repo_url=https://<GIT_SERVER>/<USER_NAME>/canopy-be.git&git_username=<USER_NAME>&git_password=<PASSWORD>&git_branch=main&monitor_interval=30). 
 
+TODO: Screenshot
 
-### Testing the Prompt Changes Trackes
 
-To test the dashboard, try making a change to your model configuration:
+### Testing the Prompt Tracker
+
+To test the prompt tracker, try making a change to your model configuration:
 
 1. Edit your prompt in the `chart/values-test.yaml` file in the `canopy-be` repository. 
 
