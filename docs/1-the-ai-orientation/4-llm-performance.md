@@ -9,14 +9,14 @@
 
 ## 📊 Key Performance Metrics
 
-Understanding how your model performs helps you scale and troubleshoot.
+Before we jump into hardware and sizes, it's helpful to understand how we measure a model's responsiveness and efficiency. These key metrics help us see how fast a model can start talking, how quickly it produces each word, and how much resource it uses.
 
 | Metric                  | Meaning                                                      |
 |-------------------------|--------------------------------------------------------------|
-| **TTFT**                | Time to First Token – how fast the model starts responding   |
-| **TPOT**                | Time Per Output Token – how fast each new token is generated |
-| **Throughput**          | Number of parallel requests handled                          |
-| **VRAM Usage**          | GPU memory required (↑ model size or context = ↑ memory)     |
+| **TTFT**                | Time to First Token – how quickly the model starts giving its first token after you ask something. |
+| **TPOT**                | Time Per Output Token – the speed at which each next token is generated once the response has started. |
+| **Throughput**          | How many requests the system can handle at the same time without slowing down. |
+| **VRAM Usage**          | The amount of GPU memory the model needs (bigger models or longer conversations need more memory). |
 
 These metrics help you balance latency vs. cost in OpenShift AI deployments.
 
@@ -87,15 +87,17 @@ Which single change will <b>most directly</b> improve what users feel?
 
 ## 📦 Model Sizes and Requirements
 
-Model size matters—for performance *and* capability.
+Models come in different sizes. The bigger the model (measured in billions of parameters), the smarter and more detailed its responses can be. But bigger models need more powerful GPUs and more memory, which can make them slower or more expensive to run.
 
 | Model Size     | Parameters | GPU Requirement            | Notes                            |
 |----------------|------------|-----------------------------|----------------------------------|
-| **<3B**         | Small      | 8–12GB VRAM (1 GPU)         | Lightweight and fast             |
-| **7B–13B**      | Medium     | ≥24GB VRAM or quantization  | Balanced power vs. cost          |
-| **>30B**        | Large      | Multi-GPU or high-end cards | Slower, but more context-aware   |
+| **<3B**         | Small      | 8–12GB VRAM (1 GPU)         | Lightweight, fast, and easy to deploy             |
+| **7B–13B**      | Medium     | ≥24GB VRAM or quantized*     | Balanced power and cost          |
+| **>30B**        | Large      | Multi-GPU or high-end cards | Better at understanding context but slower and costly |
 
 🧠 Larger models may be smarter, but smaller ones are often faster and easier to deploy.
+
+_* Quantization makes models take up less space, so they can run faster and fit on smaller GPUs. It slightly reduces quality but often works well enough._
 
 <!-- 📦 model size / GPU trade-off -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
@@ -157,18 +159,22 @@ GPU budget: single A10 24 GB.
 
 ## ✅ Summary
 
+Let's wrap up with a quick review of important concepts that you have seen through this chapter. These terms will help you understand how LLMs work under the hood and how to think about their performance and deployment.
+
 | Concept                | Key Idea                                                            |
 |------------------------|---------------------------------------------------------------------|
-| **Token**              | The basic unit of LLM input/output                                  |
-| **Next-token machine** | LLMs predict one token at a time                                    |
-| **Attention**          | Helps models focus on relevant words                                |
-| **Context length**     | How much the model can "remember"                                   |
-| **KV Cache**           | Speeds up generation by caching internal state                      |
-| **Prompting**          | Guides model behavior through smart input design                    |
-| **Hallucination**      | LLMs can generate plausible but wrong info                          |
-| **Guardrails**         | Techniques to constrain model behavior and output                   |
-| **TTFT & TPOT**        | Speed metrics for user experience                                   |
-| **VRAM & Throughput**  | Resource and scalability metrics                                    |
-| **Model size & GPU**   | Match model size to hardware capability and use case                |
+| **Token**              | The smallest piece of text an LLM processes at a time—like a word or part of a word. Think of tokens as the building blocks of language for the model. |
+| **Next-token machine** | LLMs work by predicting one token at a time, based on what came before. They generate responses step-by-step. |
+| **Attention**          | A method that lets the model focus on the important parts of the input when deciding what token to generate next. |
+| **Context length**     | How much recent conversation or text the model can "remember" at once, usually measured in tokens. |
+| **KV Cache**           | A memory shortcut that helps speed up generating tokens by remembering parts of previous calculations. |
+| **Prompting**          | How we guide the model’s behavior by carefully designing the input text we give it. |
+| **Hallucination**      | When the model makes up facts or details that sound real but are incorrect. |
+| **Guardrails**         | Techniques and controls to keep the model’s output safe, accurate, and on-topic. |
+| **TTFT & TPOT**        | Metrics showing how quickly the model starts responding and how fast it produces each next word. |
+| **VRAM & Throughput**  | How much GPU memory is needed and how many users can be served simultaneously. |
+| **Model size & GPU**   | Picking the right model size based on your hardware and needs ensures the best balance of performance and cost. |
+
+
 
 [🔝 Back to Contents](#contents)

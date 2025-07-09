@@ -1,8 +1,10 @@
 # Understanding LLMs: A Deep Dive
 
-In Canopy AI, your assistant appears to think quickly and respond naturally. But what's actually happening behind the scenes? This guide explores the core mechanics that power LLMs during **inference** — the process of turning prompts into meaningful, human-like output.
+In Canopy, your assistant feels fast and natural but what’s really happening behind the scenes? This guide breaks down the key mechanics that make large language models (LLMs) work while you're chatting with them.
 
-We'll focus on the concepts that matter most for real-world deployment in educational settings.
+We'll focus on the concepts that matter most for real-world deployments. 
+
+Use the index below to explore specific topics or revisit areas you'd like to review.
 
 ## Guide Structure
 
@@ -32,7 +34,7 @@ This guide is divided into four main sections:
 ## 🎯 Learning Objectives
 
 After completing this guide, you will understand:
+
 - How LLMs process and generate text
 - Key factors affecting LLM performance
-- Best practices for prompting and control
-- Hardware requirements for deployment
+- Hardware considerations for deployment
