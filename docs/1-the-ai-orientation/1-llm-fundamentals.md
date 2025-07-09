@@ -9,18 +9,18 @@
 
 ## 🔍 What is a Token?
 
-Tokens are the **smallest units of text** an LLM processes. A token might be a word, a piece of a word, or even punctuation.
+Before an AI model can understand or generate text, it breaks everything down into tiny pieces called **tokens**.
 
-Examples:
-- `"The"` → 1 token
-- `"unbelievable"` → 3 tokens (`"un"`, `"believ"`, `"able"`)
+A token is not quite a word — it could be:
+- A whole short word: `"The"` → 1 token
+- Parts of a longer word: `"unbelievable"` → 3 tokens (`"un"`, `"believ"`, `"able"`)
+- Punctuation: `","` or `"."` might each be 1 token
 
-LLMs don't read full sentences—they process token sequences. The total number of tokens affects:
-- Memory usage
-- Inference speed
-- Output length
+These are the basic building blocks the model sees. It doesn’t understand text the way humans do — it just sees a stream of tokens and learns patterns in how they appear.
 
-⚠️ **Tip**: More tokens = slower, more expensive inference.
+Why do tokens matter?
+- They decide how much the model can "read" or "write" in one go.
+- More tokens = more memory, slower responses, and higher compute cost.
 
 <iframe
 	src="https://agents-course-the-tokenizer-playground.static.hf.space"
@@ -33,7 +33,7 @@ LLMs don't read full sentences—they process token sequences. The total number 
 
 *The App is from [HuggingFace Learning Course](https://agents-course-the-tokenizer-playground.static.hf.space)*
 
-Let's test your understanding with a quiz!
+Let’s test your understanding with a quick quiz!
 
 <!-- 🔍 Token‐capacity calculation (typed answer) -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
@@ -98,16 +98,17 @@ Let's test your understanding with a quiz!
 
 ## 🔮 Are LLMs Fixed or Do They Change?
 
-LLMs are **frozen once trained**—they do **not learn** or update on the fly. Each time you send a prompt, they respond based on **pretrained knowledge** and context in the prompt.
+Once a large language model is trained, it becomes **frozen** — it doesn’t learn new things by talking to you. Every time you send a message (called a **prompt**), the model uses what it already knows and responds based only on:
+- Its original training data
+- The content of your current prompt
+- Randomness in the generation process
 
-However, outputs may differ due to:
-- **Random sampling strategies**
-- **Changes in prompts**
-- **Different system instructions**
+Even if you tell the model something new today, it won’t “remember” it tomorrow unless you remind it again.
 
-You can't "teach" an LLM new facts mid-conversation unless it's part of the prompt or a fine-tuned model.
+So how do systems “remember” facts between conversations?
+They use tricks like saving information in a database and re-feeding it into the prompt — not because the model learned it, but because someone re-taught it.
 
-So let's do a quiz!
+Let’s explore this idea with a quiz!
 
 <!-- 🔮 Frozen-model memory dilemma (harder) -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
@@ -156,14 +157,22 @@ Tomorrow, in a brand-new session, the assistant must recall them instantly.</p>
 
 ## 🔄 Next-Token Prediction
 
-LLMs are **next-token machines**. At their core, they do one thing:  
-👉 Predict the most likely next token based on everything they’ve seen so far.
+At their core, large language models do something surprisingly simple:  
+They guess the **next token**.
+
+You give them a string of text, and the model continues it by predicting the most likely next piece. Then it does it again. And again. And again.
+
+It’s like a very fast autocomplete — but one that’s been trained on a massive collection of text from books, websites, conversations, and more.
 
 For example:
-> Input: "Photosynthesis is the process by which plants"  
-> Prediction: `" convert sunlight into energy"`
+> Input: “Photosynthesis is the process by which plants”  
+> Model prediction: `“ convert sunlight into energy”`
 
-This generation happens one token at a time, using **probabilities** and **context** to decide what comes next.
+This step-by-step guessing game is called **inference**.
+
+Because the model is trying to predict what *usually* comes next, it’s sensitive to clues and patterns in your prompt — and sometimes a small change can lead to a very different outcome.
+
+Let’s see how well it guesses in a specific context:
 
 <!-- 🔄 Next token – tricky semantic cue -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">

@@ -5,19 +5,24 @@
   - [📚 Contents](#-contents)
   - [💭 Prompting Techniques](#-prompting-techniques)
   - [🚨 Understanding Hallucinations](#-understanding-hallucinations)
+    - [How can we reduce hallucinations?](#how-can-we-reduce-hallucinations)
   - [🛡️ Implementing Guardrails](#️-implementing-guardrails)
     - [🔍 Hands-on Exercises - Do LLMs have built in Memory?](#-hands-on-exercises---do-llms-have-built-in-memory)
     - [🔍 Hands-on Exercises - Are LLMs deterministic?](#-hands-on-exercises---are-llms-deterministic)
 
 ## 💭 Prompting Techniques
 
-Prompting is how we shape model behavior. There are two key parts:
-- **System Prompt**: Defines the assistant's role (e.g., "You are a helpful tutor…")
-- **User Prompt**: The actual input or question
+The way you *ask* a model something has a big impact on how it answers. This is called **prompting** — and it’s how we guide the model’s behavior.
 
-Small changes in wording can **dramatically** change the output. That's why prompt engineering is crucial in education — it determines how clearly, accurately, and appropriately the model responds to students and instructors.
+There are two key parts to a prompt:
+- **System Prompt**: Sets the tone or role for the assistant. Example: `You are a strict grader.`
+- **User Prompt**: The actual question or message from the person using the model.
 
-📚 We'll dive much deeper into **prompt engineering strategies** in later chapters.
+Even small changes in your wording can lead to very different responses.
+
+Prompting well is essential — it helps you get clearer, more helpful, and more accurate answers from the model.
+
+📚 We’ll explore more advanced prompt strategies later. For now, let’s try a fun quiz to see how prompting works in practice:
 
 <!-- 💭 Prompting – what will happen? -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
@@ -87,16 +92,20 @@ The model has no temperature tricks and uses default sampling.<br>
 
 ## 🚨 Understanding Hallucinations
 
-LLMs sometimes **hallucinate** — confidently generate text that's incorrect or fictional.
+Sometimes, language models **make things up** — they sound confident but give you answers that are false or even fictional. This is called a **hallucination**.
 
-Why it happens:
-- They optimize for coherence, not factual accuracy
-- They don't "know" facts—they predict likely token sequences
+Why does it happen?
+- The model isn’t checking facts — it’s just guessing the next most likely token.
+- It doesn’t know what’s real. It only knows what *sounded* common in its training data.
 
-Mitigation tips:
-- Include accurate facts in the prompt
-- Use guardrails (see below)
-- Add retrieval or validation layers
+👻 You might ask for a real citation, and it could invent a document that looks good but doesn’t exist.
+
+### How can we reduce hallucinations?
+- Give the model real, accurate facts inside the prompt.
+- Add guardrails to catch false claims before they reach users. (see below)
+- Use tools that add “retrieval” — like pulling info from a trusted database or website.
+
+Let’s explore this with a quick quiz:
 
 <!-- 🚨 Hallucination – realistic prevention options -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
@@ -155,12 +164,22 @@ Mitigation tips:
 
 ## 🛡️ Implementing Guardrails
 
-To keep your assistant safe and on-task, you can apply **guardrails**, such as:
-- Prompt templates with strict instructions
-- Output filters (block offensive or harmful content)
-- External validation (e.g., fact-checking or classifiers)
+What if you need to make sure the model:
+- Doesn’t say harmful things?
+- Stays focused on its task?
+- Never shares private or medical advice?
 
-For Canopy AI, these guardrails are essential to ensure alignment with educational standards.
+That’s where **guardrails** come in.
+
+Guardrails are extra rules or checks we put around the model’s behavior, such as:
+- Templates that tell it exactly how to answer
+- Filters that block unsafe content
+- External systems that fact-check what the model says
+
+They’re important in real-world systems like Canopy — especially in schools, healthcare, and public-facing apps.
+
+Here’s a quiz that explores when to use guardrails and when to be more flexible:
+
 
 <!-- 🛡️ Guardrails – architectural quiz -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
@@ -281,11 +300,19 @@ For Canopy AI, these guardrails are essential to ensure alignment with education
 
 ### 🔍 Hands-on Exercises - Do LLMs have built in Memory?
 
-Send a message asking "What did you learn today?" 
+Try sending this question to the model:  
 
-And then send another message asking "What did I say in the last message?"
+```bash
+What did you learn today?
+```
 
-What response did you get?
+Then follow up with:  
+
+```bash
+What did I say in the last message?
+```
+
+What did the model respond with?
 
 
 <div class="iframe-scroll-container">
@@ -298,15 +325,20 @@ What response did you get?
   </iframe>
 </div>
 
-
-And now do the same thing with Canopy AI and compare your experience.
+Now try the same thing in **Canopy** and compare. Does it remember what you said? What makes it different?
 
 
 ### 🔍 Hands-on Exercises - Are LLMs deterministic?
 
-Now ask the model a specific question. For example: `How can I brew Turkish tea?☕️🫖`
+Now ask the model something simple like:  
 
-Note the response and ask the same question again. Compare your responses to understand how consistency works in LLMs.
+```bash
+How can I brew Turkish tea? ☕️🫖
+```
+
+Take note of the response. Then ask the **exact same question again**.
+
+Did you get the same answer, or something different?
 
 <div class="iframe-scroll-container">
   <iframe 
@@ -318,6 +350,11 @@ Note the response and ask the same question again. Compare your responses to und
   </iframe>
 </div>
 
-#TODO: Add temperature here and explain it a bit ("see how you get almost the same response when temperature is low, and very different when it's high")
+LLMs often use a bit of randomness when generating answers. This randomness is controlled by something called **temperature**:
+- **Low temperature (e.g., 0.1)** → more predictable, repeatable responses
+- **High temperature (e.g., 0.9)** → more variety and creativity
+
+Try adjusting the temperature and see how it changes the behavior.
+
 
 [🔝 Back to Contents](#contents)

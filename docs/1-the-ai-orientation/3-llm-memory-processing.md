@@ -5,21 +5,26 @@
   - [📚 Contents](#-contents)
   - [👀 Attention Mechanism](#-attention-mechanism)
   - [🧠 Context Length and Window](#-context-length-and-window)
-    - [🔍 Hands-on Exercises - Context Windows](#-hands-on-exercises---context-windows)
   - [⚡ KV Cache and Performance](#-kv-cache-and-performance)
 
 ## 👀 Attention Mechanism
 
-**Attention** helps the model focus on the most relevant tokens in the input when generating output.
+How does a language model know which part of a sentence matters most? That’s where **attention** comes in.
 
-In the sentence:
+Attention is like a spotlight — it helps the model focus on the most important words when generating a response.
+
+Example:
 > "When the student finished the exam, they felt relieved."
 
-To predict "they", the model uses attention to relate it back to "the student".
+To understand “they,” the model pays attention to “the student.”
 
-Attention is why LLMs feel smart — it allows them to **track meaning and reference across long inputs**.
+It doesn’t just look at the last word — it looks back and figures out which word makes the most sense.
+
+That’s what makes LLMs feel smart: they can keep track of meaning across long stretches of text.
 
 <img src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit1/AttentionSceneFinal.gif" alt="Visual Gif of Attention" width="60%">
+
+Let’s try a quiz to see how this works:
 
 <!-- 👀 Attention – who gets the weight? -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
@@ -86,18 +91,80 @@ Which earlier token will the attention mechanism give the <b>highest weight</b> 
 
 ## 🧠 Context Length and Window
 
-The **context window** is how many tokens the model can "remember" at once.
+  LLMs don’t have infinite memory. When you send a message, the model needs room to:
 
-Typical ranges:
-- Small models: 2K–4K tokens
-- Modern models: 8K–128K+ tokens
-- Cutting-edge models: up to 1 million tokens (e.g., Qwen2.5-1M)
+  - Read your prompt
+  - Think through it
+  - And generate a response
 
-More context = better understanding of long documents or prior messages.
-But it comes at a cost:
-- Slower performance
-- More VRAM usage
-- Higher latency
+  That whole process happens inside a fixed space called the **context window**.
+
+  Think of it like a whiteboard. If you write too much — either in your question or in the answer you expect — the board runs out of space. The model might give up or cut things off.
+
+  Typical context window sizes:
+
+  - Small models: 2,000–4,000 tokens
+  - Bigger models: 8,000–128,000 tokens
+  - Some cutting-edge models: even more!
+
+  So when you send a really long prompt, or ask for a really long answer, you can run into the model’s limits.
+
+  There’s also something you can control yourself called `max_tokens`. This tells the model “Only give me up to this many tokens in your answer.”
+
+  It’s like giving the model a writing limit. Let's try this:
+
+  Ask the model `I need a Spanish tortilla recipe.` and change the `max_token` until you get a delicious recipe 🇪🇸
+
+<div class="iframe-scroll-container">
+  <iframe 
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/context-demo"  
+    width="600px" 
+    height="700px" 
+    frameborder="0"
+    style="border: 1px solid transparent; border-radius: 1px;">
+  </iframe>
+</div>
+
+  What is the number you are happy with?
+
+  But remember — the model’s total capacity doesn’t change. The context window is fixed, and it includes both:
+
+  - The input (your prompt)
+  - The output (the model’s response, up to max_tokens)
+
+  So if you set `max_tokens` too high, and your input is already long, the model might not have enough room — and it could return an error.
+
+  So maybe you want to be more sophisticated and ask the model with a bit more details. Send this next and see what happens:
+
+  ```
+  I'm interested in learning how to make an authentic Spanish tortilla de patatas, also known as a Spanish omelette. 
+  Could you please provide a step-by-step recipe, including ingredients, preparation tips, and cooking techniques that reflect the traditional way it's made in Spain?
+  ```
+
+<div class="iframe-scroll-container">
+  <iframe 
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/max-length-demo"  
+    width="600px" 
+    height="700px" 
+    frameborder="0"
+    style="border: 1px solid transparent; border-radius: 1px;">
+  </iframe>
+</div>
+
+ Uh-oh. You probably got an error message. Why?
+
+  The model has a limited memory space — a fixed number of tokens it can handle per request. That space has to fit:
+
+  - Your prompt (the question or instruction), plus
+
+  - The answer it’s going to generate
+
+  In this case, your longer question already took up a big chunk of that space. On top of that, the model was asked to generate a long, detailed recipe — and it simply didn’t have room to do both. So it gave up and returned an error.
+
+  Again, this space limit is called the maximum context length. It's something set when the model is started, and it affects how much input and output the model can handle together.
+
+  Setting it too high might waste memory; setting it too low might truncate outputs or fail to serve longer prompts.
+
 
 <!-- 🧠 Context window – chunking strategy -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
@@ -155,46 +222,27 @@ Which approach is the <em>most practical</em>?</p>
 </div>
 
 
-### 🔍 Hands-on Exercises - Context Windows
-
-1. Let's see why context window is so important. Send a simple `I need a Spanish tortilla recipe.` message to the model and observe the response.
-
-<div class="iframe-scroll-container">
-  <iframe 
-    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/context-demo"  
-    width="600px" 
-    height="700px" 
-    frameborder="0"
-    style="border: 1px solid transparent; border-radius: 1px;">
-  </iframe>
-</div>
-
-2. And maybe you want to be more sophisticated and ask the model with a bit more details, so send this next and see what happens:
-
-  ```
-  I'm interested in learning how to make an authentic Spanish tortilla de patatas, also known as a Spanish omelette. 
-  Could you please provide a step-by-step recipe, including ingredients, preparation tips, and cooking techniques that reflect the traditional way it's made in Spain?
-  ```
-
-  The model is not happy with this, is it? 🥲🥲  
-
-Can you guess what the context length of this model is?
-
 ---
 
 ## ⚡ KV Cache and Performance
 
-As models generate tokens, they keep track of past computations using a **KV (Key-Value) Cache**.
+Generating answers can take time — especially for long responses. So how do LLMs stay fast?
 
-Instead of recomputing attention for every previous token at each step, the model stores the intermediate results (keys and values) from earlier layers and reuses them as it continues generating.
+They use something called a **KV cache** — short for *Key-Value cache*.
+
+Instead of starting from scratch for every word it generates, the model saves what it already computed (its “thinking so far”) and reuses it. Like keeping notes on a scratchpad.
+
+This saves a huge amount of time.
 
 ![KV Cache Autoregression Diagram](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/kv-cache/autoregression.png)
 
 Benefits:
-- Avoids repeating expensive calculations
-- Greatly improves decode speed
-- Reduces latency for long responses
-- Enables responsive UIs like Canopy AI's streaming assistant
+
+- Faster responses
+- Less repeated work
+- Smoother experience in chat apps
+- Makes streaming outputs possible (like showing text word-by-word)
+
 
 <!-- ⚡ KV cache – concept focus -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
@@ -247,6 +295,5 @@ Cache OFF → 6 s.<br>
   </div>
 </div>
 </div>
-
 
 [🔝 Back to Contents](#contents)
