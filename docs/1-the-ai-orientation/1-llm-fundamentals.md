@@ -4,6 +4,7 @@
 - [LLM Fundamentals](#llm-fundamentals)
   - [📚 Contents](#-contents)
   - [🔍 What is a Token?](#-what-is-a-token)
+  - [🧠 Context Length and Window](#-context-length-and-window)
   - [🔮 Are LLMs Fixed or Do They Change?](#-are-llms-fixed-or-do-they-change)
   - [🔄 Next-Token Prediction](#-next-token-prediction)
 
@@ -24,7 +25,7 @@ There are two main reasons to use tokens:
 - They are designed to be as large but also as reusable as possible, so that the **number** of inputs we send to the LLM is as few as possible. For example, if I send the word `unbelievable` it would be 12 inputs if I sent each letter, but only 3 tokens. The number of inputs are important which we explain... now 👇
 
 When you start working with LLMs you will often see people counting tokens. We don't just do this for fun, it's because the number of tokens is now how large our input into the LLM is.  
-An LLM can only input and output a certain number of tokens in the same request/inference (think of it as how much context/information it can see at once).  
+An LLM can only input and output a certain number of tokens in the same request (think of it as how much context/information it can see at once).  
 Besides that, the more we input the more memory it needs to use (GPU memory specifically) to keep track of all the inputs and outputs (remember that the output turns into input in the next step). 
 
 ![input-output.png](images/input-output.png)
@@ -112,13 +113,13 @@ Let’s test your understanding with a quick quiz!
 
 ## 🧠 Context Length and Window
 
-  LLMs don’t have infinite memory. When you send a message, the model needs room to:
+  LLMs can't have infinite long inputs. When you send a message, the model needs room to:
 
   - Read your prompt
   - Think through it
   - And generate a response
 
-  That whole process happens inside a fixed space called the **context window**.
+  That whole process happens inside a fixed space called the **context window** (or sometimes **max model length** and other similar combinations).
 
   Think of it like a whiteboard. If you write too much — either in your question or in the answer you expect — the board runs out of space. The model might give up or cut things off.
 
@@ -130,7 +131,7 @@ Let’s test your understanding with a quick quiz!
 
   So when you send a really long prompt, or ask for a really long answer, you can run into the model’s limits.
 
-  There’s also something you can control yourself called `max_tokens`. This tells the model “Only give me up to this many tokens in your answer.”
+  There’s also something you can control yourself called `max_tokens` (or *max completion tokens*). This tells the model “Only give me up to this many tokens in your answer.”
 
   It’s like giving the model a writing limit. Let's try this:
 
@@ -194,8 +195,9 @@ Let’s test your understanding with a quick quiz!
 <h3 style="margin:0 0 8px;color:#5a5a5a;">🧠 Quiz</h3>
 
 <p style="color:#495057;font-weight:500;">
-You need Q&amp;A over a 90-page contract (~45 000 tokens).  
-Available model window: 8 000 tokens.
+Someone gave you the task to create a Q&amp;A over a 90-page contract.<br>
+Naturally, you decided to use an LLM to summarize it into a Q&amp;A for you (who reads these days anyway?).
+However, those 90 pages ammount to about 45 000 tokens, while your model only have a context window of 8 000.
 </p>
 
 <p style="color:#495057;font-weight:500;">
@@ -330,7 +332,7 @@ Let’s see how well it guesses in a specific context:
 
 <h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz</h3>
 <p style="color:#495057; font-weight:500;">
-<strong>Scenario:</strong> The prompt sent to the model reads exactly like this:
+Imagine a prompt sent to an LLM reads exactly like this:
 </p>
 
 <p style="color:#495057; font-weight:500;">

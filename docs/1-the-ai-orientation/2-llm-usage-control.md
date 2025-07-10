@@ -14,7 +14,7 @@
 
 The way you *ask* a model something has a big impact on how it answers. This is called **prompting** — and it’s how we guide the model’s behavior.
 
-There are two key parts to a prompt:
+For most models, there are two key parts to a prompt:
 - **System Prompt**: Sets the tone or role for the assistant. Example: `You are a strict grader.`
 - **User Prompt**: The actual question or message from the person using the model.
 
@@ -175,6 +175,8 @@ Guardrails are extra rules or checks we put around the model’s behavior, such 
 - Templates that tell it exactly how to answer
 - Filters that block unsafe content
 - External systems that fact-check what the model says
+
+And yes, the guardrails can themselves be LLMs checking what the LLM produces.
 
 They’re important in real-world systems like Canopy — especially in schools, healthcare, and public-facing apps.
 

@@ -4,7 +4,6 @@
 - [🧠 Memory and Processing in LLMs](#-memory-and-processing-in-llms)
   - [📚 Contents](#-contents)
   - [👀 Attention Mechanism](#-attention-mechanism)
-  - [🧠 Context Length and Window](#-context-length-and-window)
   - [⚡ KV Cache and Performance](#-kv-cache-and-performance)
 
 ## 👀 Attention Mechanism
@@ -106,6 +105,8 @@ Benefits:
 - Less repeated work
 - Smoother experience in chat apps
 - Makes streaming outputs possible (like showing text word-by-word)
+
+These benefits comes at the cost of more GPU memory required though, as we now need to save all these computations somewhere.
 
 
 <!-- ⚡ KV cache – concept focus -->
