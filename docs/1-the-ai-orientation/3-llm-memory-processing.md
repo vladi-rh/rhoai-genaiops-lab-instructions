@@ -106,6 +106,8 @@ Benefits:
 - Smoother experience in chat apps
 - Makes streaming outputs possible (like showing text word-by-word)
 
+These benefits comes at the cost of more GPU memory required though, as we now need to save all these computations somewhere.
+
 
 <!-- ⚡ KV cache – concept focus -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);

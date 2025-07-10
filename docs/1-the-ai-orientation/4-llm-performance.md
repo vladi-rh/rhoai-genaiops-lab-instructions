@@ -89,9 +89,13 @@ Which single change will <b>most directly</b> improve what users feel?
 
 Models come in different sizes. The bigger the model (measured in billions of parameters), the smarter and more detailed its responses can be. But bigger models need more powerful GPUs and more memory, which can make them slower or more expensive to run.
 
+The biggest bottleneck for being able to load and run a model is going to be GPU memory.  
+An easy way to think of it is: Number of parameters x 4 = GPU memory needed.  
+For example, a 3B parameter model requires ~12GB of GPU memory to load and run.  
+
 | Model Size     | Parameters | GPU Requirement            | Notes                            |
 |----------------|------------|-----------------------------|----------------------------------|
-| **<3B**         | Small      | 8–12GB VRAM (1 GPU)         | Lightweight, fast, and easy to deploy             |
+| **<3B**         | Small      | 8–12GB VRAM                | Lightweight, fast, and easy to deploy             |
 | **7B–13B**      | Medium     | ≥24GB VRAM or quantized*     | Balanced power and cost          |
 | **>30B**        | Large      | Multi-GPU or high-end cards | Better at understanding context but slower and costly |
 
