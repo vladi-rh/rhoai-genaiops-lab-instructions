@@ -34,7 +34,6 @@ In OpenShift, you have an experimentation environment which is called `<USER_NAM
 
 1. Go to [OpenShift Console](https://console-openshift-console.<CLUSTER_DOMAIN>) and use `Students` login. You'll find yourself in the Developer view of Openshift Console.
 
-
     ![openshift-console.png](./images/openshift-console.png)
 
 2. Click `Add`, select `<USER_NAME>-canopy` namespace from the dropdown menu on the top, and select `Helm Charts`. 
