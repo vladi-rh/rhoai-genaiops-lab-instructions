@@ -4,6 +4,7 @@
 - [LLM Fundamentals](#llm-fundamentals)
   - [📚 Contents](#-contents)
   - [🔍 What is a Token?](#-what-is-a-token)
+  - [🧠 Context Length and Window](#-context-length-and-window)
   - [🔮 Are LLMs Fixed or Do They Change?](#-are-llms-fixed-or-do-they-change)
   - [🔄 Next-Token Prediction](#-next-token-prediction)
 
@@ -118,7 +119,7 @@ Let’s test your understanding with a quick quiz!
   - Think through it
   - And generate a response
 
-  That whole process happens inside a fixed space called the **context window**.
+  That whole process happens inside a fixed space called the **context window** (or sometimes **max model length** and other similar combinations).
 
   Think of it like a whiteboard. If you write too much — either in your question or in the answer you expect — the board runs out of space. The model might give up or cut things off.
 
@@ -130,7 +131,7 @@ Let’s test your understanding with a quick quiz!
 
   So when you send a really long prompt, or ask for a really long answer, you can run into the model’s limits.
 
-  There’s also something you can control yourself called `max_tokens`. This tells the model “Only give me up to this many tokens in your answer.”
+  There’s also something you can control yourself called `max_tokens` (or *max completion tokens*). This tells the model “Only give me up to this many tokens in your answer.”
 
   It’s like giving the model a writing limit. Let's try this:
 
@@ -331,7 +332,7 @@ Let’s see how well it guesses in a specific context:
 
 <h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz</h3>
 <p style="color:#495057; font-weight:500;">
-<strong>Scenario:</strong> The prompt sent to the model reads exactly like this:
+Imagine a prompt sent to an LLM reads exactly like this:
 </p>
 
 <p style="color:#495057; font-weight:500;">

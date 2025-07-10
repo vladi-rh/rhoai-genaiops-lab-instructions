@@ -4,7 +4,6 @@
 - [🧠 Memory and Processing in LLMs](#-memory-and-processing-in-llms)
   - [📚 Contents](#-contents)
   - [👀 Attention Mechanism](#-attention-mechanism)
-  - [🧠 Context Length and Window](#-context-length-and-window)
   - [⚡ KV Cache and Performance](#-kv-cache-and-performance)
 
 ## 👀 Attention Mechanism
