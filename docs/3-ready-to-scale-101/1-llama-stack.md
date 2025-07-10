@@ -71,7 +71,11 @@ Let’s deploy the Playground to verify the integration between Llama Stack and 
 
     ![llama-stack-playground-summary.png](./images/llama-stack-playground-summary.png)
 
-You have a few more options than in Gradio as well, try them out on the summarize task and see if you can figure out what `Top P` and `Repetition Penalty` does to your output. What are good values for these?
+You have a few more options than in previous exercises. Alongside `Temperature`, you’ll also see `Top P` and `Repetition Penalty`. Try them out on the summarize task and observe how they change the output. What values work well?
+
+***Top P:*** Limits how many possible words the model considers. Lower = more focused, higher = more varied.
+
+***Repetition Penalty:*** Reduces repeated words. Higher = less repetition.
 
 ---
 

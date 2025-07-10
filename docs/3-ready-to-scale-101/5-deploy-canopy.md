@@ -118,7 +118,7 @@ Now let's set this up using ArgoCD!
 
 We use Git to track our changes and able to tell which prompts and settings are at the moment effective in Canopy, or _were_ at a given time. But going through a Git commit history and figure out such answer can be tedious. For that reason we built and deploy a tracker for you to visualize your changes. 
 
-You can find the link in the Quick Link drop down or simply clicking [here](https://prompt-tracker-ai501.<CLUSTER_DOMAIN>/?git_repo_url=https://<GIT_SERVER>/<USER_NAME>/canopy-be.git&git_username=<USER_NAME>&git_password=<PASSWORD>&git_branch=main&monitor_interval=30). 
+You can find the link in the Quick Link drop down or simply clicking [here](https://prompt-tracker-ai501.<CLUSTER_DOMAIN>/?git_repo_url=https://<GIT_SERVER>/<USER_NAME>/<CLUSTER_DOMAIN>). 
 
 TODO: Screenshot
 
