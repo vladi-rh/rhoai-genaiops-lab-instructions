@@ -9,19 +9,27 @@
 
 ## 🔍 What is a Token?
 
-Tokens are the **smallest units of text** an LLM processes. A token might be a word, a piece of a word, or even punctuation.
+Before an AI model can understand or generate text, it breaks everything down into tiny pieces called **tokens**.
 
-Examples:
-- `"The"` → 1 token
-- `"unbelievable"` → 3 tokens (`"un"`, `"believ"`, `"able"`)
+A token is not quite a word — it could be:
+- A whole short word: `"The"` → 1 token
+- Parts of a longer word: `"unbelievable"` → 3 tokens (`"un"`, `"believ"`, `"able"`)
+- Punctuation: `","` or `"."` might each be 1 token
 
-LLMs don't read full sentences—they process token sequences. The total number of tokens affects:
-- Memory usage
-- Inference speed
-- Output length
+These are the basic building blocks the model sees. It doesn’t understand text the way humans do — it just sees a stream of tokens and learns patterns in how they appear.
 
-⚠️ **Tip**: More tokens = slower, more expensive inference.
+You may ask "why not just feed it words or letters?"  
+There are two main reasons to use tokens:
+- Regardless of what we use, we need to convert it into numbers because ultimately the computer only understands numbers 🔢 Aaand, there are too many words to give them all a number each.
+- They are designed to be as large but also as reusable as possible, so that the **number** of inputs we send to the LLM is as few as possible. For example, if I send the word `unbelievable` it would be 12 inputs if I sent each letter, but only 3 tokens. The number of inputs are important which we explain... now 👇
 
+When you start working with LLMs you will often see people counting tokens. We don't just do this for fun, it's because the number of tokens is now how large our input into the LLM is.  
+An LLM can only input and output a certain number of tokens in the same request/inference (think of it as how much context/information it can see at once).  
+Besides that, the more we input the more memory it needs to use (GPU memory specifically) to keep track of all the inputs and outputs (remember that the output turns into input in the next step). 
+
+![input-output.png](images/input-output.png)
+
+Here you can try your hands on how sentences get converted into tokens:
 <iframe
 	src="https://agents-course-the-tokenizer-playground.static.hf.space"
 	frameborder="0"
@@ -33,18 +41,24 @@ LLMs don't read full sentences—they process token sequences. The total number 
 
 *The App is from [HuggingFace Learning Course](https://agents-course-the-tokenizer-playground.static.hf.space)*
 
-Let's test your understanding with a quiz!
+Let’s test your understanding with a quick quiz!
 
 <!-- 🔍 Token‐capacity calculation (typed answer) -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
   <h3 style="margin:0 0 8px;color:#5a5a5a;">🔤 Quiz</h3>
   <p style="color:#495057; font-weight:500;">
-    <strong>Scenario:</strong> The model’s context window is <b>4 096 tokens</b>.<br>
-    Your “overhead” prompt text already uses <b>96 tokens</b>.<br>
-    Each trimmed 80-character line of code costs exactly <b>12 tokens</b>.
+    You’re working on a big codebase (thousands of lines long) and you don't feel like reading through it line-by-line. <br>
+    So instead, you decide to get help from your favorite LLM 🤖<br>
+    You start off by writing some instructions:
+
+    “Explain what this code does, step by step, in simple terms...”
+  <p style="color:#495057; font-weight:500;">
+    Which takes 96 tokens in total.<br>
+    Then you start feeding it the code, line by line, where each line takes about 12 tokens per line.<br>
+    Now, you also happen know that the model only can handle 4096 tokens at the same time.<br>
   </p>
   <p style="color:#495057; font-weight:500;">
-    👉 <strong>How many <em>full</em> lines of code can you still paste?</strong>
+    👉 <strong>How many <em>full</em> lines of code can you send the LLM at a time?</strong>
   </p>
 
   <style>
@@ -96,26 +110,164 @@ Let's test your understanding with a quiz!
 
 
 
+## 🧠 Context Length and Window
+
+  LLMs don’t have infinite memory. When you send a message, the model needs room to:
+
+  - Read your prompt
+  - Think through it
+  - And generate a response
+
+  That whole process happens inside a fixed space called the **context window**.
+
+  Think of it like a whiteboard. If you write too much — either in your question or in the answer you expect — the board runs out of space. The model might give up or cut things off.
+
+  Typical context window sizes:
+
+  - Small models: 2,000–4,000 tokens
+  - Bigger models: 8,000–128,000 tokens
+  - Some cutting-edge models: even more!
+
+  So when you send a really long prompt, or ask for a really long answer, you can run into the model’s limits.
+
+  There’s also something you can control yourself called `max_tokens`. This tells the model “Only give me up to this many tokens in your answer.”
+
+  It’s like giving the model a writing limit. Let's try this:
+
+  Ask the model `I need a Spanish tortilla recipe.` and change the `max_token` until you get a delicious recipe 🇪🇸
+
+<div class="iframe-scroll-container">
+  <iframe 
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/context-demo"  
+    width="600px" 
+    height="700px" 
+    frameborder="0"
+    style="border: 1px solid transparent; border-radius: 1px;">
+  </iframe>
+</div>
+
+  What is the number you are happy with?
+
+  But remember — the model’s total capacity doesn’t change. The context window is fixed, and it includes both:
+
+  - The input (your prompt)
+  - The output (the model’s response, up to max_tokens)
+
+  So if you set `max_tokens` too high, and your input is already long, the model might not have enough room — and it could return an error.
+
+  So maybe you want to be more sophisticated and ask the model with a bit more details. Send this next and see what happens:
+
+  ```
+  I'm interested in learning how to make an authentic Spanish tortilla de patatas, also known as a Spanish omelette. 
+  Could you please provide a step-by-step recipe, including ingredients, preparation tips, and cooking techniques that reflect the traditional way it's made in Spain?
+  ```
+
+<div class="iframe-scroll-container">
+  <iframe 
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/max-length-demo"  
+    width="600px" 
+    height="700px" 
+    frameborder="0"
+    style="border: 1px solid transparent; border-radius: 1px;">
+  </iframe>
+</div>
+
+ Uh-oh. You probably got an error message. Why?
+
+  The model has a limited memory space — a fixed number of tokens it can handle per request. That space has to fit:
+
+  - Your prompt (the question or instruction), plus
+
+  - The answer it’s going to generate
+
+  In this case, your longer question already took up a big chunk of that space. On top of that, the model was asked to generate a long, detailed recipe — and it simply didn’t have room to do both. So it gave up and returned an error.
+
+  Again, this space limit is called the maximum context length. It's something set when the model is started, and it affects how much input and output the model can handle together.
+
+  Setting it too high might waste memory; setting it too low might truncate outputs or fail to serve longer prompts.
+
+
+<!-- 🧠 Context window – chunking strategy -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
+            padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+
+<h3 style="margin:0 0 8px;color:#5a5a5a;">🧠 Quiz</h3>
+
+<p style="color:#495057;font-weight:500;">
+You need Q&amp;A over a 90-page contract (~45 000 tokens).  
+Available model window: 8 000 tokens.
+</p>
+
+<p style="color:#495057;font-weight:500;">
+Which approach is the <em>most practical</em>?</p>
+
+<style>
+.ctxOpt{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;
+       border:2px solid #e9ecef;color:#495057;transition:.2s}
+.ctxOpt:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.ctxRadio{display:none}
+.ctxRadio:checked + .ctxOpt[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.ctxRadio:checked + .ctxOpt[data-correct="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.ctxFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#ctx-good:checked ~ .ctxFeed[data-type="good"],
+#ctx-w1:checked  ~ .ctxFeed[data-type="bad"],
+#ctx-w2:checked  ~ .ctxFeed[data-type="bad"]{display:block}
+.ctxFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.ctxFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+</style>
+
+<div>
+  <input type="radio" id="ctx-w1" name="ctx" class="ctxRadio">
+  <label for="ctx-w1" class="ctxOpt" data-correct="false">
+    📚 Fine-tune a new model overnight with the entire contract baked in.
+  </label>
+
+  <input type="radio" id="ctx-good" name="ctx" class="ctxRadio">
+  <label for="ctx-good" class="ctxOpt" data-correct="true">
+    🔍 Split the contract into ~1000-token chunks and  
+    insert only the chunks relevant to each question.
+  </label>
+
+  <input type="radio" id="ctx-w2" name="ctx" class="ctxRadio">
+  <label for="ctx-w2" class="ctxOpt" data-correct="false">
+    ⛓️ Chain multiple 6K prompts in one request; the backend will stitch them automatically.
+  </label>
+
+  <div class="ctxFeed" data-type="good">
+    ✅ Right — on-demand retrieval of multiple 1K chunks respects the 8K limit and allows for some extra context to be added outside the cunks.
+  </div>
+  <div class="ctxFeed" data-type="bad">
+    ❌ Fine-tuning is slow/expensive, and context resets between separate 6K prompts.
+  </div>
+</div>
+</div>
+
+
+
+
 ## 🔮 Are LLMs Fixed or Do They Change?
 
-LLMs are **frozen once trained**—they do **not learn** or update on the fly. Each time you send a prompt, they respond based on **pretrained knowledge** and context in the prompt.
+Once a large language model is trained, it becomes **frozen** — it doesn’t learn new things by talking to you. Every time you send a message (called a **prompt**), the model uses what it already knows and responds based only on:
+- Its original training data
+- The content of your current prompt
+- Randomness in the generation process
 
-However, outputs may differ due to:
-- **Random sampling strategies**
-- **Changes in prompts**
-- **Different system instructions**
+Even if you tell the model something new today, it won’t “remember” it tomorrow unless you keep mentioning it in your prompt.
 
-You can't "teach" an LLM new facts mid-conversation unless it's part of the prompt or a fine-tuned model.
+So how does systems “remember” facts between conversations?
 
-So let's do a quiz!
+Let's see if you can figure it out through this quizz:
 
 <!-- 🔮 Frozen-model memory dilemma (harder) -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
 <h3 style="margin:0 0 8px;color:#5a5a5a;">🧠 Quiz</h3>
-<p style="color:#495057; font-weight:500;"><strong>Scenario:</strong> Warehouse staff type new SKUs during today’s chat.  
-Tomorrow, in a brand-new session, the assistant must recall them instantly.</p>
-<p style="color:#495057; font-weight:500;">Pick the <em>most practical</em> way to achieve that.</p>
+<p style="color:#495057; font-weight:500;">
+You’re building a helpful AI assistant for your company’s HR team.<br>
+During today’s chat, team members type in names of new employees who just joined: Emily Zhang, Jasper Müller, Amina Idris, etc.<br>
+The assistant keeps up easily during the conversation.<br>
+However, tomorrow, when the chat starts fresh in a brand-new session, the assistant must still remember all of those names.
+<p style="color:#495057; font-weight:500;">What is the <em>most practical</em> way to achieve that.</p>
 
 <style>
 .quiz-container-sku{position:relative}
@@ -138,15 +290,15 @@ Tomorrow, in a brand-new session, the assistant must recall them instantly.</p>
   <label for="sku-wrong1" class="quiz-option-sku" data-correct="false">🔖 Append “Remember these forever” to the end of today’s prompt</label>
 
   <input type="radio" name="quiz-sku" id="sku-wrong2" class="quiz-radio-sku">
-  <label for="sku-wrong2" class="quiz-option-sku" data-correct="false">🧹 Increase the context window so <em>today’s</em> chat fits in tomorrow’s prompt untouched</label>
+  <label for="sku-wrong2" class="quiz-option-sku" data-correct="false">🧹 Increase the models context window so <em>today’s</em> chat fits in tomorrow’s prompt untouched</label>
 
   <input type="radio" name="quiz-sku" id="sku-wrong3" class="quiz-radio-sku">
   <label for="sku-wrong3" class="quiz-option-sku" data-correct="false">🔧 Retrain the model overnight on the new SKUs</label>
 
   <input type="radio" name="quiz-sku" id="sku-correct" class="quiz-radio-sku">
-  <label for="sku-correct" class="quiz-option-sku" data-correct="true">📦 Store the SKUs in a database or and auto-inject them into tomorrow’s prompt (retrieval)</label>
+  <label for="sku-correct" class="quiz-option-sku" data-correct="true">📦 Store the names in a database and auto-inject them into tomorrow’s prompt</label>
 
-  <div class="feedback-sku" data-feedback="correct">✅ Correct! Frozen weights can’t learn overnight—you must feed yesterday’s SKUs back in (retrieval is fastest and cheapest).</div>
+  <div class="feedback-sku" data-feedback="correct">✅ Correct! Frozen weights can’t learn overnight—you must feed yesterday’s SKUs back in (fetching from a database is fastest and cheapest).</div>
   <div class="feedback-sku" data-feedback="wrong">❌ Prompts alone can’t alter weights, massive context gets expensive, and retraining the model is often overkill (especially if it's needed frequently).</div>
 </div>
 </div>
@@ -156,14 +308,22 @@ Tomorrow, in a brand-new session, the assistant must recall them instantly.</p>
 
 ## 🔄 Next-Token Prediction
 
-LLMs are **next-token machines**. At their core, they do one thing:  
-👉 Predict the most likely next token based on everything they’ve seen so far.
+At their core, large language models do something surprisingly simple:  
+They guess the **next token**.
+
+You give them a string of text, and the model continues it by predicting the most likely next piece. Then it does it again. And again. And again.
+
+It’s like a very fast autocomplete — but one that’s been trained on a massive collection of text from books, websites, conversations, and more.
 
 For example:
-> Input: "Photosynthesis is the process by which plants"  
-> Prediction: `" convert sunlight into energy"`
+> Input: “Photosynthesis is the process by which plants”  
+> Model prediction: `“ convert sunlight into energy”`
 
-This generation happens one token at a time, using **probabilities** and **context** to decide what comes next.
+This step-by-step guessing game is called **inference**.
+
+Because the model is trying to predict what *usually* comes next, it’s sensitive to clues and patterns in your prompt — and sometimes a small change can lead to a very different outcome.
+
+Let’s see how well it guesses in a specific context:
 
 <!-- 🔄 Next token – tricky semantic cue -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">

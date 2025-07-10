@@ -16,7 +16,6 @@ _an image will be inserted here._
 
 # 🔨 Tools used in this module
 
-* Canopy AI - An LLM-powered assistant for exploring model behavior and capabilities
-* LLM - Llama 3.2
+* LLM - Llama 3.2, a large language model from Meta, designed to understand and generate human-like text.
 * Tokenizer Playground - Interactive tool for understanding how LLMs process text
 * Chat Interface - Playground for testing LLM conversations and responses, for experimenting with context windows and memory
