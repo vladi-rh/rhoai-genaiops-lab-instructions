@@ -117,20 +117,22 @@ Once a large language model is trained, it becomes **frozen** — it doesn’t l
 - The content of your current prompt
 - Randomness in the generation process
 
-Even if you tell the model something new today, it won’t “remember” it tomorrow unless you remind it again.
+Even if you tell the model something new today, it won’t “remember” it tomorrow unless you keep mentioning it in your prompt.
 
-So how do systems “remember” facts between conversations?
-They use tricks like saving information in a database and re-feeding it into the prompt — not because the model learned it, but because someone re-taught it.
+So how does systems “remember” facts between conversations?
 
-Let’s explore this idea with a quiz!
+Let's see if you can figure it out through this quizz:
 
 <!-- 🔮 Frozen-model memory dilemma (harder) -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 
 <h3 style="margin:0 0 8px;color:#5a5a5a;">🧠 Quiz</h3>
-<p style="color:#495057; font-weight:500;"><strong>Scenario:</strong> Warehouse staff type new SKUs during today’s chat.  
-Tomorrow, in a brand-new session, the assistant must recall them instantly.</p>
-<p style="color:#495057; font-weight:500;">Pick the <em>most practical</em> way to achieve that.</p>
+<p style="color:#495057; font-weight:500;">
+You’re building a helpful AI assistant for your company’s HR team.<br>
+During today’s chat, team members type in names of new employees who just joined: Emily Zhang, Jasper Müller, Amina Idris, etc.<br>
+The assistant keeps up easily during the conversation.<br>
+However, tomorrow, when the chat starts fresh in a brand-new session, the assistant must still remember all of those names.
+<p style="color:#495057; font-weight:500;">What is the <em>most practical</em> way to achieve that.</p>
 
 <style>
 .quiz-container-sku{position:relative}
@@ -153,15 +155,15 @@ Tomorrow, in a brand-new session, the assistant must recall them instantly.</p>
   <label for="sku-wrong1" class="quiz-option-sku" data-correct="false">🔖 Append “Remember these forever” to the end of today’s prompt</label>
 
   <input type="radio" name="quiz-sku" id="sku-wrong2" class="quiz-radio-sku">
-  <label for="sku-wrong2" class="quiz-option-sku" data-correct="false">🧹 Increase the context window so <em>today’s</em> chat fits in tomorrow’s prompt untouched</label>
+  <label for="sku-wrong2" class="quiz-option-sku" data-correct="false">🧹 Increase how many inputs the model can handle so that <em>today’s</em> chat fits in tomorrow’s prompt untouched</label>
 
   <input type="radio" name="quiz-sku" id="sku-wrong3" class="quiz-radio-sku">
   <label for="sku-wrong3" class="quiz-option-sku" data-correct="false">🔧 Retrain the model overnight on the new SKUs</label>
 
   <input type="radio" name="quiz-sku" id="sku-correct" class="quiz-radio-sku">
-  <label for="sku-correct" class="quiz-option-sku" data-correct="true">📦 Store the SKUs in a database or and auto-inject them into tomorrow’s prompt (retrieval)</label>
+  <label for="sku-correct" class="quiz-option-sku" data-correct="true">📦 Store the names in a database and auto-inject them into tomorrow’s prompt</label>
 
-  <div class="feedback-sku" data-feedback="correct">✅ Correct! Frozen weights can’t learn overnight—you must feed yesterday’s SKUs back in (retrieval is fastest and cheapest).</div>
+  <div class="feedback-sku" data-feedback="correct">✅ Correct! Frozen weights can’t learn overnight—you must feed yesterday’s SKUs back in (fetching from a database is fastest and cheapest).</div>
   <div class="feedback-sku" data-feedback="wrong">❌ Prompts alone can’t alter weights, massive context gets expensive, and retraining the model is often overkill (especially if it's needed frequently).</div>
 </div>
 </div>
