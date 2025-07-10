@@ -7,7 +7,7 @@
     * [📊 Performance](1-the-ai-orientation/4-llm-performance.md)
 * [Linguistics](2-linguistics/README.md)
   * [🎸 Prompt Engineering](2-linguistics/1-prompt-engineering.md)
-  * [🌳 Canopy AI](2-linguistics/2-canopy-ai.md)
+  * [🌳 Canopy](2-linguistics/2-canopy-ai.md)
 * [Ready to Scale 101](3-ready-to-scale-101/README.md)
   * [🦙 Llama Stack](3-ready-to-scale-101/1-llama-stack.md)
   * [✨ Into the Workspace](3-ready-to-scale-101/2-into-the-workspace.md)
