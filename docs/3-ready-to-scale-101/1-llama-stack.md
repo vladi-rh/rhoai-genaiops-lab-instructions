@@ -71,11 +71,12 @@ Let’s deploy the Playground to verify the integration between Llama Stack and 
 
     ![llama-stack-playground-summary.png](./images/llama-stack-playground-summary.png)
 
-You have a few more options than in previous exercises. Alongside `Temperature`, you’ll also see `Top P` and `Repetition Penalty`. Try them out on the summarize task and observe how they change the output. What values work well?
+You have a few more options than in previous exercises. Alongside `Temperature`, you’ll also see `Top P` and `Repetition Penalty`. Try them out on the summarize task and observe how they change the output. 
 
-***Top P:*** Limits how many possible words the model considers. Lower = more focused, higher = more varied.
+What values work well and what do they do?
 
-***Repetition Penalty:*** Reduces repeated words. Higher = less repetition.
+#TODO: update playground and use top_k instead
+
 
 ---
 
