@@ -18,10 +18,18 @@ A token is not quite a word — it could be:
 
 These are the basic building blocks the model sees. It doesn’t understand text the way humans do — it just sees a stream of tokens and learns patterns in how they appear.
 
-Why do tokens matter?
-- They decide how much the model can "read" or "write" in one go.
-- More tokens = more memory, slower responses, and higher compute cost.
+You may ask "why not just feed it words or letters?"  
+There are two main reasons to use tokens:
+- Regardless of what we use, we need to convert it into numbers because ultimately the computer only understands numbers 🔢 Aaand, there are too many words to give them all a number each.
+- They are designed to be as large but also as reusable as possible, so that the **number** of inputs we send to the LLM is as few as possible. For example, if I send the word `unbelievable` it would be 12 inputs if I sent each letter, but only 3 tokens. The number of inputs are important which we explain... now 👇
 
+When you start working with LLMs you will often see people counting tokens. We don't just do this for fun, it's because the number of tokens is now how large our input into the LLM is.  
+An LLM can only input and output a certain number of tokens in the same request/inference (think of it as how much context/information it can see at once).  
+Besides that, the more we input the more memory it needs to use (GPU memory specifically) to keep track of all the inputs and outputs (remember that the output turns into input in the next step). 
+
+![input-output.png](images/input-output.png)
+
+Here you can try your hands on how sentences get converted into tokens:
 <iframe
 	src="https://agents-course-the-tokenizer-playground.static.hf.space"
 	frameborder="0"
@@ -39,12 +47,18 @@ Let’s test your understanding with a quick quiz!
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
   <h3 style="margin:0 0 8px;color:#5a5a5a;">🔤 Quiz</h3>
   <p style="color:#495057; font-weight:500;">
-    <strong>Scenario:</strong> The model’s context window is <b>4 096 tokens</b>.<br>
-    Your “overhead” prompt text already uses <b>96 tokens</b>.<br>
-    Each trimmed 80-character line of code costs exactly <b>12 tokens</b>.
+    You’re working on a big codebase (thousands of lines long) and you don't feel like reading through it line-by-line. <br>
+    So instead, you decide to get help from your favorite LLM 🤖<br>
+    You start off by writing some instructions:
+
+    “Explain what this code does, step by step, in simple terms...”
+  <p style="color:#495057; font-weight:500;">
+    Which takes 96 tokens in total.<br>
+    Then you start feeding it the code, line by line, where each line takes about 12 tokens per line.<br>
+    Now, you also happen know that the model only can handle 4096 tokens at the same time.<br>
   </p>
   <p style="color:#495057; font-weight:500;">
-    👉 <strong>How many <em>full</em> lines of code can you still paste?</strong>
+    👉 <strong>How many <em>full</em> lines of code can you send the LLM at a time?</strong>
   </p>
 
   <style>
