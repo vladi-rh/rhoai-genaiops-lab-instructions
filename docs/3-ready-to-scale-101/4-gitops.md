@@ -104,7 +104,7 @@ Gitea is a lightweight, self-hosted Git server that allows teams to manage repos
 4. This is GITOPS - first we need to commit things! Let's get the configuration into git 👇
 
     ```bash
-    cd /opt/app-root/src/mlops-gitops
+    cd /opt/app-root/src/genaiops-gitops
     git config --global user.email "<USER_NAME>@genaiops-wizard.com"
     git config --global user.name "<USER_NAME>"
     git add .
@@ -117,7 +117,7 @@ Gitea is a lightweight, self-hosted Git server that allows teams to manage repos
   All we need to do is create the ApplicationSet object, and then Argo CD will take care of the rest.
 
     ```bash
-      oc apply -f /opt/app-root/src/mlops-gitops/appset-toolings.yaml -n <USER_NAME>-toolings
+      oc apply -f /opt/app-root/src/genaiops-gitops/appset-toolings.yaml -n <USER_NAME>-toolings
     ```
 6. Now check the Argo CD to see if ApplicationSet was able to see the subfolders under `toolings` and deploy the applications for us!
 
@@ -129,9 +129,15 @@ Gitea is a lightweight, self-hosted Git server that allows teams to manage repos
 
   You should see something like this if everything went well:
 
-      ```bash
-    TODO
-    ```
+    <div class="highlight" style="background: #f7f7f7; overflow-x: auto; padding: 8px;">
+    <pre><code class="language-bash"> 
+      $ oc get projects | grep <USER_NAME>
+      <USER_NAME>-canopy     <USER_NAME>-canopy     Active
+      <USER_NAME>-prod       <USER_NAME>-prod       Active
+      <USER_NAME>-test       <USER_NAME>-test       Active
+      <USER_NAME>-toolings   <USER_NAME>-toolings   Active
+    </code></pre>
+    </div>
 
   You can also check the pods running in your `<USER_NAME>-toolings` namespace:
 
