@@ -28,7 +28,8 @@ But before we can trust an AI to assist learners, we need to explore how it beha
 
 ## 🧪 Hands-On: The Prompt Playground
 
-We’ve created a **Gradio-based interface** where you can experiment with different prompting strategies. Your aim is to find the best system prompt and configuration to summarize a given text.
+We’ve created a **Gradio-based interface** where you can experiment with different prompting strategies.  
+Your goal is to find the **best system prompt** and configuration to **summarize** a given text.
 
 Here’s what you can configure:
 
@@ -41,17 +42,7 @@ Here’s what you can configure:
 And here is the text you want the model to summarize (i.e. the text you want to send into the User Prompt):
 
 ```
-Canopy (Biology)
-
-In biology and ecology, the canopy refers to the upper layer or “roof” formed by the crowns of trees in a forest or wooded area. This layer plays a critical role in regulating the ecosystem by controlling light penetration, humidity, temperature, and wind flow within the forest environment. The canopy is typically made up of the tallest trees and their branches and leaves, which often form a dense, continuous cover that can be several meters thick.
-
-One of the primary ecological functions of the canopy is to provide habitat and food sources for a wide range of organisms. Many species of birds, insects, mammals, and epiphytes (plants that grow on other plants) are specially adapted to live in this elevated environment. The canopy also acts as a barrier that reduces the impact of heavy rain on the forest floor, helping to prevent soil erosion and maintain soil fertility.
-
-Moreover, the canopy plays a crucial role in photosynthesis on a large scale by capturing sunlight and converting it into chemical energy, which sustains the forest’s plant life and, consequently, the animals that depend on it. In tropical rainforests, the canopy is often so dense that very little sunlight reaches the forest floor, shaping the types of plants and animals that can survive in the understory and ground layers.
-
-Scientists study canopies using specialized tools and methods such as canopy cranes, drones, and climbing equipment to better understand their structure, biodiversity, and ecological functions. This knowledge is vital for conservation efforts, particularly as canopies are sensitive to deforestation, climate change, and human activities that threaten their integrity.
-
-Understanding the canopy’s complexity helps ecologists appreciate the interdependent relationships within forests and the critical services these ecosystems provide, including carbon storage, oxygen production, and climate regulation. Protecting the canopy is essential to maintaining biodiversity and the health of our planet.
+Making a cup of tea is easy. First, boil some water. Then, place a tea bag in a cup. Pour the hot water over the tea bag. Let it steep for a few minutes. After that, take out the tea bag. You can add sugar or milk if you like. Now the tea is ready to drink.
 ```
 
 Use the Prompt Playground to:
@@ -67,7 +58,9 @@ Enter the following info:
 - Model Name: `llama32`
 - Model URL: `https://llama32-ai501.<CLUSTER_DOMAIN>/v1/chat/completions`
 
-..and for the rest, it is up to what you feel like trying 🧪
+..and for the rest, it is up to what you feel like trying 🧪  
+
+#### What is the best system prompt and settings you can find to summarize the above text?
 
 <div class="iframe-scroll-container">
   <iframe 
