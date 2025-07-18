@@ -182,11 +182,13 @@ The higher the probability, the higher the chance it will be chosen.
 <details>
 <summary> 🕵️ Spoilers! Press here after done with the quiz.</summary>  
 <br>
-<img src="images/cats-and-dogs.png"
-     alt="cats and dogs"
-     style="width:500px; height:auto;" />
-</details>
+
+![images/cats-and-dogs.png](images/cats-and-dogs.png)
+
 <br>
+
+</details>
+
 In some cases, like with the above quiz, it's pretty clear what it will predict.  
 In other cases, it will not be as clear, like the below for example:
 
@@ -243,9 +245,10 @@ Imagine a prompt sent to an LLM reads exactly like this:
 <details>
 <summary> 🕵️ Spoilers! Press here after done with the quiz.</summary>  
 <br>
-<img src="images/bring-to-beach.png"
-     alt="bring to beach"
-     style="width:500px; height:auto;" />
+
+![images/bring-to-beach.png](images/bring-to-beach.png)
+
+
 </details>
 
 ## 🧠 Context Length and Window
