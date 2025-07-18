@@ -62,6 +62,20 @@ Enter the following info:
 
 #### What is the best system prompt and settings you can find to summarize the above text?
 
+<details>
+<summary> 📜 Here are a few example System Prompts you can try.</summary>  
+<br>
+```
+Write a short version of this.
+```
+
+```
+Summarize the text in a few sentences.
+```
+
+Can you come up with something that explains the text even better without loosing important info?
+</details>
+
 <div class="iframe-scroll-container">
   <iframe 
     src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/prompt-playground"  
