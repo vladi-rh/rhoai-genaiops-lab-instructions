@@ -13,9 +13,9 @@ There are typically two key parts to prompting:
 
 Together, they guide the model’s behavior and shape its response.
 
-## 🎯 Why Prompt Engineering Matters for RDU’s Canopy AI
+## 🎯 Why Prompt Engineering Matters for RDU’s Canopy
 
-At Redwood Digital University, we’re building **Canopy AI**, a platform designed to adapt to diverse student needs and teaching styles. That means our LLMs must be **fine-tuned not just at the model level—but also at the prompt level.**
+At Redwood Digital University, we’re building **Canopy**, a platform designed to adapt to diverse student needs and teaching styles. That means that we not only need a good LLM, but also need to refine our prompts.
 
 With effective prompts, we can:
 
@@ -58,7 +58,7 @@ Use the Prompt Playground to:
 
 * Compare how different **system prompts** change the behavior of the same model.
 * Adjust **temperature** and **max tokens** to explore how output varies.
-* Decide on a system prompt template that will work well for **Canopy AI’s learning assistant** in future modules.
+* Decide on a system prompt template that will work well for **Canopy’s learning assistant** in future modules.
 
 📌 **Tip**: Try changing the tone, specificity, or format of your system prompt to see how much it shapes the output. Don’t be afraid to get creative!
 

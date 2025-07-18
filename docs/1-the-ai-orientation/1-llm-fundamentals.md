@@ -197,7 +197,7 @@ Let’s test your understanding with a quick quiz!
 <p style="color:#495057;font-weight:500;">
 Someone gave you the task to create a Q&amp;A over a 90-page contract.<br>
 Naturally, you decided to use an LLM to summarize it into a Q&amp;A for you (who reads these days anyway?).
-However, those 90 pages ammount to about 45 000 tokens, while your model only have a context window of 8 000.
+However, those 90 pages amount to about 45 000 tokens, while your model only have a context window of 8 000.
 </p>
 
 <p style="color:#495057;font-weight:500;">

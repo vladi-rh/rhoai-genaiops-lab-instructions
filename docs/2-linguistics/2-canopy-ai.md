@@ -1,4 +1,4 @@
-# 🌿 What is Canopy AI?
+# 🌿 What is Canopy?
 
 <div class="terminal-curl"></div>
 
@@ -14,7 +14,7 @@ In GenAI applications, **how people interact with the model often matters more t
 
 You can have the smartest LLM in the world, but if the UI doesn’t help users guide or understand it — the value is lost.
 
-This first iteration of **Canopy AI** is built to support:
+This first iteration of **Canopy** is built to support:
 
 - System prompts 🧠 to define model behavior.
 
@@ -24,13 +24,13 @@ This first iteration of **Canopy AI** is built to support:
 
 In future modules, this same interface will evolve to handle content creation, grading, and personalized feedback.
 
-## 🚀 Getting Started with Canopy AI on OpenShift
+## 🚀 Getting Started with Canopy on OpenShift
 
-Follow these instructions to get your own instance of Canopy AI up and running in just a few minutes.
+Follow these instructions to get your own instance of Canopy up and running in just a few minutes.
 
 ### 📦 1. Deploy the Frontend to OpenShift
 
-In OpenShift, you have an experimentation environment which is called `<USER_NAME>-canopy`. You'll use this environment to iterate over Canopy AI, bring in new features, update the frontend when new capabilities arrive, and so on. 
+In OpenShift, you have an experimentation environment which is called `<USER_NAME>-canopy`. You'll use this environment to iterate over Canopy, bring in new features, update the frontend when new capabilities arrive, and so on. 
 
 1. Go to [OpenShift Console](https://console-openshift-console.<CLUSTER_DOMAIN>) and use `Students` login. You'll find yourself in the Developer view of Openshift Console.
 
@@ -93,7 +93,7 @@ In OpenShift, you have an experimentation environment which is called `<USER_NAM
 
 ✅ What you have accomplished
 
-- Deployed the Canopy AI frontend on OpenShift
+- Deployed the Canopy frontend on OpenShift
 
 - Connected it to your own LLM endpoint
 
