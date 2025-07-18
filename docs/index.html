@@ -8,13 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; frame-src https:; default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <!-- wrap long lines in docsify code blocks -->
   <style>
-    pre,
-    pre code {
-      white-space: pre-wrap;       /* preserve line‑breaks but allow wrapping */
-      white-space: -moz-pre-wrap;  /* Firefox */
-      white-space: -o-pre-wrap;    /* Opera */
-      word-wrap: break-word;       /* IE */
+    /* Docsify renders your Markdown into .markdown-section by default */
+    .markdown-section pre,
+    .markdown-section pre > code {
+      white-space: pre-wrap !important;     /* preserve line‑breaks but allow wrapping */
+      overflow-wrap: break-word !important; /* break long words if needed */
     }
   </style>
 </head>
