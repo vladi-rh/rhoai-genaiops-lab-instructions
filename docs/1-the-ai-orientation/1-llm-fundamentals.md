@@ -4,9 +4,9 @@
 - [LLM Fundamentals](#llm-fundamentals)
   - [📚 Contents](#-contents)
   - [🔍 What is a Token?](#-what-is-a-token)
+  - [🔄 Next-Token Prediction](#-next-token-prediction)
   - [🧠 Context Length and Window](#-context-length-and-window)
   - [🔮 Are LLMs Fixed or Do They Change?](#-are-llms-fixed-or-do-they-change)
-  - [🔄 Next-Token Prediction](#-next-token-prediction)
 
 ## 🔍 What is a Token?
 
@@ -277,15 +277,15 @@ Imagine a prompt sent to an LLM reads exactly like this:
 
   Ask the model `I need a Spanish tortilla recipe.` and change the `max_token` until you get a delicious recipe 🇪🇸
 
-<div class="iframe-scroll-container">
-  <iframe 
-    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/context-demo"  
-    width="600px" 
-    height="700px" 
-    frameborder="0"
-    style="border: 1px solid transparent; border-radius: 1px;">
-  </iframe>
-</div>
+<iframe
+	src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/context-demo"
+	frameborder="0"
+	width="600"
+	height="700"
+	style="border: 1px solid transparent; border-radius: 8px;"
+	loading="lazy">
+></iframe>
+
 
   What is the number you are happy with?
 
@@ -303,15 +303,14 @@ Imagine a prompt sent to an LLM reads exactly like this:
   Could you please provide a step-by-step recipe, including ingredients, preparation tips, and cooking techniques that reflect the traditional way it's made in Spain?
   ```
 
-<div class="iframe-scroll-container">
-  <iframe 
-    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/max-length-demo"  
-    width="600px" 
-    height="700px" 
-    frameborder="0"
-    style="border: 1px solid transparent; border-radius: 1px;">
-  </iframe>
-</div>
+<iframe
+	src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/max-length-demo"
+	frameborder="0"
+	width="600"
+	height="700"
+	style="border: 1px solid transparent; border-radius: 8px;"
+	loading="lazy">
+></iframe>
 
  Uh-oh. You probably got an error message. Why?
 
@@ -440,8 +439,8 @@ However, tomorrow, when the chat starts fresh in a brand-new session, the assist
   <input type="radio" name="quiz-sku" id="sku-correct" class="quiz-radio-sku">
   <label for="sku-correct" class="quiz-option-sku" data-correct="true">📦 Store the names in a database and auto-inject them into tomorrow’s prompt</label>
 
-  <div class="feedback-sku" data-feedback="correct">✅ Correct! Frozen weights can’t learn overnight—you must feed yesterday’s SKUs back in (fetching from a database is fastest and cheapest).</div>
-  <div class="feedback-sku" data-feedback="wrong">❌ Prompts alone can’t alter weights, massive context gets expensive, and retraining the model is often overkill (especially if it's needed frequently).</div>
+  <div class="feedback-sku" data-feedback="correct">✅ Correct! Frozen weights can't learn overnight—you must feed yesterday's SKUs back in (fetching from a database is fastest and cheapest).</div>
+  <div class="feedback-sku" data-feedback="wrong">❌ Prompts alone can't alter weights, massive context gets expensive, and retraining the model is often overkill (especially if it's needed frequently).</div>
 </div>
 </div>
 

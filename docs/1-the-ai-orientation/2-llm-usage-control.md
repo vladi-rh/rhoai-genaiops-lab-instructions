@@ -316,16 +316,15 @@ What did I say in the last message?
 
 What did the model respond with?
 
+<iframe
+	src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/chat-interface"
+	frameborder="0"
+	width="600"
+	height="800"
+	style="border: 1px solid transparent; border-radius: 1px;"
+	loading="lazy">
+></iframe>
 
-<div class="iframe-scroll-container">
-  <iframe 
-    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/chat-interface"  
-    width="600px" 
-    height="800px" 
-    frameborder="0"
-    style="border: 1px solid transparent; border-radius: 1px;">
-  </iframe>
-</div>
 
 Now try the same thing in **Canopy** and compare. Does it remember what you said? What makes it different?
 
@@ -342,15 +341,15 @@ Take note of the response. Then ask the **exact same question again**.
 
 Did you get the same answer, or something different?
 
-<div class="iframe-scroll-container">
-  <iframe 
-    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/chat-interface"  
-    width="600px" 
-    height="800px" 
-    frameborder="0"
-    style="border: 1px solid transparent; border-radius: 1px;">
-  </iframe>
-</div>
+<iframe
+	src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/chat-interface"
+	frameborder="0"
+	width="600"
+	height="800"
+	style="border: 1px solid transparent; border-radius: 1px;"
+	loading="lazy">
+></iframe>
+
 
 LLMs often use a bit of randomness when generating answers. This randomness is controlled by something called **temperature**:
 - **Low temperature (e.g., 0.1)** → more predictable, repeatable responses
