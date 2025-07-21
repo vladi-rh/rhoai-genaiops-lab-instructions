@@ -85,12 +85,11 @@ Summarize the text in a few sentences.
 Can you come up with something that explains the text even better without loosing important info?
 </details>
 
-<div class="iframe-scroll-container">
-  <iframe 
-    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/prompt-playground"  
-    width="1600px" 
-    height="800px" 
-    frameborder="0"
-    style="border: 1px solid transparent; border-radius: 1px;">
-  </iframe>
-</div>
+<iframe
+	src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/prompt-playground"
+	frameborder="0"
+	width="1600"
+	height="800"
+	style="border: 1px solid transparent; border-radius: 1px;"
+	loading="lazy">
+></iframe>
