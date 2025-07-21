@@ -376,7 +376,7 @@ Which approach is the <em>most practical</em>?</p>
   </label>
 
   <div class="ctxFeed" data-type="good">
-    ✅ Right — on-demand retrieval of multiple 1K chunks respects the 8K limit and allows for some extra context to be added outside the cunks.
+    ✅ Right — on-demand retrieval of multiple 1K chunks respects the 8K limit and allows for some extra context to be added outside the chunks.
   </div>
   <div class="ctxFeed" data-type="bad">
     ❌ Fine-tuning is slow/expensive, and context resets between separate 6K prompts.

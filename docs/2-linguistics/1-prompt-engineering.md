@@ -73,6 +73,7 @@ https://llama32-ai501.<CLUSTER_DOMAIN>/v1/chat/completions
 <details>
 <summary> 📜 Here are a few example System Prompts you can try.</summary>  
 <br>
+
 ```
 Write a short version of this.
 ```
