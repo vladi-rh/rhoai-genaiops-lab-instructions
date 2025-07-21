@@ -5,6 +5,7 @@
   - [📚 Contents](#-contents)
   - [📊 Key Performance Metrics](#-key-performance-metrics)
   - [📦 Model Sizes and Requirements](#-model-sizes-and-requirements)
+  - [👀 How to Understand Model Resource Requirements from Modelcards](#-how-to-understand-model-resource-requirements-from-modelcards)
   - [✅ Summary](#-summary)
 
 ## 📊 Key Performance Metrics
@@ -103,6 +104,26 @@ For example, a 3B parameter model requires ~12GB of GPU memory to load and run.
 
 _* Quantization makes models take up less space, so they can run faster and fit on smaller GPUs. It slightly reduces quality but often works well enough._
 
+
+## 👀 How to Understand Model Resource Requirements from Modelcards
+
+This is clear and informative! A few minor edits for flow and consistency:
+
+[Hugging Face](https://huggingface.co/) is a platform and model hub where developers share, explore, and deploy machine learning models — especially large language models. Many of us use Hugging Face to browse and download models.
+
+ When you browse large language models on Hugging Face, each model has a **model card** — a summary page with key information about the model’s architecture, training data, intended use cases, and often hardware requirements. For example, check out the [Llama-4-Scout-17B-16E-Instruct](https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct) model from the Llama 4 collection.
+
+Where to look for resource hints:
+
+* **Model size / number of parameters:** Usually listed in the “Model Details” or “Model Information” section. This gives a rough sense of the model’s scale (e.g., 7B, 13B, 70B parameters).
+* **Hardware requirements:** Sometimes explicitly listed under sections like “Requirements” or “Inference Performance” — this may mention VRAM needs or recommended GPU types.
+* **Quantization support:** Some cards specify if the model supports 4-bit or 8-bit quantization, which helps reduce VRAM usage.
+* **Context length:** Longer context windows require more memory, so this is important when estimating VRAM needs.
+
+If these details aren’t directly stated, you can roughly estimate memory requirements based on model size: multiply the number of parameters by **4 bytes** (for FP32) or **2 bytes** (for FP16/half precision) to get a ballpark figure for VRAM needed to load the model’s weights. Don’t forget — you’ll also need extra VRAM for activation buffers or KV caches during inference.
+
+By checking these details on Hugging Face and using the rough guidelines above, you can estimate the hardware needed to run a model smoothly.
+
 <!-- 📦 model size / GPU trade-off -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
             padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
@@ -158,8 +179,6 @@ GPU budget: single A10 24 GB.
   </div>
 </div>
 </div>
-
----
 
 ## ✅ Summary
 
