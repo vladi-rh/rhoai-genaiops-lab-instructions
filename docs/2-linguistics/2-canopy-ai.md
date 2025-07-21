@@ -34,6 +34,9 @@ In OpenShift, you have an experimentation environment which is called `<USER_NAM
 
 1. Go to [OpenShift Console](https://console-openshift-console.<CLUSTER_DOMAIN>) and use `Students` login. You'll find yourself in the Developer view of Openshift Console.
 
+    User: `<USER_NAME>`  
+    Password: `<PASSWORD>`
+
     ![openshift-console.png](./images/openshift-console.png)
 
 2. Click `Add`, select `<USER_NAME>-canopy` namespace from the dropdown menu on the top, and select `Helm Charts`. 
@@ -70,19 +73,7 @@ In OpenShift, you have an experimentation environment which is called `<USER_NAM
 1. Inside the app, you can paste the following text to let it summarize, taken from Wikipedia on Canopy: https://en.wikipedia.org/wiki/Canopy_(biology):
    
     ```
-    In biology, the canopy is the aboveground portion of a plant cropping or crop, formed by the collection of individual plant crowns.[1][2][3] In forest ecology, the canopy is the upper layer or habitat zone, formed by mature tree crowns and including other biological organisms (epiphytes, lianas, arboreal animals, etc.).[4] The communities that inhabit the canopy layer are thought to be involved in maintaining forest diversity, resilience, and functioning.[5] Shade trees normally have a dense canopy that blocks light from lower growing plants.
-
-    Early observations of canopies were made from the ground using binoculars or by examining fallen material. Researchers would sometimes erroneously rely on extrapolation by using more reachable samples taken from the understory. In some cases, they would use unconventional methods such as chairs suspended on vines or hot-air dirigibles, among others. Modern technology, including adapted mountaineering gear, has made canopy observation significantly easier and more accurate, allowed for longer and more collaborative work, and broaddened the scope of canopy study.[6]
-    Structure
-    A monkey-ladder vine canopy over a road
-
-    Canopy structure is the organization or spatial arrangement (three-dimensional geometry) of a plant canopy. Leaf area index, leaf area per unit ground area, is a key measure used to understand and compare plant canopies. The canopy is taller than the understory layer. The canopy holds 90% of the animals in the rainforest. Canopies can cover vast distances and appear to be unbroken when observed from an airplane. However, despite overlapping tree branches, rainforest canopy trees rarely touch each other. Rather, they are usually separated by a few feet.[7]
-
-    Dominant and co-dominant canopy trees form the uneven canopy layer. Canopy trees are able to photosynthesize relatively rapidly with abundant light, so it supports the majority of primary productivity in forests. The canopy layer provides protection from strong winds and storms while also intercepting sunlight and precipitation, leading to a relatively sparsely vegetated understory layer.
-
-    Forest canopies are home to unique flora and fauna not found in other layers of forests. The highest terrestrial biodiversity resides in the canopies of tropical rainforests.[8] Many rainforest animals have evolved to live solely in the canopy and never touch the ground. The canopy of a rainforest is typically about 10 metres (33 feet) thick, and intercepts around 95% of sunlight.[9] The canopy is below the emergent layer, a sparse layer of very tall trees, typically one or two per hectare. With an abundance of water and a near ideal temperature in rainforests, light and nutrients are two factors that limit tree growth from the understory to the canopy.
-
-    In the permaculture and forest gardening community, the canopy is the highest of seven layers.[10] 
+    Tea preparation involves the controlled extraction of bioactive compounds from processed Camellia sinensis leaves. Begin by heating water to near 100°C to optimize solubility. Introduce a tea bag to a ceramic vessel, then infuse with hot water to initiate steeping—typically 3–5 minutes to allow for the diffusion of polyphenols and caffeine. Upon removal of the bag, optional additives like sucrose or lipid-based emulsions may be introduced to alter flavor profiles. The infusion is then ready for consumption.
     ```
 
     Press `Summarize` and then watch the model generate a summary in real-time ✨
