@@ -109,7 +109,147 @@ Let’s test your understanding with a quick quiz!
     });
 </script>
 
+## 🔄 Next-Token Prediction
 
+At their core, large language models do something surprisingly simple:  
+They guess the **next token**.
+
+You give them a string of text, and the model continues it by predicting the most likely next piece. Then it does it again. And again. And again.
+
+It’s like a very fast autocomplete — but one that’s been trained on a massive collection of text from books, websites, conversations, and more.
+
+For example:
+> Input: “Photosynthesis is the process by which plants”  
+> Model prediction: `“ convert sunlight into energy”`
+
+This step-by-step guessing game is called **inference**.
+
+Because the model is trying to predict what *usually* comes next, it’s sensitive to clues and patterns in your prompt — and sometimes a small change can lead to a very different outcome.
+
+Let’s see how well it guesses in a specific context:
+
+
+<!-- 🔄 Next token – tricky semantic cue -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz 1</h3>
+<p style="color:#495057; font-weight:500;">
+Imagine a prompt sent to an LLM reads exactly like this:
+</p>
+
+<p style="color:#495057; font-weight:500;">
+"It rains like cats and..."
+</p>
+
+<p style="color:#495057; font-weight:500;">Which <em>single token</em> is the model most likely to produce next?</p>
+
+<style>
+.quiz-container-next-easy{position:relative}
+.quiz-option-next-easy{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-next-easy:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.quiz-radio-next-easy{display:none}
+.quiz-radio-next-easy:checked+.quiz-option-next-easy[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-next-easy:checked+.quiz-option-next-easy:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5c6cb}
+.feedback-next-easy{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#next-easy-correct:checked~.feedback-next-easy[data-feedback="correct"],
+#next-easy-wrong1:checked~.feedback-next-easy[data-feedback="wrong"],
+#next-easy-wrong2:checked~.feedback-next-easy[data-feedback="wrong"],
+#next-easy-wrong3:checked~.feedback-next-easy[data-feedback="wrong"]{display:block}
+.feedback-next-easy[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.feedback-next-easy[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+</style>
+
+<div class="quiz-container-next-easy">
+  <input type="radio" name="quiz-next-easy" id="next-easy-wrong1" class="quiz-radio-next-easy">
+  <label for="next-easy-wrong1" class="quiz-option-next-easy" data-correct="false">🐸 frogs</label>
+
+  <input type="radio" name="quiz-next-easy" id="next-easy-correct" class="quiz-radio-next-easy">
+  <label for="next-easy-correct" class="quiz-option-next-easy" data-correct="true">🐶 dogs</label>
+
+  <input type="radio" name="quiz-next-easy" id="next-easy-wrong2" class="quiz-radio-next-easy">
+  <label for="next-easy-wrong2" class="quiz-option-next-easy" data-correct="false">🐭 mouse</label>
+
+  <div class="feedback-next-easy" data-feedback="correct">✅ Exactly!</div>
+  <div class="feedback-next-easy" data-feedback="wrong">❌ Read again carefully.</div>
+</div>
+</div>
+
+
+
+The LLM predicts what will likely be the next token, and puts a probability on each of the tokens.  
+The higher the probability, the higher the chance it will be chosen.
+
+<details>
+<summary> 🕵️ Spoilers! Press here after done with the quiz.</summary>  
+<br>
+
+![images/cats-and-dogs.png](images/cats-and-dogs.png)
+
+<br>
+
+</details>
+
+In some cases, like with the above quiz, it's pretty clear what it will predict.  
+In other cases, it will not be as clear, like the below for example:
+
+
+
+<!-- 🔄 Next token – tricky semantic cue -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz 2</h3>
+<p style="color:#495057; font-weight:500;">
+Imagine a prompt sent to an LLM reads exactly like this:
+</p>
+
+<p style="color:#495057; font-weight:500;">
+"John carefully packed his bag with essentials for the desert hike: water, sunscreen, and a wide-brimmed hat. He double-checked everything twice. When he arrived, the blazing sun made him immediately grateful he'd remembered his..."
+</p>
+
+<p style="color:#495057; font-weight:500;">Which <em>single token</em> is the model most likely to produce next?</p>
+
+<style>
+.quiz-container-next-tricky{position:relative}
+.quiz-option-next-tricky{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-next-tricky:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.quiz-radio-next-tricky{display:none}
+.quiz-radio-next-tricky:checked+.quiz-option-next-tricky[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-next-tricky:checked+.quiz-option-next-tricky:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5c6cb}
+.feedback-next-tricky{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#next-tricky-correct:checked~.feedback-next-tricky[data-feedback="correct"],
+#next-tricky-wrong1:checked~.feedback-next-tricky[data-feedback="wrong"],
+#next-tricky-wrong2:checked~.feedback-next-tricky[data-feedback="wrong"],
+#next-tricky-wrong3:checked~.feedback-next-tricky[data-feedback="wrong"]{display:block}
+.feedback-next-tricky[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.feedback-next-tricky[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+</style>
+
+<div class="quiz-container-next-tricky">
+  <input type="radio" name="quiz-next-tricky" id="next-tricky-wrong1" class="quiz-radio-next-tricky">
+  <label for="next-tricky-wrong1" class="quiz-option-next-tricky" data-correct="false">🥤 water</label>
+
+  <input type="radio" name="quiz-next-tricky" id="next-tricky-correct" class="quiz-radio-next-tricky">
+  <label for="next-tricky-correct" class="quiz-option-next-tricky" data-correct="true">🎩 hat</label>
+
+  <input type="radio" name="quiz-next-tricky" id="next-tricky-wrong2" class="quiz-radio-next-tricky">
+  <label for="next-tricky-wrong2" class="quiz-option-next-tricky" data-correct="false">🧴 sunscreen</label>
+
+  <input type="radio" name="quiz-next-tricky" id="next-tricky-wrong3" class="quiz-radio-next-tricky">
+  <label for="next-tricky-wrong3" class="quiz-option-next-tricky" data-correct="false">🕶️ sunglasses</label>
+
+  <div class="feedback-next-tricky" data-feedback="correct">✅ Exactly! Context indicates intense sun ("blazing sun"), making "hat" the strongest logical continuation.</div>
+  <div class="feedback-next-tricky" data-feedback="wrong">❌ Read again carefully. What specific clue ("blazing sun") makes a particular item most relevant?<br>If you think your answer is better, that's cause it might be, but the LLM only guesses based on this limited context.</div>
+</div>
+</div>
+
+<details>
+<summary> 🕵️ Spoilers! Press here after done with the quiz.</summary>  
+<br>
+
+![images/bring-to-beach.png](images/bring-to-beach.png)
+
+
+</details>
 
 ## 🧠 Context Length and Window
 
@@ -197,7 +337,7 @@ Let’s test your understanding with a quick quiz!
 <p style="color:#495057;font-weight:500;">
 Someone gave you the task to create a Q&amp;A over a 90-page contract.<br>
 Naturally, you decided to use an LLM to summarize it into a Q&amp;A for you (who reads these days anyway?).
-However, those 90 pages ammount to about 45 000 tokens, while your model only have a context window of 8 000.
+However, those 90 pages amount to about 45 000 tokens, while your model only have a context window of 8 000.
 </p>
 
 <p style="color:#495057;font-weight:500;">
@@ -302,76 +442,6 @@ However, tomorrow, when the chat starts fresh in a brand-new session, the assist
 
   <div class="feedback-sku" data-feedback="correct">✅ Correct! Frozen weights can’t learn overnight—you must feed yesterday’s SKUs back in (fetching from a database is fastest and cheapest).</div>
   <div class="feedback-sku" data-feedback="wrong">❌ Prompts alone can’t alter weights, massive context gets expensive, and retraining the model is often overkill (especially if it's needed frequently).</div>
-</div>
-</div>
-
-
----
-
-## 🔄 Next-Token Prediction
-
-At their core, large language models do something surprisingly simple:  
-They guess the **next token**.
-
-You give them a string of text, and the model continues it by predicting the most likely next piece. Then it does it again. And again. And again.
-
-It’s like a very fast autocomplete — but one that’s been trained on a massive collection of text from books, websites, conversations, and more.
-
-For example:
-> Input: “Photosynthesis is the process by which plants”  
-> Model prediction: `“ convert sunlight into energy”`
-
-This step-by-step guessing game is called **inference**.
-
-Because the model is trying to predict what *usually* comes next, it’s sensitive to clues and patterns in your prompt — and sometimes a small change can lead to a very different outcome.
-
-Let’s see how well it guesses in a specific context:
-
-<!-- 🔄 Next token – tricky semantic cue -->
-<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
-
-<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quiz</h3>
-<p style="color:#495057; font-weight:500;">
-Imagine a prompt sent to an LLM reads exactly like this:
-</p>
-
-<p style="color:#495057; font-weight:500;">
-"John carefully packed his bag with essentials for the desert hike: water, sunscreen, and a wide-brimmed hat. He double-checked everything twice. When he arrived, the blazing sun made him immediately grateful he'd remembered his..."
-</p>
-
-<p style="color:#495057; font-weight:500;">Which <em>single token</em> is the model most likely to produce next?</p>
-
-<style>
-.quiz-container-next-tricky{position:relative}
-.quiz-option-next-tricky{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
-.quiz-option-next-tricky:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
-.quiz-radio-next-tricky{display:none}
-.quiz-radio-next-tricky:checked+.quiz-option-next-tricky[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
-.quiz-radio-next-tricky:checked+.quiz-option-next-tricky:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5c6cb}
-.feedback-next-tricky{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
-#next-tricky-correct:checked~.feedback-next-tricky[data-feedback="correct"],
-#next-tricky-wrong1:checked~.feedback-next-tricky[data-feedback="wrong"],
-#next-tricky-wrong2:checked~.feedback-next-tricky[data-feedback="wrong"],
-#next-tricky-wrong3:checked~.feedback-next-tricky[data-feedback="wrong"]{display:block}
-.feedback-next-tricky[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.feedback-next-tricky[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
-</style>
-
-<div class="quiz-container-next-tricky">
-  <input type="radio" name="quiz-next-tricky" id="next-tricky-wrong1" class="quiz-radio-next-tricky">
-  <label for="next-tricky-wrong1" class="quiz-option-next-tricky" data-correct="false">🥤 water</label>
-
-  <input type="radio" name="quiz-next-tricky" id="next-tricky-correct" class="quiz-radio-next-tricky">
-  <label for="next-tricky-correct" class="quiz-option-next-tricky" data-correct="true">🎩 hat</label>
-
-  <input type="radio" name="quiz-next-tricky" id="next-tricky-wrong2" class="quiz-radio-next-tricky">
-  <label for="next-tricky-wrong2" class="quiz-option-next-tricky" data-correct="false">🧴 sunscreen</label>
-
-  <input type="radio" name="quiz-next-tricky" id="next-tricky-wrong3" class="quiz-radio-next-tricky">
-  <label for="next-tricky-wrong3" class="quiz-option-next-tricky" data-correct="false">🕶️ sunglasses</label>
-
-  <div class="feedback-next-tricky" data-feedback="correct">✅ Exactly! Context indicates intense sun ("blazing sun"), making "hat" the strongest logical continuation.</div>
-  <div class="feedback-next-tricky" data-feedback="wrong">❌ Read again carefully. What specific clue ("blazing sun") makes a particular item most relevant?<br>If you think your answer is better, that's cause it might be, but the LLM only guesses based on this limited context.</div>
 </div>
 </div>
 

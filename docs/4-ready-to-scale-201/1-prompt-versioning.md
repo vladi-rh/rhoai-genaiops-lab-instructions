@@ -79,7 +79,7 @@ Open a Pull Request and document why you picked this template. This adds **narra
 
 ## 🌿 Usinf the Prompt Registry
 
-Now, update your Canopy AI frontend to **reference this prompt** by name instead of pasting a hardcoded string.
+Now, update your Canopy frontend to **reference this prompt** by name instead of pasting a hardcoded string.
 
 You’ll modify your deployment environment to point to:
 
