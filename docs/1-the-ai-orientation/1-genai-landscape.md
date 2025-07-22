@@ -51,6 +51,21 @@ Examples include:
 Which of the following is an example of a Foundation Model?
 </p>
 
+<style>
+.quiz-container-next-easy{position:relative}
+.quiz-option-next-easy{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-next-easy:hover{background:#fff;transform:translateY(-1px);border-color:#dee2e6}
+.quiz-radio-next-easy{display:none}
+.quiz-radio-next-easy:checked+.quiz-option-next-easy[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-next-easy:checked+.quiz-option-next-easy:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5c6cb}
+.feedback-next-easy{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#foundation-correct:checked~.feedback-next-easy[data-feedback="correct"],
+#foundation-wrong1:checked~.feedback-next-easy[data-feedback="wrong"],
+#foundation-wrong2:checked~.feedback-next-easy[data-feedback="wrong"]{display:block}
+.feedback-next-easy[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
+.feedback-next-easy[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+</style>
+
 <div class="quiz-container-next-easy">
   <input type="radio" name="quiz-foundation-1" id="foundation-wrong1" class="quiz-radio-next-easy">
   <label for="foundation-wrong1" class="quiz-option-next-easy" data-correct="false">📊 Random Forest</label>
@@ -104,10 +119,6 @@ Which of the following is an example of a Foundation Model?
 > What are some risks of relying only on prompting with closed models in your industry?
 > *(Share in small groups and report back)* -->
 
----
-
-## 📝 Quick Check!
-
 <!-- 🎯 Open vs Closed -->
 
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
@@ -129,8 +140,14 @@ Which of the following statements about Open Foundation Models is correct?
   <label for="open-wrong2" class="quiz-option-next-easy" data-correct="false">🗣️ They perform better than closed models in all cases</label>
 
   <div class="feedback-next-easy" data-feedback="correct">✅ Spot on! Open models allow access to their weights, giving you more control.</div>
-  <div class="feedback-next-easy" data-feedback="wrong">❌ That’s not entirely true. Double-check the licensing and capabilities!</div>
+  <div class="feedback-next-easy" data-feedback="wrong">❌ That's not entirely true. Double-check the licensing and capabilities!</div>
 </div>
+
+<style>
+#open-correct:checked~.feedback-next-easy[data-feedback="correct"],
+#open-wrong1:checked~.feedback-next-easy[data-feedback="wrong"],
+#open-wrong2:checked~.feedback-next-easy[data-feedback="wrong"]{display:block}
+</style>
 </div>
 
 ---
@@ -141,14 +158,3 @@ Which of the following statements about Open Foundation Models is correct?
 * Pretraining, fine-tuning, and prompting are key adaptation strategies
 * Open vs Closed models have trade-offs — no one-size-fits-all
 * Collaboration and discussion help in understanding real-world implications
-
----
-
-## ✅ Reflection Board
-
-> Write down one insight and one question you have after this chapter.
-> *(Collect on a whiteboard or shared doc)*
-
----
-
-Let me know if you want me to adapt this for a specific LMS or workshop format!
