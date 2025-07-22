@@ -27,8 +27,6 @@ Let's setup the foundation of our GitOps system and deploy all the components we
 
 4. You just logged into Argo CD 👏👏👏! Lets deploy a sample application through the UI. It'll be just to give you a taste of Argo CD's magic before we use it for our GenAIOps reasons. On Argo CD - click `CREATE APPLICATION`. You should see an empty form. Let's fill it out by setting the following:
 
-    TODO: change the app something more related with the topic and update the following steps accordingly.
-
    * On the "GENERAL" box
       * Application Name: `token-visualizer` 
       * Project Name: `genaiops-toolings-project`
@@ -45,6 +43,7 @@ Let's setup the foundation of our GitOps system and deploy all the components we
       * Values Files: `values.yaml`
 
     Your form should look like this:
+    
     ![argocd-create-application](images/argocd-create-application.png)
 
 5. After you hit create, you’ll see `token-visualizer` application is created and should start deploying in your `<USER_NAME>-toolings` namespace.
