@@ -1,5 +1,6 @@
 * [Intro](/)
 * [The AI Orientation](1-the-ai-orientation/README.md)
+  * [🌎 GenAI Landscape](./1-the-ai-orientation/1-genai-landscape.md)
   * [🧑‍🎓 Understanding LLMs](1-the-ai-orientation/0-llm-overview.md)
     * [🧱 Fundamentals](1-the-ai-orientation/1-llm-fundamentals.md)
     * [💭 Usage & Control](1-the-ai-orientation/2-llm-usage-control.md)
