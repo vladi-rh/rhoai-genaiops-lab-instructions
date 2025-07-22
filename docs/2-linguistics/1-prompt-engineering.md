@@ -44,8 +44,10 @@ Here’s what you can configure:
 And here is the text we ask you to summarize (i.e. the text you send into the User Prompt):
 
 ```
-Making a cup of tea is easy. First, boil some water. Then, place a tea bag in a cup. Pour the hot water over the tea bag. Let it steep for a few minutes. After that, take out the tea bag. You can add sugar or milk if you like. Now the tea is ready to drink.
+Tea preparation involves the controlled extraction of bioactive compounds from processed Camellia sinensis leaves. Begin by heating water to near 100°C to optimize solubility. Introduce a tea bag to a ceramic vessel, then infuse with hot water to initiate steeping—typically 3–5 minutes to allow for the diffusion of polyphenols and caffeine. Upon removal of the bag, optional additives like sucrose or lipid-based emulsions may be introduced to alter flavor profiles. The infusion is then ready for consumption.
 ```
+
+![images/explain-like-8.jpg](images/explain-like-8.jpg)
 
 Use the Prompt Playground to:
 
@@ -57,8 +59,14 @@ Use the Prompt Playground to:
 
 Enter the following info:
 
-- Model Name: `llama32`
-- Model URL: `https://llama32-ai501.<CLUSTER_DOMAIN>/v1/chat/completions`
+- Model Name: 
+```
+llama32
+```
+- Model URL: 
+```
+https://llama32-ai501.<CLUSTER_DOMAIN>/v1/chat/completions
+```
 
 ..and for the rest, it is up to what you feel like trying 🧪  
 

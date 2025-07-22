@@ -69,6 +69,11 @@ Let’s deploy the Playground to verify the integration between Llama Stack and 
 
 3. If you scroll on the left menu, there is a `System Prompt` area. We can continue experimenting and iterating on our prompts here.
 
+    Remember your user prompt from before:
+    ```
+    Tea preparation involves the controlled extraction of bioactive compounds from processed Camellia sinensis leaves. Begin by heating water to near 100°C to optimize solubility. Introduce a tea bag to a ceramic vessel, then infuse with hot water to initiate steeping—typically 3–5 minutes to allow for the diffusion of polyphenols and caffeine. Upon removal of the bag, optional additives like sucrose or lipid-based emulsions may be introduced to alter flavor profiles. The infusion is then ready for consumption.
+    ```
+
     ![llama-stack-playground-summary.png](./images/llama-stack-playground-summary.png)
 
 You have a few more options than in previous exercises. Alongside `Temperature`, you’ll also see `Top P` and `Repetition Penalty`. Try them out on the summarize task and observe how they change the output. 
