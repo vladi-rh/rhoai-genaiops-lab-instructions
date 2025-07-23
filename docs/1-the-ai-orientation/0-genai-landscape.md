@@ -4,7 +4,7 @@
 
 Generative AI (GenAI) refers to models that can create new content — text, images, audio, video, or even code — by learning patterns from large datasets.
 
-Think of it like a master chef who has tasted thousands of dishes. The chef might not have invented every recipe but can whip up a new dish based on flavor combinations they've learned. Similarly, GenAI models don’t "think" like humans; instead, they generate outputs based on probabilities learned during training.
+Think of it like a master chef who has tasted thousands of dishes. The chef might not have invented every recipe but can whip up a new dish based on flavor combinations they've learned. Similarly, GenAI models don’t "think" like humans; instead, they generate outputs based on common patterns learned during training.
 
 You might have seen:
 
@@ -22,7 +22,7 @@ These are all examples of GenAI in action!
 
 Before a GenAI model can do anything impressive, it needs a strong foundation — and that’s exactly what **Foundation Models (FMs)** provide. These are massive models trained on a wide variety of data, making them versatile for countless tasks with minimal additional training.
 
-If GenAI is like playing a song, Foundation Models are like finely tuned instruments that can be used for different genres. Once the instrument is built, you just need to know the right tune (or prompt) to play.
+If GenAI is like playing a song, Foundation Models are like well made instruments that can be used for different genres. Once you have the instrument, you just need to know the right tune (or prompt) to play.
 
 ### Some notable Foundation Models:
 
@@ -32,7 +32,7 @@ If GenAI is like playing a song, Foundation Models are like finely tuned instrum
 * **Gemini (Google DeepMind)** — Processes and understands text, images, audio, and more
 * **Code LLaMA (Meta)** — Generates and explains code in various programming languages
 
-> 🗣️ **Fun fact:** Many models today are "multimodal," meaning they can handle multiple types of data at once — like understanding a picture **and** describing it in words.
+> 🗣️ **Fun fact:** Many models today are "multimodal," meaning they can handle multiple types of data at once — like understanding a picture **and** having a conversation about it.
 
 ---
 
@@ -58,7 +58,7 @@ Just like software, GenAI models come in **open** and **closed** varieties.
 
 You can think of training a model like preparing an athlete:
 
-* **Pretraining** is the general workout — building stamina and strength.
+* **Pretraining** is the general workout — building stamina and strength (this is what produces your foundation/base model).
 * **Fine-tuning** is specialized coaching for a specific sport.
 * **Prompting** is giving instructions right before the game.
 
