@@ -27,17 +27,15 @@ Let's setup the foundation of our GitOps system and deploy all the components we
 
 4. You just logged into Argo CD 👏👏👏! Lets deploy a sample application through the UI. It'll be just to give you a taste of Argo CD's magic before we use it for our GenAIOps reasons. On Argo CD - click `CREATE APPLICATION`. You should see an empty form. Let's fill it out by setting the following:
 
-    TODO: change the app something more related with the topic and update the following steps accordingly.
-
    * On the "GENERAL" box
-      * Application Name: `todolist` 
-      * Project Name: `default`
+      * Application Name: `token-visualizer` 
+      * Project Name: `genaiops-toolings-project`
       * Sync Policy: `Automatic`
    * On the "SOURCE" box
-      * Repository URL: `https://rht-labs.com/todolist/`
+      * Repository URL: `https://rhoai-genaiops.github.io/genaiops-helmcharts/`
       * Select `Helm` from the right GIT/HELM drop down menu
-      * Chart: `todolist`
-      * Version: `1.1.0`
+      * Chart: `token-visualizer`
+      * Version: `0.0.1`
    * On the "DESTINATION" box
       * Cluster URL: `https://kubernetes.default.svc`
       * Namespace: `<USER_NAME>-toolings`
@@ -45,23 +43,33 @@ Let's setup the foundation of our GitOps system and deploy all the components we
       * Values Files: `values.yaml`
 
     Your form should look like this:
+    
     ![argocd-create-application](images/argocd-create-application.png)
 
-5. After you hit create, you’ll see `todolist` application is created and should start deploying in your `<USER_NAME>-toolings` namespace.
+5. After you hit create, you’ll see `token-visualizer` application is created and should start deploying in your `<USER_NAME>-toolings` namespace.
 
-  ![argocd-todolist-1.png](./images/argocd-todolist-1.png)
+  ![argocd-token-visualizer-1.png](./images/argocd-token-visualizer-1.png)
 
 6. If you drill down into the application you will get Argo CD’s amazing view of all of the k8s resources that were generated. These resources are defined in the Helm chart you selected.
 
-  ![argocd-todolist-2.png](./images/argocd-todolist-2.png)
+  ![argocd-token-visualizer-2.png](./images/argocd-token-visualizer-2.png)
 
-7. You can verify the little todolist application is running and behaving as expected by navigating to the url of the app. Go back to your `code-server` and run the following command in the terminal:
+7. You can verify the little token-visualizer application is running and behaving as expected by navigating to the url of the app.  
+   Token visualizer lives in this URL: [https://token-visualizer-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/](https://token-visualizer-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/)
+  
+  Alternatively, you can access to the same URL by running the following command in the terminal:
 
     ```bash
-    echo https://$(oc get route/todolist -n <USER_NAME>-toolings --template='{{.spec.host}}')
+    echo https://$(oc get route/token-visualizer -n <USER_NAME>-toolings --template='{{.spec.host}}')
     ```
+  
+  Enter the URL of the LLM we are using and visualize how many token we've been sending and generating since start of the enablement :)
 
-  _You can CMD/CTRL + click on the URL to open it in a new browser tab._
+  ```bash
+  https://llama32-ai501.<CLUSTER_DOMAIN>
+  ```
+
+  ![token-visualizer.png](./images/token-visualizer.png)
   
 🪄🪄 Magic! You now have a GitOps controller - Argo CD - and got it to manually deploy an application for you. Next up, we’ll make Argo CD deploy Canopy to `test` and `prod` environments 🪄🪄
 

@@ -1,6 +1,6 @@
 # Module 2 - Linguistics
 
-> Learn the art of communicating with AI through prompt engineering.
+> Prompting an AI is like giving instructions to a chef. If you just say ‘make food,’ you’ll get whatever. If you say ‘make a vegetarian pasta in under 15 minutes,’ you’re far more likely to get what you want 🍝
 
 # 🧑‍🍳 Module Intro
 

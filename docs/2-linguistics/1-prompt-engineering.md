@@ -33,13 +33,15 @@ Your goal is to find the **best system prompt** and configuration to **summarize
 
 Here’s what you can configure:
 
-* 🔗 **Model Info**: Connect to your chosen LLM (local or remote).
-* 🧾 **System Prompt**: Set the model’s “persona” or behavior.
-* 💬 **User Prompt**: Ask a question, give a command, or provide input.
-* 🔢 **Max Tokens**: Control the length of the model’s output.
-* 🔥 **Temperature**: Adjust creativity vs. precision. Lower = more focused, Higher = more creative.
+| Setting          | What it Does                                | Example                       |
+| ---------------- | ------------------------------------------- | ----------------------------- |
+| 🧾 System Prompt | Sets the AI’s role or behavior              | “You are a helpful tutor."     |
+| 💬 User Prompt   | The task you give                           | “This text is about...”        |
+| 🔥 Temperature   | Creativity level (0 = serious, 1 = playful) | “0.2 = strict, 0.8 = playful”  |
+| 🔢 Max Tokens    | Limits response length                      | “50 = short, 200 = detailed”   |
 
-And here is the text you want the model to summarize (i.e. the text you want to send into the User Prompt):
+
+And here is the text we ask you to summarize (i.e. the text you send into the User Prompt):
 
 ```
 Tea preparation involves the controlled extraction of bioactive compounds from processed Camellia sinensis leaves. Begin by heating water to near 100°C to optimize solubility. Introduce a tea bag to a ceramic vessel, then infuse with hot water to initiate steeping—typically 3–5 minutes to allow for the diffusion of polyphenols and caffeine. Upon removal of the bag, optional additives like sucrose or lipid-based emulsions may be introduced to alter flavor profiles. The infusion is then ready for consumption.
@@ -80,6 +82,14 @@ Write a short version of this.
 
 ```
 Summarize the text in a few sentences.
+```
+
+```
+Explain the given text as if I’m a 5-year-old.
+```
+
+```
+Explain the given text using only emojis.
 ```
 
 Can you come up with something that explains the text even better without loosing important info?

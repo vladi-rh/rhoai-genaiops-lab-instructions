@@ -54,13 +54,21 @@ When it is in running state, Open it and use your credentials to access it.
 5. Let's clone our Canopy repository that has some Notebooks in it and learn more about Llama Stack!
 
    ```bash
-   git clone https://<GIT_SERVER>/<USER_NAME>/canopy.git
+   git clone https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/canopy.git
    ```
 
-6. Open up the notebook ...
+6. Open up the notebook called `1-intro-llama-stack.ipynb` and follow the instructions. When you run the first code cell, it will ask you to choose a kernel. Select the first option. That means it will run the code in this workbench locally.
+
+   ![choose-python-env.png](./images/choose-python-env.png)
+
+   Then it will ask you to choose which python environment to use and go with the `Recommended` one.
+
+   ![choose-python-env2.png](./images/choose-python-env2.png)
+
+   And now, feel free to experiment!
+
+   ![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjM0ZzFhNjRtemJ1NHNtOTkxYm52b3h3c3pnZ2VvdXBtNjBiZjZzcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/i68Balzk8Fewg/giphy.gif)
 
 
-
-
-Now that we understand the changes needed on the frontend and why a backend is necessary to communicate with the Llama Stack, let’s implement those changes and introduce a backend into the architecture.
+Now that we understand why a backend is necessary to communicate with the Llama Stack, let’s implement those changes and introduce a backend into the architecture.
 
