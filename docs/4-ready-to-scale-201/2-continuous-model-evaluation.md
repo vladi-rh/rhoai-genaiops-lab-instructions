@@ -16,7 +16,7 @@ In this section, we will primarily focus on evaluating the application backend, 
 
 You will see examples of the other tests in later sections.
 
-## Evaluating with Llamastack
+## Evaluating with Llama Stack
 
 We will be using Llamastack to evaluate our backend on how well it responds to our inputs.  
 Llamastack has three different endpoints for evaluating models:
