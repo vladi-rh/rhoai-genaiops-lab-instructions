@@ -26,7 +26,7 @@ Llama Stack has three different endpoints for evaluating models:
 
 When you are ready, head over to your workbench in the `<USER_NAME>-canopy` namespace and go through the notebook `llamastack-evak-test.ipynb`.
 
-When you are done, come back here to go through the 
+When you are done, come back here to continue with the instructions.
 
 ## Speed tests with GuideLLM
 
