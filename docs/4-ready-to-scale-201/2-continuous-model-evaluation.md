@@ -19,7 +19,7 @@ You will see examples of the other tests in later sections.
 ## Evaluating with Llama Stack
 
 We will be using Llama Stack to evaluate our backend on how well it responds to our inputs.  
-Llamastack has three different endpoints for evaluating models:
+Llama Stack has three different endpoints for evaluating models:
 1. **Eval** - This evaluates an LLM answer (called `generated_answer`) based on the expected answer (called `expected_answer`)
 2. **Dataset** - This gives us easy access to use datasets, in this case datasets containing tests
 3. **Benchmarks** - Benchmarks tie Eval and Datasets together to automatically run the dataset through the LLM and then evaluate the answers. We will be skipping these for now as we want greater control.
