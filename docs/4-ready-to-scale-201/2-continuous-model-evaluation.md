@@ -24,7 +24,7 @@ Llama Stack has three different endpoints for evaluating models:
 2. **Dataset** - This gives us easy access to use datasets, in this case datasets containing tests
 3. **Benchmarks** - Benchmarks tie Eval and Datasets together to automatically run the dataset through the LLM and then evaluate the answers. We will be skipping these for now as we want greater control.
 
-When you are ready, head over to your workbench in the `Canopy` namespace and go through the notebook `llamastack-evak-test.ipynb`.
+When you are ready, head over to your workbench in the `<USER_NAME>-canopy` namespace and go through the notebook `llamastack-evak-test.ipynb`.
 
 When you are done, come back here to go through the 
 
