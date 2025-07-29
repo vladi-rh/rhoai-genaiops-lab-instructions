@@ -32,10 +32,10 @@ Open up `Summary` and then `summary_tests.yaml` to see what tests we will run. M
     arguments = {
         "repo_url": "https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/canopy-evals.git",
         "branch": "main",
-        "workspace_pvc": "canopy-eval-pvc",
         "base_url": "http://llama-stack.<USER_NAME>-canopy.svc.cluster.local:80",
         "backend_url": "http://canopy-backend.<USER_NAME>-canopy.svc.cluster.local:8000",
         "secret_name": "test-results",
+        "git_hash": "test",
     }
     ```
     These arguments instruct your pipeline how to run.
