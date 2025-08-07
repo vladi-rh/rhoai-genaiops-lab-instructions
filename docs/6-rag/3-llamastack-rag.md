@@ -14,13 +14,13 @@ The bottom layer handles raw data storage and retrieval:
 - **KeyValue IO**: Manages structured metadata and simple lookups  
 - **Relational IO**: Handles complex queries across structured data
 
-### 2. 🔧 RAG Tool Layer (The Intelligence)
+### 2. 🔧 RAG Layer (The Intelligence)
 The middle layer provides smart document processing:
 - **Document Ingestion**: Automatically chunks and processes files, URLs, and content
 - **Intelligent Chunking**: Splits documents optimally for retrieval
 - **Semantic Search**: Finds relevant content based on meaning, not just keywords
 
-### 3. 🤖 Agents Layer (The Interface)
+### 3. 🤖 User Layer (The Interface)
 The top layer creates intelligent assistants:
 - **Context-Aware Agents**: LLMs that can use RAG tools automatically
 - **Multi-Document Reasoning**: Agents that synthesize information from multiple sources

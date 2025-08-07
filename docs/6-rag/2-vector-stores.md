@@ -8,6 +8,8 @@ For Canopy at RDU, this means students can ask "How does bias affect hiring?" an
 
 ## 🔍 What are Vector Stores?
 
+![LLS RAG Architecture Diagram](images/rag5.png)
+
 **Vector stores** (also called vector databases) are specialized databases that store and search through high-dimensional vectors - mathematical representations of text meaning. Here's how they work:
 
 ### The Vector Magic ✨
@@ -16,17 +18,26 @@ For Canopy at RDU, this means students can ask "How does bias affect hiring?" an
 2. **Similarity Search**: When you ask a question, the system finds vectors with similar "shapes" in the mathematical space
 3. **Lightning Fast**: Even with millions of documents, searches happen in milliseconds
 
+![LLS RAG Architecture Diagram](images/rag6.png)
+
+
 ### Why Regular Databases Aren't Enough
 
+Let's use a simple example to understand the difference. Imagine you're building a pet care app with these documents:
+
 **❌ Traditional Keyword Search:**
-- Searching for "bias" only finds exact word matches
-- Misses related concepts like "discrimination" or "unfairness"
-- Can't understand context or nuance
+- Searching for "dog" only finds documents containing the exact word "dog"
+- Misses related documents about "puppy", "canine", "golden retriever", or "border collie"
+- A search for "cat care" won't find a document titled "Feline Health Tips"
+- Can't understand that "My furry friend loves to fetch" is about dogs
 
 **✅ Vector-Based Semantic Search:**
-- Finds conceptually related content regardless of exact words
-- Understands context and relationships between ideas
-- Ranks results by relevance and meaning
+- Searching for "dog" finds documents about puppies, specific breeds, and dog-related concepts
+- Understands that "feline" and "cat" are related, so "cat care" finds "Feline Health Tips"
+- Recognizes that "furry friend that fetches" is semantically similar to "dog behavior"
+- Ranks results by conceptual relevance: "golden retriever training" scores higher than "cat toys" for a "dog" search
+
+The magic happens because vectors capture *meaning* - "puppy", "canine", and "golden retriever" all get similar vector representations because they're conceptually related, even though they share no common letters!
 
 ## 🛠️ Vector Store Options
 
@@ -40,72 +51,106 @@ There are several vector database options available for RAG systems:
 
 For this module, we'll use **Milvus** as our vector database - it's open-source, highly scalable, and perfect for educational RAG systems that need to handle multiple courses and thousands of documents.
 
-## 📊 Deploy Milvus Vector Database
+## 📊 Deploy Milvus Test & Prod
 
-Let's deploy Milvus using our GitOps workflow to your toolings environment. We'll start with a standalone deployment that's perfect for development and educational use cases.
+We deployed our vector database concepts in the experimentation phase, but just like with Canopy, we need to set up our vector database deployment to handle test and production environments with proper separation and configuration management.
 
-### 1. Deploy Milvus via GitOps
+### 1. Set Up Milvus Directory Structure
 
-We can deploy a Milvus instance in our toolings environment. This vector database will support the end-to-end journey of our RAG system. We need to install it through `genaiops-gitops/toolings/` following our established GitOps pattern.
-
-Create a `milvus` folder under toolings and then create a `config.yaml` file under the milvus folder. Or simply run the commands below:
+We'll create separate configurations for test and prod environments under the canopy directory structure so the existing ApplicationSets can detect them:
 
 ```bash
-mkdir /opt/app-root/src/genaiops-gitops/toolings/milvus
-touch /opt/app-root/src/genaiops-gitops/toolings/milvus/config.yaml
+mkdir -p /opt/app-root/src/genaiops-gitops/canopy/test/milvus
+mkdir -p /opt/app-root/src/genaiops-gitops/canopy/prod/milvus
+touch /opt/app-root/src/genaiops-gitops/canopy/test/milvus/config.yaml
+touch /opt/app-root/src/genaiops-gitops/canopy/prod/milvus/config.yaml
 ```
 
-Open up the `milvus/config.yaml` file and paste the line below to let Argo CD know which chart we want to deploy:
+### 2. Configure Milvus Config Files
+
+`milvus` will use the same configuration for both test and prod environments, keeping it simple. Update both `canopy/test/milvus/config.yaml` and `canopy/prod/milvus/config.yaml` with the same configuration:
+
+**Both TEST and PROD:**
 
 ```yaml
 chart_path: charts/milvus
 ```
 
-### 2. Commit and Deploy via GitOps
+For now, we're happy with the default Milvus values. We will get some exciting updates as we continue to the other chapters :)
 
-Commit the changes to the repo as you've done before:
+### 3. Deploy via GitOps
+
+Now let's get these configurations deployed! Store all vector database definitions in Git:
 
 ```bash
 cd /opt/app-root/src/genaiops-gitops
-git pull
 git add .
-git commit -m "📊 Milvus vector database added 📊"
+git commit -m "📊 ADD - Milvus test & prod vector databases 📊"
 git push
 ```
 
-Once this change has been sync'd (you can check this in Argo CD), Milvus will be automatically deployed to your `<USER_NAME>-toolings` namespace. The ApplicationSet will detect the new configuration and deploy the vector database with our predefined educational-optimized settings.
+### 4. Deploy with ApplicationSets
 
-> **💡 Deployment Note**: We're using a **standalone deployment** of Milvus, which is perfect for development and educational environments. For production systems with high availability requirements, you would typically deploy Milvus in a **distributed mode** with multiple nodes, data replication, and load balancing. The standalone mode gives us all the RAG functionality we need while keeping resource usage reasonable for learning purposes.
+With all the vector database configurations stored in Git, the ApplicationSets you created in the previous Canopy deployment chapter will automatically detect the new Milvus configurations and deploy them to the appropriate namespaces:
 
-### 3. Verify Milvus Deployment
+- **Test Milvus** → deployed to `<USER_NAME>-test` namespace  
+- **Prod Milvus** → deployed to `<USER_NAME>-prod` namespace
 
-Once deployed, verify everything is running correctly:
+If you haven't created the ApplicationSets yet, you'll need to update them with your cluster details and apply them:
 
 ```bash
-# Check if Milvus pods are running
-oc get pods -n <USER_NAME>-toolings | grep milvus
-
-# Check the service is accessible
-oc get svc -n <USER_NAME>-toolings | grep milvus
-
-# View logs if needed
-oc logs -l app=milvus -n <USER_NAME>-toolings --tail=50
+# Update ApplicationSet definitions with your cluster domain and username
+sed -i -e 's/CLUSTER_DOMAIN/<CLUSTER_DOMAIN>/g' /opt/app-root/src/genaiops-gitops/appset-test.yaml
+sed -i -e 's/USER_NAME/<USER_NAME>/g' /opt/app-root/src/genaiops-gitops/appset-test.yaml
+sed -i -e 's/CLUSTER_DOMAIN/<CLUSTER_DOMAIN>/g' /opt/app-root/src/genaiops-gitops/appset-prod.yaml
+sed -i -e 's/USER_NAME/<USER_NAME>/g' /opt/app-root/src/genaiops-gitops/appset-prod.yaml
 ```
 
-You should see output showing Milvus pods in `Running` state.
+If you didn't applied yet, apply the new 
 
-## 🔧 Understanding Vector Storage
+```bash
+# Apply the ApplicationSets
+oc apply -f /opt/app-root/src/genaiops-gitops/appset-test.yaml -n <USER_NAME>-toolings
+oc apply -f /opt/app-root/src/genaiops-gitops/appset-prod.yaml -n <USER_NAME>-toolings
+```
 
-### Embeddings: Text as Math
+You can verify the ApplicationSets are running and picking up the new configurations:
 
-When documents get processed for RAG:
+```bash
+# Verify the ApplicationSets are running
+oc get applicationsets -n <USER_NAME>-toolings
 
-1. **Chunking**: Documents are split into meaningful pieces (paragraphs, sections)
-2. **Embedding**: Each chunk becomes a vector (typically 384 or 768 dimensions)
-3. **Storage**: Vectors are indexed in your vector database for fast similarity search
-4. **Metadata**: Original text, source info, and tags are stored alongside vectors
+# Watch Argo CD automatically create the new Milvus applications
+oc get applications -n <USER_NAME>-toolings | grep milvus
+```
 
-## 🎯 Next Steps: Building Intelligent Agents
+You should see the two Milvus applications, one for `test` and one for `prod` being automatically deployed by Argo CD to their respective namespaces.
+
+> **💡 Deployment Note**: We're using **standalone deployments** of Milvus with default configurations, which are perfect for development and educational environments. Both test and prod environments provide the full vector database functionality needed for your RAG systems while keeping resource usage reasonable for learning purposes.
+
+### 5. Verify Milvus Deployments
+
+Once deployed, verify both environments are running correctly:
+
+```bash
+# Check if Milvus pods are running in test environment
+oc get pods -n <USER_NAME>-test | grep milvus
+
+# Check if Milvus pods are running in prod environment  
+oc get pods -n <USER_NAME>-prod | grep milvus
+
+# Check the services are accessible
+oc get svc -n <USER_NAME>-test | grep milvus
+oc get svc -n <USER_NAME>-prod | grep milvus
+
+# View logs if needed for either environment
+oc logs -l app=milvus -n <USER_NAME>-test --tail=50
+oc logs -l app=milvus -n <USER_NAME>-prod --tail=50
+```
+
+You should see output showing Milvus pods in `Running` state in both test and prod namespaces.
+
+## 🎯 Next Steps: Building Intelligent Apps with RAG
 
 With your vector store ready, you now have the foundation for RAG. Next, you'll build the intelligent layer that knows how to search your vector database and create helpful responses for students.
 
