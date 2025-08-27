@@ -40,7 +40,7 @@ Open up `Summary` and then `summary_tests.yaml` to see what tests we will run. M
     ```
     These arguments instruct your pipeline how to run.
 
-6. Now we can run the pipeline! 👐  
+6. Now we can run the pipeline! 🙌  
     Just execute this in your terminal:
     ```bash
     python canopy-evals/test_pipeline/kfp_pipeline.py
@@ -52,7 +52,7 @@ Open up `Summary` and then `summary_tests.yaml` to see what tests we will run. M
 
 7. After it has finished runnig you can go to this URL to see your results:  
     ```bash
-    https://minio-ui-user1-canopy.apps.cluster-gm86c.gm86c.sandbox1062.opentlc.com/browser/test-results
+    https://minio-ui-<USER_NAME>-canopy.apps.cluster-gm86c.gm86c.sandbox1062.opentlc.com/browser/test-results
     ```
 
     ![test-results](images/test-results.png)
