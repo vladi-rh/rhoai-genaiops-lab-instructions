@@ -4,11 +4,11 @@
 
 Think of vector stores as the specialized libraries that power RAG systems. While a traditional library organizes books alphabetically, vector stores organize information by *meaning* - allowing AI to find relevant content based on semantic similarity rather than just keyword matching.
 
-For Canopy at RDU, this means students can ask "How does bias affect hiring?" and get relevant information even if your course materials use terms like "discrimination in recruitment" or "algorithmic fairness in employment."
+For educational platforms like Canopy, this means students can ask "How does bias affect hiring?" and get relevant information even if your course materials use terms like "discrimination in recruitment" or "algorithmic fairness in employment."
 
 ## 🔍 What are Vector Stores?
 
-![LLS RAG Architecture Diagram](images/rag5.png)
+![LLS RAG Architecture Diagram](images/rag5.png ':size=50%')
 
 **Vector stores** (also called vector databases) are specialized databases that store and search through high-dimensional vectors - mathematical representations of text meaning. Here's how they work:
 
@@ -53,7 +53,9 @@ For this module, we'll use **Milvus** as our vector database - it's open-source,
 
 ## 📊 Deploy Milvus Test & Prod
 
-We deployed our vector database concepts in the experimentation phase, but just like with Canopy, we need to set up our vector database deployment to handle test and production environments with proper separation and configuration management.
+You've learned the concepts behind vector databases - now it's time to deploy the infrastructure that will power Canopy's intelligent search capabilities. Just like with Canopy, we need to set up vector database deployments that handle test and production environments with proper separation and configuration management.
+
+After completing the deployment, you'll use your running Milvus instances in hands-on exercises to understand exactly how educational content becomes searchable through vector embeddings.
 
 ### 1. Set Up Milvus Directory Structure
 
@@ -128,30 +130,42 @@ You should see the two Milvus applications, one for `test` and one for `prod` be
 
 > **💡 Deployment Note**: We're using **standalone deployments** of Milvus with default configurations, which are perfect for development and educational environments. Both test and prod environments provide the full vector database functionality needed for your RAG systems while keeping resource usage reasonable for learning purposes.
 
-### 5. Verify Milvus Deployments
+### 🖼️ Explore Milvus with Attu Web Interface
 
-Once deployed, verify both environments are running correctly:
+Each Milvus deployment includes Attu, a powerful web-based administration tool for managing and visualizing your vector database.
 
-```bash
-# Check if Milvus pods are running in test environment
-oc get pods -n <USER_NAME>-test | grep milvus
-
-# Check if Milvus pods are running in prod environment  
-oc get pods -n <USER_NAME>-prod | grep milvus
-
-# Check the services are accessible
-oc get svc -n <USER_NAME>-test | grep milvus
-oc get svc -n <USER_NAME>-prod | grep milvus
-
-# View logs if needed for either environment
-oc logs -l app=milvus -n <USER_NAME>-test --tail=50
-oc logs -l app=milvus -n <USER_NAME>-prod --tail=50
+**Access Attu for Test Environment:**
+```
+https://milvus-test-attu-<USER_NAME>-test.<CLUSTER_DOMAIN>
 ```
 
-You should see output showing Milvus pods in `Running` state in both test and prod namespaces.
+**Access Attu for Prod Environment:**
+```
+https://milvus-test-attu-<USER_NAME>-prod.<CLUSTER_DOMAIN>
+```
+
+**What you can do with Attu:**
+- 📊 **Visualize Collections**: See your vector database structure
+- 🔍 **Browse Data**: Explore stored vectors and metadata
+- 📈 **Monitor Performance**: Check database statistics and health
+- 🛠️ **Manage Collections**: Create, modify, and delete collections
+- 🔎 **Test Queries**: Run vector similarity searches interactively
+
+Visit your test environment Attu interface now - you'll see an empty database, perfect for understanding the starting point before we populate it with educational content!
+
+## 🧪 Hands-On Learning: Vector Database Fundamentals
+
+Now that your Milvus instances are deployed and running, it's time to understand how vector databases work under the hood. This practical exploration will help you grasp the concepts that power Canopy's semantic search capabilities.
+
+**📓 Interactive Notebook**: Complete the hands-on exercises in `2-vector-databases.ipynb` to:
+
+- **Connect to your deployed Milvus instance**: Use the vector database you just deployed via GitOps
+- **Learn how text embeddings capture meaning**: Understand how course content becomes searchable vectors
+- **Experience semantic search with educational content**: See how Machine Learning concepts are found even when using different terminology
+- **Understand how Canopy finds relevant course materials**: Discover the technology behind intelligent student Q&A
 
 ## 🎯 Next Steps: Building Intelligent Apps with RAG
 
-With your vector store ready, you now have the foundation for RAG. Next, you'll build the intelligent layer that knows how to search your vector database and create helpful responses for students.
+With your vector store deployed and your understanding of embeddings complete through the hands-on notebook exercises, you now have both the infrastructure and conceptual foundation for RAG. Next, you'll build the intelligent layer that knows how to search your vector database and create helpful responses for students.
 
 Continue to **[🦙 LlamaStack & RAG](3-llamastack-rag.md)** to connect your vector store with LlamaStack and create your first RAG-powered educational assistant.

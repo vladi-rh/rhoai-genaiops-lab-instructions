@@ -19,6 +19,8 @@ _an image will be inserted here._
 * Create intelligent educational assistants that cite their sources
 * Deploy production-ready knowledge systems using GitOps
 
+![LLS RAG Pic](images/rag0.png ':size=50%')
+
 # 🔨 Tools used in this module
 
 * **LlamaStack RAG APIs** - Three-layer architecture for building retrieval-augmented applications
