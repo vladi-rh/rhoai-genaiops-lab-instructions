@@ -30,18 +30,25 @@ By storing prompts in Git, we enable:
 You’ll standardize your prompts using a simple format that captures:
 
 ```yaml
-name: canopy-ai
-use_case: summarization
-model: openai/gpt-4
-system_prompt: |
-  You are a patient and clear tutor helping students to summarize topics.
-example_user_prompt: |
-  Explain the difference between supervised and unsupervised learning.
-tags: [education, ai-assistant, beginner-friendly]
-created_by: <USER_NAME>
+LLAMA_STACK_URL: "http://llama-stack"
+summarize:
+  enabled: true
+  model: llama32
+  prompt: |
+    Give me a good summary of the following text.
 ```
 
-Such template can live in its own file and folder in the prompt registry, stored in Git.
+There are a variety of different strategies here on where to store your prompts and how to load them into the backend.  
+In our case, we will store this inside the canopy backend repo as the one who develop the backend likely is the same persona to iterate on the prompts.  
+More specifically, we will store them inside our values.yaml file and then load them into a configmap which then gets mounted to our backend pod. This way, we can make sure that when the values.yaml file changes, GitOps will update, and the pod will automatically restart with the latest prompt.
+
+Let's go through what we added to our prompt file:
+
+- **LLAMA_STACK_URL** - This is simply the llamastack we are using for the backend. We wanted it here so we can flexibly change it (test vs prod for example) and so that we can keep track of what was used at any given time.
+- **summarize** - This is the name of the feature, we will use this name to know which prompt we should use where in the backend. Anything under this feature can be flexibly customized and read in the backend.
+- **enabled** - This simply says if the feature is enabled or disabled. We are grouping prompts under their relevant features here which may not always be what you want to do, but it works well in this scenario.
+- **model** - The model name as listed in Llamastack, this is to keep track of what model(s) we use for our prompts as the result may differ drastically from model to model.
+- **prompt** - The prompt(s) we are using for our feature. If more are needed we can simply add more (prompt1, prompt2, etc for example, although you probably want to use better names 😄)
 
 ---
 
@@ -50,25 +57,25 @@ Such template can live in its own file and folder in the prompt registry, stored
 1. **Clone the Prompt Registry Repo**
 
 ```bash
-git clone https://github.com/rhoai-genaiops/canopy-prompts
-cd canopy-prompts/templates
+git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-be.git
+cd canopy-be/chart/templates
 ```
 
-2. **Create a New Prompt Format**
+2. **Update your Prompt**
 
-You’ll base it on the system prompt that performed best in your last experiment. Create a new file like:
+You’ll base it on the system prompt that performed best in your last experiment. Go into the file:
 
 ```bash
-summarization-assistant-v1.yaml
+values.yaml
 ```
 
-Fill in the YAML structure above.
+And edit the existing prompt.
 
 3. **Commit & Push**
 
 ```bash
 git checkout -b add-summarization-prompt
-git add templates/summarization-assistant-v1.yaml
+git add canopy-be/chart/templates/values.yaml
 git commit -m "Add prompt for summarization"
 git push origin add-summarization-prompt
 ```
@@ -77,15 +84,10 @@ Open a Pull Request and document why you picked this template. This adds **narra
 
 ---
 
-## 🌿 Usinf the Prompt Registry
+## 🌿 Using the New Prompt
 
-Now, update your Canopy frontend to **reference this prompt** by name instead of pasting a hardcoded string.
-
-You’ll modify your deployment environment to point to:
-
-```env
-SYSTEM_PROMPT_SOURCE=https://raw.githubusercontent.com/rhoai-genaiops/prompt-registry/main/templates/tutoring-assistant-v1.yaml
-```
+Since we already set up the backend before (in chapter [Intro to Backend](/3-ready-to-scale101/3-intro-to-backend.md)) every change you make to yout prompts will now automatically be updated in the backend.
 
 This makes your frontend **dynamic and auditable**—any changes to prompts go through Git, not a hidden textarea.
 
+Go to your Canopy UI and try out your new prompt!
