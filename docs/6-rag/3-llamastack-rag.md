@@ -2,113 +2,88 @@
 
 With your vector store up and running, you're ready to build the intelligent layer that makes RAG truly powerful. LlamaStack provides the tools and APIs to create systems that can automatically search your Milvus database, retrieve relevant information, and generate informed responses.
 
-Think of this as adding a brilliant research assistant to your educational platform - one that knows exactly where to find information and how to synthesize it into helpful answers.
-
 ## 🏗️ The LlamaStack RAG Architecture
 
-LlamaStack organizes RAG capabilities into three elegant layers that work together:
+LlamaStack organizes RAG capabilities into three layers that work together:
 
 ### 1. 🗄️ Storage Layer (The Foundation)
-The bottom layer handles raw data storage and retrieval:
 - **Vector IO**: Stores document embeddings for semantic search
 - **KeyValue IO**: Manages structured metadata and simple lookups  
 - **Relational IO**: Handles complex queries across structured data
 
 ### 2. 🔧 RAG Layer (The Intelligence)
-The middle layer provides smart document processing:
 - **Document Ingestion**: Automatically chunks and processes files, URLs, and content
 - **Intelligent Chunking**: Splits documents optimally for retrieval
 - **Semantic Search**: Finds relevant content based on meaning, not just keywords
 
 ### 3. 🤖 User Layer (The Interface)
-The top layer creates intelligent assistants:
 - **Context-Aware Agents**: LLMs that can use RAG tools automatically
 - **Multi-Document Reasoning**: Agents that synthesize information from multiple sources
 - **Conversational Memory**: Maintains context across interactions while accessing external knowledge
 
 ![LLS RAG Architecture Diagram](images/rag2.png)
 
-## 🔗 Connecting to Your Vector Store
+## 🧪 Hands-On Learning: Build Your RAG System
 
-Before building intelligent agents, LlamaStack needs to connect to the Milvus vector database you deployed in the previous section. This connection enables the RAG tools to store and retrieve document embeddings.
+Now that you understand RAG architecture and have Milvus deployed, it's time to build a complete RAG pipeline using LlamaStack.
 
-## 🔧 Configure LlamaStack with Vector Database Integration
+**📓 Interactive Notebook**: Complete the hands-on exercises in `3-simpleRAG.ipynb` to:
 
-Now we'll connect your existing LlamaStack deployment to the Milvus vector database, enabling RAG capabilities.
+- **Connect LlamaStack to your vector database**: Register your deployed Milvus instance
+- **Ingest documents into the RAG system**: Process PDFs and educational content automatically
+- **Test RAG retrieval and generation**: See the complete pipeline from query to cited response
+- **Build RAG-enhanced agents**: Create intelligent assistants with document awareness
 
-1. **Update LlamaStack Configuration**
+### What You'll Build
 
-   We need to register our Milvus instance as a vector database provider in LlamaStack. This involves:
-   - Connecting to your LlamaStack instance
-   - Registering the Milvus vector database with appropriate embedding models
-   - Configuring the connection parameters for your environment
+Through the practical exercises, you'll create a RAG system that can:
 
-   **📓 Hands-On**: The detailed configuration steps and code examples are provided in the `1-rag.ipynb` notebook in your workbench.
+- **Process Documents**: Automatically chunk and index educational materials
+- **Answer Questions**: Retrieve relevant information and generate informed responses  
+- **Provide Citations**: Always reference source documents and materials
+- **Maintain Context**: Handle follow-up questions with conversational memory
 
-## 📚 Document Ingestion and Retrieval
+## 🖼️ Visualize Your RAG System with Attu
 
-Once your vector database is configured, you can start teaching Canopy about your documents! The RAG system supports multiple approaches:
+After completing the `3-simpleRAG.ipynb` notebook, explore what LlamaStack created in your vector database using the Attu web interface.
 
-### Document Processing Methods
-- **Direct Insertion**: Pre-chunked educational content with metadata
-- **Smart Processing**: Using LlamaStack's RAG Tool for automatic chunking and processing
-- **Bulk Ingestion**: Processing multiple documents with course-specific metadata
+**Access Your Milvus Attu Interface:**
+```
+https://milvus-test-attu-<USER_NAME>-test.<CLUSTER_DOMAIN>
+```
 
-### Educational Content Examples
-You'll work with real educational scenarios like:
-- AI ethics course materials
-- Computer science research papers  
-- Course syllabi and reading lists
-- Assignment guidelines and rubrics
+Use `root` as the user and `Milvus` as the password.
 
-**📓 Hands-On**: Complete document ingestion examples and retrieval testing are available in the `1-rag.ipynb` notebook.
+![LLS RAG Architecture Diagram](images/rag7.png ':size=60%')
 
-## 🤖 Building RAG-Enhanced Agents
+**What you'll see after running the notebook:**
+- 📊 **New Collections**: LlamaStack automatically created collections for your documents
+- 🔍 **Document Chunks**: Browse the 512-token chunks created from your PDF
+- 📈 **Vector Embeddings**: See the 384-dimensional vectors representing each chunk
+- 🛠️ **Metadata**: Explore document information like source URLs and types
+- 🔎 **Search Interface**: Test vector similarity searches on your ingested content
 
-The power of RAG comes alive when you create AI agents that can automatically search and use your document knowledge base. These agents can:
+**Before vs After:**
+- **Before notebook**: Empty database with no collections
+- **After notebook**: Populated with document collections, chunks, embeddings, and metadata
 
-- **Answer questions** using course materials and academic resources
-- **Provide citations** and references to specific documents
-- **Synthesize information** from multiple sources
-- **Maintain context** across conversations while accessing external knowledge
+![LLS RAG Architecture Diagram](images/rag8.png)
 
-**📓 Hands-On**: Step-by-step agent creation and testing is covered in the `1-rag.ipynb` notebook.
+This visualization helps you understand exactly what happens during the RAG ingestion process - your documents are transformed from PDFs into searchable, semantic knowledge!
 
-## 🎮 LlamaStack Playground: RAG in Action
+## 🎮 LlamaStack Playground: RAG Experiments
 
-The LlamaStack Playground provides an intuitive interface for experimenting with RAG workflows before integrating them into Canopy.
+Want to experiment with RAG workflows interactively? The LlamaStack Playground provides an intuitive interface for testing your system.
 
-### Access the Playground
+**Access Your Playground:**
+```bash
+# Get your playground URL
+oc get route llama-stack-playground -n <USER_NAME>-canopy
+```
 
-1. **Deploy the Playground** (if not already done in Module 3):
-   ```bash
-   # In your workbench terminal
-   oc get route llama-stack-playground -n <USER_NAME>-canopy
-   ```
+Visit: `https://llama-stack-playground-<USER_NAME>-canopy.<CLUSTER_DOMAIN>`
 
-2. **Open the Playground Interface**:
-   Navigate to `https://llama-stack-playground-<USER_NAME>-canopy.<CLUSTER_DOMAIN>`
-
-### Playground RAG Experiments
-
-Try these educational scenarios in the Playground:
-
-1. **📖 Course Content Q&A**
-   - Upload a course syllabus or reading list
-   - Ask: "What are the learning objectives for week 3?"
-   - Observe how RAG finds and cites specific sections
-
-2. **🔬 Research Paper Analysis**
-   - Ingest an academic paper about machine learning
-   - Ask: "What methodology did the researchers use?"
-   - Watch RAG extract and synthesize methodology sections
-
-3. **📝 Assignment Assistance**
-   - Upload assignment guidelines and rubrics
-   - Ask: "How should I structure my essay to meet the requirements?"
-   - See RAG provide detailed, requirement-based guidance
-
-## 🎯 Next Steps: Complex Document Processing
+## 🎯 Next Steps: Advanced Document Processing
 
 Your RAG system can now handle simple text documents, but what about research papers with tables, mathematical formulas, and complex layouts? That's where advanced document processing comes in.
 

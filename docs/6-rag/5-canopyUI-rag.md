@@ -1,1 +1,1 @@
-# 🌳 CanopyUI with RAGB
+# 🌳 CanopyUI with RAG

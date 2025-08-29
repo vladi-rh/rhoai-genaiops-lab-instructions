@@ -1,124 +1,78 @@
 # 🐣 Document Intelligence with Docling
 
-Imagine trying to teach a student using only textbooks written in a foreign language with strange formatting. That's what happens when RAG systems encounter complex documents like PDFs with tables, images, and intricate layouts. **Docling** is like having a brilliant translator who not only reads every language but also understands the meaning behind charts, diagrams, and document structure.
+Your RAG system works great with simple text, but what happens when students upload research papers with complex tables, mathematical formulas, and multi-column layouts? Traditional text extraction loses the meaning trapped in structured academic content.
 
-While basic RAG can work with simple text files, real educational institutions deal with:
+**Docling** transforms your RAG system into an intelligent document processor that understands:
 
-* 📄 **Complex PDFs**: Research papers with multi-column layouts, mathematical formulas, and embedded figures
-* 📊 **Rich Documents**: Course materials with tables, charts, and mixed media content  
-* 🏛️ **Legacy Materials**: Scanned documents and documents with inconsistent formatting
-* 📚 **Structured Content**: Syllabi, textbooks, and academic papers that need intelligent parsing
-
-Docling transforms these challenging documents into clean, structured content that RAG systems can understand and process effectively.
-
-## 🔍 What is Docling?
-
-**Docling** is an advanced document processing toolkit that simplifies the handling of diverse document formats with a focus on intelligent PDF understanding. Think of it as a universal translator for documents - it can read, understand, and convert complex academic materials into formats that AI systems can work with effectively.
-
-### Key Features & Capabilities
-
-**📄 Multi-Format Support**
-- **Documents**: PDF, DOCX, PPTX, XLSX, HTML
-- **Media**: WAV, MP3 audio files with speech recognition
-- **Images**: PNG, TIFF, JPEG with OCR capabilities
-- **Advanced Processing**: Tables, formulas, code blocks, and mathematical content
-
-**🧠 Intelligent PDF Understanding**
-- **Layout Analysis**: Understands page structure, reading order, and multi-column layouts
-- **Table Structure**: Preserves complex table relationships and formatting
-- **Formula Recognition**: Handles mathematical equations and scientific notation
-- **Image Classification**: Identifies and categorizes figures, charts, and diagrams
-
-**🔒 Enterprise-Ready Features**
-- **Local Execution**: Process sensitive documents without cloud dependencies
-- **Air-Gapped Support**: Works in secure, isolated environments
-- **Extensive OCR**: Handles scanned PDFs and image-based documents
-- **Visual Language Models**: Advanced understanding with SmolDocling integration
+* 📊 **Complex tables** with research data and experimental results
+* 🧮 **Mathematical formulas** and scientific notation
+* 📈 **Charts and figures** that visualize key concepts
+* 📝 **Multi-column layouts** typical of academic papers
+* 🏛️ **Document structure** like sections and references
 
 ![Docling](images/rag3.png)
 
-### LlamaStack Integration Pipeline
+## 🔍 What is Docling?
 
-You can transform your source documents with a Docling-enabled data science pipeline and ingest the output into a LlamaStack vector store using the LlamaStack SDK. This modular approach separates document preparation from ingestion, yet still delivers an end-to-end RAG workflow.
+**Docling** is an advanced document processing toolkit that gives RAG systems the ability to understand complex academic documents. Think of it as upgrading from basic text reading to intelligent document comprehension.
 
-**The Complete Workflow:**
-1. **Document Preparation**: Docling downloads and processes source PDFs
-2. **Parallel Processing**: Documents are split into batches for efficient handling  
-3. **Intelligent Conversion**: Each batch is converted to structured Markdown
-4. **Embedding Generation**: Sentence-transformer models create vector representations
-5. **Vector Storage**: Embeddings are stored in your Milvus database
-6. **Instant Search**: Documents become searchable in LlamaStack RAG workflows
+### The Three-Phase Intelligence Pipeline
 
-This pipeline makes complex academic documents instantly searchable and queryable, enabling sophisticated educational AI applications.
+**Phase 1: Document Analysis** 📄
+```
+PDF Input → Layout Detection → Structure Analysis → Content Extraction
+```
+
+**Phase 2: Content Enhancement** 🔧  
+```
+Raw Text → Table Extraction → Formula Recognition → Figure Processing
+```
+
+**Phase 3: RAG Integration** 🗄️
+```
+Intelligent Chunking → Vector Embeddings → Enhanced RAG Search
+```
 
 ![LLS RAG and Docling Architecture Diagram](images/rag4.png)
 
-## 🔧 The Docling-LlamaStack Pipeline
+## 🧠 Why Document Intelligence Matters
 
-Docling integrates with LlamaStack to create an intelligent document processing pipeline:
+Traditional RAG systems struggle with academic content:
 
-### Phase 1: Intelligent Document Analysis
-```
-📄 PDF Input → 🔍 Layout Detection → 📋 Structure Analysis → 🧠 Content Extraction
-```
+**❌ Basic Text Extraction:**
+- Loses table structure and data relationships
+- Misses mathematical formulas and equations
+- Ignores multi-column layouts and document hierarchy
 
-### Phase 2: Content Enhancement  
-```
-📝 Raw Text → 🏷️ Semantic Tagging → 📊 Table Extraction → 🖼️ Figure Processing
-```
+**✅ Document Intelligence with Docling:**
+- Preserves table data with proper structure
+- Handles formulas and scientific notation correctly
+- Maintains document layout and semantic relationships
 
-### Phase 3: RAG Integration
-```
-🔧 Intelligent Chunking → 🎯 Embedding Generation → 🗄️ Vector Storage → 🔍 LlamaStack RAG
-```
+Consider a research paper with experimental results in tables - traditional RAG would lose this crucial data, but Docling preserves it for intelligent querying.
 
-This modular approach separates document preparation from ingestion while delivering a complete, end-to-end RAG workflow.
+## 🧪 Hands-On Learning: Build Document Intelligence
 
-## 🧠 Why Docling Matters for Educational RAG
+Now it's time to enhance your RAG system with document intelligence capabilities.
 
-Traditional document processing often fails when dealing with academic content. [Docling](https://github.com/docling-project/docling) addresses these challenges with advanced document understanding capabilities. Consider a typical computer science research paper:
+**📓 Interactive Notebook**: Complete the hands-on exercises in `4-docling.ipynb` to:
 
-- **Complex layouts** with multiple columns and sections
-- **Mathematical equations** that need special handling
-- **Figures and tables** that provide crucial context
-- **Reference lists** that need to be preserved and linked
-- **Metadata** like authors, institutions, and publication dates
+- **Connect to Docling service**: Set up intelligent document processing in your cluster
+- **Process complex academic papers**: Handle real ArXiv research papers with tables and formulas
+- **Integrate with your RAG system**: Store intelligently-processed content in Milvus
+- **Test advanced queries**: Ask questions about specific data, formulas, and research findings
+- **See the difference**: Compare basic text extraction vs document intelligence
 
-Without intelligent processing, a RAG system might:
-- Miss important information trapped in tables
-- Lose context from figures and captions
-- Struggle with multi-column layouts
-- Fail to properly chunk mathematical content
+### What You'll Build
 
-Docling solves these problems by understanding document structure and extracting content intelligently.
+Your enhanced RAG system will handle queries like:
+- *"What is the PRFXception?"* - Technical concepts from paper methodology
+- *"What are the accuracy values for the five regions?"* - Specific data from research tables
 
-## 🚀 Setting Up the Docling Pipeline
+**📌 Note**: Docling processing takes 1-2 minutes per document as it performs comprehensive analysis of layout, tables, and mathematical content.
 
-Let's build a document processing pipeline that can handle the complex academic materials your students and educators need.
+## 🎯 Next Steps: Complete Educational Platform
 
-### 1. Prepare Your Workbench Environment
+Your document intelligence RAG system can now understand the most complex academic content. Ready to build the user interface?
 
-TODO
-
-**📓 Hands-On**: Complete installation instructions and environment setup are provided in the `2-docling.ipynb` notebook in your workbench.
-
-### 2. Document Processing Pipeline Components
-
-The Docling pipeline includes several key components:
-
-#### Core Processing Classes
-- **DocumentConverter**: Handles PDF parsing and content extraction
-- **EducationalDocumentProcessor**: Manages batch processing with course metadata  
-- **LlamaStack Integration**: Connects processed content to your RAG system
-
-#### Processing Capabilities
-- **Batch Processing**: Handle multiple documents simultaneously
-- **Metadata Enrichment**: Add course, instructor, and assignment context
-- **Format Conversion**: Transform PDFs to structured Markdown
-- **Content Analysis**: Extract tables, figures, and mathematical content
-
-**📓 Hands-On**: Complete pipeline implementation with working code examples is available in the `2-docling.ipynb` notebook.
-
-**📓 Ready to Build?** Open the `2-docling.ipynb` notebook in your workbench to start processing real academic documents and creating intelligent educational assistants! 🚀
-
-Your AI now has both memory and the intelligence to understand complex documents - ready to transform how your institution handles knowledge and learning! 🎓📚✨
+Continue to **[🌳 CanopyUI with RAG](5-canopyui-rag.md)** to create the complete educational platform that students and educators will use.

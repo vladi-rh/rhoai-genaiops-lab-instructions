@@ -8,7 +8,7 @@ For educational platforms like Canopy, this means students can ask "How does bia
 
 ## 🔍 What are Vector Stores?
 
-![LLS RAG Architecture Diagram](images/rag5.png ':size=50%')
+![LLS RAG Architecture Diagram](images/rag5.png ':size=70%')
 
 **Vector stores** (also called vector databases) are specialized databases that store and search through high-dimensional vectors - mathematical representations of text meaning. Here's how they work:
 
