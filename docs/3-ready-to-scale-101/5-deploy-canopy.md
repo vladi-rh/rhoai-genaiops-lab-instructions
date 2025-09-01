@@ -11,7 +11,7 @@ But first, we need to set up our backend repository to handle the GenAI applicat
     cd /opt/app-root/src
     git clone https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/canopy-be.git
   ```
-2. We will store prompts under `chart/values-test.yaml` and `chart/values-prompt.yaml`. Copy the below info to both files and make sure to bring your new favourite prompt to summarize the topics along with the settings you have in Llama Stack Playground:
+2. We will store prompts under `chart/values-test.yaml` and `chart/values-prod.yaml`. Copy the below info to both files and make sure to bring your new favourite prompt to summarize the topics along with the settings you have in Llama Stack Playground:
 
   ```yaml
   summarize:
@@ -85,6 +85,7 @@ Now let's set this up using ArgoCD!
 
     ```yaml
     chart_path: llama-stack
+    MODEL_URL: https://llama32-ai501.<CLUSTER_DOMAIN>.com/
     ```
 
   For now, we are happy with the default Llama Stack values. We will get some exciting updates as we continue to the other chapters :)

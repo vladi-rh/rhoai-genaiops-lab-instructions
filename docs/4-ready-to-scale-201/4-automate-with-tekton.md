@@ -24,13 +24,16 @@ To do this, we can create a Tekton pipeline with a git hook to the relevant repo
 
 3. Open up the `evaluation-pipeline/config.yaml` file and paste the below yaml to config.yaml.
 
-    ```bash
+    ```yaml
     repo_url: https://gitea-gitea.apps.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git
     chart_path: test_pipeline/canopy-tekton-pipeline
-    USER_NAME: user1
-    kfp.baseUrl: http://llama-stack.<USER_NAME>-canopy.svc.cluster.local:80
-    kfp.backendUrl: http://canopy-backend.<USER_NAME>-canopy.svc.cluster.local:8000
+    USER_NAME: <USER_NAME>
+    kfp:
+        baseUrl: http://llama-stack.<USER_NAME>-test.svc.cluster.local:80
+        backendUrl: http://canopy-backend.<USER_NAME>-test.svc.cluster.local:8000
     ```
+
+    As you may have noticed, we are pointing our base (llamastack) url and backend url to our test namespace, as that's what we want to run our tests on.
 
 4. And finally commit and push it to git, as it only counts if it's in git 😉
 
