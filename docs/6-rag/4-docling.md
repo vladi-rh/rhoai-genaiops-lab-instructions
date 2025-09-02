@@ -55,7 +55,7 @@ Consider a research paper with experimental results in tables - traditional RAG 
 
 Now it's time to enhance your RAG system with document intelligence capabilities.
 
-**📓 Interactive Notebook**: Complete the hands-on exercises in `4-docling.ipynb` to:
+**📓 Interactive Notebook**: Complete the hands-on exercises in `canopy/6-rag/3-docling.ipynb` to:
 
 - **Connect to Docling service**: Set up intelligent document processing in your cluster
 - **Process complex academic papers**: Handle real ArXiv research papers with tables and formulas

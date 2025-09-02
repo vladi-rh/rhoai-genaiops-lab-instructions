@@ -27,7 +27,7 @@ LlamaStack organizes RAG capabilities into three layers that work together:
 
 Now that you understand RAG architecture and have Milvus deployed, it's time to build a complete RAG pipeline using LlamaStack.
 
-**📓 Interactive Notebook**: Complete the hands-on exercises in `3-simpleRAG.ipynb` to:
+**📓 Interactive Notebook**: Complete the hands-on exercises in `canopy/6-rag/2-simpleRAG.ipynb` to:
 
 - **Connect LlamaStack to your vector database**: Register your deployed Milvus instance
 - **Ingest documents into the RAG system**: Process PDFs and educational content automatically
@@ -45,7 +45,7 @@ Through the practical exercises, you'll create a RAG system that can:
 
 ## 🖼️ Visualize Your RAG System with Attu
 
-After completing the `3-simpleRAG.ipynb` notebook, explore what LlamaStack created in your vector database using the Attu web interface.
+After completing the `canopy/6-rag/2-simpleRAG.ipynb` notebook, explore what LlamaStack created in your vector database using the Attu web interface.
 
 **Access Your Milvus Attu Interface:**
 ```
