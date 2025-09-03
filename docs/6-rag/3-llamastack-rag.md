@@ -23,6 +23,16 @@ LlamaStack organizes RAG capabilities into three layers that work together:
 
 ![LLS RAG Architecture Diagram](images/rag2.png)
 
+## Updating Llama Stack with RAG and VectorDB Capabilities
+
+Now that you have Milvus vector databases running in both test and production environments, it's time to enhance your Llama Stack deployments with RAG and VectorDB capabilities. 
+
+By default, our Llama Stack instances are deployed with basic inference capabilities only. We're taking a gradual approach to introduce advanced features like RAG and vector database integration step by step, which allows for better understanding and easier troubleshooting.
+
+In this section, you'll update your existing Llama Stack configurations to include the vector database connections and RAG functionality needed for intelligent document search and retrieval.
+
+TODO: Complete this section with configuration updates and deployment steps for both test and prod.
+
 ## 🧪 Hands-On Learning: Build Your RAG System
 
 Now that you understand RAG architecture and have Milvus deployed, it's time to build a complete RAG pipeline using LlamaStack.
@@ -71,7 +81,7 @@ Use `root` as the user and `Milvus` as the password.
 
 This visualization helps you understand exactly what happens during the RAG ingestion process - your documents are transformed from PDFs into searchable, semantic knowledge!
 
-## 🎮 LlamaStack Playground: RAG Experiments
+## 🎮 LlamaStack Playground: RAG Experiments (Optional)
 
 Want to experiment with RAG workflows interactively? The LlamaStack Playground provides an intuitive interface for testing your system.
 

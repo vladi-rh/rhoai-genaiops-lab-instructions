@@ -2,15 +2,16 @@
 
 <div class="terminal-curl"></div>
 
-Think of vector stores as the specialized libraries that power RAG systems. While a traditional library organizes books alphabetically, vector stores organize information by *meaning* - allowing AI to find relevant content based on semantic similarity rather than just keyword matching.
+Think of vector stores as the specialized libraries that power RAG systems. While a traditional library organizes books alphabetically, vector stores organize information by **meaning**, allowing AI to find relevant content based on semantic similarity rather than just keyword matching.
 
-For educational platforms like Canopy, this means students can ask "How does bias affect hiring?" and get relevant information even if your course materials use terms like "discrimination in recruitment" or "algorithmic fairness in employment."
+For educational platforms like Canopy, this means students can ask "How does bias affect hiring?" and get relevant information even if your course materials use terms like "discrimination in recruitment" or "algorithmic fairness in employment".
 
 ## 🔍 What are Vector Stores?
 
-![LLS RAG Architecture Diagram](images/rag5.png ':size=70%')
-
 **Vector stores** (also called vector databases) are specialized databases that store and search through high-dimensional vectors - mathematical representations of text meaning. Here's how they work:
+
+
+![LLS RAG Architecture Diagram](images/rag5.png ':size=60%')
 
 ### The Vector Magic ✨
 
@@ -19,7 +20,6 @@ For educational platforms like Canopy, this means students can ask "How does bia
 3. **Lightning Fast**: Even with millions of documents, searches happen in milliseconds
 
 ![LLS RAG Architecture Diagram](images/rag6.png)
-
 
 ### Why Regular Databases Aren't Enough
 
@@ -37,7 +37,7 @@ Let's use a simple example to understand the difference. Imagine you're building
 - Recognizes that "furry friend that fetches" is semantically similar to "dog behavior"
 - Ranks results by conceptual relevance: "golden retriever training" scores higher than "cat toys" for a "dog" search
 
-The magic happens because vectors capture *meaning* - "puppy", "canine", and "golden retriever" all get similar vector representations because they're conceptually related, even though they share no common letters!
+The magic happens because vectors capture *meaning*: "puppy", "canine", and "golden retriever" all get similar vector representations because they're conceptually related, even though they share no common letters!
 
 ## 🛠️ Vector Store Options
 

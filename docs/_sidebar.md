@@ -26,5 +26,6 @@
   * [🧠 Understanding RAG](6-rag/1-rag.md)
   * [📊 Vector Stores & Milvus](6-rag/2-vector-stores.md)
   * [🦙 LlamaStack & RAG](6-rag/3-llamastack-rag.md)
-  * [🐣 Document Intelligence with Docling](6-rag/4-docling.md)
-  * [🌳 CanopyUI with RAG](6-rag/5-canopyUI-rag.md)
+  * [🐣 Doc Intelligence with Docling](6-rag/4-docling.md)
+  * [⚙️ RAG Pipelines](6-rag/5-rag-pipelines.md)
+  * [🌳 CanopyUI with RAG](6-rag/5-rag-pipelines.md)

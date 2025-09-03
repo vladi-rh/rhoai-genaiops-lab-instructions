@@ -6,7 +6,7 @@
 
 This module bridges the gap between basic AI interactions and intelligent systems that can learn and recall from your specific documents and knowledge bases. You'll discover how Retrieval Augmented Generation (RAG) transforms static AI models into dynamic assistants that can reference course materials, institutional documents, and student submissions.
 
-At Redwood Digital University, we're building Canopy to help educators and students interact with vast amounts of academic content. RAG is the technology that makes this possible - turning your documents into searchable, queryable knowledge that enhances every AI interaction.
+At RDU, we're building Canopy to help educators and students interact with vast amounts of academic content. RAG is the technology that makes this possible, turning your documents into searchable, queryable knowledge that enhances every AI interaction.
 
 # 🖼️ Big Picture
 _an image will be inserted here._
@@ -23,10 +23,10 @@ _an image will be inserted here._
 
 # 🔨 Tools used in this module
 
-* **LlamaStack RAG APIs** - Three-layer architecture for building retrieval-augmented applications
-* **Milvus Vector Database** - High-performance vector database for semantic search and retrieval
-* **Docling** - Advanced document processing pipeline for PDF analysis and content extraction
-* **RAG Tools** - Document ingestion, chunking, and querying capabilities
-* **Vector IO & KeyValue IO** - Low-level storage interfaces for different data types
-* **OpenShift & Helm Charts** - To deploy RAG infrastructure in development and production environments
-* **Enhanced Canopy** - Your educational AI assistant, now with memory and document awareness
+* **LlamaStack RAG APIs**: Three-layer architecture for building retrieval-augmented applications
+* **Milvus Vector Database**: High-performance vector database for semantic search and retrieval
+* **Docling**: Advanced document processing pipeline for PDF analysis and content extraction
+* **RAG Tools**: Document ingestion, chunking, and querying capabilities
+* **Vector IO & KeyValue IO**: Low-level storage interfaces for different data types
+* **OpenShift & Helm Charts**: To deploy RAG infrastructure in development and production environments
+* **Enhanced Canopy**: Your educational AI assistant, now with memory and document awareness

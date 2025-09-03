@@ -9,7 +9,7 @@ RAG transforms AI from a smart but limited conversationalist into an intelligent
 * **Reason** about information from multiple sources simultaneously
 * **Update** its knowledge without retraining the entire model
 
-For CanopyUI at RDU, RAG means students can ask questions about course materials, research papers, and institutional knowledge - and get answers grounded in authoritative sources.
+For CanopyUI at RDU, RAG means students can ask questions about course materials, research papers, and institutional knowledge, and get answers grounded in authoritative sources.
 
 ## 🔍 What is RAG and How Does It Work?
 
@@ -69,6 +69,6 @@ This transforms Canopy from a generic AI assistant into an intelligent tutor tha
 
 ## 🎯 Next Steps: Setting Up a Vector Database
 
-Now that you understand RAG concepts, it's time to build the foundation. First, you'll need a place to store your document embeddings - that's where vector databases come in.
+Now that you understand RAG concepts, it's time to build the foundation. First, you'll need a place to store your document embeddings: that's where Vector Databases come in.
 
 Continue to **[📊 Vector Stores & Milvus](2-vector-stores.md)** to set up the storage infrastructure that will power your RAG system.

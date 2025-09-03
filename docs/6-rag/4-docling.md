@@ -10,7 +10,7 @@ Your RAG system works great with simple text, but what happens when students upl
 * 📝 **Multi-column layouts** typical of academic papers
 * 🏛️ **Document structure** like sections and references
 
-![Docling](images/rag3.png)
+![Docling](images/rag3.png ':size=60%')
 
 ## 🔍 What is Docling?
 
@@ -32,8 +32,6 @@ Raw Text → Table Extraction → Formula Recognition → Figure Processing
 ```
 Intelligent Chunking → Vector Embeddings → Enhanced RAG Search
 ```
-
-![LLS RAG and Docling Architecture Diagram](images/rag4.png)
 
 ## 🧠 Why Document Intelligence Matters
 
@@ -65,14 +63,16 @@ Now it's time to enhance your RAG system with document intelligence capabilities
 
 ### What You'll Build
 
+![LLS RAG and Docling Architecture Diagram](images/rag4.png)
+
+This enhanced architecture combines your existing RAG system with Docling's document intelligence to process complex academic papers. The system intelligently extracts structured content from PDFs and stores it in Milvus for advanced semantic search capabilities.
+
 Your enhanced RAG system will handle queries like:
 - *"What is the PRFXception?"* - Technical concepts from paper methodology
 - *"What are the accuracy values for the five regions?"* - Specific data from research tables
 
-**📌 Note**: Docling processing takes 1-2 minutes per document as it performs comprehensive analysis of layout, tables, and mathematical content.
-
 ## 🎯 Next Steps: Complete Educational Platform
 
-Your document intelligence RAG system can now understand the most complex academic content. Ready to build the user interface?
+Your document intelligence RAG system can now understand the most complex academic content. Ready to automate it using a cool pipelines?
 
-Continue to **[🌳 CanopyUI with RAG](5-canopyui-rag.md)** to create the complete educational platform that students and educators will use.
+Continue to **[🌳 Automating RAG with KFP Pipelines](5-rag-pipelines.md)** to automate the RAG pipeline with KFP pipelines for deploying our production environment.
