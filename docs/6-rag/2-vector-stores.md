@@ -2,7 +2,12 @@
 
 <div class="terminal-curl"></div>
 
-Think of vector stores as the specialized libraries that power RAG systems. While a traditional library organizes books alphabetically, vector stores organize information by **meaning**, allowing AI to find relevant content based on semantic similarity rather than just keyword matching.
+Think of vector stores as the specialized libraries that power RAG systems. While a traditional library organizes books alphabetically, vector stores organize information by **meaning**, allowing AI to find relevant content based on semantic similarity (how close the meaning of two sentences are to each other) rather than just keyword matching.  
+For example: 
+- “The boy kicked the ball into the net.”
+- “A child scored a goal by striking the soccer ball.”
+
+Word by word these are very different, but semantically they are almost identical.
 
 For educational platforms like Canopy, this means students can ask "How does bias affect hiring?" and get relevant information even if your course materials use terms like "discrimination in recruitment" or "algorithmic fairness in employment".
 
@@ -16,7 +21,7 @@ For educational platforms like Canopy, this means students can ask "How does bia
 ### The Vector Magic ✨
 
 1. **Text → Numbers**: Every piece of text gets converted into a list of numbers (a vector) that captures its meaning
-2. **Similarity Search**: When you ask a question, the system finds vectors with similar "shapes" in the mathematical space
+2. **Similarity Search**: When you ask a question, the system finds vectors that are close (in distance) in the mathematical space. The closer they are the more similar they are.
 3. **Lightning Fast**: Even with millions of documents, searches happen in milliseconds
 
 ![LLS RAG Architecture Diagram](images/rag6.png)

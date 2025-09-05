@@ -117,4 +117,4 @@ Time to deploy your document intelligence RAG system in production!
 - ✅ **Monitors performance** through OpenShift AI Dashboard
 - ✅ **Demonstrates document intelligence** with real academic queries
 
-Continue to **[🌳 Integrating RAG within CanopyUI](6-rag-canopyUI.md)** to integrate RAG within CanopyUI and have your complete educational AI platform ready for students! 🚀 
+Continue to **[🌳 Integrating RAG within Canopy](6-rag-Canopy.md)** to integrate RAG within Canopy and have your complete educational AI platform ready for students! 🚀 
