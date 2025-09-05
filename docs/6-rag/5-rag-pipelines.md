@@ -1,7 +1,7 @@
 # 🌳 Automating RAG with KFP Pipelines
 
 Your document intelligence RAG system works brilliantly in notebooks, but what happens when you need to process hundreds of research papers for your educational platform? 
-Manual execution doesn't scale, and students need reliable, always-available intelligent document processing.
+Manual execution doesn't scale, and RDU needs reliable, always-available intelligent document processing.
 
 ## 🔍 What is Kubeflow Pipelines (KFP)?
 
