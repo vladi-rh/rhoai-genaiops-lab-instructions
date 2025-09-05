@@ -52,7 +52,7 @@ Time to deploy your document intelligence RAG system in production!
 
 1. **Create the Pipeline Storage Volume**
 
-   First, set up persistent storage for content transfer between pipeline stages:
+   First, set up persistent storage for content transfer between pipeline stages. One stage might download the documents, the next stage might transform them, and later stage might process them further. Persistent storage ensures each stage can access the outputs of the previous one.
 
    ```bash
    oc apply -f canopy/6-rag/4-kfp-pipeline-pvc.yaml -n -n <USER_NAME>-prod
