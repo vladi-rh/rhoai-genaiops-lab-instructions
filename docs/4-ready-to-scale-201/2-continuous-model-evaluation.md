@@ -44,7 +44,7 @@ Before we can use Llama Stack to evaluate our backend though, we need to enable 
 
 
 Great, now you are all set up!  
-When you are ready, go through the notebook `canopy/llamastack-evak-test.ipynb`.
+When you are ready, go through the notebook `canopy/llamastack-eval-test.ipynb`.
 
 When you are done, come back here to continue with the instructions.
 
