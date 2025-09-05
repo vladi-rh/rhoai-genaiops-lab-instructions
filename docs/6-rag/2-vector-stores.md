@@ -13,9 +13,29 @@ For educational platforms like Canopy, this means students can ask "How does bia
 
 ![LLS RAG Architecture Diagram](images/rag5.png ':size=60%')
 
+**🔢 From Words to Numbers: A Simple Example**
+
+Here's how different words become different vectors (simplified to just 4 dimensions for illustration):
+
+```
+"dog"    → [0.8, 0.1, 0.9]
+"puppy"  → [0.7, 0.3, 0.1]
+"cat"    → [0.2, 0.8, 0.9]
+"car"    → [0.1, 0.2, 0.3]
+```
+
+![LLS RAG Architecture Diagram](images/rag11.png ':size=40%')
+
+Notice how:
+- `"dog"` and `"puppy"` have similar numbers (both about pets, specifically canines)
+- `"cat"` has different numbers but some similarity to dog/puppy (still a pet)
+- `"car"` has completely different numbers (not an animal at all)
+
+In real embeddings, these vectors have hundreds or thousands of dimensions, capturing subtle meaning relationships that make semantic search possible!
+
 ### The Vector Magic ✨
 
-1. **Text → Numbers**: Every piece of text gets converted into a list of numbers (a vector) that captures its meaning
+1. **Text → Numbers**: Every piece of text gets converted into a list of numbers (a vector like in the previous example) that captures its meaning
 2. **Similarity Search**: When you ask a question, the system finds vectors with similar "shapes" in the mathematical space
 3. **Lightning Fast**: Even with millions of documents, searches happen in milliseconds
 
