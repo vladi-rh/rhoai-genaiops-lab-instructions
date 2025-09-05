@@ -133,7 +133,7 @@ oc get applications -n <USER_NAME>-toolings | grep milvus
 
 You should see the two Milvus applications, one for `test` and one for `prod` being automatically deployed by Argo CD to their respective namespaces.
 
-> **💡 Deployment Note**: We're using **standalone deployments** of Milvus with default configurations, which are perfect for development and educational environments. Both test and prod environments provide the full vector database functionality needed for your RAG systems while keeping resource usage reasonable for learning purposes.
+> **💡 Deployment Note**: We're using **standalone deployments** of Milvus with default configurations, which are perfect for test and prod environments. Both provide the full vector database functionality needed for your RAG systems while keeping resource usage reasonable for learning purposes.
 
 ### 🖼️ Explore Milvus with Attu Web Interface
 
