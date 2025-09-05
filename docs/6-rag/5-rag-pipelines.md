@@ -85,7 +85,7 @@ Time to deploy your document intelligence RAG system in production!
 
 3. **Execute the Production Pipeline**
 
-   Run your document intelligence pipeline by running on `python canopy/6-rag/4-kfp_pipeline.py`
+   Run your document intelligence pipeline by running on `python canopy/6-rag/4-kfp_pipeline.py` in your terminal.
 
    **Total**: ~5-6 minutes for complete document intelligence processing
 
