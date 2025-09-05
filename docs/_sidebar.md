@@ -28,4 +28,4 @@
   * [🦙 LlamaStack & RAG](6-rag/3-llamastack-rag.md)
   * [🐣 Doc Intelligence with Docling](6-rag/4-docling.md)
   * [⚙️ RAG Pipelines](6-rag/5-rag-pipelines.md)
-  * [🌳 CanopyUI with RAG](6-rag/5-rag-pipelines.md)
+  * [🌳 Canopy with RAG](6-rag/5-rag-pipelines.md)
