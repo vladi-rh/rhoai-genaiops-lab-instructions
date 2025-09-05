@@ -8,7 +8,6 @@ Manual execution doesn't scale, and RDU needs reliable, always-available intelli
 **Kubeflow Pipelines (KFP)** is a platform designed for building and deploying portable, scalable machine learning pipelines using containers. Think of it as a sophisticated workflow orchestrator that transforms your experimental RAG system into a production-grade platform that can handle complex academic documents automatically, reliably, and at scale.
 
 KFP has what production systems require: automation, scalability, error recovery, performance monitoring, and consistent results across runs. It provides all these production-grade features so you can focus on your AI logic rather than infrastructure management.
-KFP provides all these production-grade features so you can focus on your AI logic rather than infrastructure management.
 
 ## 🏗️ Document Intelligence RAG Pipeline Architecture
 
