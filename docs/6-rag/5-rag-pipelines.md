@@ -1,14 +1,13 @@
 # 🌳 Automating RAG with KFP Pipelines
 
 Your document intelligence RAG system works brilliantly in notebooks, but what happens when you need to process hundreds of research papers for your educational platform? 
-Manual execution doesn't scale, and students need reliable, always-available intelligent document processing.
+Manual execution doesn't scale, and RDU needs reliable, always-available intelligent document processing.
 
 ## 🔍 What is Kubeflow Pipelines (KFP)?
 
 **Kubeflow Pipelines (KFP)** is a platform designed for building and deploying portable, scalable machine learning pipelines using containers. Think of it as a sophisticated workflow orchestrator that transforms your experimental RAG system into a production-grade platform that can handle complex academic documents automatically, reliably, and at scale.
 
-While notebooks were perfect for exploring document intelligence capabilities, production systems require automation, scalability, error recovery, performance monitoring, and consistent results across runs. 
-KFP provides all these production-grade features so you can focus on your AI logic rather than infrastructure management.
+KFP has what production systems require: automation, scalability, error recovery, performance monitoring, and consistent results across runs. It provides all these production-grade features so you can focus on your AI logic rather than infrastructure management.
 
 ## 🏗️ Document Intelligence RAG Pipeline Architecture
 
@@ -53,7 +52,7 @@ Time to deploy your document intelligence RAG system in production!
 
 1. **Create the Pipeline Storage Volume**
 
-   First, set up persistent storage for content transfer between pipeline stages:
+   First, set up persistent storage for content transfer between pipeline stages. One stage might download the documents, the next stage might transform them, and later stage might process them further. Persistent storage ensures each stage can access the outputs of the previous one.
 
    ```bash
    oc apply -f canopy/6-rag/4-kfp-pipeline-pvc.yaml -n -n <USER_NAME>-prod
@@ -86,7 +85,7 @@ Time to deploy your document intelligence RAG system in production!
 
 3. **Execute the Production Pipeline**
 
-   Run your document intelligence pipeline by running on `python canopy/6-rag/4-kfp_pipeline.py`
+   Run your document intelligence pipeline by running on `python canopy/6-rag/4-kfp_pipeline.py` in your terminal.
 
    **Total**: ~5-6 minutes for complete document intelligence processing
 
@@ -117,4 +116,4 @@ Time to deploy your document intelligence RAG system in production!
 - ✅ **Monitors performance** through OpenShift AI Dashboard
 - ✅ **Demonstrates document intelligence** with real academic queries
 
-Continue to **[🌳 Integrating RAG within CanopyUI](6-rag-canopyUI.md)** to integrate RAG within CanopyUI and have your complete educational AI platform ready for students! 🚀 
+Continue to **[🌳 Integrating RAG within Canopy](6-rag-Canopy.md)** to integrate RAG within Canopy and have your complete educational AI platform ready for students! 🚀 

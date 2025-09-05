@@ -14,7 +14,8 @@ Your RAG system works great with simple text, but what happens when students upl
 
 ## 🔍 What is Docling?
 
-**Docling** is an advanced document processing toolkit that gives RAG systems the ability to understand complex academic documents. Think of it as upgrading from basic text reading to intelligent document comprehension.
+**Docling** is an advanced document processing toolkit that converts all the things listed above into simple text (markdown) which our embedding model can understand.  
+Essentially it's giving your RAG systems the ability to understand complex academic documents. Think of it as upgrading from basic text reading to intelligent document comprehension.
 
 ### The Three-Phase Intelligence Pipeline
 

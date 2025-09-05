@@ -9,7 +9,7 @@ RAG transforms AI from a smart but limited conversationalist into an intelligent
 * **Reason** about information from multiple sources simultaneously
 * **Update** its knowledge without retraining the entire model
 
-For CanopyUI at RDU, RAG means students can ask questions about course materials, research papers, and institutional knowledge, and get answers grounded in authoritative sources.
+For Canopy at RDU, RAG means students can ask questions about course materials, research papers, and institutional knowledge, and get answers grounded in authoritative sources.
 
 ## 🔍 What is RAG and How Does It Work?
 
