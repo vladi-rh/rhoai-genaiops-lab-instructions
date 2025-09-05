@@ -86,12 +86,23 @@ This visualization helps you understand exactly what happens during the RAG inge
 Want to experiment with RAG workflows interactively? The LlamaStack Playground provides an intuitive interface for testing your system.
 
 **Access Your Playground:**
+
+First, let's find the URL for your LlamaStack playground interface:
+
 ```bash
 # Get your playground URL
 oc get route llama-stack-playground -n <USER_NAME>-canopy
 ```
 
 Visit: `https://llama-stack-playground-<USER_NAME>-canopy.<CLUSTER_DOMAIN>`
+
+There you can access the RAG section in the LlamaStack playground by clicking on the left side panel:
+
+![LLS RAG Architecture Diagram](images/rag12.png ':size=30%')
+
+Then, you can upload your documents and start talking with them using Direct (non-agentic) or Agent-based options:
+
+![LLS RAG Architecture Diagram](images/rag13.png ':size=30%')
 
 ## 🎯 Next Steps: Advanced Document Processing
 
