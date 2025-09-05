@@ -22,13 +22,6 @@ For educational platforms like Canopy, this means a student might asks: “How c
 
 Here's how different words become different vectors (simplified to just 4 dimensions for illustration):
 
-```
-"dog"    → [0.8, 0.1, 0.9]
-"puppy"  → [0.7, 0.3, 0.1]
-"cat"    → [0.2, 0.8, 0.9]
-"car"    → [0.1, 0.2, 0.3]
-```
-
 ![LLS RAG Architecture Diagram](images/rag11.png ':size=40%')
 
 Notice how:
