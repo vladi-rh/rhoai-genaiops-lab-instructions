@@ -9,7 +9,7 @@ For example:
 
 Word by word these are very different, but semantically they are almost identical.
 
-For educational platforms like Canopy, this means students can ask "How does bias affect hiring?" and get relevant information even if your course materials use terms like "discrimination in recruitment" or "algorithmic fairness in employment".
+For educational platforms like Canopy, this means a student might asks: “How can I make my essay stronger?” Even if the course notes only mention “improving academic writing” or “structuring arguments,” the assistant can still pull the right material.
 
 ## 🔍 What are Vector Stores?
 
