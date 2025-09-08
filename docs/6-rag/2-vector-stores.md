@@ -31,6 +31,8 @@ Notice how:
 
 In real embeddings, these vectors have hundreds or thousands of dimensions, capturing subtle meaning relationships that make semantic search possible!
 
+**📓 Interactive Notebook**: Start with `canopy/6-rag/0-embeddings.ipynb` to understand embeddings concepts and create your first word vectors hands-on.
+
 ### The Vector Magic ✨
 
 1. **Text → Numbers**: Every piece of text gets converted into a list of numbers (a vector) that captures its meaning
