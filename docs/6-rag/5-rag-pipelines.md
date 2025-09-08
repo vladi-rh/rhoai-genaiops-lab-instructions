@@ -3,15 +3,13 @@
 Your document intelligence RAG system works brilliantly in notebooks, but what happens when you need to process hundreds of research papers for your educational platform? 
 Manual execution doesn't scale, and RDU needs reliable, always-available intelligent document processing.
 
-## 🔍 What is Kubeflow Pipelines (KFP)?
+## 🔍 Introducing (Again) KFP Pipelines
 
-**Kubeflow Pipelines (KFP)** is a platform designed for building and deploying portable, scalable machine learning pipelines using containers. Think of it as a sophisticated workflow orchestrator that transforms your experimental RAG system into a production-grade platform that can handle complex academic documents automatically, reliably, and at scale.
-
-KFP has what production systems require: automation, scalability, error recovery, performance monitoring, and consistent results across runs. It provides all these production-grade features so you can focus on your AI logic rather than infrastructure management.
+Now we'll use **Kubeflow Pipelines (KFP)** to transform your experimental RAG system into a production-grade platform that can handle complex academic documents automatically and at scale.
 
 ## 🏗️ Document Intelligence RAG Pipeline Architecture
 
-Your production pipeline processes complex academic documents through five intelligent stages:
+Your production pipeline processes complex academic documents through six intelligent stages:
 
 ```
 📄 Document Input → 🔧 Setup → 🧠 Docling Processing → 🗄️ Vector DB → 📊 Ingestion → ❓ Testing
