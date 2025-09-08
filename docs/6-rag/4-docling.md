@@ -48,7 +48,7 @@ Traditional RAG systems struggle with academic content:
 - Handles formulas and scientific notation correctly
 - Maintains document layout and semantic relationships
 
-Consider a research paper with experimental results in tables - traditional RAG would lose this crucial data, but Docling preserves it for intelligent querying.
+Consider a research paper with experimental results in tables - traditional RAG would lose this crucial data, but combined with Docling it gets preserved for intelligent querying.
 
 ## 🧪 Hands-On Learning: Build Document Intelligence
 
