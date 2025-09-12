@@ -29,3 +29,7 @@
   * [🐣 Doc Intelligence with Docling](6-rag/4-docling.md)
   * [⚙️ RAG Pipelines](6-rag/5-rag-pipelines.md)
   * [🌳 Canopy with RAG](6-rag/5-rag-pipelines.md)
+* [The Honor Code](7-honor-code/README.md)
+  * [🎓 Guardrais](7-honor-code/1-guardrails.md)
+  * [💂‍♂️ LlamaGuard](7-honor-code/2-llamaguard.md)
+  * [🛡️ PromptGuard](7-honor-code/3-promptguard.md)
