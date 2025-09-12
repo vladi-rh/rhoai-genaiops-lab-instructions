@@ -54,7 +54,7 @@ When it is in running state, Open it and use your credentials to access it.
 5. Let's clone our Canopy repository that has some Notebooks in it and learn more about Llama Stack!
 
    ```bash
-   git clone https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/canopy.git
+   git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy.git
    ```
 
 6. Open up the notebook called `1-intro-llama-stack.ipynb` and follow the instructions. When you run the first code cell, it will ask you to choose a kernel. Select the first option. That means it will run the code in this workbench locally.

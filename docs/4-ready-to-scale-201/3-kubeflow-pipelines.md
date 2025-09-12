@@ -52,7 +52,7 @@ Open up `Summary` and then `summary_tests.yaml` to see what tests we will run. M
 
 7. After it has finished runnig you can go to this URL to see your results:  
     ```bash
-    https://minio-ui-<USER_NAME>-canopy.apps.cluster-gm86c.gm86c.sandbox1062.opentlc.com/browser/test-results
+    https://minio-ui-<USER_NAME>-canopy.<CLUSTER_DOMAIN>.opentlc.com/browser/test-results
     ```
 
     ![test-results](images/test-results.png)
