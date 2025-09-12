@@ -30,7 +30,7 @@ By storing prompts in Git, we enable:
 You’ll standardize your prompts using a simple format that captures:
 
 ```yaml
-LLAMA_STACK_URL: "http://llama-stack"
+LLAMA_STACK_URL: "http://llama-stack-service:8321"
 summarize:
   enabled: true
   model: llama32
@@ -54,33 +54,21 @@ Let's go through what we added to our prompt file:
 
 ## 🧪 Hands-On: Version Your Prompts
 
-1. **Clone the Prompt Registry Repo**
+1. Go to your canopy-be folder in your workbench and update the `values-test.yaml` file to have a new prompt.
+
+2. **Commit & Push**
 
 ```bash
-git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-be.git
-cd canopy-be/chart/templates
-```
-
-2. **Update your Prompt**
-
-You’ll base it on the system prompt that performed best in your last experiment. Go into the file:
-
-```bash
-values.yaml
-```
-
-And edit the existing prompt.
-
-3. **Commit & Push**
-
-```bash
+cd /opt/app-root/src/canopy-be
 git checkout -b add-summarization-prompt
 git add canopy-be/chart/templates/values.yaml
 git commit -m "Add prompt for summarization"
 git push origin add-summarization-prompt
 ```
 
-Open a Pull Request and document why you picked this template. This adds **narrative and visibility** to prompt decisions.
+3. Open a Pull Request and document why you picked this template. This adds **narrative and visibility** to prompt decisions.
+
+TODO: Instructions and image for how to open a PR in gitea.
 
 ---
 
