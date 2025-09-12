@@ -29,13 +29,13 @@ Let's setup the foundation of our GitOps system and deploy all the components we
 
    * On the "GENERAL" box
       * Application Name: `token-visualizer` 
-      * Project Name: `genaiops-toolings-project`
+      * Project Name: `default`
       * Sync Policy: `Automatic`
    * On the "SOURCE" box
       * Repository URL: `https://rhoai-genaiops.github.io/genaiops-helmcharts/`
       * Select `Helm` from the right GIT/HELM drop down menu
       * Chart: `token-visualizer`
-      * Version: `0.0.1`
+      * Version: `1.0.1`
    * On the "DESTINATION" box
       * Cluster URL: `https://kubernetes.default.svc`
       * Namespace: `<USER_NAME>-toolings`

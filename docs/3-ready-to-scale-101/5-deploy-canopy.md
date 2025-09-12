@@ -17,10 +17,6 @@ But first, we need to set up our backend repository to handle the GenAI applicat
   summarize:
     enabled: true
     model: llama32
-    temperature: 0.7  # update values accordingly
-    top_p: 0.9
-    top_k: 50
-    max_tokens: 150
     prompt: |
       <Insert your prompt here>
       <And make sure you have the correct indentation 😌>
@@ -57,11 +53,10 @@ Now let's set this up using ArgoCD!
     ```yaml
     repo_url: https://<GIT_SERVER>/<USER_NAME>/canopy-ui
     chart_path: chart
-    name: canopy
     BACKEND_ENDPOINT: "http://canopy-backend:8000"
     image:
       name: "canopy-ui"
-      tag: "0.2"
+      tag: "0.3"
     ```
 3. `canopy-be` will have a different `config.yaml` as it is a different helm chart. And `test` and `prod` `canopy-be/config.yaml` will be different because they have different values:
 
@@ -84,8 +79,7 @@ Now let's set this up using ArgoCD!
 4. Lastly, let's setup Llama Stack to deploy via Argo CD. We just need Llama Stack Server here, Playground is something we only going to use in the experimentation phase. Update both `test/llama-stack/config.yaml` and `prod/llama-stack/config.yaml` as below:
 
     ```yaml
-    chart_path: llama-stack
-    MODEL_URL: https://llama32-ai501.<CLUSTER_DOMAIN>.com/
+    chart_path: llama-stack-operator-instance
     ```
 
   For now, we are happy with the default Llama Stack values. We will get some exciting updates as we continue to the other chapters :)

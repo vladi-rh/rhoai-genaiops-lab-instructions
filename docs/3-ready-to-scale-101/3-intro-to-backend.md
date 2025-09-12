@@ -39,7 +39,7 @@
 
 4. For the image, point to a newer version:
    
-   - tag: `0.2`
+   - tag: `0.3`
   
   ..and hit `Upgrade`!
 

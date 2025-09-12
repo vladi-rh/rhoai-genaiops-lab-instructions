@@ -57,7 +57,7 @@ When it is in running state, Open it and use your credentials to access it.
    git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy.git
    ```
 
-6. Open up the notebook called `1-intro-llama-stack.ipynb` and follow the instructions. When you run the first code cell, it will ask you to choose a kernel. Select the first option. That means it will run the code in this workbench locally.
+6. Open up the notebook called `3-ready-to-scale-101/1-intro-llama-stack.ipynb` and follow the instructions. When you run the first code cell, it will ask you to choose a kernel. Select the first option. That means it will run the code in this workbench locally.
 
    ![choose-python-env.png](./images/choose-python-env.png)
 
