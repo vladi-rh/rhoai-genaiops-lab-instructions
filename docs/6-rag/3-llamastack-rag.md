@@ -31,7 +31,24 @@ By default, our Llama Stack instances are deployed with basic inference capabili
 
 In this section, you'll update your existing Llama Stack configurations to include the vector database connections and RAG functionality needed for intelligent document search and retrieval.
 
-TODO: Complete this section with configuration updates and deployment steps for both test and prod.
+**Step 1: Navigate to Helm Charts**
+
+From the OpenShift Developer View, navigate to the **Helm** tab in the left panel to access your deployed charts.
+
+![LLS RAG Architecture Diagram](images/rag16.png ':size=20%')
+
+**Step 2: Open LlamaStack Instance**
+
+Locate and click on the `llama-stack-operator-instance` Helm chart to open its configuration interface:
+
+![LLS RAG Architecture Diagram](images/rag14.png ':size=90%')
+
+The Helm interface shows your `llama-stack-operator-instance` deployment status, allowing you to manage and upgrade your LlamaStack installation directly from the OpenShift console. You'll need to apply these configurations to all your LlamaStack instances: `user1-canopy`, `userX-test`, and `userX-prod` environments.
+
+![LLS RAG Architecture Diagram](images/rag15.png ':size=40%')
+
+Through the Helm Chart Values Schema, you can configure RAG functionality by enabling the RAG section and connecting to your Milvus vector database - simply check the "enabled" checkbox under the RAG configuration to activate these capabilities. Remember to update each LlamaStack instance in all three environments to ensure consistent RAG functionality across your deployment pipeline.
+
 
 ## 🧪 Hands-On Learning: Build Your RAG System
 
