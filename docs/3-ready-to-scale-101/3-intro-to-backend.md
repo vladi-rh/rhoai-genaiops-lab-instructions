@@ -6,9 +6,9 @@
 
 1. Open up the `YAML view` to update the variables.
 
-    As we discussed, backend will be the one talking to Llama Stack, therefore we need to provide its connection details:
+    As we discussed, backend will be the one talking to Llama Stack, therefore we need to make sure we provide the correct Llama Stack connection details:
 
-    - LLAMA_STACK_URL: `http://llama-stack`
+    - LLAMA_STACK_URL: `http://llama-stack-service:8321`
 
 2. We also need to provide your chosen System Prompt. Because as we did on the Notebooks, we need to include the prompt while calling Llama Stack endpoint.
     Add your system prompt here, and mind the indentation please 🙏
