@@ -61,7 +61,7 @@ Let's go through what we added to our prompt file:
 ```bash
 cd /opt/app-root/src/canopy-be
 git checkout -b add-summarization-prompt
-git add canopy-be/chart/templates/values.yaml
+git add canopy-be/chart/templates/values-test.yaml
 git commit -m "Add prompt for summarization"
 git push origin add-summarization-prompt
 ```

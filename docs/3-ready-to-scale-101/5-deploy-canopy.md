@@ -107,3 +107,34 @@ Now let's set this up using ArgoCD!
 5. You can also go to OpenShift Console, check `<USER_NAME>-test` namespace to see if the app is deployed.
 
     TODO: add screenshots
+
+
+## Prompt Tracker
+
+We use Git to track our changes and able to tell which prompts and settings are at the moment effective in Canopy, or _were_ at a given time. But going through a Git commit history and figure out such answer can be tedious. For that reason we built and deploy a tracker for you to visualize your changes. 
+
+You can find the link in the Quick Link drop down or simply clicking [here](https://prompt-tracker-ai501.<CLUSTER_DOMAIN>/?git_repo_url=https://<GIT_SERVER>/<USER_NAME>/<CLUSTER_DOMAIN>). 
+
+TODO: Screenshot
+
+
+### Testing the Prompt Tracker
+
+To test the prompt tracker, try making a change to your model configuration:
+
+1. Edit your prompt in the `chart/values-test.yaml` file in the `canopy-be` repository. 
+
+2. Let's commit and push the changes:
+
+    ```bash
+    cd /opt/app-root/src/canopy-be
+    git add .
+    git commit -m  "🦊 Test the Prompt Tracker dashboard 🦊"
+    git push 
+    ```
+
+3. Watch the dashboard update with your new changes or hit `Refresh` if you don't want to wait.
+
+    TODO: add screenshots
+
+The dashboard will automatically detect this change and display it in a new card with the changes, the commit information and author details. 
