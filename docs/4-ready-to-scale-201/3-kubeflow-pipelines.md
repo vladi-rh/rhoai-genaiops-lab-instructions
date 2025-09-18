@@ -2,6 +2,28 @@
 
 Now that we know how the evaluation works, let's automate it by using pipelines! 🎢  
 
+## Update Llama Stack in test
+
+Just like we enabled evaluations for Llama Stack in our `experimentation` envirionment, we need to enable it for our `test` environment.
+
+1. Open up your workbench in the `<USER_NAME>-canopy` namespace.
+2. Inside of `genaiops-gitops/canopy/prod/llamastack/config.yaml` and `genaiops-gitops/canopy/test/llamastack/config.yaml` add this line:
+    ```yaml
+    eval:
+        enabled: true
+    ```
+
+    Your final config.yaml should look something like this:
+
+    ```yaml
+    chart_path: charts/llama-stack
+    MODEL_URL: https://llama32-ai501.<CLUSTER_DOMAIN>.com/
+    eval:
+        enabled: true
+    ```
+
+Great, now you are all set up!  
+
 ## The Kubeflow pipeline
 
 We will be using Kubeflow Pipelines as our pipeline framework of choise for running the evaluation.  

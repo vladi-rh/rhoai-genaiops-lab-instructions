@@ -24,27 +24,10 @@ Llama Stack has three different endpoints for evaluating models:
 2. **Dataset** - This gives us easy access to use datasets, in this case datasets containing tests
 3. **Benchmarks** - Benchmarks tie Eval and Datasets together to automatically run the dataset through the LLM and then evaluate the answers. We will be skipping these for now as we want greater control.
 
-Before we can use Llama Stack to evaluate our backend though, we need to enable evaluation in our Llama Stack config.
+To be able to evaluate with Llama Stack we first need to enable it in our experiment environment.  
+Go to... <TODO>
 
-1. Open up your workbench in the `<USER_NAME>-canopy` namespace.
-2. Inside of `genaiops-gitops/canopy/prod/llamastack/config.yaml` and `genaiops-gitops/canopy/test/llamastack/config.yaml` add this line:
-    ```yaml
-    eval:
-        enabled: true
-    ```
-
-    Your final config.yaml should look something like this:
-
-    ```yaml
-    chart_path: charts/llama-stack
-    MODEL_URL: https://llama32-ai501.<CLUSTER_DOMAIN>.com/
-    eval:
-        enabled: true
-    ```
-
-
-Great, now you are all set up!  
-When you are ready, go through the notebook `canopy/llamastack-eval-test.ipynb`.
+When you are ready, go through the notebook `canopy/4-ready-to-scale-101/llamastack-eval-test.ipynb`.
 
 When you are done, come back here to continue with the instructions.
 

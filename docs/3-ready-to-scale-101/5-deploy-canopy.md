@@ -11,18 +11,21 @@ But first, we need to set up our backend repository to handle the GenAI applicat
     cd /opt/app-root/src
     git clone https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/canopy-be.git
   ```
-2. We will store prompts under `chart/values-test.yaml` and `chart/values-prod.yaml`. Copy the below info to both files and make sure to bring your new favourite prompt to summarize the topics along with the settings you have in Llama Stack Playground:
+2. We will store prompts under `chart/values-test.yaml` and `chart/values-prod.yaml`. Copy the below info to both files under the `LLAMA_STACK_URL` and make sure to bring your new favourite prompt to summarize the topics along with the settings you have in Llama Stack Playground:
 
   ```yaml
+  
   summarize:
     enabled: true
     model: llama32
+    temperature: 0.9
+    max_tokens: 4096
     prompt: |
       <Insert your prompt here>
       <And make sure you have the correct indentation 😌>
   ```
 
-3. And let's push the changes to Git:
+1. And let's push the changes to Git:
 
     ```bash
     cd /opt/app-root/src/canopy-be
@@ -51,14 +54,14 @@ Now let's set this up using ArgoCD!
     This will take UI deployment helm-chart and apply the additional configuration such as image version.  
 
     ```yaml
-    repo_url: https://<GIT_SERVER>/<USER_NAME>/canopy-ui
+    repo_url: https://github.com/rhoai-genaiops/canopy-ui.git
     chart_path: chart
     BACKEND_ENDPOINT: "http://canopy-backend:8000"
     image:
       name: "canopy-ui"
       tag: "0.3"
     ```
-3. `canopy-be` will have a different `config.yaml` as it is a different helm chart. And `test` and `prod` `canopy-be/config.yaml` will be different because they have different values:
+3. `canopy-be` will have a different `config.yaml` as it is a different values files. And `test` and `prod` `canopy-be/config.yaml` will be different because they have different values:
 
     TEST:
 
@@ -108,33 +111,3 @@ Now let's set this up using ArgoCD!
 
     TODO: add screenshots
 
-
-## Prompt Tracker
-
-We use Git to track our changes and able to tell which prompts and settings are at the moment effective in Canopy, or _were_ at a given time. But going through a Git commit history and figure out such answer can be tedious. For that reason we built and deploy a tracker for you to visualize your changes. 
-
-You can find the link in the Quick Link drop down or simply clicking [here](https://prompt-tracker-ai501.<CLUSTER_DOMAIN>/?git_repo_url=https://<GIT_SERVER>/<USER_NAME>/<CLUSTER_DOMAIN>). 
-
-TODO: Screenshot
-
-
-### Testing the Prompt Tracker
-
-To test the prompt tracker, try making a change to your model configuration:
-
-1. Edit your prompt in the `chart/values-test.yaml` file in the `canopy-be` repository. 
-
-2. Let's commit and push the changes:
-
-    ```bash
-    cd /opt/app-root/src/canopy-be
-    git add .
-    git commit -m  "🦊 Test the Prompt Tracker dashboard 🦊"
-    git push 
-    ```
-
-3. Watch the dashboard update with your new changes or hit `Refresh` if you don't want to wait.
-
-    TODO: add screenshots
-
-The dashboard will automatically detect this change and display it in a new card with the changes, the commit information and author details. 

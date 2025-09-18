@@ -132,6 +132,11 @@
         // Default GitLab Server
         localStorage.setItem('GIT_SERVER', 'gitea-gitea.' + cdomain);
       }
+
+      // If gitserver field is using the default pattern, update it with new cluster domain
+      if (gitserver === '' || gitserver.startsWith('gitea-gitea.')) {
+        localStorage.setItem('GIT_SERVER', 'gitea-gitea.' + cdomain);
+      }
       location.reload();
       // Re-populate dropdown links with new values
       populateDropdownLinks();
