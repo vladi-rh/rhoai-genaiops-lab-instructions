@@ -79,12 +79,12 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
 2. Open up the `evaluation-pipeline/config.yaml` file and paste the below yaml to config.yaml.
 
     ```yaml
-    repo_url: https://gitea-gitea.apps.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git
-    chart_path: test_pipeline/canopy-tekton-pipeline
+    repo_url: https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git
+    chart_path: test-pipeline/canopy-tekton-pipeline
     USER_NAME: <USER_NAME>
     kfp:
-        baseUrl: http://llama-stack.<USER_NAME>-test.svc.cluster.local:80
-        backendUrl: http://canopy-backend.<USER_NAME>-test.svc.cluster.local:8000
+      llsUrl: http://llama-stack-service.<USER_NAME>-test.svc.cluster.local:8321
+      backendUrl: http://canopy-backend.<USER_NAME>-test.svc.cluster.local:8000
     ```
 
     As you may have noticed, we are pointing our base (Llama Stack) url and backend url to our test namespace, as that's what we want to run our tests on.
