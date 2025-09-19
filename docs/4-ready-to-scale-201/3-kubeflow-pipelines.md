@@ -7,13 +7,25 @@ Now that we know how the evaluation works, let's automate it by using pipelines!
 We will be using Kubeflow Pipelines as our pipeline framework of choise for running the evaluation.  
 Kubeflow pipelines are handy for data science/AI engineering tasks as it is Python based and works nicely with OpenShift AI by displaying the pipeline run inside the OpenShift AI dashboard.
 
-The evaluation pipeline is inside of a repo called `canopy-evals`, where both the evaluation tests and pipelines are stored together. 
 
 ### Set up the environment for Kubeflow Pipelines
 
-install DSPA and MinIO helm charts in Canopy
+Before we can use Kubeflow Pipelines we need to install a Pipeline Server in our Canopy environment.
+
+1. Go to the OpenShift Console
+
+2. Press `Add` and select `Helm Chart`
+
+3. In the left menu where you see `Chart Repositories`, checkmark `GenAIOps Helm Charts` and then click on `Minio` and Create.  
+We will need an S3 bucket to hold our pipeline artifacts, and our tool of choice here is Minio as it's lightweight.  
+In a real production environment you are more likely to see ODF, but the concept is the same.  
+
+4. Now do the same for the helmchart `Dspa`
 
 ### Set up evaluation pipeline
+
+Now that we have everything set up to be able to run our pipeline in our experimentation namespace, let's take a look at the code and run it!  
+The evaluation pipeline is inside of a repo called `canopy-evals`, where both the evaluation tests and pipelines are stored together. 
 
 1. To explore it, start by going into your `<USER_NAME>-canopy` Data Science Project and open up your workbench.
 
