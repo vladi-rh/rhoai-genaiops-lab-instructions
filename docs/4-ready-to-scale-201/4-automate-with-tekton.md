@@ -3,6 +3,39 @@
 Now that we have successfully ran our evaluation pipeline (🎉), we would like it to run automatically everytime we make a change to our tests, prompts, or backend.  
 To do this, we can create a Tekton pipeline with a git hook to the relevant repos. This Tekton pipeline will then trigger our evaluation kubeflow pipeline. 🔗
 
+## Update Llama Stack in test
+
+Just like we enabled evaluations for Llama Stack in our `experimentation` envirionment, we need to enable it for our `test` environment.
+
+1. Open up your workbench in the `<USER_NAME>-canopy` namespace.
+2. Inside of `genaiops-gitops/canopy/test/llama-stack/config.yaml` add this line:
+    ```yaml
+    eval:
+        enabled: true
+    ```
+
+    Your final `config.yaml` should look something like this:
+
+    ```yaml
+    chart_path: charts/llama-stack-operator-instance
+    eval:
+        enabled: true
+    ```
+3. Let's push the changes for Argo CD to pick it up.
+
+    ```bash
+    cd /opt/app-root/src/genaiops-gitops
+    git add .
+    git commit -m  "🤔 enable evaluation 🤔"
+    git push 
+    ```
+
+Great, now you are all set up!  
+
+## Install Pipeline Server
+
+create `dspa` folder
+
 ## Trigger our Kubeflow pipeline through a Tekton pipeline
 
 1. Go to your workbench and clone the repo that contains the Tekton pipeline definition:
