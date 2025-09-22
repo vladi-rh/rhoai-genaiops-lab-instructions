@@ -81,7 +81,6 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
     ```yaml
     repo_url: https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git
     chart_path: test-pipeline/canopy-tekton-pipeline
-    USER_NAME: <USER_NAME>
     kfp:
       llsUrl: http://llama-stack-service.<USER_NAME>-test.svc.cluster.local:8321
       backendUrl: http://canopy-backend.<USER_NAME>-test.svc.cluster.local:8000

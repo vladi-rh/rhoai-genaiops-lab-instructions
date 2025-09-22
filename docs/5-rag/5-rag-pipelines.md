@@ -53,14 +53,14 @@ Time to deploy your document intelligence RAG system in production!
    First, set up persistent storage for content transfer between pipeline stages. One stage might download the documents, the next stage might transform them, and later stage might process them further. Persistent storage ensures each stage can access the outputs of the previous one.
 
    ```bash
-   oc apply -f canopy/6-rag/4-kfp-pipeline-pvc.yaml -n <USER_NAME>-prod
+   oc apply -f canopy/5-rag/4-kfp-pipeline-pvc.yaml -n <USER_NAME>-prod
    ```
 
    This creates a `canopy-workspace-pvc` that allows pipeline components to share processed document content efficiently.
 
 2. **Configure Your Educational Pipeline**
 
-   Open `canopy/6-rag/4-kfp_pipeline.py` and review the configuration optimized for academic content:
+   Open `canopy/5-rag/4-kfp_pipeline.py` and review the configuration optimized for academic content:
 
    ```python
    arguments = {
@@ -83,7 +83,7 @@ Time to deploy your document intelligence RAG system in production!
 
 3. **Execute the Production Pipeline**
 
-   Run your document intelligence pipeline by running on `python canopy/6-rag/4-kfp_pipeline.py` in your terminal.
+   Run your document intelligence pipeline by running on `python canopy/5-rag/4-kfp_pipeline.py` in your terminal.
 
    **Total**: ~5-6 minutes for complete document intelligence processing
 
