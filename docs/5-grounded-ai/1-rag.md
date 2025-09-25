@@ -55,20 +55,40 @@ Here's how RAG transforms your documents into intelligent, searchable knowledge:
 - Stay up-to-date as you add new materials
 - Ground responses in authoritative educational sources
 
-### RAG in Action: A Canopy Example
 
-**Student Question:** "What are the ethical implications of AI bias in hiring systems?"
+### RAG in Action
+Llama Stack provides some out of the box capabilities for RAG. Let's quickly implement a simple RAG solution to see how it can improve Canopy. 
 
-**RAG Process:**
-1. **Retrieval**: System finds relevant chunks from uploaded course materials about AI ethics, bias studies, and hiring discrimination cases
-2. **Context**: Combines the question with passages from the textbook, recent research papers, and case studies
-3. **Generation**: Canopy provides a comprehensive answer that references specific studies, quotes from the textbook, and provides proper citations
-4. **Result**: Student gets an accurate, well-sourced response they can trust for their assignment
+First, let's enable RAG capability on `<USER_NAME>-canopy` environment to experiment.
 
-This transforms Canopy from a generic AI assistant into an intelligent tutor that knows your specific course materials and institutional knowledge.
+
+**Step 1: Navigate to Helm Charts**
+
+From the OpenShift Developer View, navigate to the **Helm** tab in the left panel to access your deployed charts.
+
+![LLS RAG Architecture Diagram](images/rag16.png ':size=20%')
+
+**Step 2: Open LlamaStack Instance**
+
+Locate and click on the `llama-stack-operator-instance` Helm chart to open its configuration interface:
+
+![LLS RAG Architecture Diagram](images/rag14.png ':size=90%')
+
+..and simply check the "enabled" checkbox under the RAG configuration to activate these capabilities.
+
+![LLS RAG Architecture Diagram](images/rag15.png ':size=40%')
+
+..and click `Upgrade`.
+
+**Step 3: Upload some documents and see how it is workign**
+
+Go back to your workbench and open up `1-simpleRAG.ipynb` and get the feeling of it! 
+
+When you finish, come back so we can continue with making it prod ready and more automated!
+
 
 ## 🎯 Next Steps: Setting Up a Vector Database
 
-Now that you understand RAG concepts, it's time to build the foundation. First, you'll need a place to store your document embeddings: that's where Vector Databases come in.
+Now that you understand RAG concepts, it's time to make it production ready. And first, you'll need a place to store your document embeddings: that's where Vector Databases come in.
 
 Continue to **[📊 Vector Stores & Milvus](2-vector-stores.md)** to set up the storage infrastructure that will power your RAG system.

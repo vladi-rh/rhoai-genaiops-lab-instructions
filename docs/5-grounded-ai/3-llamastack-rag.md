@@ -27,32 +27,31 @@ LlamaStack organizes RAG capabilities into three layers that work together:
 
 Now that you have Milvus vector databases running in both test and production environments, it's time to enhance your Llama Stack deployments with RAG and VectorDB capabilities. 
 
-By default, our Llama Stack instances are deployed with basic inference capabilities only. We're taking a gradual approach to introduce advanced features like RAG and vector database integration step by step, which allows for better understanding and easier troubleshooting.
+1. In your workbench, open up `genaiops-gitops/canopy/test/llama-stack/config.yaml` and update the file as below:
 
-In this section, you'll update your existing Llama Stack configurations to include the vector database connections and RAG functionality needed for intelligent document search and retrieval.
+    ```yaml
+    ---
+    chart_path: charts/llama-stack-operator-instance
+    eval:
+      enabled: true
+    rag:                  # 👈 Add this 
+      enabled: true       # 👈 Add this 
+    ```
 
-**Step 1: Navigate to Helm Charts**
+2. Do the same thing for production. Update the file `genaiops-gitops/canopy/prod/llama-stack/config.yaml` same way.
 
-From the OpenShift Developer View, navigate to the **Helm** tab in the left panel to access your deployed charts.
+3. Let's push the changes for Argo CD to make the necessary changes.
 
-![LLS RAG Architecture Diagram](images/rag16.png ':size=20%')
-
-**Step 2: Open LlamaStack Instance**
-
-Locate and click on the `llama-stack-operator-instance` Helm chart to open its configuration interface:
-
-![LLS RAG Architecture Diagram](images/rag14.png ':size=90%')
-
-The Helm interface shows your `llama-stack-operator-instance` deployment status, allowing you to manage and upgrade your LlamaStack installation directly from the OpenShift console. You'll need to apply these configurations to all your LlamaStack instances: `user1-canopy`, `userX-test`, and `userX-prod` environments.
-
-![LLS RAG Architecture Diagram](images/rag15.png ':size=40%')
-
-Through the Helm Chart Values Schema, you can configure RAG functionality by enabling the RAG section and connecting to your Milvus vector database - simply check the "enabled" checkbox under the RAG configuration to activate these capabilities. Remember to update each LlamaStack instance in all three environments to ensure consistent RAG functionality across your deployment pipeline.
-
+    ```bash
+    cd /opt/app-root/src/genaiops-gitops
+    git add .
+    git commit -m "📚 enable RAG 📚"
+    git push origin main
+    ```
 
 ## 🧪 Hands-On Learning: Build Your RAG System
 
-Now that you understand RAG architecture and have Milvus deployed, it's time to build a complete RAG pipeline using LlamaStack.
+Now that we have Milvus deployed and Llama Stack is all ready, it's time to build a complete RAG pipeline using LlamaStack.
 
 **📓 Interactive Notebook**: Complete the hands-on exercises in `canopy/5-rag/2-simpleRAG.ipynb` to:
 
