@@ -60,7 +60,7 @@ Time to deploy your document intelligence RAG system in production!
 
 2. **Configure Your Educational Pipeline**
 
-   Open `canopy/5-rag/4-kfp_pipeline.py` and review the configuration optimized for academic content:
+   Open `canopy/5-rag/6-kfp_pipeline.py` and review the configuration optimized for academic content:
 
    ```python
    arguments = {
@@ -83,7 +83,7 @@ Time to deploy your document intelligence RAG system in production!
 
 3. **Execute the Production Pipeline**
 
-   Run your document intelligence pipeline by running on `python canopy/5-rag/4-kfp_pipeline.py` in your terminal.
+   Run your document intelligence pipeline by running on `python canopy/5-rag/6-kfp_pipeline.py` in your terminal.
 
    **Total**: ~5-6 minutes for complete document intelligence processing
 

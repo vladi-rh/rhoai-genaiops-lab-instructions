@@ -53,7 +53,7 @@ Now that you have Milvus vector databases running in both test and production en
 
 Now that we have Milvus deployed and Llama Stack is all ready, it's time to build a complete RAG pipeline using LlamaStack.
 
-**📓 Interactive Notebook**: Complete the hands-on exercises in `canopy/5-rag/2-simpleRAG.ipynb` to:
+**📓 Interactive Notebook**: Complete the hands-on exercises in `canopy/5-rag/4-prod-ready-RAG.ipynb` to:
 
 - **Connect LlamaStack to your vector database**: Register your deployed Milvus instance
 - **Ingest documents into the RAG system**: Process PDFs and educational content automatically
@@ -71,7 +71,7 @@ Through the practical exercises, you'll create a RAG system that can:
 
 ## 🖼️ Visualize Your RAG System with Attu
 
-After completing the `canopy/5-rag/2-simpleRAG.ipynb` notebook, explore what LlamaStack created in your vector database using the Attu web interface.
+After completing the `canopy/5-rag/4-prod-ready-RAG.ipynb` notebook, explore what Llama Stack created in your vector database using the Attu web interface.
 
 **Access Your Milvus Attu Interface:**
 ```
@@ -97,7 +97,9 @@ Use `root` as the user and `Milvus` as the password.
 
 This visualization helps you understand exactly what happens during the RAG ingestion process - your documents are transformed from PDFs into searchable, semantic knowledge!
 
-## 🎮 LlamaStack Playground: RAG Experiments (Optional)
+
+NOTE: this should be Canopy UI, right?!
+## 🎮 Llama Stack Playground: RAG Experiments (Optional)
 
 Want to experiment with RAG workflows interactively? The LlamaStack Playground provides an intuitive interface for testing your system.
 

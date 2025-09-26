@@ -31,7 +31,7 @@ Notice how:
 
 In real embeddings, these vectors have hundreds or thousands of dimensions, capturing subtle meaning relationships that make semantic search possible!
 
-**📓 Interactive Notebook**: Start with `canopy/6-rag/0-embeddings.ipynb` to understand embeddings concepts and create your first word vectors hands-on.
+**📓 Interactive Notebook**: Start with `canopy/6-rag/2-embeddings.ipynb` to understand embeddings concepts and create your first word vectors hands-on.
 
 ### The Vector Magic ✨
 
@@ -177,7 +177,7 @@ Visit your test environment Attu interface now - you'll see an empty database, p
 
 Now that your Milvus instances are deployed and running, it's time to understand how vector databases work under the hood. This practical exploration will help you grasp the concepts that power Canopy's semantic search capabilities.
 
-**📓 Interactive Notebook**: Complete the hands-on exercises in `canopy/5-rag/1-vector-databases.ipynb` to:
+**📓 Interactive Notebook**: Complete the hands-on exercises in `canopy/5-rag/3-vector-databases.ipynb` to:
 
 - **Connect to your deployed Milvus instance**: Use the vector database you just deployed via GitOps
 - **Learn how text embeddings capture meaning**: Understand how course content becomes searchable vectors

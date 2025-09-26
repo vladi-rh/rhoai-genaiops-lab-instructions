@@ -82,13 +82,13 @@ Locate and click on the `llama-stack-operator-instance` Helm chart to open its c
 
 **Step 3: Upload some documents and see how it is workign**
 
-Go back to your workbench and open up `1-simpleRAG.ipynb` and get the feeling of it! 
+Go back to your workbench and open up `1-intro-to-RAG.ipynb` and get the feeling of it! 
 
 When you finish, come back so we can continue with making it prod ready and more automated!
 
 
 ## 🎯 Next Steps: Setting Up a Vector Database
 
-Now that you understand RAG concepts, it's time to make it production ready. And first, you'll need a place to store your document embeddings: that's where Vector Databases come in.
+Now that you get your hands into RAG and understand its value, it's time to make it production ready. And first, you'll need a place to store your document embeddings: that's where Vector Databases come in.
 
-Continue to **[📊 Vector Stores & Milvus](2-vector-stores.md)** to set up the storage infrastructure that will power your RAG system.
+Let's dive into the world of embeddings and vector databases!
