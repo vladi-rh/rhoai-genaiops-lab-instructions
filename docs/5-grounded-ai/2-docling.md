@@ -16,10 +16,10 @@ Your RAG system works great with simple text, but what happens when students upl
 
 Let's try it out to see how Docling works in practice!
 
-Go to your workbench and go through the notebook `canopy/5-rag/4-docling.ipynb`.
+Go to your workbench and go through the notebook `canopy/5-rag/3-docling.ipynb`.
 
-## 🎯 Next Steps: Complete Educational Platform
+## 🎯 Next Steps: Setting Up a Vector Database
 
-Your document intelligence RAG system can now understand the most complex academic content. Ready to automate it using a cool pipelines?
+Now that you get your hands into RAG and understand its value, it's time to make it production ready. And first, you'll need a place to store your document embeddings: that's where Vector Databases come in.
 
-Continue to **[🌳 Automating RAG with KFP Pipelines](4-rag-pipelines.md)** to automate the document ingestion with KFP pipelines for ingesting into our test and production environment.
+Let's dive into the world of embeddings and vector databases!

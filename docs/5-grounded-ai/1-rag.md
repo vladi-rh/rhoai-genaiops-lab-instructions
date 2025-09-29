@@ -39,8 +39,6 @@ Llama Stack provides some out of the box capabilities for RAG. Let's quickly imp
     When you finish, come back so we can continue with making it prod ready and more automated!
 
 
-## 🎯 Next Steps: Setting Up a Vector Database
+## 🎯 Next Steps: Intelligent Data Processing
 
-Now that you get your hands into RAG and understand its value, it's time to make it production ready. And first, you'll need a place to store your document embeddings: that's where Vector Databases come in.
-
-Let's dive into the world of embeddings and vector databases!
+Next, continue to **[Docling](./2-docling.md)** to learn how to work with more complex data in your RAG system 🙌

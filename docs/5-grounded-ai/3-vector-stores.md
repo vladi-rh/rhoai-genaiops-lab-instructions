@@ -91,9 +91,11 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
     - We can connect directly to Milvus.
     
     Let's connect directly to Milvus to see how this looks like.  
-    To do that, go to your workbench and complete the hands-on exercises in `canopy/5-rag/3-vector-databases.ipynb` 
+    To do that, go to your workbench and complete the hands-on exercises in `canopy/5-rag/4-vector-databases.ipynb` 
 
 
-## 🎯 Next Steps: Intelligent Data Processing
+## 🎯 Next Steps: Complete Educational Platform
 
-Next, continue to **[Docling](./3-docling.md)** to learn how to get more complex data into your vector database 🙌
+Your document intelligence RAG system can now understand the most complex academic content. Ready to automate it using a cool pipelines?
+
+Continue to **[🌳 Automating RAG with KFP Pipelines](4-rag-pipelines.md)** to automate the document ingestion with KFP pipelines for ingesting into our test and production environment.
