@@ -55,17 +55,39 @@ Time to deploy your document intelligence RAG system in production!
    }
    ```
 
-3. Run your document processing pipeline by running on `python canopy/5-rag/6-kfp_pipeline.py` in your terminal. This should take about 5-6 minutes to complete.
+3. If we were to just run the pipeline here we would run it against our `<USER_NAME>-canopy` namespace, but we want to run it against test and prod instead.  
+   To do that, let's export it, run it on a schedule in our `toolings` namespace and point it to test and prod. This way we could ingest new documents on a schedule.
+   To export our pipeline, compile it by running
+   ```bash
+   cd /opt/app-root/src/canopy/5-rag
+   python 4-kfp_pipeline.py
+   ```
+   And then download the file `canopy/5-rag/document-intelligence-rag.yaml` to your local machine.
+   
 
-4. We can monitor the progress of our pipeline in OpenShift AI:
+4. Go to OpenShift AI and enter your `user5-toolings` project. In there, go to `Pipelines` and click `Import pipeline`.
 
-   Go to **OpenShift AI Dashboard** → **Experiments** → **Experiments and runs**
+   ![import-pipeline](images/import-pipeline.png)
+
+5. Give the pipeline a good name, like `Document Ingestion`, and the upload the yaml file you just downloaded.
+
+6. Let's start by running it ad-hoc to make sure it works, press on `Actions` in the pipeline view and `Create run`
+
+   ![Create run action](images/create-run-action.png)
+
+7. Give the run a name, like `Ingest research article`, and then change the Llama Stack url to `http://llama-stack-service.<USER_NAME>-test.svc.cluster.local:8321` to point it to the Llama Stack in our test environment. It should look something like this:
+
+   ![llama-stack-url](images/llama-stack-url.png)
+
+8. Press `Create run` to start running the pipeline 🏃‍♀️
+
+5. We can monitor the progress of our pipeline in OpenShift AI.
 
    ![Pipeline Monitoring](images/rag9.png)
 
-   You'll see your `document-intelligence-rag` experiment with detailed execution tracking.
+   The run should take about 5-6 minutes to finish.
 
-5. Click on one of the steps to access information about inputs, outputs, and logs:
+6. Click on one of the steps to access information about inputs, outputs, and logs:
 
    ![Pipeline Monitoring](images/rag10.png)
 
