@@ -32,7 +32,7 @@ The evaluation pipeline is inside of a repo called `canopy-evals`, where both th
 2. Then, clone the repository 
    ```bash
    cd /opt/app-root/src/
-   git clone https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/canopy-evals.git
+   git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git
    ```
 3. Inside, you will find a few folders, one called `test_pipeline` and one for each usecase that we are going to want to run evaluations on - `Summary` is the only one relevant for us for now, the rest are slight spoilers for the upcoming modules 🤫  
 Open up `Summary` and then `summary_tests.yaml` to see what tests we will run. Make sure to add some of your own examples as well ✍️
@@ -61,7 +61,7 @@ Open up `Summary` and then `summary_tests.yaml` to see what tests we will run. M
 6. Scroll down to near the bottom of the file (around line 830) and edit the arguments to this:
     ```python
     arguments = {
-        "repo_url": "https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/canopy-evals.git", # 🚨 replace with your own repo URL
+        "repo_url": "https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git", # 🚨 replace with your own repo URL
         "branch": "main",
         "base_url": "http://llama-stack-service:8321",
         "backend_url": "http://canopy-backend:8000",
