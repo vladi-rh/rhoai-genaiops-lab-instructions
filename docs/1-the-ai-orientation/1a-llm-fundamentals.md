@@ -152,11 +152,10 @@ Imagine a prompt sent to an LLM reads exactly like this:
 .quiz-radio-next-easy:checked+.quiz-option-next-easy:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5c6cb}
 .feedback-next-easy{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
 #next-easy-correct:checked~.feedback-next-easy[data-feedback="correct"],
-#next-easy-wrong1:checked~.feedback-next-easy[data-feedback="wrong"],
-#next-easy-wrong2:checked~.feedback-next-easy[data-feedback="wrong"],
-#next-easy-wrong3:checked~.feedback-next-easy[data-feedback="wrong"]{display:block}
+#next-easy-wrong1:checked~.feedback-next-easy[data-feedback="wrong1"],
+#next-easy-wrong2:checked~.feedback-next-easy[data-feedback="wrong2"]{display:block}
 .feedback-next-easy[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.feedback-next-easy[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+.feedback-next-easy[data-feedback="wrong1"], .feedback-next-easy[data-feedback="wrong2"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
 <div class="quiz-container-next-easy">
@@ -167,10 +166,11 @@ Imagine a prompt sent to an LLM reads exactly like this:
   <label for="next-easy-correct" class="quiz-option-next-easy" data-correct="true">🐶 dogs</label>
 
   <input type="radio" name="quiz-next-easy" id="next-easy-wrong2" class="quiz-radio-next-easy">
-  <label for="next-easy-wrong2" class="quiz-option-next-easy" data-correct="false">🐭 mouse</label>
+  <label for="next-easy-wrong2" class="quiz-option-next-easy" data-correct="false">🐭 mice</label>
 
   <div class="feedback-next-easy" data-feedback="correct">✅ Exactly!</div>
-  <div class="feedback-next-easy" data-feedback="wrong">❌ Read again carefully.</div>
+  <div class="feedback-next-easy" data-feedback="wrong1">❌ "Frogs" doesn't sound quite right, although technically I guess frogs are more likley to rain than the other options...</div>
+  <div class="feedback-next-easy" data-feedback="wrong2">❌ Raining cats and mice, hmm, there is probably a Tom and Jerry episode about that but it's not quite the ideom we are going for.</div>
 </div>
 </div>
 
@@ -217,11 +217,11 @@ Imagine a prompt sent to an LLM reads exactly like this:
 .quiz-radio-next-tricky:checked+.quiz-option-next-tricky:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5c6cb}
 .feedback-next-tricky{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
 #next-tricky-correct:checked~.feedback-next-tricky[data-feedback="correct"],
-#next-tricky-wrong1:checked~.feedback-next-tricky[data-feedback="wrong"],
-#next-tricky-wrong2:checked~.feedback-next-tricky[data-feedback="wrong"],
-#next-tricky-wrong3:checked~.feedback-next-tricky[data-feedback="wrong"]{display:block}
+#next-tricky-wrong1:checked~.feedback-next-tricky[data-feedback="wrong1"],
+#next-tricky-wrong2:checked~.feedback-next-tricky[data-feedback="wrong2"],
+#next-tricky-wrong3:checked~.feedback-next-tricky[data-feedback="wrong3"]{display:block}
 .feedback-next-tricky[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.feedback-next-tricky[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+.feedback-next-tricky[data-feedback="wrong1"], .feedback-next-tricky[data-feedback="wrong2"], .feedback-next-tricky[data-feedback="wrong3"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
 <div class="quiz-container-next-tricky">
@@ -238,7 +238,9 @@ Imagine a prompt sent to an LLM reads exactly like this:
   <label for="next-tricky-wrong3" class="quiz-option-next-tricky" data-correct="false">🕶️ sunglasses</label>
 
   <div class="feedback-next-tricky" data-feedback="correct">✅ Exactly! Context indicates intense sun ("blazing sun"), making "hat" the strongest logical continuation.</div>
-  <div class="feedback-next-tricky" data-feedback="wrong">❌ Read again carefully. What specific clue ("blazing sun") makes a particular item most relevant?<br>If you think your answer is better, that's cause it might be, but the LLM only guesses based on this limited context.</div>
+  <div class="feedback-next-tricky" data-feedback="wrong1">❌ While water is essential for desert hikes, "blazing sun" specifically emphasizes the need for sun protection.</div>
+  <div class="feedback-next-tricky" data-feedback="wrong2">❌ Sunscreen protects from UV rays, but the phrase "blazing sun" in the context suggests immediate physical protection.</div>
+  <div class="feedback-next-tricky" data-feedback="wrong3">❌ Sunglasses weren't mentioned in the packing list, so the model is more likely to complete with items already established in the context.</div>
 </div>
 </div>
 
@@ -351,10 +353,10 @@ Which approach is the <em>most practical</em>?</p>
 .ctxRadio:checked + .ctxOpt[data-correct="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
 .ctxFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
 #ctx-good:checked ~ .ctxFeed[data-type="good"],
-#ctx-w1:checked  ~ .ctxFeed[data-type="bad"],
-#ctx-w2:checked  ~ .ctxFeed[data-type="bad"]{display:block}
+#ctx-w1:checked  ~ .ctxFeed[data-type="bad1"],
+#ctx-w2:checked  ~ .ctxFeed[data-type="bad2"]{display:block}
 .ctxFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.ctxFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+.ctxFeed[data-type="bad1"], .ctxFeed[data-type="bad2"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
 <div>
@@ -377,8 +379,11 @@ Which approach is the <em>most practical</em>?</p>
   <div class="ctxFeed" data-type="good">
     ✅ Right — on-demand retrieval of multiple 1K chunks respects the 8K limit and allows for some extra context to be added outside the chunks.
   </div>
-  <div class="ctxFeed" data-type="bad">
-    ❌ Fine-tuning is slow/expensive, and context resets between separate 6K prompts.
+  <div class="ctxFeed" data-type="bad1">
+    ❌ Fine-tuning requires training data, significant compute resources, and time.
+  </div>
+  <div class="ctxFeed" data-type="bad2">
+    ❌ Chaining multiple 6K prompts resets context between each prompt, losing the coherent understanding needed for Q&A.
   </div>
 </div>
 </div>
@@ -419,11 +424,11 @@ However, tomorrow, when the chat starts fresh in a brand-new session, the assist
 .quiz-radio-sku:checked+.quiz-option-sku:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
 .feedback-sku{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
 #sku-correct:checked~.feedback-sku[data-feedback="correct"],
-#sku-wrong1:checked~.feedback-sku[data-feedback="wrong"],
-#sku-wrong2:checked~.feedback-sku[data-feedback="wrong"],
-#sku-wrong3:checked~.feedback-sku[data-feedback="wrong"]{display:block}
+#sku-wrong1:checked~.feedback-sku[data-feedback="wrong1"],
+#sku-wrong2:checked~.feedback-sku[data-feedback="wrong2"],
+#sku-wrong3:checked~.feedback-sku[data-feedback="wrong3"]{display:block}
 .feedback-sku[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.feedback-sku[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+.feedback-sku[data-feedback="wrong1"], .feedback-sku[data-feedback="wrong2"], .feedback-sku[data-feedback="wrong3"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
 <div class="quiz-container-sku">
@@ -434,13 +439,15 @@ However, tomorrow, when the chat starts fresh in a brand-new session, the assist
   <label for="sku-wrong2" class="quiz-option-sku" data-correct="false">🧹 Increase the models context window so <em>today’s</em> chat fits in tomorrow’s prompt untouched</label>
 
   <input type="radio" name="quiz-sku" id="sku-wrong3" class="quiz-radio-sku">
-  <label for="sku-wrong3" class="quiz-option-sku" data-correct="false">🔧 Retrain the model overnight on the new SKUs</label>
+  <label for="sku-wrong3" class="quiz-option-sku" data-correct="false">🔧 Retrain the model overnight on the new employees</label>
 
   <input type="radio" name="quiz-sku" id="sku-correct" class="quiz-radio-sku">
   <label for="sku-correct" class="quiz-option-sku" data-correct="true">📦 Store the names in a database and auto-inject them into tomorrow’s prompt</label>
 
-  <div class="feedback-sku" data-feedback="correct">✅ Correct! Frozen weights can't learn overnight—you must feed yesterday's SKUs back in (fetching from a database is fastest and cheapest).</div>
-  <div class="feedback-sku" data-feedback="wrong">❌ Prompts alone can't alter weights, massive context gets expensive, and retraining the model is often overkill (especially if it's needed frequently).</div>
+  <div class="feedback-sku" data-feedback="correct">✅ Correct! Frozen weights can't learn overnight—you must feed yesterday's employee names back in (fetching from a database is fastest and cheapest).</div>
+  <div class="feedback-sku" data-feedback="wrong1">❌ Simple instructions like "Remember these forever" don't modify the model's weights. The model will still only know what's in the current prompt.</div>
+  <div class="feedback-sku" data-feedback="wrong2">❌ Expanding context windows gets expensive and doesn't scale well. You'd need massive context for every conversation, wasting resources on old chat history.</div>
+  <div class="feedback-sku" data-feedback="wrong3">❌ Retraining is slow, expensive, and overkill for frequently changing data like new employee names.</div>
 </div>
 </div>
 

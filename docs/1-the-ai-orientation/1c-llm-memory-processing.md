@@ -54,10 +54,10 @@ Which earlier token will the attention mechanism give the <b>highest weight</b> 
 .attnRadio:checked + .attnOpt[data-correct="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
 .attnFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
 #attn-good:checked ~ .attnFeed[data-type="good"],
-#attn-w1:checked  ~ .attnFeed[data-type="bad"],
-#attn-w2:checked  ~ .attnFeed[data-type="bad"]{display:block}
+#attn-w1:checked  ~ .attnFeed[data-type="bad1"],
+#attn-w2:checked  ~ .attnFeed[data-type="bad2"]{display:block}
 .attnFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.attnFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+.attnFeed[data-type="bad1"], .attnFeed[data-type="bad2"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
 <div>
@@ -79,8 +79,11 @@ Which earlier token will the attention mechanism give the <b>highest weight</b> 
   <div class="attnFeed" data-type="good">
     ✅ Correct — attention focuses on the token that makes the sentence coherent: the <b>drummer</b> is the one doing the surprising.
   </div>
-  <div class="attnFeed" data-type="bad">
-    ❌ Remember: attention gives the highest weight to the token most relevant to the word being generated, not just the most recent or random noun.
+  <div class="attnFeed" data-type="bad1">
+    ❌ The "singer" was mentioned earlier but isn't the active subject in this context.
+  </div>
+  <div class="attnFeed" data-type="bad2">
+    ❌ "Crowd" appears later in the sentence and isn't the actor.
   </div>
 </div>
 </div>
@@ -108,6 +111,8 @@ Benefits:
 
 These benefits comes at the cost of more GPU memory required though, as we now need to save all these computations somewhere.
 
+However, calculating how much extra memory we need for the KV Cache can be a bit tricky.  
+Luckily for us, there are tools we can use to calculate it for some specific models, try out this one for example:  [https://lmcache.ai/kv_cache_calculator.html](https://lmcache.ai/kv_cache_calculator.html)
 
 <!-- ⚡ KV cache – concept focus -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
@@ -130,10 +135,10 @@ Cache OFF → 6 s.<br>
 .kvRadio:checked + .kvOpt[data-correct="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
 .kvFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
 #kv-good:checked ~ .kvFeed[data-type="good"],
-#kv-w1:checked  ~ .kvFeed[data-type="bad"],
-#kv-w2:checked  ~ .kvFeed[data-type="bad"]{display:block}
+#kv-w1:checked  ~ .kvFeed[data-type="bad1"],
+#kv-w2:checked  ~ .kvFeed[data-type="bad2"]{display:block}
 .kvFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.kvFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+.kvFeed[data-type="bad1"], .kvFeed[data-type="bad2"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
 <div>
@@ -153,10 +158,13 @@ Cache OFF → 6 s.<br>
   </label>
 
   <div class="kvFeed" data-type="good">
-    ✅ Exactly, KV-cache keeps a “cheat-sheet” of attention results for all internal parts of the model. With it, every new token is almost free; without it, the model re-does heavy math for <em>all</em> previous tokens.
+    ✅ Exactly, KV-cache keeps a "cheat-sheet" of attention results for all internal parts of the model. With it, every new token is almost free; without it, the model re-does heavy math for <em>all</em> previous tokens.
   </div>
-  <div class="kvFeed" data-type="bad">
-    ❌ The cache isn’t about repeating text or mere memory savings—it skips expensive attention math.
+  <div class="kvFeed" data-type="bad1">
+    ❌ Storing and picking between every possible variation/combinations of tokens seem more expensive than just generating them 😩
+  </div>
+  <div class="kvFeed" data-type="bad2">
+    ❌ While KV-cache does use memory, the main benefit is computational speed, not just memory efficiency.
   </div>
 </div>
 </div>

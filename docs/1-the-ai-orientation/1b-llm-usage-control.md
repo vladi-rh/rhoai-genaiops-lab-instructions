@@ -55,10 +55,10 @@ The model has no temperature tricks and uses default sampling.<br>
 .quiz-radio-prompt-out:checked+.quiz-option-prompt-out:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
 .feedback-prompt-out{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
 #prompt-out-correct:checked~.feedback-prompt-out[data-feedback="correct"],
-#prompt-out-wrong1:checked~.feedback-prompt-out[data-feedback="wrong"],
-#prompt-out-wrong2:checked~.feedback-prompt-out[data-feedback="wrong"]{display:block}
+#prompt-out-wrong1:checked~.feedback-prompt-out[data-feedback="wrong1"],
+#prompt-out-wrong2:checked~.feedback-prompt-out[data-feedback="wrong2"]{display:block}
 .feedback-prompt-out[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.feedback-prompt-out[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+.feedback-prompt-out[data-feedback="wrong1"], .feedback-prompt-out[data-feedback="wrong2"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
 <div class="quiz-container-prompt-out">
@@ -80,8 +80,11 @@ The model has no temperature tricks and uses default sampling.<br>
   <div class="feedback-prompt-out" data-feedback="correct">
     ✅ <strong>Exactly.</strong> The system instruction outranks the user request, so the model sticks to the one-word format.
   </div>
-  <div class="feedback-prompt-out" data-feedback="wrong">
-    ❌ Remember: system-role text sets the policy the model follows.
+  <div class="feedback-prompt-out" data-feedback="wrong1">
+    ❌ The system prompt constrains output to one word only. A multi-paragraph explanation would violate the "single word" constraint.
+  </div>
+  <div class="feedback-prompt-out" data-feedback="wrong2">
+    ❌ The model won't refuse - there's nothing harmful about grading. The system instruction simply defines the output format as one word.
   </div>
 </div>
 </div>
@@ -128,10 +131,10 @@ Let’s explore this with a quick quiz:
   .hall-fix-radio:checked + .hall-fix-row[data-good="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
   .hall-fix-feedback{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
   #hall-fix-correct:checked ~ .hall-fix-feedback[data-type="good"],
-  #hall-fix-w1:checked     ~ .hall-fix-feedback[data-type="bad"],
-  #hall-fix-w2:checked     ~ .hall-fix-feedback[data-type="bad"]{display:block}
+  #hall-fix-w1:checked     ~ .hall-fix-feedback[data-type="bad1"],
+  #hall-fix-w2:checked     ~ .hall-fix-feedback[data-type="bad2"]{display:block}
   .hall-fix-feedback[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-  .hall-fix-feedback[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+  .hall-fix-feedback[data-type="bad1"], .hall-fix-feedback[data-type="bad2"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
   </style>
 
   <div class="quiz-container-prompt-out">
@@ -152,10 +155,13 @@ Let’s explore this with a quick quiz:
   </label>
 
   <div class="hall-fix-feedback" data-type="good">
-    ✅ Correct – giving the model the <em>true fact and real link</em> steers its next-token guesses toward reality. This is called "grounding" the model.
+    ✅ Correct – giving the model the <em>true fact and real link</em> steers its next-token guesses toward reality. This is called "grounding" the model, i.e. making its answer grounded in reality.
   </div>
-  <div class="hall-fix-feedback" data-type="bad">
-    ❌ Not ideal. Consider a solution that explicitly provides verified facts directly into the prompt to eliminate fabrications. Warnings alone won’t supply missing facts.
+  <div class="hall-fix-feedback" data-type="bad1">
+    ❌ Fine-tuning takes time and computational resources, and won't immediately fix hallucinations about recent facts not in training data.
+  </div>
+  <div class="hall-fix-feedback" data-type="bad2">
+    ❌ Simple warnings like "Don't hallucinate!" don't provide the model with actual facts to reference. The model needs grounding with real information.
   </div>
 </div>
 </div>
@@ -326,7 +332,8 @@ What did the model respond with?
 ></iframe>
 
 
-Now try the same thing in **Canopy** and compare. Does it remember what you said? What makes it different?
+<!-- TODO: Uncomment this below line when we have it in Canopy -->
+<!-- Now try the same thing in **Canopy** and compare. Does it remember what you said? What makes it different? -->
 
 
 ### 🔍 Hands-on Exercises - Are LLMs deterministic?

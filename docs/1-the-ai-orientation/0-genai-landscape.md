@@ -104,10 +104,10 @@ Which of the following is an example of a Foundation Model?
 .quiz-radio-next-easy:checked+.quiz-option-next-easy:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5c6cb}
 .feedback-next-easy{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
 #foundation-correct:checked~.feedback-next-easy[data-feedback="correct"],
-#foundation-wrong1:checked~.feedback-next-easy[data-feedback="wrong"],
-#foundation-wrong2:checked~.feedback-next-easy[data-feedback="wrong"]{display:block}
+#foundation-wrong1:checked~.feedback-next-easy[data-feedback="wrong1"],
+#foundation-wrong2:checked~.feedback-next-easy[data-feedback="wrong2"]{display:block}
 .feedback-next-easy[data-feedback="correct"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.feedback-next-easy[data-feedback="wrong"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+.feedback-next-easy[data-feedback="wrong1"], .feedback-next-easy[data-feedback="wrong2"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
 <div class="quiz-container-next-easy">
@@ -121,7 +121,8 @@ Which of the following is an example of a Foundation Model?
   <label for="foundation-wrong2" class="quiz-option-next-easy" data-correct="false">📈 Logistic Regression</label>
 
   <div class="feedback-next-easy" data-feedback="correct">✅ Correct! GPT-4 is a foundation model.</div>
-  <div class="feedback-next-easy" data-feedback="wrong">❌ Not quite! Think of large models trained on general data.</div>
+  <div class="feedback-next-easy" data-feedback="wrong1">❌ Random Forest is a traditional machine learning algorithm, not a foundation model. Foundation models are large neural networks trained on diverse data.</div>
+  <div class="feedback-next-easy" data-feedback="wrong2">❌ Logistic Regression is a statistical method for classification, not a foundation model. Foundation models are massive neural networks like GPT, LLaMA, etc.</div>
 </div>
 </div>
 
@@ -184,13 +185,14 @@ Which of the following statements about Open Foundation Models is correct?
   <label for="open-wrong2" class="quiz-option-next-easy" data-correct="false">🗣️ They perform better than closed models in all cases</label>
 
   <div class="feedback-next-easy" data-feedback="correct">✅ Spot on! Open models allow access to their weights, giving you more control.</div>
-  <div class="feedback-next-easy" data-feedback="wrong">❌ That's not entirely true. Double-check the licensing and capabilities!</div>
+  <div class="feedback-next-easy" data-feedback="wrong1">❌ Not always! "Open" refers to model weights being accessible, not commercial licensing. Many open models have restrictions on commercial use.</div>
+  <div class="feedback-next-easy" data-feedback="wrong2">❌ Not necessarily! Performance depends on many factors including model size, training data, and specific use cases. Closed models often outperform open ones.</div>
 </div>
 
 <style>
 #open-correct:checked~.feedback-next-easy[data-feedback="correct"],
-#open-wrong1:checked~.feedback-next-easy[data-feedback="wrong"],
-#open-wrong2:checked~.feedback-next-easy[data-feedback="wrong"]{display:block}
+#open-wrong1:checked~.feedback-next-easy[data-feedback="wrong1"],
+#open-wrong2:checked~.feedback-next-easy[data-feedback="wrong2"]{display:block}
 </style>
 </div>
 
