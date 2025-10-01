@@ -64,7 +64,7 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
     Go to your workbench and complete the hands-on exercises in `canopy/5-rag/3-vector-databases.ipynb`.  
     This walks you through interacting with the vector database (without Llama Stack, we will add in Llama Stack for test and prod soon). -->
 
-6. Udate your Llama Stack in Test and Prod by opening up `genaiops-gitops/canopy/test/llama-stack/config.yaml` (test) and `genaiops-gitops/canopy/prod/llama-stack/config.yaml` (prod) and update the file as below:
+6. Update your Llama Stack in Test and Prod by opening up `genaiops-gitops/canopy/test/llama-stack/config.yaml` (test) and `genaiops-gitops/canopy/prod/llama-stack/config.yaml` (prod) and update the file as below:
 
     ```yaml
     ---
@@ -92,6 +92,11 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
     
     Let's connect directly to Milvus to see how this looks like.  
     To do that, go to your workbench and complete the hands-on exercises in `canopy/5-rag/4-vector-databases.ipynb` 
+
+    After you have gone through the notebook, make sure to check Attu and see the new collection that has appeared:
+    ```
+    https://milvus-test-attu-<USER_NAME>-test.<CLUSTER_DOMAIN>
+    ```
 
 
 ## 🎯 Next Steps: Complete Educational Platform

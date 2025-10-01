@@ -81,15 +81,20 @@ Time to deploy your document intelligence RAG system in production!
 
 8. Press `Create run` to start running the pipeline 🏃‍♀️
 
-5. We can monitor the progress of our pipeline in OpenShift AI.
+9. We can monitor the progress of our pipeline in OpenShift AI.
 
    ![Pipeline Monitoring](images/rag9.png)
 
    The run should take about 5-6 minutes to finish.
 
-6. Click on one of the steps to access information about inputs, outputs, and logs:
+10. Click on one of the steps to access information about inputs, outputs, and logs:
 
    ![Pipeline Monitoring](images/rag10.png)
+
+11. After this is done you will see a new collection in Attu, check it out: 
+   ```
+   https://milvus-test-attu-<USER_NAME>-test.<CLUSTER_DOMAIN>
+   ```
 
 ### What You've Built
 

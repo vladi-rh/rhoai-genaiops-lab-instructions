@@ -12,7 +12,7 @@ The Canopy application we deployed already has RAG built-in as you may have seen
 
 1. Go to your workbench and open the file `canopy-be/chart/values-test.yaml`
 
-2. Edit the file to contain the `informatino-search` feature flag. Feel free to change the prompt, this is the system prompt just like before.
+2. Edit the file to contain the `information-search` feature flag. Feel free to change the prompt, this is the system prompt just like before.
 
     ```yaml
     LLAMA_STACK_URL: "http://llama-stack-service:8321"
