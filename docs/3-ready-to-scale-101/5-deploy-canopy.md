@@ -9,7 +9,7 @@ But first, we need to set up our backend repository to handle the GenAI applicat
 
   ```bash
     cd /opt/app-root/src
-    git clone https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/canopy-be.git
+    git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-be.git
   ```
 2. We will store prompts under `chart/values-test.yaml` and `chart/values-prod.yaml`. Copy the below info to both files under the `LLAMA_STACK_URL` and make sure to bring your new favourite prompt to summarize the topics along with the settings you have in Llama Stack Playground:
 
@@ -66,7 +66,7 @@ Now let's set this up using ArgoCD!
     TEST:
 
     ```yaml
-    repo_url: https://<GIT_SERVER>/<USER_NAME>/canopy-be
+    repo_url: https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-be
     chart_path: chart
     values_file: values-test.yaml # ‼️‼️ this is different for PROD
     ```
@@ -74,7 +74,7 @@ Now let's set this up using ArgoCD!
     PROD:
 
     ```yaml
-    repo_url: https://<GIT_SERVER>/<USER_NAME>/canopy-be
+    repo_url: https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-be
     chart_path: chart
     values_file: values-prod.yaml # ‼️‼️
     ```

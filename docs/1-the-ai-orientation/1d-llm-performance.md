@@ -52,10 +52,10 @@ Which single change will <b>most directly</b> improve what users feel?
 .latRad:checked + .latOpt[data-good="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
 .latFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
 #lat-good:checked ~ .latFeed[data-type="good"],
-#lat-w1:checked  ~ .latFeed[data-type="bad"],
-#lat-w2:checked  ~ .latFeed[data-type="bad"]{display:block}
+#lat-w1:checked  ~ .latFeed[data-type="bad1"],
+#lat-w2:checked  ~ .latFeed[data-type="bad2"]{display:block}
 .latFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.latFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+.latFeed[data-type="bad1"], .latFeed[data-type="bad2"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
 <div>
@@ -78,8 +78,11 @@ Which single change will <b>most directly</b> improve what users feel?
     ✅ The biggest pain is the 4 s silence <em>before</em> any text streams.
     Shortening model start-up on a warm GPU tackles that gap directly.
   </div>
-  <div class="latFeed" data-type="bad">
-    ❌ Image size or per-token speed tweaks won’t fix the long initial pause.
+  <div class="latFeed" data-type="bad1">
+    ❌ Compressing PNG helps but only for a small delay gain at the end.
+  </div>
+  <div class="latFeed" data-type="bad2">
+    ❌ Shorter responses reduce overall time but there is something even more frustrating than watching text stream to us for a few seconds.
   </div>
 </div>
 </div>
@@ -147,10 +150,10 @@ GPU budget: single A10 24 GB.
 .szRad:checked + .szOpt[data-good="false"]{background:#f8d7da;color:#721c24;border-color:#f5b7b1}
 .szFeed{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
 #sz-good:checked ~ .szFeed[data-type="good"],
-#sz-w1:checked  ~ .szFeed[data-type="bad"],
-#sz-w2:checked  ~ .szFeed[data-type="bad"]{display:block}
+#sz-w1:checked  ~ .szFeed[data-type="bad1"],
+#sz-w2:checked  ~ .szFeed[data-type="bad2"]{display:block}
 .szFeed[data-type="good"]{background:#d1f2eb;color:#0c5d56;border:1px solid #a3d9cc}
-.szFeed[data-type="bad"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
+.szFeed[data-type="bad1"], .szFeed[data-type="bad2"]{background:#fce8e6;color:#58151c;border:1px solid #f5b7b1}
 </style>
 
 <div>
@@ -172,10 +175,11 @@ GPU budget: single A10 24 GB.
   <div class="szFeed" data-type="good">
     ✅ 7 B @ 16-bit ≈ 7 B × 2 byte ≈ 14 GB → easily fits 24 GB with some space for the KV-cache (context window) and meets 20 req/s.
   </div>
-  <div class="szFeed" data-type="bad">
-    ❌ Reminder: rough memory rule — parameters ×4 bytes (FP32) or ×2 bytes (FP16).  <br>
-    Even at 0.5 B/param (4-bit), 70 B ≈ 35 GB → too big for 24 GB. <br>
-    For the small 3B model, accuracy/QPS drops too much.
+  <div class="szFeed" data-type="bad1">
+    ❌ Even quantized to 4-bit (~0.5 bytes/param), 70B ≈ 35 GB → exceeds your 24 GB budget. Plus, 4-bit quantization may hurt accuracy.
+  </div>
+  <div class="szFeed" data-type="bad2">
+    ❌ 3B FP32 = ~12 GB might fit, but CPU inference is too slow for 20 req/s. You need GPU acceleration for this throughput requirement.
   </div>
 </div>
 </div>

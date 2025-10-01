@@ -85,7 +85,7 @@ Gitea is a lightweight, self-hosted Git server that allows teams to manage repos
 1. Log into Gitea with your credentials. Gitea URL:
 
     ```bash
-    https://<GIT_SERVER>
+    https://gitea-gitea.<CLUSTER_DOMAIN>
     ```
 
     You will see a `genaiops-gitops` repository already created for you. It is the git repository that we are going to use for <span style="color:purple;" >GIT</span>Ops purposes. It will serve as a mono-repo holding both our tooling configuration and the application deployment definitions. In the real world, you may want to separate these into different repos! Anyways, let's get started!
@@ -94,7 +94,7 @@ Gitea is a lightweight, self-hosted Git server that allows teams to manage repos
 
     ```bash
     cd /opt/app-root/src
-    git clone https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/genaiops-gitops.git
+    git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/genaiops-gitops.git
     ```
 
    With our git project cloned - let's start our GitOps Journey 🧙‍♀️🦄!
