@@ -59,13 +59,17 @@ It’s built to help you prototype quickly and standardize early, so you quicker
 
 Let’s deploy the Playground to verify the integration between Llama Stack and your LLM before we deep dive into what’s going on under the hood and how we’ll update the frontend.
 
-1. Just like we did with Llama Stack; Go to OpenShift Console, click `+Add` and select `Helm Charts`. You'll see `GenAIOps Helm Charts`. Select `Llama Stack Playground` > `Create`.
+1. At this point you know the drill! Go to Opneshift console, expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Crease Helm Release`.
 
-    ![llama-stack-playground-helmchart.png](./images/llama-stack-playground-helmchart.png)
+    ![llama-stack-playground-helm-release.png](./images/llama-stack-playground-helm-release.png)
+
+2. Select `GenAIOps Helm Charts` from the Chart Repositories list and choose `Llama Stack Playground` and click `Create`.
+
+    ![llama-stack-playground-helm.png](./images/llama-stack-playground-helm.png)
 
 2. You do not need to change any value here. Just hit `Create` and wait to be up and running. 
 
-    ![llama-satck-playground-ocp.png](./images/llama-stack-playground-ocp.png)
+    ![llama-stack-playground-ocp.png](./images/llama-stack-playground-ocp.png)
 
     Then you can click the little arrow on the side of the circle/icon and access to the playground.
 
@@ -80,7 +84,7 @@ Let’s deploy the Playground to verify the integration between Llama Stack and 
 
     ![llama-stack-playground-summary.png](./images/llama-stack-playground-summary.png)
 
-You have a few more options than in previous exercises. Alongside `Temperature`, you’ll also see `Top P` and `Repetition Penalty`. Try them out on the summarize task and observe how they change the output. 
+You have a few more options than in previous exercises. Alongside `Temperature`, you’ll also see `Top P` and `Repetition Penalty`. Try them out on the summarize task and observe how they change the output. (If you are not sure what they are, just ask the model :))
 
 What values work well and what do they do? 🧠 🤓
 

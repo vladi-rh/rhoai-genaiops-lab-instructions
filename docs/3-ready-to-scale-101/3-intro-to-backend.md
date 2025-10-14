@@ -12,27 +12,35 @@
 
     As we discussed, backend will be the one talking to Llama Stack, therefore we need to make sure we provide the correct Llama Stack connection details:
 
-    - LLAMA_STACK_URL: `http://llama-stack-service:8321`
+    We also need to provide your chosen System Prompt. Because as we did on the Notebooks, we need to include the prompt while calling Llama Stack endpoint.
 
-4. We also need to provide your chosen System Prompt. Because as we did on the Notebooks, we need to include the prompt while calling Llama Stack endpoint.
-    Add your system prompt here, and mind the indentation please 🙏
+    Copy the below YAML snippet, add your own system prompt, and mind the indentation please 🙏
+
+    ```yaml
+    LLAMA_STACK_URL: 'http://llama-stack-service:8321'
+    summarize:
+      enabled: true
+      model: llama32
+      prompt: |               
+        Summarize this text.  # 👈 update this line with your own prompt
+    ```
 
     ![canopy-be-values.png](./images/canopy-be-values.png)
  
     ..leave the rest default and hit `Create`.
 
-5. Verify that it is running on the OpenShift Console.
+4. Verify that it is running on the OpenShift Console.
    
    ![canopy-be-ocp.png](./images/canopy-be-ocp.png)
 
 
 ## Update Canopy Frontend
 
-1. Now it is time to make Canopy UI to talk with backend, instead of directly sending requests to LLM. In order to do that, we need to update some values in our helm chart. In the `Topology` view, find `canopy-ui` and click the three dots underneath > `Upgrade`
+1. Now it is time to make Canopy UI to talk with backend, instead of directly sending requests to LLM. In order to do that, we need to update some values in our helm chart. In the `Workloads` >  `Topology` view, find `canopy-ui` and click the three dots underneath > `Upgrade`
 
     ![update-canopy-ui.png](./images/update-canopy-ui.png)
 
-3. In the values, add below value as `BACKEND_ENDPOINT`.
+3. In the values, add the below backend endpoint value for `BACKEND_ENDPOINT`.
    
     ```bash
     http://canopy-backend:8000
@@ -54,6 +62,10 @@
     ![update-canopy-ui-4.png](./images/update-canopy-ui-4.png)
 
 6. Ask it to summarize a text again!
+
+    ```
+    Tea preparation involves the controlled extraction of bioactive compounds from processed Camellia sinensis leaves. Begin by heating water to near 100°C to optimize solubility. Introduce a tea bag to a ceramic vessel, then infuse with hot water to initiate steeping—typically 3–5 minutes to allow for the diffusion of polyphenols and caffeine. Upon removal of the bag, optional additives like sucrose or lipid-based emulsions may be introduced to alter flavor profiles. The infusion is then ready for consumption.
+    ```
    
    ![canopy-ui-llamastack.png](./images/canopy-ui-llamastack.png)
 

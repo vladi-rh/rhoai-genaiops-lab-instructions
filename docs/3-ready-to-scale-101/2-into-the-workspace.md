@@ -1,6 +1,6 @@
 # 📘 Interacting with Llama Stack via Workbench
 
-Now that we’ve deployed the Llama Stack and verified it’s up and running, it’s time to get hands-on.
+Now that we’ve deployed the Llama Stack and verified it’s up and running, it’s time to get more hands-on.
 
 In this section, we’ll launch a Workbench on Red Hat OpenShift AI to spin up a Code Server environment. This gives us a browser-based IDE where we can run Python notebooks and start interacting with the Llama Stack programmatically.
 
@@ -12,7 +12,7 @@ You’ll use this environment to:
 
 By the end of this section, you'll have a better grasp of how to integrate Llama Stack into your own workflows and applications — and set the stage for more advanced use cases.
 
-1. Login to [OpenShift AI](https://rhods-dashboard-redhat-ods-applications.<CLUSTER_DOMAIN>/). You’ll see `<USER_NAME>-canopy` project also there. 
+1. Login to [OpenShift AI](https://rhods-dashboard-redhat-ods-applications.<CLUSTER_DOMAIN>/). You’ll see your `<USER_NAME>-canopy` project there too!
 
    ![openshift-ai.png](./images/openshift-ai.png)
 
@@ -26,7 +26,7 @@ By the end of this section, you'll have a better grasp of how to integrate Llama
 
     **Notebook Image:** 
 
-    - Image selection: `Code Server | Data Science | CPU | Python 3.12`
+    - Image selection: `Code Server | Data Science | CPU | Python 3.12` (at the end of the list😌)
   
     **Deployment size**
     - Container size: `Small`
@@ -42,7 +42,7 @@ By the end of this section, you'll have a better grasp of how to integrate Llama
 
     And finally, hit `Create workbench`.
 
-When it is in running state, Open it and use your credentials to access it.
+When it is in running state, open it by clicking its name and use your credentials to access it.
 
    ![open-workbench.png](./images/open-workbench.png)
 
@@ -56,15 +56,15 @@ When it is in running state, Open it and use your credentials to access it.
    git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy.git
    ```
 
-6. Open up the notebook called `3-ready-to-scale-101/1-intro-llama-stack.ipynb` and follow the instructions. When you run the first code cell, it will ask you to choose a kernel. Select the first option. That means it will run the code in this workbench locally.
+6. Open up the notebook called `3-ready-to-scale-101/1-intro-llama-stack.ipynb` and follow the instructions. When you run the first code cell, it will ask you to choose a kernel. Select the first option. That means it will run the code within this workbench locally.
 
    ![choose-python-env.png](./images/choose-python-env.png)
 
-   Then it will ask you to choose which python environment to use and go with the `Recommended` one.
+   Then it will ask you to choose which Python environment to use. Go with the `Recommended` one.
 
    ![choose-python-env2.png](./images/choose-python-env2.png)
 
-   And now, feel free to experiment!
+   And now, feel free to experiment! Read and run the cells in the notebook! When you are done, come back here:)
 
    ![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjM0ZzFhNjRtemJ1NHNtOTkxYm52b3h3c3pnZ2VvdXBtNjBiZjZzcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/i68Balzk8Fewg/giphy.gif)
 
