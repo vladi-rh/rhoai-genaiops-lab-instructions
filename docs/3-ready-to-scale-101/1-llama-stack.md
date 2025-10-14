@@ -20,11 +20,15 @@ In short: Llama Stack helps us move from *experimentation* to *production readin
 
 ## Deploy Llama Stack
 
-1. Let's quickly deploy it to our experimentation environment the same way we deployed Canopy UI. Go to OpenShift Console, click `+Add` and select `Helm Charts`. You'll see `GenAIOps Helm Charts`. Select `Llama Stack` > `Create`.
+1. Let's quickly deploy it to our experimentation environment the same way we deployed Canopy UI. In Opneshift console, again expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Crease Helm Release`. 
+
+    ![llama-stack-helm-release.png](./images/llama-stack-helm-release.png)
+
+2. Select `GenAIOps Helm Charts` from the Chart Repositories list and choose `Llama Stack Operator Instance`
 
     ![llama-stack-helmchart.png](./images/llama-stack-helmchart.png)
 
-2. We need to provide our LLM endpoint to Llama Stack, the same way we did to Canopy frontend. The helm chart already comes with good default values. Check if the below values are like below:
+3. We need to provide our LLM endpoint to Llama Stack, the same way we did to Canopy frontend. The helm chart already comes with good default values. Check if the below values are like below:
 
     - Model Name: `llama32`
     - Model URL: `http://llama-32-predictor.ai501.svc.cluster.local:8080/v1`
