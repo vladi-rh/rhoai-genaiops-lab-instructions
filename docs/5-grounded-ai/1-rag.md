@@ -16,25 +16,22 @@ For Canopy at RDU, RAG means students can ask questions about course materials, 
 Llama Stack provides some out of the box capabilities for RAG. Let's quickly implement a simple RAG solution to see how it can improve Canopy. 
 
 1. First, let's enable RAG capability on `<USER_NAME>-canopy` environment to experiment.
-    From the OpenShift Developer View, navigate to the **Helm** tab in the left panel to access your deployed charts.
+    From the OpenShift console, navigate to the Helm > Released and click the three little dots next to `llama-stack-operator-instance`
 
-    ![LLS RAG Architecture Diagram](images/rag16.png ':size=20%')
+    ![llama-stack-upgrade-1.png](images/llama-stack-upgrade-1.png)
 
-2. Locate and click on the `llama-stack-operator-instance` Helm chart to open its configuration interface:
-    ![LLS RAG Architecture Diagram](images/rag14.png ':size=90%')
+2. Switch to the YAML view and simply check the "enabled" checkbox under the RAG configuration to activate these capabilities.
 
-    ..and simply check the "enabled" checkbox under the RAG configuration to activate these capabilities.
-
-    ![LLS RAG Architecture Diagram](images/rag15.png ':size=40%')
+    ![llama-stack-upgrade-2.png](images/llama-stack-upgrade-2.png)
 
     ..and click `Upgrade`.
 
 3. Before we jump into trying out RAG, let's get a better understanding of how **embeddings** work.  
 
-    Go back to your workbench and open up `1-embeddings.ipynb` and get the feeling of it! 
+    Go back to your workbench and open up `canopy/5-rag/1-embeddings.ipynb` and get the feeling of it! 
 
     After you have finished with the embeddings you are now ready to try a RAG workflow.  
-    Continue to `2-intro-to-RAG.ipynb` to get your hands on the RAG.
+    Continue to `canopy/5-rag/2-intro-to-RAG.ipynb` to get your hands on the RAG.
 
     When you finish, come back so we can continue with making it prod ready and more automated!
 

@@ -1,6 +1,6 @@
 # 🌳 Automating RAG with KFP Pipelines
 
-Your document intelligence RAG system works brilliantly in notebooks, but what happens when you need to process hundreds of research papers for your educational platform? 
+Your document intelligence RAG system works in notebooks, but what happens when you need to process many documents? 
 Manual execution doesn't scale, and RDU needs reliable, always-available intelligent document processing.
 
 ## 🔍 Introducing (Again) KFP Pipelines
@@ -14,7 +14,7 @@ We are specifically looking to automate the top part, how new documents go into 
 
 ![Pipeline Architecture](images/rag4.png)
 
-## 🎯 Running Your Production Pipeline
+## 🎯 Running the Document Ingestion Pipeline
 
 Time to deploy your document intelligence RAG system in production!
 

@@ -85,6 +85,7 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
     ```yaml
     chart_path: charts/canopy-evals-pipeline
     USER_NAME: <USER_NAME>
+    eval_repo: https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git
     kfp:
       llsUrl: http://llama-stack-service.<USER_NAME>-test.svc.cluster.local:8321
       backendUrl: http://canopy-backend.<USER_NAME>-test.svc.cluster.local:8000
@@ -138,40 +139,18 @@ You have now added evals pipelines to your backend and eval repos, so whenever y
 
 In practice we would also run the tests whenever we build a new backend, but since we are using pre-built backend images we are skipping that for now.
 
-## Try updating your evaluations
+## Try updating your prompt and run evaluations
 
 Let's go and add some more useful tests to trigger the pipeline 🧪
 
-1. Go to your workbench and enter the `canopy-evals/Summary` folder.  
-    In there you can find all the tests related to our Summary usecase, specifically inside the file `summary_tests.yaml` which should look something like this:
-    ```yaml
-    name: summary_tests
-    description: Tests for the summary prompts of the Llama 3.2 3B model.
-    endpoint: /summarize
-    scoring_params:
-        "llm-as-judge::base":
-            "judge_model": llama32
-            "prompt_template": judge_prompt.txt
-            "type": "llm_as_judge"
-            "judge_score_regexes": ["Answer: (A|B|C|D|E)"]
-        "basic::subset_of": null
-    tests:
-    - prompt: "Llama 3.2 is a state-of-the-art language model that excels in various natural language processing tasks, including summarization, translation, and question answering."
-        expected_result: "Llama 3.2 is a top-tier language model for NLP tasks."
-    - dataset: "huggingface:small-canopy-qa"
-    ```
+1. Go to your workbench and enter the `canopy-be/chart/values-test.yaml` file.  
+    In there you'll find your system prompt for test environment. Update your prompt as you see fit.
 
-    Add a couple more tests, here is one example to get you started:
-    ```yaml
-      - prompt: "Artificial intelligence and machine learning have revolutionized numerous industries in recent years. From healthcare diagnostics that can detect diseases earlier than human doctors, to autonomous vehicles that promise safer transportation, to recommendation systems that personalize our digital experiences, AI technologies are becoming increasingly sophisticated. However, these advances also bring challenges including ethical concerns about bias in algorithms, job displacement due to automation, and the need for robust data privacy protections."
-        expected_result: "AI and ML have transformed industries through healthcare diagnostics, autonomous vehicles, and recommendation systems, but also raise concerns about bias, job displacement, and privacy."
-    ```
-
-2. After you have finished adding your new tests, commit them to git, watch the pipeline run, and see how the results turn out:
+2. After you have finished updating it, commit it to git, watch the pipeline run, and see how the results turn out:
     ```bash
-    cd /opt/app-root/src/canopy-evals
+    cd /opt/app-root/src/canopy-be
     git add .
-    git commit -m "📖 New Evals 📖"
+    git commit -m "🍋 triggering the evals 🍋"
     git push
     ```
 3. Let's go back to the OpenShift console pipeline view to see if the pipeline started properly.  
@@ -179,3 +158,7 @@ Let's go and add some more useful tests to trigger the pipeline 🧪
     ![pipeline-started](images/pipeline-started.png)
 
 4. Whenever the pipeline is ran, it produces and saves the results in a MinIO bucket called `test-results`. Go there and see how well your tests performed: `https://minio-ui-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/browser/test-results`
+
+5. Alternatively, you can see the results in your Prompt Tracker application. It should be attached in the related git commit.
+   
+    ![evals-results-prompt-tracker.png](./images/evals-results-prompt-tracker.png)
