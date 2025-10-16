@@ -5,23 +5,26 @@ To do this, we can create a Tekton pipeline with a git hook to the relevant repo
 
 ## Update Llama Stack in test
 
-Just like we enabled evaluations for Llama Stack in our `experimentation` envirionment, we need to enable it for our `test` environment.
+Just like we enabled evaluations for Llama Stack in our `experimentation` environment, we need to enable it for our `test` environment.
 
 1. Open up your workbench in the `<USER_NAME>-canopy` namespace.
 
 2. Inside of `genaiops-gitops/canopy/test/llama-stack/config.yaml` add this line:
+
     ```yaml
     eval:
-        enabled: true
+      enabled: true
     ```
 
     Your final `config.yaml` should look something like this:
 
-    ```yaml
+    <div class="highlight" style="background: #f7f7f7; overflow-x: auto; padding: 8px;">
+    <pre><code class="language-yaml"> 
     chart_path: charts/llama-stack-operator-instance
     eval:
-        enabled: true
-    ```
+      enabled: true
+    </code></pre>
+    </div>
 
 3. Let's push the changes for Argo CD to pick it up.
 
@@ -38,7 +41,8 @@ We also need to set up our pipeline server for our `toolings` namespace, but thi
 
 1. Like before, open your workbench in the `<USER_NAME>-canopy` namespace.
 
-2. Let's add a dspa (which stands for DataSciencePipelineApplication, and is our pipeline server) folder and config.yaml under `genaiops-gitops/canopy/toolings`, you can do that by running these commands:
+2. Let's add a dspa (which stands for DataSciencePipelineApplication, and is our pipeline server) folder and `config.yaml` under `genaiops-gitops/canopy/toolings`, you can do that by running these commands:
+
     ```bash
     mkdir /opt/app-root/src/genaiops-gitops/toolings/dspa
     touch /opt/app-root/src/genaiops-gitops/toolings/dspa/config.yaml
@@ -79,11 +83,12 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
 2. Open up the `evaluation-pipeline/config.yaml` file and paste the below yaml to config.yaml.
 
     ```yaml
-    repo_url: https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git
-    chart_path: test-pipeline/canopy-tekton-pipeline
+    chart_path: charts/canopy-evals-pipeline
+    USER_NAME: <USER_NAME>
     kfp:
       llsUrl: http://llama-stack-service.<USER_NAME>-test.svc.cluster.local:8321
       backendUrl: http://canopy-backend.<USER_NAME>-test.svc.cluster.local:8000
+
     ```
 
     As you may have noticed, we are pointing our base (Llama Stack) url and backend url to our test namespace, as that's what we want to run our tests on.
@@ -97,7 +102,7 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
     git push
     ```
 
-4. Now let's look at it by going to the OpenShift Dashboard -> Pipelines -> user<USER_NAME>-toolings -> `canopy-test-pipeline`. You can see that all it does is a simple git clone followed by starting the kubeflow pipeline.  
+4. Now let's look at it by going to the OpenShift Dashboard -> Pipelines -> <USER_NAME>-toolings -> `canopy-evals-pipeline`. You can see that all it does is a simple git clone followed by starting the kubeflow pipeline.  
 
     ![tekton-pipeline](images/tekton-pipeline.png)
 

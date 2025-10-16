@@ -1,5 +1,7 @@
 # Canopy Backend
 
+We'll separate out the LLM business logic from the frontend into its own backend so that we can iterate on them independently.
+
 1. We'll deploy the backend to our development environment the same way we deployed the other components. Go back to OpenShift Console > `Helm` > `Releases` in `<USER_NAME>-canopy project`.
    
    ![canopy-be-helm-releases.png](./images/canopy-be-helm-releases.png)
