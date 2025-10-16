@@ -88,7 +88,6 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
     kfp:
       llsUrl: http://llama-stack-service.<USER_NAME>-test.svc.cluster.local:8321
       backendUrl: http://canopy-backend.<USER_NAME>-test.svc.cluster.local:8000
-
     ```
 
     As you may have noticed, we are pointing our base (Llama Stack) url and backend url to our test namespace, as that's what we want to run our tests on.
@@ -113,33 +112,35 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
     To get some use of our Tekton pipeline, let's make it trigger automatically from our git repos.  
     Start by going to Gitea.
 
-6. Inside of Gitea, navigate to your `canopy-evals` repository.
+6. Inside of Gitea, navigate to your `canopy-evals` repository. Go to Settings.
 
-7. Go to Settings -> Webhooks
+    ![gitea-evals-settings.png](./images/gitea-evals-settings.png)
 
-8. Click `Add` and choose Gitea
+7. Click `Webhooks` > `Add` and choose Gitea.
 
-9. Enter `http://el-canopy-test-event-listener.<USER_NAME>-toolings.svc.cluster.local:8080` -> click Add
+    ![gitea-evals-webhook.png](./images/gitea-evals-webhook.png)
+
+8. Enter `http://el-canopy-evals-event-listener.<USER_NAME>-toolings.svc.cluster.local:8080` -> click `Add Webhook`
 
     ![githook](images/githook.png)
 
-10. Now we can test if this worked by clicking on `Test webhook connection`.  
-    You can go to the pipeline view in OpenShift to see if the pipeline started properly.  
+9. Now do the same for `canopy-backend`. Go to `canopy-be` repository > Settings > Webhook > Add > Gitea and add the same webhook:
 
-    ![pipeline-started](images/pipeline-started.png)
+    ```bash
+    http://el-canopy-evals-event-listener.<USER_NAME>-toolings.svc.cluster.local:8080
+    ```
 
-11. Now do the same for `canopy-backend`.   
-    Here we also have a filter in our Trigger so that only changes to the Values.yaml file (in other words the prompts) will trigger the pipeline. If you are interested, you can take a look in `canopy-eval/test_pipeline/canopy-tekton-pipeline/templates/triggers/triggers.yaml`.
+    Here we have a filter in our Trigger so that only changes to the `values-test.yaml` file (in other words the prompts) will trigger the pipeline. If you are interested, you can take a look the definition [here](https://github.com/rhoai-genaiops/genaiops-helmcharts/blob/main/charts/canopy-evals-pipeline/templates/triggers/triggers.yaml#L54).
 
-12. Whenever the pipeline is ran it produces and saves the results in a MinIO bucket called `test-results`. Go there and see how well your tests performed: `https://minio-ui-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/browser/test-results` 
 
 Congratulations! 🎉  
-You have now added testing pipelines to your backend and eval repos, so whenever you update your evaluations or prompts, you will run through the tests.  
+You have now added evals pipelines to your backend and eval repos, so whenever you update your evaluations or prompts, you will run through the tests.
+
 In practice we would also run the tests whenever we build a new backend, but since we are using pre-built backend images we are skipping that for now.
 
 ## Try updating your evaluations
 
-So far, we have only ran the pipeline with predefined tests, let's go and add some useful tests on our own 🧪
+Let's go and add some more useful tests to trigger the pipeline 🧪
 
 1. Go to your workbench and enter the `canopy-evals/Summary` folder.  
     In there you can find all the tests related to our Summary usecase, specifically inside the file `summary_tests.yaml` which should look something like this:
@@ -159,9 +160,10 @@ So far, we have only ran the pipeline with predefined tests, let's go and add so
         expected_result: "Llama 3.2 is a top-tier language model for NLP tasks."
     - dataset: "huggingface:small-canopy-qa"
     ```
+
     Add a couple more tests, here is one example to get you started:
     ```yaml
-     - prompt: "Artificial intelligence and machine learning have revolutionized numerous industries in recent years. From healthcare diagnostics that can detect diseases earlier than human doctors, to autonomous vehicles that promise safer transportation, to recommendation systems that personalize our digital experiences, AI technologies are becoming increasingly sophisticated. However, these advances also bring challenges including ethical concerns about bias in algorithms, job displacement due to automation, and the need for robust data privacy protections."
+      - prompt: "Artificial intelligence and machine learning have revolutionized numerous industries in recent years. From healthcare diagnostics that can detect diseases earlier than human doctors, to autonomous vehicles that promise safer transportation, to recommendation systems that personalize our digital experiences, AI technologies are becoming increasingly sophisticated. However, these advances also bring challenges including ethical concerns about bias in algorithms, job displacement due to automation, and the need for robust data privacy protections."
         expected_result: "AI and ML have transformed industries through healthcare diagnostics, autonomous vehicles, and recommendation systems, but also raise concerns about bias, job displacement, and privacy."
     ```
 
@@ -172,3 +174,8 @@ So far, we have only ran the pipeline with predefined tests, let's go and add so
     git commit -m "📖 New Evals 📖"
     git push
     ```
+3. Let's go back to the OpenShift console pipeline view to see if the pipeline started properly.  
+
+    ![pipeline-started](images/pipeline-started.png)
+
+4. Whenever the pipeline is ran, it produces and saves the results in a MinIO bucket called `test-results`. Go there and see how well your tests performed: `https://minio-ui-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/browser/test-results`
