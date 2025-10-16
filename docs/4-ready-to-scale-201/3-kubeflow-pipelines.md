@@ -56,8 +56,8 @@ The evaluation pipeline is inside of a repository called `canopy-evals`, where b
     For example:
 
     ```yaml
-      - prompt: "During finals week at the university, the library hums like a server room, the cafe line behaves like FIFO, sleepy seniors get priority scheduling at the espresso bar, and dorms scale up highlighters and instant noodles. By sunrise, half the campus crashes from too many open tabs, but study groups keep things resilient with shared notes and pep talks."
-        expected_result: "Fun university metaphor: FIFO queues, priority coffee scheduling, finals-driven resource scaling, and study groups adding resilience."
+      - prompt: "Artificial intelligence and machine learning have revolutionized numerous industries in recent years. From healthcare diagnostics that can detect diseases earlier than human doctors, to autonomous vehicles that promise safer transportation, to recommendation systems that personalize our digital experiences, AI technologies are becoming increasingly sophisticated. However, these advances also bring challenges including ethical concerns about bias in algorithms, job displacement due to automation, and the need for robust data privacy protections."
+        expected_result: "AI and ML have transformed industries through healthcare diagnostics, autonomous vehicles, and recommendation systems, but also raise concerns about bias, job displacement, and privacy."
     ```
 
 

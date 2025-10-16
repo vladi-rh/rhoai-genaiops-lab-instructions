@@ -20,6 +20,4 @@ Go to your workbench and go through the notebook `canopy/5-rag/3-docling.ipynb`.
 
 ## 🎯 Next Steps: Setting Up a Vector Database
 
-Now that you get your hands into RAG and understand its value, it's time to make it production ready. And first, you'll need a place to store your document embeddings: that's where Vector Databases come in.
-
-Let's dive into the world of embeddings and vector databases!
+Now that you get your hands into RAG and understand its value, it's time to make it production ready. And first, you'll need a robust place to store your document embeddings: that's where (external) Vector Databases come in.
