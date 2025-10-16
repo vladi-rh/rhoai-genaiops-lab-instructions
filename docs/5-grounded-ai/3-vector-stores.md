@@ -57,7 +57,9 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
     It'll take a couple of minutes before you successfully establish a connection. Because it is waiting for Milvus database itself to be ready at the moment.
     As you can see, it's completely empty, but we'll fix that soon 🔨  
 
-6. Update your Llama Stack in Test and Prod by opening up `genaiops-gitops/canopy/test/llama-stack/config.yaml` (test) and `genaiops-gitops/canopy/prod/llama-stack/config.yaml` (prod) and update the file as below:
+6. Update your Llama Stack config in test and prod by opening up `genaiops-gitops/canopy/test/llama-stack/config.yaml` (test) and `genaiops-gitops/canopy/prod/llama-stack/config.yaml` (prod) and update the files as below:
+
+    FOR TEST:
 
     ```yaml
     ---
@@ -65,11 +67,25 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
     eval:
       enabled: true
     rag:                  # 👈 Add this 
-      enabled: true       # 👈 Add this 
+      enabled: true       # 👈 Add this
     ```
+
+    FOR PROD:
+
+    ```yaml
+    ---
+    chart_path: charts/llama-stack-operator-instance
+    eval:
+      enabled: true
+    rag:                        # 👈 Add this 
+      enabled: true             # 👈 Add this
+      milvus:                   # 👈 Add this
+        service: "milvus-prod"  # 👈 Add this
+    ```
+    
     This will update our Llama Stack to point to our newly deployed Milvus Vector Database, if you are curious how this looks like, you can find the `llama-stack-config` inside ConfigMaps in either your test or dev environment.
 
-7. Let's push the changes for Argo CD to make the necessary changes.
+1. Let's push the changes for Argo CD to make the necessary changes.
 
     ```bash
     cd /opt/app-root/src/genaiops-gitops
@@ -78,7 +94,7 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
     git push origin main
     ```
 
-8. Now that we have our Vector Database set up and connected to our Llama Stack, we can populate it with some data!
+2. Now that we have our Vector Database set up and connected to our Llama Stack, we can populate it with some data!
     We have two ways to do this:
     - We can either go through Llama Stack (this will look identicall to what we did in `2-intro-to-RAG.ipynb`) or
     - We can connect directly to Milvus.
