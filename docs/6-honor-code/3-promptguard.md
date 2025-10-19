@@ -1,4 +1,4 @@
-# 🔒 PromptGuard — Jailbreak Protection
+<!-- # 🔒 PromptGuard — Jailbreak Protection
 
 While LlamaGuard focuses on unsafe **topics**, **PromptGuard** is designed to prevent **jailbreak attempts** — clever ways users might try to trick or bypass the model’s safety constraints.
 
@@ -8,4 +8,4 @@ For example:
 * Using **indirect prompts** or fictional framing to elicit harmful content.
 * Embedding unsafe requests inside benign-looking text.
 
-PromptGuard is your **campus security system** for LLM behavior — making sure students can’t find a backdoor to get the model to do things it shouldn’t.
+PromptGuard is your **campus security system** for LLM behavior — making sure students can’t find a backdoor to get the model to do things it shouldn’t. -->

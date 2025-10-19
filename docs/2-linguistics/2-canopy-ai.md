@@ -2,9 +2,9 @@
 
 <div class="terminal-curl"></div>
 
-**Canopy** is an intelligent, leafy little assistant designed to support teaching and learning at **Redwood Digital University**. From summarizing texts to generating quizzes and scoring assignments — it’s your educational AI lab in action.
+**Canopy** is an intelligent, leafy little assistant designed to support teaching and learning at **Redwood Digital University**. From summarizing texts to generating quizzes and scoring assignments — it’s your educational AI buddy in action.
 
-This frontend gives you a clean, playful UI built in Streamlit, powered by your choice of LLMs. Whether hosted in OpenShift or running locally, it’s built for experimentation and enablement.
+Canopy frontend gives you a clean, playful UI built in Streamlit, powered by your choice of LLMs. Whether hosted in OpenShift or running locally, it’s built for experimentation and enablement.
 
 ## 🎯 Why This Frontend Matters for Prompt Engineering
 
@@ -12,7 +12,7 @@ Just like a good prompt shapes a great model response, **a good user interface s
 
 In GenAI applications, **how people interact with the model often matters more than which model you use**.
 
-You can have the smartest LLM in the world, but if the UI doesn’t help users guide or understand it — the value is lost.
+You can have the smartest LLM in the world, but if the UI doesn’t help users to easily interract with it — the value is lost.
 
 This first iteration of **Canopy** is built to support:
 
@@ -26,20 +26,20 @@ In future modules, this same interface will evolve to handle content creation, g
 
 ## 🚀 Getting Started with Canopy on OpenShift
 
-Follow these instructions to get your own instance of Canopy up and running in just a few minutes.
+Let's get you your own instance of Canopy up and running in just a few minutes.
 
 ### 📦 1. Deploy the Frontend to OpenShift
 
-In OpenShift, you have an experimentation environment which is called `<USER_NAME>-canopy`. You'll use this environment to iterate over Canopy, bring in new features, update the frontend when new capabilities arrive, and so on. 
+In OpenShift, you have an experimentation environment which is called `<USER_NAME>-canopy`. You'll use this environment to iterate over Canopy, bring in new features, update the frontend when new capabilities arrive, and so on.
 
-1. Go to [OpenShift Console](https://console-openshift-console.<CLUSTER_DOMAIN>) and use `Students` login. You'll find yourself in the Developer view of Openshift Console.
+1. Go to [OpenShift Console](https://console-openshift-console.<CLUSTER_DOMAIN>) and use `Students` login.
 
     User: `<USER_NAME>`  
     Password: `<PASSWORD>`
 
     ![openshift-console.png](./images/openshift-console.png)
 
-2. Click `Add`, select `<USER_NAME>-canopy` namespace from the dropdown menu on the top, and select `Helm Charts`. 
+2. Expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Crease Helm Release`. 
 
     ![add-helm.png](./images/add-helm.png)
 
@@ -49,9 +49,9 @@ In OpenShift, you have an experimentation environment which is called `<USER_NAM
 
 4. Hit `Create` and fill out the values as below:
 
-    - SYSTEM_PROMPT: Do you remember the great prompt you came up with in the previous section. Let's paste that here!
-    - MODEL_NAME: `llama32`
-    - LLM_ENDPOINT: `https://llama32-ai501.<CLUSTER_DOMAIN>`
+    - **SYSTEM_PROMPT:** Do you remember the great prompt you came up with in the previous section? Let's paste that here!
+    - **MODEL_NAME:** `llama32`
+    - **LLM_ENDPOINT:** `https://llama32-ai501.<CLUSTER_DOMAIN>`
   
     Leave the rest as it is for now.
 
@@ -59,8 +59,8 @@ In OpenShift, you have an experimentation environment which is called `<USER_NAM
 
     ✅ This will create:
 
-    - A UBI9-based Streamlit application that sends your chat requests to the LLM
-    - A secure OpenShift route for us to access the app outside of the cluster
+      - A UBI9-based Streamlit application that sends your chat requests to the LLM
+      - A secure OpenShift route for us to access the app outside of the cluster
 
 5. Once the application is successfully running, click on the arrow on the side of the circle to access the Canopy UI 🌳🌳🌳
 
@@ -83,10 +83,10 @@ In OpenShift, you have an experimentation environment which is called `<USER_NAM
 
 ✅ What you have accomplished
 
-- Deployed the Canopy frontend on OpenShift
+   - Deployed the Canopy frontend on OpenShift
 
-- Connected it to the provided LLM endpoint
+   - Connected it to the provided LLM endpoint
 
-- Used the system prompt to shape the assistant's behavior
+   - Used the system prompt to shape the assistant's behavior
 
-- Understood the relationship between prompting and summarization style
+   - Understood the relationship between prompting and summarization style

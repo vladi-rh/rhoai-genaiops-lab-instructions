@@ -28,7 +28,7 @@ But before we can trust an AI to assist learners, we need to explore how it beha
 
 ## 🧪 Hands-On: The Prompt Playground
 
-We’ve created a **Gradio-based interface** where you can experiment with different prompting strategies.  
+We’ve created a **Gradio-based app** where you can experiment with different prompting strategies.  
 Your goal is to find the **best system prompt** and configuration to **summarize** a given text.
 
 Here’s what you can configure:
@@ -41,7 +41,7 @@ Here’s what you can configure:
 | 🔢 Max Tokens    | Limits response length                      | “50 = short, 200 = detailed”   |
 
 
-And here is the text we ask you to summarize (i.e. the text you send into the User Prompt):
+And here is the text we ask you to summarize (in another word; the text you send into the User Prompt):
 
 ```
 Tea preparation involves the controlled extraction of bioactive compounds from processed Camellia sinensis leaves. Begin by heating water to near 100°C to optimize solubility. Introduce a tea bag to a ceramic vessel, then infuse with hot water to initiate steeping—typically 3–5 minutes to allow for the diffusion of polyphenols and caffeine. Upon removal of the bag, optional additives like sucrose or lipid-based emulsions may be introduced to alter flavor profiles. The infusion is then ready for consumption.

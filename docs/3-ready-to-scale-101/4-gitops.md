@@ -1,6 +1,6 @@
 # 🐙 Argo CD - GitOps Controller 
 
-GitOps is important because it provides a consistent, automated way to manage machine learning workflows and model & app deployments, ensuring that everything is versioned, traceable, and reproducible. By using Git as the single source of truth, teams can easily track changes, manage configurations, and ensure that models and applications are always deployed in the correct state.
+GitOps is important because it provides a consistent, automated way to manage development workflows and model & app deployments, ensuring that everything is versioned, traceable, and reproducible. By using Git as the single source of truth, teams can easily track changes, manage configurations, and ensure that models and applications are always deployed in the correct state.
 
 To put GitOps into action, we’ll use Argo CD as our GitOps engine.
 
@@ -46,24 +46,24 @@ Let's setup the foundation of our GitOps system and deploy all the components we
     
     ![argocd-create-application](images/argocd-create-application.png)
 
-5. After you hit create, you’ll see `token-visualizer` application is created and should start deploying in your `<USER_NAME>-toolings` namespace.
+5. After you hit create, you’ll see `token-visualizer` application is created and started deploying in your `<USER_NAME>-toolings` namespace.
 
   ![argocd-token-visualizer-1.png](./images/argocd-token-visualizer-1.png)
 
-6. If you drill down into the application you will get Argo CD’s amazing view of all of the k8s resources that were generated. These resources are defined in the Helm chart you selected.
+6. If you drill down into the application you will get Argo CD’s amazing view of all of the Openshift resources that were generated. These resources are defined in the Helm chart you selected.
 
   ![argocd-token-visualizer-2.png](./images/argocd-token-visualizer-2.png)
 
-7. You can verify the little token-visualizer application is running and behaving as expected by navigating to the url of the app.  
+7. You can verify the little token-visualizer application is running and behaving as expected by navigating to its URL.  
    Token visualizer lives in this URL: [https://token-visualizer-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/](https://token-visualizer-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/)
   
-  Alternatively, you can access to the same URL by running the following command in the terminal:
+  Alternatively, you can get the same URL by running the following command in the terminal:
 
     ```bash
     echo https://$(oc get route/token-visualizer -n <USER_NAME>-toolings --template='{{.spec.host}}')
     ```
   
-  Enter the URL of the LLM we are using and visualize how many token we've been sending and generating since start of the enablement :)
+  Enter the URL of the LLM we are using, hit Enter and visualize how many token we've been sending and generating since start of the enablement :)
 
   ```bash
   https://llama32-ai501.<CLUSTER_DOMAIN>
@@ -71,7 +71,7 @@ Let's setup the foundation of our GitOps system and deploy all the components we
 
   ![token-visualizer.png](./images/token-visualizer.png)
   
-🪄🪄 Magic! You now have a GitOps controller - Argo CD - and got it to manually deploy an application for you. Next up, we’ll make Argo CD deploy Canopy to `test` and `prod` environments 🪄🪄
+🪄🪄 Magic! You now have a GitOps controller - Argo CD - and made it to manually deploy an application for you. Next up, we’ll make Argo CD deploy Canopy🌳 into `test` and `prod` environments 🪄🪄
 
 
 ## ApplicationSets
@@ -157,5 +157,5 @@ Gitea is a lightweight, self-hosted Git server that allows teams to manage repos
 
   
 
-🪄🪄 Magic! You've now deployed an `ApplicationSet` to scaffold our tooling and projects in a repeatable and auditable way (via git!). Now, let's see how we can extend the toolings with just git push! 🪄🪄
+🪄🪄 Magic! You've now deployed an `ApplicationSet` to scaffold our tooling and projects in a repeatable and auditable way (via git!). Now, let's deploy Canopy the same way! 🪄🪄
 

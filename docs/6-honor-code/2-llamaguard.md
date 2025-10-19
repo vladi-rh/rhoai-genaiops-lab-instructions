@@ -1,4 +1,4 @@
-# 🦙 LlamaGuard — Content Safety
+<!-- # 🦙 LlamaGuard — Content Safety
 
 **LlamaGuard** is an LLM-based input/output filter that detects **unsafe content** in human-AI conversations and it focuses on identifying unsafe topics, such as:
 
@@ -16,4 +16,4 @@
 * **S12:** Sexual Content
 * **S13:** Election Interference
 
-> 🧪 **How it works:** LlamaGuard can evaluate both **user inputs** and **LLM outputs** before they reach the other side — allowing you to catch safety issues on both ends of a conversation.
+> 🧪 **How it works:** LlamaGuard can evaluate both **user inputs** and **LLM outputs** before they reach the other side — allowing you to catch safety issues on both ends of a conversation. -->

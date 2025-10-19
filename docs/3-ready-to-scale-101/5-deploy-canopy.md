@@ -1,9 +1,8 @@
 ## Deploy Canopy Test & Prod
 
-We deployed our `canopy` in experiment environment manually, but for the higher environments we need to store the definitions in Git and deploy our models via Argo CD to get all the benefits that GitOps brings. 
+We deployed our `canopy` in experiment environment manually, but for the higher environments we need to store the definitions in Git and deploy our applications via Argo CD to get all the benefits that GitOps brings. 
 
 But first, we need to set up our backend repository to handle the GenAI application logic for test and production environments.
-
 
 1. Clone the backend repository to your workbench.
 
@@ -11,7 +10,7 @@ But first, we need to set up our backend repository to handle the GenAI applicat
     cd /opt/app-root/src
     git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-be.git
   ```
-2. We will store prompts under `chart/values-test.yaml` and `chart/values-prod.yaml`. Copy the below info to both files under the `LLAMA_STACK_URL` and make sure to bring your new favourite prompt to summarize the topics along with the settings you have in Llama Stack Playground:
+2. We will store the prompts under `chart/values-test.yaml` and `chart/values-prod.yaml`. This will give us the traceability of prompt changes. Copy the below info to both files under the `LLAMA_STACK_URL` and make sure to bring your new favourite prompt to summarize the topics along with the settings you find the best in Llama Stack Playground:
 
   ```yaml
   
@@ -34,9 +33,9 @@ But first, we need to set up our backend repository to handle the GenAI applicat
     git push
     ```
 
-Now let's set this up using ArgoCD!
+Now let's deploy backend using ArgoCD!
 
-### Set Up with Argo CD
+### Set Up Canopy with Argo CD
 
 1. Just like we did with our toolings, we need to generate `ApplicationSet` definition for our model deployment. We will have two separated `ApplicationSet` definition; one is for `test` and one is for `prod` environment. For the enablement simplicity reasons, we keep them in the same repository. However in the real life, you may also like to take prod definitions into another repository where you only make changes via Pull Requests with a protected `main` branch. We keep `ApplicationSet` definition separate so that it'll be easy to take the prod definition into another place later on :)
 
@@ -49,9 +48,9 @@ Now let's set this up using ArgoCD!
     sed -i -e 's/USER_NAME/<USER_NAME>/g' /opt/app-root/src/genaiops-gitops/appset-prod.yaml
   ```
 
-2. Let's add `canopy-ui` definition. We created two files since we have two different environments; `test` and `prod`. So we have two files to update. Update both `canopy/test/canopy-ui/config.yaml` and `canopy/prod/canopy-ui/config.yaml` files as follow. 
+2. Let's add `canopy-ui` definition. We created two files since we have two different environments; `test` and `prod`. So we have two files to update. Under `genaiops-gitops`, update both `canopy/test/canopy-ui/config.yaml` and `canopy/prod/canopy-ui/config.yaml` files as follow. 
 
-    This will take UI deployment helm-chart and apply the additional configuration such as image version.  
+    This will take UI deployment helm-chart and apply the additional configuration such as image version. Basically all the things we did manually in the experimentation environment.
 
     ```yaml
     repo_url: https://github.com/rhoai-genaiops/canopy-ui.git
@@ -61,9 +60,9 @@ Now let's set this up using ArgoCD!
       name: "canopy-ui"
       tag: "0.3"
     ```
-3. `canopy-be` will have a different `config.yaml` as it is a different values files. And `test` and `prod` `canopy-be/config.yaml` will be different because they have different values:
+3. `canopy-be` will have a different `config.yaml` as it has two different values files.
 
-    TEST:
+    TEST (`genaiops-gitops/canopy/test/canopy-be/config.yaml`):
 
     ```yaml
     repo_url: https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-be
@@ -71,7 +70,7 @@ Now let's set this up using ArgoCD!
     values_file: values-test.yaml # ‼️‼️ this is different for PROD
     ```
 
-    PROD:
+    PROD (`genaiops-gitops/canopy/prod/canopy-be/config.yaml`):
 
     ```yaml
     repo_url: https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-be
@@ -79,7 +78,7 @@ Now let's set this up using ArgoCD!
     values_file: values-prod.yaml # ‼️‼️
     ```
 
-4. Lastly, let's setup Llama Stack to deploy via Argo CD. We just need Llama Stack Server here, Playground is something we only going to use in the experimentation phase. Update both `test/llama-stack/config.yaml` and `prod/llama-stack/config.yaml` as below:
+4. Lastly, let's setup Llama Stack to deploy via Argo CD. We just need Llama Stack Server here, Playground is something we only use in the experimentation phase. Update both `test/llama-stack/config.yaml` and `prod/llama-stack/config.yaml` as below:
 
     ```yaml
     chart_path: llama-stack-operator-instance
@@ -105,9 +104,9 @@ Now let's set this up using ArgoCD!
 
 7. You should see the two canopy applications, one for `test` and one for `prod` each deployed in Argo CD. 
 
-    TODO: add screenshots
+    ![canopy-gitops.png](./images/canopy-gitops.png)
 
-5. You can also go to OpenShift Console, check `<USER_NAME>-test` namespace to see if the app is deployed.
+8. You can also go to OpenShift Console, check `<USER_NAME>-test` namespace to see if Canopy is deployed.
 
-    TODO: add screenshots
+    ![canopy-test-ns.png](./images/canopy-test-ns.png)
 

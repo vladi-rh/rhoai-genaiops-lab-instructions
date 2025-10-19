@@ -5,23 +5,26 @@ To do this, we can create a Tekton pipeline with a git hook to the relevant repo
 
 ## Update Llama Stack in test
 
-Just like we enabled evaluations for Llama Stack in our `experimentation` envirionment, we need to enable it for our `test` environment.
+Just like we enabled evaluations for Llama Stack in our `experimentation` environment, we need to enable it for our `test` environment.
 
 1. Open up your workbench in the `<USER_NAME>-canopy` namespace.
 
 2. Inside of `genaiops-gitops/canopy/test/llama-stack/config.yaml` add this line:
+
     ```yaml
     eval:
-        enabled: true
+      enabled: true
     ```
 
     Your final `config.yaml` should look something like this:
 
-    ```yaml
+    <div class="highlight" style="background: #f7f7f7; overflow-x: auto; padding: 8px;">
+    <pre><code class="language-yaml"> 
     chart_path: charts/llama-stack-operator-instance
     eval:
-        enabled: true
-    ```
+      enabled: true
+    </code></pre>
+    </div>
 
 3. Let's push the changes for Argo CD to pick it up.
 
@@ -38,7 +41,8 @@ We also need to set up our pipeline server for our `toolings` namespace, but thi
 
 1. Like before, open your workbench in the `<USER_NAME>-canopy` namespace.
 
-2. Let's add a dspa (which stands for DataSciencePipelineApplication, and is our pipeline server) folder and config.yaml under `genaiops-gitops/canopy/toolings`, you can do that by running these commands:
+2. Let's add a dspa (which stands for DataSciencePipelineApplication, and is our pipeline server) folder and `config.yaml` under `genaiops-gitops/canopy/toolings`, you can do that by running these commands:
+
     ```bash
     mkdir /opt/app-root/src/genaiops-gitops/toolings/dspa
     touch /opt/app-root/src/genaiops-gitops/toolings/dspa/config.yaml
@@ -79,8 +83,9 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
 2. Open up the `evaluation-pipeline/config.yaml` file and paste the below yaml to config.yaml.
 
     ```yaml
-    repo_url: https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git
-    chart_path: test-pipeline/canopy-tekton-pipeline
+    chart_path: charts/canopy-evals-pipeline
+    USER_NAME: <USER_NAME>
+    CLUSTER_DOMAIN: <CLUSTER_DOMAIN>
     kfp:
       llsUrl: http://llama-stack-service.<USER_NAME>-test.svc.cluster.local:8321
       backendUrl: http://canopy-backend.<USER_NAME>-test.svc.cluster.local:8000
@@ -97,7 +102,7 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
     git push
     ```
 
-4. Now let's look at it by going to the OpenShift Dashboard -> Pipelines -> user<USER_NAME>-toolings -> `canopy-test-pipeline`. You can see that all it does is a simple git clone followed by starting the kubeflow pipeline.  
+4. Now let's look at it by going to the OpenShift Dashboard -> Pipelines -> <USER_NAME>-toolings -> `canopy-evals-pipeline`. You can see that all it does is a simple git clone followed by starting the kubeflow pipeline.  
 
     ![tekton-pipeline](images/tekton-pipeline.png)
 
@@ -108,62 +113,52 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
     To get some use of our Tekton pipeline, let's make it trigger automatically from our git repos.  
     Start by going to Gitea.
 
-6. Inside of Gitea, navigate to your `canopy-evals` repository.
+6. Inside of Gitea, navigate to your `canopy-evals` repository. Go to Settings.
 
-7. Go to Settings -> Webhooks
+    ![gitea-evals-settings.png](./images/gitea-evals-settings.png)
 
-8. Click `Add` and choose Gitea
+7. Click `Webhooks` > `Add` and choose Gitea.
 
-9. Enter `http://el-canopy-test-event-listener.<USER_NAME>-toolings.svc.cluster.local:8080` -> click Add
+    ![gitea-evals-webhook.png](./images/gitea-evals-webhook.png)
+
+8. Enter `http://el-canopy-evals-event-listener.<USER_NAME>-toolings.svc.cluster.local:8080` -> click `Add Webhook`
 
     ![githook](images/githook.png)
 
-10. Now we can test if this worked by clicking on `Test webhook connection`.  
-    You can go to the pipeline view in OpenShift to see if the pipeline started properly.  
+9. Now do the same for `canopy-backend`. Go to `canopy-be` repository > Settings > Webhook > Add > Gitea and add the same webhook:
+
+    ```bash
+    http://el-canopy-evals-event-listener.<USER_NAME>-toolings.svc.cluster.local:8080
+    ```
+
+    Here we have a filter in our Trigger so that only changes to the `values-test.yaml` file (in other words the prompts) will trigger the pipeline. If you are interested, you can take a look the definition [here](https://github.com/rhoai-genaiops/genaiops-helmcharts/blob/main/charts/canopy-evals-pipeline/templates/triggers/triggers.yaml#L54).
+
+
+Congratulations! 🎉  
+You have now added evals pipelines to your backend and eval repos, so whenever you update your evaluations or prompts, you will run through the tests.
+
+In practice we would also run the tests whenever we build a new backend, but since we are using pre-built backend images we are skipping that for now.
+
+## Try updating your prompt and run evaluations
+
+Let's go and add some more useful tests to trigger the pipeline 🧪
+
+1. Go to your workbench and enter the `canopy-be/chart/values-test.yaml` file.  
+    In there you'll find your system prompt for test environment. Update your prompt as you see fit.
+
+2. After you have finished updating it, commit it to git, watch the pipeline run, and see how the results turn out:
+    ```bash
+    cd /opt/app-root/src/canopy-be
+    git add .
+    git commit -m "🍋 triggering the evals 🍋"
+    git push
+    ```
+3. Let's go back to the OpenShift console pipeline view to see if the pipeline started properly.  
 
     ![pipeline-started](images/pipeline-started.png)
 
-11. Now do the same for `canopy-backend`.   
-    Here we also have a filter in our Trigger so that only changes to the Values.yaml file (in other words the prompts) will trigger the pipeline. If you are interested, you can take a look in `canopy-eval/test_pipeline/canopy-tekton-pipeline/templates/triggers/triggers.yaml`.
+4. Whenever the pipeline is ran, it produces and saves the results in a MinIO bucket called `test-results`. Go there and see how well your tests performed: `https://minio-ui-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/browser/test-results`
 
-12. Whenever the pipeline is ran it produces and saves the results in a MinIO bucket called `test-results`. Go there and see how well your tests performed: `https://minio-ui-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/browser/test-results` 
-
-Congratulations! 🎉  
-You have now added testing pipelines to your backend and eval repos, so whenever you update your evaluations or prompts, you will run through the tests.  
-In practice we would also run the tests whenever we build a new backend, but since we are using pre-built backend images we are skipping that for now.
-
-## Try updating your evaluations
-
-So far, we have only ran the pipeline with predefined tests, let's go and add some useful tests on our own 🧪
-
-1. Go to your workbench and enter the `canopy-evals/Summary` folder.  
-    In there you can find all the tests related to our Summary usecase, specifically inside the file `summary_tests.yaml` which should look something like this:
-    ```yaml
-    name: summary_tests
-    description: Tests for the summary prompts of the Llama 3.2 3B model.
-    endpoint: /summarize
-    scoring_params:
-        "llm-as-judge::base":
-            "judge_model": llama32
-            "prompt_template": judge_prompt.txt
-            "type": "llm_as_judge"
-            "judge_score_regexes": ["Answer: (A|B|C|D|E)"]
-        "basic::subset_of": null
-    tests:
-    - prompt: "Llama 3.2 is a state-of-the-art language model that excels in various natural language processing tasks, including summarization, translation, and question answering."
-        expected_result: "Llama 3.2 is a top-tier language model for NLP tasks."
-    - dataset: "huggingface:small-canopy-qa"
-    ```
-    Add a couple more tests, here is one example to get you started:
-    ```yaml
-     - prompt: "Artificial intelligence and machine learning have revolutionized numerous industries in recent years. From healthcare diagnostics that can detect diseases earlier than human doctors, to autonomous vehicles that promise safer transportation, to recommendation systems that personalize our digital experiences, AI technologies are becoming increasingly sophisticated. However, these advances also bring challenges including ethical concerns about bias in algorithms, job displacement due to automation, and the need for robust data privacy protections."
-        expected_result: "AI and ML have transformed industries through healthcare diagnostics, autonomous vehicles, and recommendation systems, but also raise concerns about bias, job displacement, and privacy."
-    ```
-
-2. After you have finished adding your new tests, commit them to git, watch the pipeline run, and see how the results turn out:
-    ```bash
-    cd /opt/app-root/src/canopy-evals
-    git add .
-    git commit -m "📖 New Evals 📖"
-    git push
-    ```
+5. Alternatively, you can see the results in your Prompt Tracker application. It should be attached in the related git commit.
+   
+    ![evals-results-prompt-tracker.png](./images/evals-results-prompt-tracker.png)
