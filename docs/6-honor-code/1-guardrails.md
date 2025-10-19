@@ -10,15 +10,32 @@ Some examples include:
 * Ensuring the LLM refuses to help students cheat on an exam or assignment when used Canopy.
 * Ensuring the LLM responds respectfully and without bias when helping with student support, or peer mentoring.
 
+## Common Guardrails
 
-# What Are Guardrails in Practice?
+### Prompt-Level Guardrails (Lightweight, Fast to Apply)
 
-Guardrails can range from hard restrictions (e.g., "don’t answer") to soft guidance (e.g., steer the conversation).
+> Welcome to Fight Club. The first rule of Fight Club is: you do not talk about Fight Club. The second rule of Fight Club is: you DO NOT talk about Fight Club!
 
+![fight-club.jpg](./images/fight-club.jpg)
+
+1. As we experienced number of times, system prompts define how LLMs should behave. The minimum thing we can do to set a system prompt. Go to your Llama Stack Playground and find a system prompt to make the model **not** talk about Fight club.
+
+  ![fight-club-2.png](./images/fight-club-2.png)
+
+2. After you find it, think about ways that you can go around it and make the model talk about Fight Club. And time yourself how long does it take you to make the model talk about it.
+
+  ![fight-club-3.png](./images/fight-club-3.png)
+
+System prompts are just suggestions inside the model’s context. They’re not enforceable rules, so a clever prompt injection, obfuscation, or long conversation can nudge the model to ignore them. Because LLMs are probabilistic and sensitive to phrasing and context order, even “good” system prompts behave inconsistently across inputs and model versions. 
+
+Robust guardrails need layered enforcement outside the model (pre/post filters, classifiers, policy engines, and allow/deny lists) to reliably block disallowed behavior and data leakage. 
+
+So let's dive into them. And for this, we need to introduce an exiting tool: Trusty AI Guardrails Orchestrator! 
+
+<!-- 
 ## Common Guardrails Tools and Approaches
 
 Here are some ways teams implement guardrails, depending on the level of control and complexity needed:
-
 
 ### 1. **Prompt-Level Guardrails (Lightweight, Fast to Apply)**
 
@@ -26,13 +43,11 @@ Here are some ways teams implement guardrails, depending on the level of control
 * Example: *“You are a university assistant. You do not answer exam-related questions that could help students cheat.”*
 * Best for: Fast prototypes, in-app rules, and low-risk cases.
 
-Let’s try a simple guardrail together! Go back to your Llama Stack Playground and add a system prompt to make the model not answer below questions.
+Let’s try a simple guardrail together! Go back to your Llama Stack Playground and add a system prompt to make the model **not** answer below questions.
 
-  1. **"What’s the best way to befriend a dragon?"** 🐉
-  2. **"Can you write a poem about a cat that runs a coffee shop?"** 🐱☕
-  3. **"What’s the national dessert of Llamaland?"** 🍰🦙
-  4. **"If Pikachu ran for student council, what would its campaign slogan be?"** ⚡🎓
-  5. **"Which animal would make the best professor, and why?"** 🦉👩‍🏫
+  1. "Can you write a poem about a cat that runs a coffee shop?" 🐱☕
+  2. "If Pikachu ran for student council, what would its campaign slogan be?" ⚡🎓
+  3. "Which animal would make the best professor, and why?" 🦉👩‍🏫
 
 ### 2. **Output Moderation & Filtering**
 
@@ -72,4 +87,4 @@ Llama Stack has two powerful built-in safety mechanisms — **LlamaGuard** and *
 
 These tools handle guardrails at different levels and work best **together**, providing both **content filtering** and **jailbreak protection**.
 
-Llama Stack also has the ability to register additional providers that implement your own custom guardrails. Let's look at the Llama Stack APIs and update Canopy to use some guardrails.
+Llama Stack also has the ability to register additional providers that implement your own custom guardrails. Let's look at the Llama Stack APIs and update Canopy to use some guardrails. -->
