@@ -84,7 +84,7 @@ Let’s deploy the Playground to verify the integration between Llama Stack and 
 
     ![llama-stack-playground-summary.png](./images/llama-stack-playground-summary.png)
 
-You have a few more options than in previous exercises. Alongside `Temperature`, you’ll also see `Top P` and `Repetition Penalty`. Try them out on the summarize task and observe how they change the output. (If you are not sure what they are, just ask the model :))
+You have a few more options than in previous exercises. Alongside `Temperature`, you’ll also see `Top P` and `Repetition Penalty`. Try them out on the summarize task and observe how they change the output. (If you are not sure what they are, just ask the model 😁)
 
 What values work well and what do they do? 🧠 🤓
 

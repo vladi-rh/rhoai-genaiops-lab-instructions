@@ -77,7 +77,7 @@ You can think of training a model like preparing an athlete:
 * **Claude (Anthropic)** — Known for safer, controllable AI chat experiences
 * **Suno AI** — Creates AI-generated music from simple text prompts
 * **LLaVA (Large Language and Vision Assistant)** — Combines text and image understanding
-* **Gemini 1.5 Pro (Google)** — Multimodal, can process huge contexts (up to 1M tokens!)
+* **Gemini 2.5 Pro (Google)** — Multimodal, can process huge contexts (up to 1M tokens!)
 
 > 🚀 The landscape of GenAI is evolving fast — what seems like cutting-edge today may become standard tomorrow!
 
