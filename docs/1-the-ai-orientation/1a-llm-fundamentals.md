@@ -111,7 +111,7 @@ Let’s test your understanding with a quick quiz!
 
 ## 🔄 Next-Token Prediction
 
-At their core, large language models do something surprisingly simple:  
+At their core, Large Language Models (LLMs) do something surprisingly simple:
 They guess the **next token**.
 
 You give them a string of text, and the model continues it by predicting the most likely next piece. Then it does it again. And again. And again.
