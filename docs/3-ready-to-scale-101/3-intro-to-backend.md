@@ -6,7 +6,7 @@ We'll separate out the LLM business logic from the frontend into its own backend
    
    ![canopy-be-helm-releases.png](./images/canopy-be-helm-releases.png)
 
-2.  Under `Chart Repositories` select  `Canopy Helm Charts` and cclick `Canopy Backend` > `Create`.
+2.  Under `Chart Repositories` select  `Canopy Helm Charts` and click `Canopy Backend` > `Create`.
 
     ![canopy-be-helm.png](./images/canopy-be-helm.png)
 
