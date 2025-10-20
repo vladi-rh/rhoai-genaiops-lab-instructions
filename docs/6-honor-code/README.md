@@ -6,14 +6,14 @@
 
 
 # 🖼️ Big Picture
-_an image will be inserted here._
+![big-picture-guardrails.jpg](images/big-picture-guardrails.jpg)
 
 # 🔮 Learning Outcomes
 
 
 # 🔨 Tools used in this module
 
-
+<!-- 
 ---
 
 - System Prompt: do not bla bla
@@ -29,4 +29,4 @@ _an image will be inserted here._
 - performance vs safety
 - zero trust bla bla
 - if you trigger a detector 5 times in a row, you are blocked.
-- 
+-  -->

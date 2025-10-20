@@ -6,7 +6,7 @@
 
 
 # 🖼️ Big Picture
-_an image will be inserted here._
+![big-picture-evals](images/big-picture-evals.jpg)
 
 # 🔮 Learning Outcomes
 
