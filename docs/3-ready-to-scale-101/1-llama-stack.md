@@ -20,7 +20,7 @@ In short: Llama Stack helps us move from *experimentation* to *production readin
 
 ## Deploy Llama Stack
 
-1. Let's quickly deploy it to our experimentation environment the same way we deployed Canopy UI. In Opneshift console, again expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Crease Helm Release`. 
+1. Let's quickly deploy it to our experimentation environment the same way we deployed Canopy UI. In Openshift console, again expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Crease Helm Release`. 
 
     ![llama-stack-helm-release.png](./images/llama-stack-helm-release.png)
 
@@ -59,7 +59,7 @@ It’s built to help you prototype quickly and standardize early, so you quicker
 
 Let’s deploy the Playground to verify the integration between Llama Stack and your LLM before we deep dive into what’s going on under the hood and how we’ll update the frontend.
 
-1. At this point you know the drill! Go to Opneshift console, expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Crease Helm Release`.
+1. At this point you know the drill! Go to Openshift console, expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Crease Helm Release`.
 
     ![llama-stack-playground-helm-release.png](./images/llama-stack-playground-helm-release.png)
 
