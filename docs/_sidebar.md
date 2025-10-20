@@ -27,6 +27,7 @@
   * [⚙️ RAG Pipelines](5-grounded-ai/4-rag-pipelines.md)
   * [🌳 Canopy with RAG](5-grounded-ai/5-rag-canopyUI.md)
   * [🥼 RAG Evals](5-grounded-ai/6-eval-rag.md)
+  * [🐉 Pipeline of Pipelines!](5-grounded-ai/7-rag-tekton.md)
 * [The Honor Code](6-honor-code/README.md)
   * [🎓 Guardrais](6-honor-code/1-guardrails.md)
   * [🔦 Guardrails Orchestrator](6-honor-code/2-guardrails_orchestrator.md)
