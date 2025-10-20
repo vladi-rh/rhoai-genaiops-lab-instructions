@@ -72,7 +72,8 @@ cluster_domain: <CLUSTER_DOMAIN>
 
     After the eval pipeline finishes, you can find a PR in `canopy-be` repository to update vector DB ID in production. And in the description, you'll see a link to evaluation results. You need to check the results and decide whether to accept this change or go back and do some more test, more data ingestions etc. You are the human in the loop here :)
 
-    !
-
+    ![canopy-be-rag-pr.png](./images/canopy-be-rag-pr.png)
 
     And your evals doesn't cover anything related to the last PDF you uploaded? Feel free to update your evals, add more prompt & expected result pairs. 
+
+    ![prompt-tracker-eval-results.png](./images/prompt-tracker-eval-results.png)
