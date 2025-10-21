@@ -1,26 +1,28 @@
 ## Automate the Flow with Tekton
 
-1. Let's automate this whole flow when there is a new document uplaoded to MonIO! For that we need to deploy a Tekton pipeline and in the end the whole flow will look like this:
+1. Let's automate this whole flow when there is a new document uplaoded to MinIO! For that we need to deploy a Tekton pipeline to handle triggering the kfp as well as some surrounding ops tasks (very similar to what we did in Ready to Scale 201).
+    In the end, the whole flow will look like this:
 
     ![doc-ingestion-tekton-flow.png](./images/doc-ingestion-tekton-flow.png)
 
 
-  Let's deploy the Tekton pipeline by creating a folger under `genaiops-gitops/toolings` as below:
+    Let's deploy the Tekton pipeline by creating a folder under `genaiops-gitops/toolings` as below:
 
-  ```bash
-  mkdir -p /opt/app-root/src/genaiops-gitops/toolings/doc-ingestion-pipeline
-  touch /opt/app-root/src/genaiops-gitops/toolings/doc-ingestion-pipeline/config.yaml
-  ```
+    ```bash
+    mkdir -p /opt/app-root/src/genaiops-gitops/toolings/doc-ingestion-pipeline
+    touch /opt/app-root/src/genaiops-gitops/toolings/doc-ingestion-pipeline/config.yaml
+    ```
 
 2. Update the `config.yaml` file:
 
-```yaml
-chart_path: charts/canopy-doc-ingestion-pipeline
-username: <USER_NAME>
-cluster_domain: <CLUSTER_DOMAIN>
-```
+    ```yaml
+    chart_path: charts/canopy-doc-ingestion-pipeline
+    username: <USER_NAME>
+    cluster_domain: <CLUSTER_DOMAIN>
+    ```
 
 3. Commit and push changes as always.
+
     ```bash
     cd /opt/app-root/src/genaiops-gitops
     git add .
@@ -28,7 +30,7 @@ cluster_domain: <CLUSTER_DOMAIN>
     git push
     ```
 
-4. This pipeline will give you a webhook to add to MinIO so when we upload a file, MinIO can trigger the Tekton pipeline. So go to MinIO > Events and click on `Add Event Destination` on the right top. Select `Webhook`:
+4. This pipeline will give you a webhook to add to MinIO so that when we upload a file, MinIO can trigger the Tekton pipeline. Go to MinIO > Events and click on `Add Event Destination` on the right top. Select `Webhook`:
 
     ![minio-webhook-1.png](./images/minio-webhook-1.png)
 
@@ -50,15 +52,15 @@ cluster_domain: <CLUSTER_DOMAIN>
 
     ![minio-webhook-4.png](./images/minio-webhook-4.png)
 
-8. Now, you can download yet another syllabus that your choice from [RDU website](https://rdu-website-ai501.<CLUSTER_DOMAIN>) and upload it to `documents` bucket. You need to go to Object Browser > documents for it.
+8. Now, you can download yet another syllabus that your choice from [RDU website](https://rdu-website-ai501.<CLUSTER_DOMAIN>) and upload it to `documents` bucket. You need to go to `Object Browser` > `documents` for it.
 
     ![minio-upload-pdf.gif](./images/minio-upload-pdf.gif)
 
-9. After you upload the PDF, go to OpenShift console > Pipelines and observe that a pipeline is triggered.
+9. After you upload the PDF, go to `OpenShift console` > `Pipelines` and observe that a pipeline is triggered.
 
     ![rag-tekton-pipeline.png](./images/rag-tekton-pipeline.png)
 
-10. And if you go nack to OpenShift AI console, you'll see that doc-ingestion Kubeflow Pipeline is running:
+10. And if you go back to the OpenShift AI console, you'll see that doc-ingestion Kubeflow Pipeline is running:
 
     ![rag-kfp-pipelinerun.png](./images/rag-kfp-pipelinerun.png)
 
@@ -66,14 +68,18 @@ cluster_domain: <CLUSTER_DOMAIN>
 
     ![gitea-auto-commit.png](./images/gitea-auto-commit.png)
 
-    And this push triggers, YES, the evals pipeline! 
+    And what happens when we see an update in `canopy-be`?
+    You guessed it, we trigger the evals pipeline! 
 
     ![trigger-evals.png](./images/trigger-evals.png)
 
-    After the eval pipeline finishes, you can find a PR in `canopy-be` repository to update vector DB ID in production. And in the description, you'll see a link to evaluation results. You need to check the results and decide whether to accept this change or go back and do some more test, more data ingestions etc. You are the human in the loop here :)
+    After the eval pipeline finishes, you can find a PR in `canopy-be` repository to update vector DB ID in production.   
+    In the description, you'll see a link to evaluation results. You need to check the results and decide whether to accept this change or go back and do some more test, more data ingestions etc.   
+    You are the human in the loop here :)
 
     ![canopy-be-rag-pr.png](./images/canopy-be-rag-pr.png)
 
-    And your evals doesn't cover anything related to the last PDF you uploaded? Feel free to update your evals, add more prompt & expected result pairs. 
+    And your evals doesn't cover anything related to the last PDF you uploaded?  
+    Feel free to update your evals, add more prompt & expected result pairs (Prompt Engineering Yay!). 
 
     ![prompt-tracker-eval-results.png](./images/prompt-tracker-eval-results.png)
