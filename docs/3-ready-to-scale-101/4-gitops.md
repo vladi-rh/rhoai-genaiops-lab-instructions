@@ -153,9 +153,27 @@ Gitea is a lightweight, self-hosted Git server that allows teams to manage repos
   oc get pods -n <USER_NAME>-toolings
   ```
 
-  You also should see something like this if everything went well:
-
+8. Argo CD has a cycle time of about 3ish mins - this is too slow for us, so we can make ArgoCD sync our changes AS SOON AS things hit the git repo. Let’s add a webhook to connect Argo CD to our `genaiops-gitops` and `canopy-be` projects. Get the ArgoCD URL with following:
   
+  ```bash
+  echo https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n <USER_NAME>-toolings)
+  ```
+
+  or just copy this value:
+
+  ```bash
+  https://argocd-server-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/api/webhook
+  ```
+
+9. Go to Gitea > `genaiops-gitops` > Settings > Webhooks > Add Gitea type webhook.
+
+  ![gitops-webhook.](./images/gitops-webhook.png)
+
+10. Paste the value as `Target URL` and hit `Add Webhook`.
+
+  ![gitops-webhook-2.png](./images/gitops-webhook-2.png)
+
+11. And now do the same thing for `canopy-be` repo 😌
 
 🪄🪄 Magic! You've now deployed an `ApplicationSet` to scaffold our tooling and projects in a repeatable and auditable way (via git!). Now, let's deploy Canopy the same way! 🪄🪄
 
