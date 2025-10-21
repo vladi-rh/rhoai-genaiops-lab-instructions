@@ -6,4 +6,10 @@ We first need to install Guardrails Orchestator, integrate it with Llama Stack a
 
 ### Deploy Guardrails Orchestrator
 
-1. Again, let's start deploying it to experiment environment. Go to OpenShift Console > Helm > Releases > Create Helm Release and select under GenAIOps Helm Charts
+1. Again, let's start deploying it to experiment environment. Go to OpenShift Console > Helm > Releases > Create Helm Release and select `GenAIOps Helm Charts` and find `Guardrails Orchestrator` helm chart.
+
+  ![guardrails-orchestrator-helm.png](guardrails-orchestrator-helm.png)
+
+  You don't have to make any changes, just hit Create!
+
+2. Now, let's integrate it with Llama Stack. For it, you need 

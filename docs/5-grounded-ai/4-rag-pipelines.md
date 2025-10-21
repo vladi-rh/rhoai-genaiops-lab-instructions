@@ -137,4 +137,4 @@ Time to run yet another pipeline!
 
 🎉 **Congratulations!** You now have a production-ready document processing pipeline that we can use to ingest documents into our test and producion databases at scale.
 
-Continue to **[🌳 Integrating RAG within Canopy](5-rag-Canopy.md)** to enable our RAG feature inside our application! 🚀 
+Continue to **[🌳 Integrating RAG within Canopy](5-rag-canopyUI.md)** to enable our RAG feature inside our application! 🚀 

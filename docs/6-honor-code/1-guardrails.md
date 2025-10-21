@@ -30,7 +30,7 @@ System prompts are just suggestions inside the model’s context. They’re not 
 
 Robust guardrails need layered enforcement outside the model (pre/post filters, classifiers, policy engines, and allow/deny lists) to reliably block disallowed behavior and data leakage. 
 
-So let's dive into them. And for this, we need to introduce an exiting tool: Trusty AI Guardrails Orchestrator! 
+So let's dive into them. And for this, we need to introduce an exciting tool: Trusty AI Guardrails Orchestrator! 
 
 <!-- 
 ## Common Guardrails Tools and Approaches
