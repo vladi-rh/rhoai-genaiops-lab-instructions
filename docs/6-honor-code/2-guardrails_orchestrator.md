@@ -24,7 +24,7 @@ In the notebook, we directly talked with model and the detectors. But we have Ll
 
 1. In your `<USER_NAME>-canopy` environment, let's update Llama Stack config. Go to Helm > Releases > llama-stack-operator-instance > Upgrade
 
-  Make sure you choose latest, which is `1.1.0` in this case.
+  Make sure you choose latest, which is `1.1.2` in this case.
 
   ![llama-stack-upgrade.](./images/llama-stack-upgrade.png)
 
