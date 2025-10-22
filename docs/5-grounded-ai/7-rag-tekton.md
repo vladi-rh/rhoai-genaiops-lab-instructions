@@ -6,12 +6,12 @@
     ![doc-ingestion-tekton-flow.png](./images/doc-ingestion-tekton-flow.png)
 
 
-    Let's deploy the Tekton pipeline by creating a folder under `genaiops-gitops/toolings` as below:
+Let's deploy the Tekton pipeline by creating a folder under `genaiops-gitops/toolings` as below:
 
-    ```bash
-    mkdir -p /opt/app-root/src/genaiops-gitops/toolings/doc-ingestion-pipeline
-    touch /opt/app-root/src/genaiops-gitops/toolings/doc-ingestion-pipeline/config.yaml
-    ```
+  ```bash
+  mkdir -p /opt/app-root/src/genaiops-gitops/toolings/doc-ingestion-pipeline
+  touch /opt/app-root/src/genaiops-gitops/toolings/doc-ingestion-pipeline/config.yaml
+  ```
 
 2. Update the `config.yaml` file:
 
