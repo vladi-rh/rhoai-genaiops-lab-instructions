@@ -24,6 +24,8 @@ In the notebook, we directly talked with model and the detectors. But we have Ll
 
 1. In your `<USER_NAME>-canopy` environment, let's update Llama Stack config. Go to Helm > Releases > llama-stack-operator-instance > Upgrade
 
+  Make sure you choose latest, which is `1.1.0` in this case.
+
   ![llama-stack-upgrade.](./images/llama-stack-upgrade.png)
 
 2. In the Form view, find the `guardrails` and enable it by ticking the box. Then you can choose which detector you want to enable! For the exercises sake, let's enable all. Because we can pick and choose in the Llama Stack Playground 🦙🛝
@@ -37,7 +39,7 @@ In the notebook, we directly talked with model and the detectors. But we have Ll
 
   ![canopy-topology.png](./images/canopy-topology.png)
 
-4. Now let's play a bit more with the guardrails. This time Guardrails + System Prompt together. Previous chapter we instructed to model in system prompt to not do something. Then we enforced it with detectors. Now let's combine them!
+4. Now let's play a bit more with the guardrails. This time Guardrails + System Prompt together. Previous chapter we instructed the model in system prompt to not to do _something_. Then we enforced it with detectors in the detectors. Now let's combine them!
 
     Go to Llama Stack Playground. You can either click on the little arrow next to playful Llama or you can go to the link below:
 
@@ -49,7 +51,7 @@ In the notebook, we directly talked with model and the detectors. But we have Ll
 
   ![agent-based.png](./images/agent-based.png)
 
-1. Then you'll see Security Shields. In the Input and Output shields, you'll see the same four options we've been tackling in the notebook:
+6. Then you'll see Security Shields. In the Input and Output shields, you'll see the same four options we've been tackling in the notebook:
 
   - Regex
   - HAP
@@ -65,3 +67,5 @@ In the notebook, we directly talked with model and the detectors. But we have Ll
 7. And below, you have your System Prompt. Add your system prompt here and see if you can make model bypass any of these detectors! And then try to harden your system even more!
 
   ![fight-club-spanish.png](./images/fight-club-spanish.png)
+
+Now let's bring all these to the enduser.

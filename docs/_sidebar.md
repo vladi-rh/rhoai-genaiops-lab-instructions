@@ -31,6 +31,7 @@
 * [The Honor Code](6-honor-code/README.md)
   * [🎓 Guardrails](6-honor-code/1-guardrails.md)
   * [🔦 Guardrails Orchestrator](6-honor-code/2-guardrails_orchestrator.md)
+  * [💂‍♂️ Canopy with Guardrails](6-honor-code/2-llamaguard.md)
   <!-- * [💂‍♂️ LlamaGuard](7-honor-code/2-llamaguard.md)
   * [🛡️ PromptGuard](7-honor-code/3-promptguard.md) -->
 * [On-Prem Practicum](10-on-prem-practicum/README.md)
