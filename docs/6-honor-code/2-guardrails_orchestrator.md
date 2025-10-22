@@ -36,6 +36,9 @@ In the notebook, we directly talked with model and the detectors. But we have Ll
     And you can also update the regex configs based on your experimentations on the notebook 🤓
 
     ![llama-stack-safety-enable-1.png](./images/llama-stack-safety-enable-1.png)
+
+    Ensure that you enable also the rest of the detectors:
+
     ![llama-stack-safety-enable-2.png](./images/llama-stack-safety-enable-2.png)
 
 3. Check topology view to make sure everything is healthy ❤️
