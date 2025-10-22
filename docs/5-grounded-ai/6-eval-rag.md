@@ -25,7 +25,7 @@ To do that, we simply need to add a new eval folder with some tests in it.
     - The endpoint 
     - And of course the prompts
 
-  Open up `canopy-evals/information-search` and paste this and overwrite the whole file for a good baseline:
+  Open up `canopy-evals/information-search/information-search.yaml` and paste this and overwrite the whole file for a good baseline:
 
 
 ```yaml
