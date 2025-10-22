@@ -20,7 +20,7 @@ Llama Stack provides some out of the box capabilities for RAG. Let's quickly imp
 
     ![llama-stack-upgrade-1.png](images/llama-stack-upgrade-1.png)
 
-2. Switch to the YAML view and simply check the "enabled" checkbox under the RAG configuration to activate these capabilities.
+2. Switch to the Form view and simply check the "enabled" checkbox under the RAG configuration to activate these capabilities.
 
     ![llama-stack-upgrade-2.png](images/llama-stack-upgrade-2.png)
 
