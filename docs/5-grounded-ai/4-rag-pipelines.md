@@ -56,7 +56,7 @@ We are specifically looking to automate the top part, how new documents go into 
 
 Time to run yet another pipeline!
 
-1. Open `canopy/5-rag/6-kfp_pipeline.py`, this is your document processing pipeline. It will:
+1. Open `canopy/5-rag/kfp_pipeline.py`, this is your document processing pipeline. It will:
    - Connects to Docling
    - Process the documents
    - Connect to your vector database
