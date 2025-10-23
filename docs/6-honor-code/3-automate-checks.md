@@ -73,11 +73,6 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     Attack Success Rate (Overall): 56.25% 👈👈👈👈 not that great!🫣
     Attack Success Rate (Without Dynamic Attack): 56.25%
     Attack Success Rate (Improvement from Dynamic Attack): 0.00%
-
-    === Dynamic Attack Statistics ===
-    Attack Type      Total    Successes    Attempts  Success Rate
-    -------------  -------  -----------  ----------  --------------
-    best_of_n            7            0           7  0.00%
     ```
 
 
@@ -125,11 +120,6 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     Attack Success Rate (Overall): 0.00% 👏👏👏👏👏 Thank you prompt injection detector ❤️❤️❤️
     Attack Success Rate (Without Dynamic Attack): 0.00%
     Attack Success Rate (Improvement from Dynamic Attack): 0.00%
-
-    === Dynamic Attack Statistics ===
-    Attack Type      Total    Successes    Attempts  Success Rate
-    -------------  -------  -----------  ----------  --------------
-    best_of_n           16            0          16  0.00%
     ```
 
 8. This was only a couple prompts though. If you'd like to do a more realistic test, you can create a dataset based on the different tests provided by Spikee under `dataset` folder. It'll take some time (like ~7 hours with this setup) but then it'll give you a more realistic results. If you are still curious;
@@ -174,10 +164,5 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     Attack Success Rate (Overall): 37.50% 👈👈👈 not bad but also not perfect 🙃
     Attack Success Rate (Without Dynamic Attack): 27.30%
     Attack Success Rate (Improvement from Dynamic Attack): 10.20%
-
-    === Dynamic Attack Statistics ===
-    Attack Type      Total    Successes    Attempts  Success Rate
-    -------------  -------  -----------  ----------  --------------
-    best_of_n         1483          208        1483  14.03%
     ```
     You can check the details in the report and see wat kind of attacks got successfull and see what you need to improve (maybe a better prompt injection model or retrain the existing one, maybe some simple addition to regex..)
