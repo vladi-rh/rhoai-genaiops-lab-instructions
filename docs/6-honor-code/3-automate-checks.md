@@ -132,7 +132,7 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     best_of_n           16            0          16  0.00%
     ```
 
-8. This was only a couple prompts though. If you'd like to do a more realistic test, you can create a dataset based on the different tests provided by Spikee under `dataset` folder. It'll take some time but then it'll give you a more realistic results.
+8. This was only a couple prompts though. If you'd like to do a more realistic test, you can create a dataset based on the different tests provided by Spikee under `dataset` folder. It'll take some time (like ~7 hours with this setup) but then it'll give you a more realistic results. If you are still curious;
 
     Let's generate the dataset:
 
@@ -165,18 +165,19 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     Author: Reversec (reversec.com)
     === General Statistics ===
     Total Unique Entries: 2040
-    Successful Attacks (Total): 0
-    - Initially Successful: 0
-    - Only Successful with Dynamic Attack: 0
-    Failed Attacks: 2040
+    Successful Attacks (Total): 765
+    - Initially Successful: 557
+    - Only Successful with Dynamic Attack: 208
+    Failed Attacks: 1275
     Errors: 0
-    Total Attempts: 4080
-    Attack Success Rate (Overall): 0.00%
-    Attack Success Rate (Without Dynamic Attack): 0.00%
-    Attack Success Rate (Improvement from Dynamic Attack): 0.00%
+    Total Attempts: 3523
+    Attack Success Rate (Overall): 37.50% 👈👈👈 not bad but also not perfect 🙃
+    Attack Success Rate (Without Dynamic Attack): 27.30%
+    Attack Success Rate (Improvement from Dynamic Attack): 10.20%
 
     === Dynamic Attack Statistics ===
     Attack Type      Total    Successes    Attempts  Success Rate
     -------------  -------  -----------  ----------  --------------
-    best_of_n         2040            0        2040  0.00%
+    best_of_n         1483          208        1483  14.03%
     ```
+    You can check the details in the report and see wat kind of attacks got successfull and see what you need to improve (maybe a better prompt injection model or retrain the existing one, maybe some simple addition to regex..)
