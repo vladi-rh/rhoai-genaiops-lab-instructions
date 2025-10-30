@@ -39,7 +39,7 @@ In OpenShift, you have an experimentation environment which is called `<USER_NAM
 
     ![openshift-console.png](./images/openshift-console.png)
 
-2. Expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Crease Helm Release`. 
+2. Expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Create Helm Release`. 
 
     ![add-helm.png](./images/add-helm.png)
 
