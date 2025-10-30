@@ -20,7 +20,7 @@ In short: Llama Stack helps us move from *experimentation* to *production readin
 
 ## Deploy Llama Stack
 
-1. Let's quickly deploy it to our experimentation environment the same way we deployed Canopy UI. In Openshift console, again expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Crease Helm Release`. 
+1. Let's quickly deploy it to our experimentation environment the same way we deployed Canopy UI. In Openshift console, again expand `Helm` section from the left menu, click `Releases` and make sure you are on `<USER_NAME>-canopy` project. Then from the top right select `Create Helm Release`. 
 
     ![llama-stack-helm-release.png](./images/llama-stack-helm-release.png)
 
