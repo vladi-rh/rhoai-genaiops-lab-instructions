@@ -16,7 +16,7 @@ This makes collaboration hard and reproducibility nearly impossible—especially
 
 That’s where **prompt versioning** and a **prompt registry** concept come in. And we know that Git provides traceability, visibility, auditability so why not using Git as the prompt registry, right?
 
-## 🧱 Storing a Promt
+## 🧱 Storing a Prompt
 
 You already standardized your prompts using a simple format that captures:
 
