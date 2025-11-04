@@ -101,7 +101,7 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
     
     Let's connect directly to Milvus to see how this looks like.  
 
-    To do that, go to your workbench and complete the hands-on exercises in `canopy/5-rag/4-vector-databases.ipynb` 
+    To do that, go to your workbench and complete the hands-on exercises in `experiments/5-rag/4-vector-databases.ipynb` 
 
     After you have gone through the notebook, make sure to check Attu and see the new collection that has appeared:
     ```
