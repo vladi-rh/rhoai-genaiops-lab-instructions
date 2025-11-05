@@ -70,7 +70,6 @@ Great, now you are all set up!
 
 Now we are ready to set up automatic runs of our Kubeflow pipeline!  
 We will be triggering it from a Tekton Pipeline, where we both will have a step for our Llama Stack Evals and for GuideLLM.  
-If you want to take a look at the Tekton Pipeline yamls, you can find them under `canopy-evals/test-pipeline/canopy-tekton-pipeline`.
 
 1. Let's deploy the Tekton pipeline through ArgoCD. Start by running: 
 
@@ -113,7 +112,7 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
     To get some use of our Tekton pipeline, let's make it trigger automatically from our git repos.  
     Start by going to Gitea.
 
-6. Inside of Gitea, navigate to your `canopy-evals` repository. Go to Settings.
+6. Inside of Gitea, navigate to your `evals` repository. Go to Settings.
 
     ![gitea-evals-settings.png](./images/gitea-evals-settings.png)
 
@@ -125,7 +124,7 @@ If you want to take a look at the Tekton Pipeline yamls, you can find them under
 
     ![githook](images/githook.png)
 
-9. Now do the same for `canopy-backend`. Go to `canopy-be` repository > Settings > Webhook > Add > Gitea and add the same webhook:
+9. Now do the same for `canopy-backend`. Go to `backend` repository > Settings > Webhook > Add > Gitea and add the same webhook:
 
     ```bash
     http://el-canopy-evals-event-listener.<USER_NAME>-toolings.svc.cluster.local:8080
@@ -143,12 +142,12 @@ In practice we would also run the tests whenever we build a new backend, but sin
 
 Let's go and add some more useful tests to trigger the pipeline 🧪
 
-1. Go to your workbench and enter the `canopy-be/chart/values-test.yaml` file.  
+1. Go to your workbench and enter the `backend/chart/values-test.yaml` file.  
     In there you'll find your system prompt for test environment. Update your prompt as you see fit.
 
 2. After you have finished updating it, commit it to git, watch the pipeline run, and see how the results turn out:
     ```bash
-    cd /opt/app-root/src/canopy-be
+    cd /opt/app-root/src/backend
     git add .
     git commit -m "🍋 triggering the evals 🍋"
     git push

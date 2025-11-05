@@ -64,16 +64,16 @@ Let's deploy the Tekton pipeline by creating a folder under `genaiops-gitops/too
 
     ![rag-kfp-pipelinerun.png](./images/rag-kfp-pipelinerun.png)
 
-11. After the pipeline finish, you'll see a automated push happened in `canopy-be` repository. 
+11. After the pipeline finish, you'll see a automated push happened in `backend` repository. 
 
     ![gitea-auto-commit.png](./images/gitea-auto-commit.png)
 
-    And what happens when we see an update in `canopy-be`?
+    And what happens when we see an update in `backend`?
     You guessed it, we trigger the evals pipeline! 
 
     ![trigger-evals.png](./images/trigger-evals.png)
 
-    After the eval pipeline finishes, you can find a PR in `canopy-be` repository to update vector DB ID in production.   
+    After the eval pipeline finishes, you can find a PR in `backend` repository to update vector DB ID in production.   
     In the description, you'll see a link to evaluation results. You need to check the results and decide whether to accept this change or go back and do some more test, more data ingestions etc.   
     You are the human in the loop here :)
 

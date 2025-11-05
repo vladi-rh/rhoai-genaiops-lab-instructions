@@ -10,14 +10,14 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
 
     ```bash
     pip install spikee
-    cd /opt/app-root/src/canopy/6-guardrails/spikee
+    cd /opt/app-root/src/experiments/6-guardrails/spikee
     spikee init
     ```
 
 2. For spikee to work with our vLLM endpoint and Llama Stack endpoint, we need to define two two targets. Copy the existing python files that are pointing to out model and Llama Stack server under `targets/` folder by running the below commands:
 
     ```bash
-    cd /opt/app-root/src/canopy/6-guardrails/spikee
+    cd /opt/app-root/src/experiments/6-guardrails/spikee
     mv llama_stack_shields.py targets/
     mv vllm_local.py targets/
     ```
@@ -29,7 +29,7 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     Then let's move this file under spikee's datasets folder.
 
     ```bash
-    cd /opt/app-root/src/canopy/6-guardrails/spikee
+    cd /opt/app-root/src/experiments/6-guardrails/spikee
     mv quick-test-diverse.jsonl datasets/
     ```
 
