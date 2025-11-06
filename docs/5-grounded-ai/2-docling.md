@@ -16,7 +16,7 @@ Your RAG system works great with simple text, but what happens when students upl
 
 Let's try it out to see how Docling works in practice!
 
-Go to your workbench and go through the notebook `canopy/5-rag/3-docling.ipynb`.
+Go to your workbench and go through the notebook `experiments/5-rag/3-docling.ipynb`.
 
 ## 🎯 Next Steps: Setting Up a Vector Database
 

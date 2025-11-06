@@ -56,7 +56,7 @@ We are specifically looking to automate the top part, how new documents go into 
 
 Time to run yet another pipeline!
 
-1. Open `canopy/5-rag/kfp_pipeline.py`, this is your document processing pipeline. It will:
+1. Open `experiments/5-rag/6-kfp_pipeline.py`, this is your document processing pipeline. It will:
    - Connects to Docling
    - Process the documents
    - Connect to your vector database
@@ -87,7 +87,7 @@ Time to run yet another pipeline!
 2. Let's export it to run it in our `<USER_NAME>-toolings` namespace and point it to test and prod.
    To export our pipeline, compile it by running
    ```bash
-   cd /opt/app-root/src/canopy/5-rag
+   cd /opt/app-root/src/experiments/5-rag
    python kfp_pipeline.py
    ```
    It should generate a file called `document-intelligence-rag.yaml`. Download it to your local machine.

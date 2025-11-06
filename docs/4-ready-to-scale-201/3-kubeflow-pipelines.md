@@ -38,13 +38,13 @@ As always we'll start in the experimentation environment and develop this automa
 ### Set up evaluation pipeline
 
 Now that we have everything set up to be able to run our pipeline in our experimentation namespace, let's take a look at the code and run it!  
-The evaluation pipeline is inside of a repository called `canopy-evals`, where both the evaluation tests and pipeline definition are stored together. 
+The evaluation pipeline is inside of a repository called `evals`, where both the evaluation tests and pipeline definition are stored together. 
 
 1. To explore it, go back to your workbench and clone the repository :
 
    ```bash
    cd /opt/app-root/src/
-   git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git
+   git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/evals.git
    ```
 
 2. Inside, you will find a few folders, one called `evals-pipeline` and one for each usecase that we are going to want to run evaluations on - `Summary` is the only one relevant for us for now, the rest are slight spoilers for the upcoming modules 🤫  
@@ -64,7 +64,7 @@ The evaluation pipeline is inside of a repository called `canopy-evals`, where b
 3. Let's commit your evals as well!
    
     ```bash
-    cd /opt/app-root/src/canopy-evals
+    cd /opt/app-root/src/evals
     git add .
     git commit -m  "🌼 New evals added 🌼"
     git push 
@@ -83,7 +83,7 @@ The evaluation pipeline is inside of a repository called `canopy-evals`, where b
 5. Scroll down to near the bottom of the file (around line 830) and edit the `repo_url` argument as below:
     ```python
     arguments = {
-        "repo_url": "https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/canopy-evals.git", # 🚨 replace with your own repo URL
+        "repo_url": "https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/evals.git", # 🚨 replace with your own repo URL
         "branch": "main",
         "base_url": "http://llama-stack-service:8321",
         "backend_url": "http://canopy-backend:8000",
@@ -97,7 +97,7 @@ The evaluation pipeline is inside of a repository called `canopy-evals`, where b
 6. Let's push the change:
 
     ```bash
-    cd /opt/app-root/src/canopy-evals
+    cd /opt/app-root/src/evals
     git add .
     git commit -m  "🧑‍⚖️ Update evals pipeline 🧑‍⚖️"
     git push origin main
@@ -108,7 +108,7 @@ The evaluation pipeline is inside of a repository called `canopy-evals`, where b
     Just execute this in your terminal:
 
     ```bash
-    cd /opt/app-root/src/canopy-evals
+    cd /opt/app-root/src/evals
     pip install kfp==2.14.6
     pip install kfp-kubernetes==2.14.6
     python evals-pipeline/kfp_pipeline.py

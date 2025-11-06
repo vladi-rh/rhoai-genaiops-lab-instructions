@@ -35,7 +35,7 @@ To be able to evaluate with Llama Stack we first need to enable it in our experi
    
     ![llama-stack-enable-evals-2.png](./images/llama-stack-enable-evals-2.png)
 
-3. After Llama Stack server is restarted (aka the circle is blue 🔵), go to your IDE and run through the notebook `canopy/4-ready-to-scale-101/llamastack-eval-test.ipynb`.
+3. After Llama Stack server is restarted (aka the circle is blue 🔵), go to your IDE and run through the notebook `experiments/4-ready-to-scale-101/llamastack-eval-test.ipynb`.
 
     ![llama-stack-enable-evals-3.png](./images/llama-stack-enable-evals-3.png)
 
@@ -51,4 +51,4 @@ This involves things such as:
 
 This is important to test both for your model based on the hardware you use, but also on the backend system as a whole, as when we keep adding more complex functionality it will slow down how fast the model can responde, sometimes causing it to be an unviable option for our usecase.
 
-To try it out, head over to your workbench again and go through the notebook `canopy/4-ready-to-scale-201/2-guidellm-test.ipynb`
+To try it out, head over to your workbench again and go through the notebook `experiments/4-ready-to-scale-201/2-guidellm-test.ipynb`

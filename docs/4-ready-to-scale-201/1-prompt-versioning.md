@@ -37,12 +37,12 @@ More specifically, we load them into a ConfigMap which then gets mounted to our 
 
 ## 🧪 Updating a prompt
 
-1. Go to your canopy-be folder in your workbench and update the `values-test.yaml` file to have a new prompt. Perhaps something like `Summarize the text no more than 10 sentences.` 
+1. Go to your backend folder in your workbench and update the `values-test.yaml` file to have a new prompt. Perhaps something like `Summarize the text no more than 10 sentences.` 
 
 2. Then commit & push the changes:
 
     ```bash
-    cd /opt/app-root/src/canopy-be
+    cd /opt/app-root/src/backend
     git checkout -b add-summarization-prompt
     git add chart/values-test.yaml
     git commit -m "Add prompt for summarization"
@@ -80,17 +80,17 @@ To test the prompt tracker, try making another change to your model configuratio
 1. First let's pull the changes after merging the previous PR.
 
     ```bash
-    cd /opt/app-root/src/canopy-be
+    cd /opt/app-root/src/backend
     git checkout main
     git pull
     ```
 
-2. Edit your prompt in the `chart/values-test.yaml` file in the `canopy-be` repository. 
+2. Edit your prompt in the `chart/values-test.yaml` file in the `backend` repository. 
 
 3. Let's commit and push these changes (directly pushing `main` for simplicity)
 
     ```bash
-    cd /opt/app-root/src/canopy-be
+    cd /opt/app-root/src/backend
     git add .
     git commit -m  "🦊 Test the Prompt Tracker dashboard 🦊"
     git push origin main

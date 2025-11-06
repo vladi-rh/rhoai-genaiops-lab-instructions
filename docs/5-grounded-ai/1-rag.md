@@ -28,10 +28,10 @@ Llama Stack provides some out of the box capabilities for RAG. Let's quickly imp
 
 3. Before we jump into trying out RAG, let's get a better understanding of how **embeddings** work.  
 
-    Go back to your workbench and open up `canopy/5-rag/1-embeddings.ipynb` and get the feeling of it! 
+    Go back to your workbench and open up `experiments/5-rag/1-embeddings.ipynb` and get the feeling of it! 
 
     After you have finished with the embeddings you are now ready to try a RAG workflow.  
-    Continue to `canopy/5-rag/2-intro-to-RAG.ipynb` to get your hands on the RAG.
+    Continue to `experiments/5-rag/2-intro-to-RAG.ipynb` to get your hands on the RAG.
 
     When you finish, come back so we can continue with making it prod ready and more automated!
 
