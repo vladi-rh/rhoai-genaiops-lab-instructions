@@ -53,7 +53,7 @@ More specifically, we load them into a ConfigMap which then gets mounted to our 
 
     ![canopy-be-pr.png](./images/canopy-be-pr.png)
 
-    Open up that link and document why you picked this prompt. Perhaps your user research revealed that people need summary not longer than 10 sentences. This adds narrative and visibility to prompt decisions. And then click `Create Pull Request`
+    Open up that link and document why you picked this prompt. Perhaps your user research revealed that people need summary not longer than 10 sentences. This adds narrative and visibility to prompt decisions. And then click `Create Pull Request`  
 
     ![canopy-be-pr-2.png](./images/canopy-be-pr-2.png)
 
@@ -61,6 +61,9 @@ More specifically, we load them into a ConfigMap which then gets mounted to our 
    So hit `Create merge commit` and accept the incoming change.
 
     ![canopy-be-pr-3.png](./images/canopy-be-pr-3.png)
+
+5. If you go and chat with Canopy now you can see how it reacts differently as it uses the new prompt.  
+    If you are really curious you can also see how the config which the backend is reading from has changed: [https://console-openshift-console.<CLUSTER_DOMAIN>/k8s/ns/<USER_NAME>-test/configmaps/canopy-config](https://console-openshift-console.<CLUSTER_DOMAIN>/k8s/ns/<USER_NAME>-test/configmaps/canopy-config)
 
 ## Prompt Tracker
 
