@@ -39,7 +39,7 @@ Let's setup the foundation of our GitOps system and deploy all the components we
    * On the "DESTINATION" box
       * Cluster URL: `https://kubernetes.default.svc`
       * Namespace: `<USER_NAME>-toolings`
-   * On the "HELM" box
+   * Change the `Directory` dropdown to `Helm` and set
       * Values Files: `values.yaml`
 
     Your form should look like this:
