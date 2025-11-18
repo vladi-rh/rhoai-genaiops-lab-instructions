@@ -34,7 +34,7 @@ The Canopy application we deployed already has RAG built-in as you may have seen
     git push
     ```
 
-4. Open the Canopy UI (https://frontend-<USER_NAME>-test.<CLUSTER_DOMAIN> if you have closed it since last time), change to the Information Search feature in the left menu and ask something like `what is the total credits in Biotechnology program in Redwood Digital University?`
+4. Open the Canopy UI (https://canopy-ui-<USER_NAME>-test.<CLUSTER_DOMAIN> if you have closed it since last time), change to the Information Search feature in the left menu and ask something like `what is the total credits in Biotechnology program in Redwood Digital University?`
 
     ![ask-canopy.png](images/ask-canopy.png)
 

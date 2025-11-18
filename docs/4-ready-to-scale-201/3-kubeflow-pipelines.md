@@ -60,17 +60,7 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
         expected_result: "AI and ML have transformed industries through healthcare diagnostics, autonomous vehicles, and recommendation systems, but also raise concerns about bias, job displacement, and privacy."
     ```
 
-
-3. Let's commit your evals as well!
-   
-    ```bash
-    cd /opt/app-root/src/evals
-    git add .
-    git commit -m  "🌼 New evals added 🌼"
-    git push 
-    ```
-
-4. The code for the kubeflow pipeline that is running these evaluations is inside of `evals-pipeline/kfp_pipeline.py`, go ahead and open it up and take a look. It may look large, but most of it is HTML to create a nice looking output. You will recognize these lines: 
+3. The code for the kubeflow pipeline that is running these evaluations is inside of `evals-pipeline/kfp_pipeline.py`, go ahead and open it up and take a look. It may look large, but most of it is HTML to create a nice looking output. You will recognize these lines: 
 
     <div class="highlight" style="background: #f7f7f7">
     <pre><code class="language-python">
@@ -80,7 +70,7 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
     </code></pre>
     </div>
 
-5. Scroll down to near the bottom of the file (around line 830) and edit the `repo_url` argument as below:
+4. Scroll down to near the bottom of the file (around line 830) and edit the `repo_url` argument as below:
     ```python
     arguments = {
         "repo_url": "https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/evals.git", # 🚨 replace with your own repo URL
@@ -91,10 +81,10 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
         "git_hash": "test",
     }
     ```
-    These arguments instruct your pipeline how to run.
+    These arguments instruct your pipeline how to run, make sure to replace the repo_url with your own.
 
 
-6. Let's push the change:
+5. Let's push the change:
 
     ```bash
     cd /opt/app-root/src/evals
@@ -103,7 +93,7 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
     git push origin main
     ```
 
-7. Now we can run the pipeline! 🙌  
+6. Now we can run the pipeline! 🙌  
 
     Just execute this in your terminal:
 
@@ -121,7 +111,7 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
 
     ![running-kfp-pipeline](images/running-kfp-pipeline.png)
 
-8.  After it has finished runnig you can go to this URL to see your results:  
+7.  After it has finished runnig you can go to this URL to see your results:  
     ```bash
     https://minio-ui-<USER_NAME>-canopy.<CLUSTER_DOMAIN>/browser/test-results
     ```

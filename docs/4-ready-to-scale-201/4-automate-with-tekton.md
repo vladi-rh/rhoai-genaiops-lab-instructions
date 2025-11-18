@@ -64,6 +64,10 @@ We also need to set up our pipeline server for our `toolings` namespace, but thi
     git push 
     ```
 
+5. As soon as it's ready you can go to OpenShift AI -> Projects -> <USER_NAME>-toolings -> Pipelines and see that it's available to start importing pipelines:  
+
+    ![dspa-ready](images/dspa-ready.png)
+
 Great, now you are all set up!  
 
 ## Trigger our Kubeflow pipeline through a Tekton pipeline
@@ -102,6 +106,7 @@ We will be triggering it from a Tekton Pipeline, where we both will have a step 
     ```
 
 4. Now let's look at it by going to the OpenShift Dashboard -> Pipelines -> <USER_NAME>-toolings -> `canopy-evals-pipeline`. You can see that all it does is a simple git clone followed by starting the kubeflow pipeline.  
+    After the pipeline is complete it also raises the changes in `test` as a PR to `prod`.
 
     ![tekton-pipeline](images/tekton-pipeline.png)
 
@@ -145,7 +150,7 @@ Let's go and add some more useful tests to trigger the pipeline 🧪
 1. Go to your workbench and enter the `backend/chart/values-test.yaml` file.  
     In there you'll find your system prompt for test environment. Update your prompt as you see fit.
 
-2. After you have finished updating it, commit it to git, watch the pipeline run, and see how the results turn out:
+2. After you have finished updating it, commit it to git:
     ```bash
     cd /opt/app-root/src/backend
     git add .
@@ -158,6 +163,8 @@ Let's go and add some more useful tests to trigger the pipeline 🧪
 
 4. Whenever the pipeline is ran, it produces and saves the results in a MinIO bucket called `test-results`. Go there and see how well your tests performed: `https://minio-ui-<USER_NAME>-toolings.<CLUSTER_DOMAIN>/browser/test-results`
 
-5. Alternatively, you can see the results in your Prompt Tracker application. It should be attached in the related git commit.
+5. Alternatively, you can see the results in your Prompt Tracker application (it's in the `Quick Links` in the top right of your lab instructions if you have already closed it 😉). The results will be attached in the related git commit.
    
     ![evals-results-prompt-tracker.png](./images/evals-results-prompt-tracker.png)
+
+6. Finally, if you go to your backend repository in Gitea you should now see a PR ([https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/backend/pulls?type=all&state=open](https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/backend/pulls?type=all&state=open)) that can be reviewed and accepted if the results looked good enough to go to prod.  
