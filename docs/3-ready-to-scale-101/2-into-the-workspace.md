@@ -12,7 +12,7 @@ You’ll use this environment to:
 
 By the end of this section, you'll have a better grasp of how to integrate Llama Stack into your own workflows and applications — and set the stage for more advanced use cases.
 
-1. Login to [OpenShift AI](https://rhods-dashboard-redhat-ods-applications.<CLUSTER_DOMAIN>/). You’ll see your `<USER_NAME>-canopy` project there too!
+1. Login to [OpenShift AI](https://data-science-gateway.<CLUSTER_DOMAIN>/). You’ll see your `<USER_NAME>-canopy` project there too!
 
    ![openshift-ai.png](./images/openshift-ai.png)
 
