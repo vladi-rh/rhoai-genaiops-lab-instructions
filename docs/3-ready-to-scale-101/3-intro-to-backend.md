@@ -42,7 +42,7 @@ We'll separate out the LLM business logic from the frontend into its own backend
 
     ![update-canopy-ui.png](./images/update-canopy-ui.png)
 
-3. In the values, add the below backend endpoint value for `BACKEND_ENDPOINT`.
+2. In the values, add the below backend endpoint value for `BACKEND_ENDPOINT`.
    
     ```bash
     http://canopy-backend:8000
@@ -50,8 +50,9 @@ We'll separate out the LLM business logic from the frontend into its own backend
 
     ![update-canopy-ui-2.png](./images/update-canopy-ui-2.png)
 
+    Don't hit `Upgrade` yet. We need to change the image version as well!
 
-4. For the image, point to a newer version:
+3. For the image, point to a newer version:
    
    - tag: `0.3`
   
@@ -59,11 +60,11 @@ We'll separate out the LLM business logic from the frontend into its own backend
 
     ![update-canopy-ui-3.png](./images/update-canopy-ui-3.png)
 
-5. Verify that Canopy UI still works as expected by clicking the little arrow and accesing the UI:
+4. Verify that Canopy UI still works as expected by clicking the little arrow and accesing the UI:
    
     ![update-canopy-ui-4.png](./images/update-canopy-ui-4.png)
 
-6. Ask it to summarize a text again!
+5. Ask it to summarize a text again!
 
     ```
     Tea preparation involves the controlled extraction of bioactive compounds from processed Camellia sinensis leaves. Begin by heating water to near 100°C to optimize solubility. Introduce a tea bag to a ceramic vessel, then infuse with hot water to initiate steeping—typically 3–5 minutes to allow for the diffusion of polyphenols and caffeine. Upon removal of the bag, optional additives like sucrose or lipid-based emulsions may be introduced to alter flavor profiles. The infusion is then ready for consumption.

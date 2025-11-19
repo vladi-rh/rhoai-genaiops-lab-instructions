@@ -107,7 +107,9 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
 
     ![trigger-kfp.png](./images/trigger-kfp.png)
 
-    And now navigate to the OpenShift AI dashboard -> Experiments -> Experiments and Runs -> kfp-training-pipeline -> canopy-testing-pipeline  
+    > Note: if you get an error, please restart the workbench by stop and starting it.
+
+    And now navigate to the OpenShift AI dashboard -> Develop & train -> Pipelines -> Runs
 
     ![running-kfp-pipeline](images/running-kfp-pipeline.png)
 
