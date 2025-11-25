@@ -35,6 +35,8 @@
   * [💂‍♂️ Canopy with Guardrails](6-honor-code/4-canopy-with-guardrails.md)
   <!-- * [💂‍♂️ LlamaGuard](7-honor-code/2-llamaguard.md)
   * [🛡️ PromptGuard](7-honor-code/3-promptguard.md) -->
+* [Observability](7-honor-code/README.md)
+* [Agents](8-agents/README.md)
 * [On-Prem Practicum](10-on-prem-practicum/README.md)
   * [⛳️ Deploy LLMs](10-on-prem-practicum/1-deploy-llms.md)
   * [🫶 Evaluate & Update Canopy](10-on-prem-practicum/2-update-canopy.md)
