@@ -35,8 +35,12 @@
   * [💂‍♂️ Canopy with Guardrails](6-honor-code/4-canopy-with-guardrails.md)
   <!-- * [💂‍♂️ LlamaGuard](7-honor-code/2-llamaguard.md)
   * [🛡️ PromptGuard](7-honor-code/3-promptguard.md) -->
-* [Observability](7-honor-code/README.md)
+* [Observability](7-observability/README.md)
 * [Agents](8-agents/README.md)
+  * [🔨 What are Tools?](8-agents/1-what-are-tools.md)
+  * [🤖 Agentic Workflows](8-agents/2-agentic-workflows.md)
+  * [🦙 Agentic Llamas](8-agents/3-agentic-llamas.md)
+  * [✅ Take Agents to Prod](8-agents/4-take-agents-to-prod.md)
 * [On-Prem Practicum](10-on-prem-practicum/README.md)
   * [⛳️ Deploy LLMs](10-on-prem-practicum/1-deploy-llms.md)
   * [🫶 Evaluate & Update Canopy](10-on-prem-practicum/2-update-canopy.md)
