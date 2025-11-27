@@ -32,3 +32,5 @@ Before we can use an MCP server, we need to deploy one, let's start with that!
 5. After everything has been deployed, you can access the [Calendar website](https://canopy-mcp-calendar-frontend-<USER_NAME>-canopy.<CLUSTER_DOMAIN>), go see what it looks like
 
 6. Go to your workbench and open up the notebook **`canopy/8-agents/2-MCP.ipynb`** to see how to use the MCP server and its tools
+
+Now that you know what tools are, how they work, and how to use them, let's see how we can create even more powerful agents.
