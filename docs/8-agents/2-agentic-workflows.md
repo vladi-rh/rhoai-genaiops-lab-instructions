@@ -30,15 +30,4 @@ ReAct is just the beginning. Other agentic patterns include:
 - **Reflection**: Agent critiques its own work and improves
 - **Multi-Agent Systems**: Multiple specialized agents collaborate
 
-These patterns are covered in the lecture slides, but the core principles remain the same: give LLMs tools, autonomy, and a reasoning framework.
-
-## Why this matters for production
-
-Agentic workflows unlock powerful capabilities, but they come with challenges:
-
-- **Cost**: Each reasoning step is an LLM call
-- **Latency**: More steps = slower responses
-- **Reliability**: Agents can get stuck in loops or make wrong decisions
-- **Observability**: Debugging multi-step agent behavior is hard
-
-In the next section, we'll explore how to take these concepts to production with proper observability, error handling, and optimization. -->
+These patterns are covered in the lecture slides, but the core principles remain the same: give LLMs tools, autonomy, and a reasoning framework. -->
