@@ -19,7 +19,8 @@ The most common agentic pattern is **ReAct** (Reasoning and Acting). It's simple
 This pattern emerged from research showing that making LLMs "think out loud" before acting improves their decision-making. By forcing the model to articulate its reasoning, it makes better tool choices and catches its own mistakes.
 
 Let's see this in action!  
-Go to your workbench and open **`canopy/8-agents/3-agentic-workflows.ipynb`**
+Go to your workbench and open **`experiments/8-agents/3-agentic-workflows.ipynb`**, then come back here after you finish that exercise.
+
 
 <!-- ## Beyond ReAct
 
