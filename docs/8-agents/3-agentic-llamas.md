@@ -1,22 +1,46 @@
-## Agentic Frameworks and Llamas
+# Agentic Frameworks: Llama Stack & LangGraph
 
-We have now seen how we can build an Agent from scratch.  
-Let's use some libraries to make this easier!  
-We of course have llamastack that can help by exposing everything over a unified endpoint, but llamastack unfortuantely doesn't have any agentic framework built into it. Luckily for us, there are plenty other agentic frameworks we can leverage and that integrate with llamastack.  
-On of the more popular ones are LangGraph, let's see how our previous example would look like using that instead!
+## From Scratch to Production
 
-The usecase we are implementing is: a knowledge-based chatbot which will schedule meetings with specific professors if it can't find the knowledge itself.
+You just built a ReAct agent from scratch, complete with manual parsing, loop management, state handling, and error recovery. That's the hard way and has a lot of boilerplate code! But now you understand *how* agents work under the hood.
 
-### Enable MCP in LlamaStack
+In production, nobody builds agents from scratch. Instead, we use **agentic frameworks** that handle all that complexity for us.  
+Agentic frameworks abstract away so you can focus on **what** your agent should do, not **how** it does it.
 
-1. Go to OpenShift Console -> Helm -> Releases
+## Popular Agentic Frameworks
 
-2. For `llama-stack-operator-instance` click on the three dots on the rightmost side and select Upgrade
+There are multiple agentic frameworks available, amongst them are:
 
-3. Open up the MCP section, select `enabled` and click Upgrade
+- **LangGraph**: Production-grade graph-based agent framework (by LangChain)
+- **CrewAI**: Multi-agent collaboration framework
+- **AutoGen**: Microsoft's multi-agent conversation framework
+- **Haystack**: End-to-end LLM orchestration
 
-### Try it out
+Today we'll use **LangGraph** because it's powerful yet approachable, and it integrates cleanly with Llama Stack through OpenAI-compatible endpoints.
 
-Now that you have everything enabled, let's see how it looks like:
+## The Use Case
 
-1. Go through notebook `experiments/8-agents/4-agentic-llamas.ipynb`.
+We'll build a **knowledge-based chatbot** that can:
+1. Search documents for information (RAG)
+2. Schedule meetings with professors if it can't answer the question
+
+This requires the agent to reason about when to search vs. when to schedule - perfect for demonstrating LangGraph's simplicity!
+
+## Enable MCP in LlamaStack
+
+Before we start, we need to enable MCP support in your Llama Stack instance:
+
+1. Go to **OpenShift Console** → **Helm** → **Releases**
+
+2. Find `llama-stack-operator-instance`, click the **three dots** → **Upgrade**
+
+3. Open the **MCP section**, select **`enabled`**, and click **Upgrade**
+
+This enables our MCP Calendar tool that LangGraph will use.
+
+## Let's Build It!
+
+Ready to see how much easier this gets? You'll build the same agentic capabilities with **~70% less code**.  
+No manual parsing. No iteration loops. Just clean, declarative agent definitions.
+
+1. Go to your workbench and open **`experiments/8-agents/4-agentic-llamas.ipynb`**
