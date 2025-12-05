@@ -42,5 +42,3 @@ This enables our MCP Calendar tool that LangGraph will use.
 
 Ready to see how much easier this gets? You'll build the same agentic capabilities with **~70% less code**.  
 No manual parsing. No iteration loops. Just clean, declarative agent definitions.
-
-1. Go to your workbench and go through the notebook **`experiments/8-agents/4-agentic-llamas.ipynb`**
