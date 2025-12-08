@@ -33,8 +33,6 @@
   * [🔦 Guardrails Orchestrator](6-honor-code/2-guardrails_orchestrator.md)
   * [🦔 Automate Guardrails Checks](6-honor-code/3-automate-checks.md)
   * [💂‍♂️ Canopy with Guardrails](6-honor-code/4-canopy-with-guardrails.md)
-  <!-- * [💂‍♂️ LlamaGuard](7-honor-code/2-llamaguard.md)
-  * [🛡️ PromptGuard](7-honor-code/3-promptguard.md) -->
 * [Observability](7-observability/README.md)
 * [Agents](8-agents/README.md)
   * [🔨 What are Tools?](8-agents/1-what-are-tools.md)
