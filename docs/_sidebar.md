@@ -35,7 +35,11 @@
   * [💂‍♂️ Canopy with Guardrails](6-honor-code/4-canopy-with-guardrails.md)
   <!-- * [💂‍♂️ LlamaGuard](7-honor-code/2-llamaguard.md)
   * [🛡️ PromptGuard](7-honor-code/3-promptguard.md) -->
-* [Observability](7-observability/README.md)
+* [The AI Watcher](7-observability/README.md)
+  * [👁️ Enable Monitoring](7-observability/1-enable-monitoring.md)
+  * [📊 Metrics](7-observability/2-metrics.md)
+  * [📝 Logging](7-observability/3-logging.md)
+  * [🔍 Tracing](7-observability/4-tracing.md) 
 * [Agents](8-agents/README.md)
   * [🔨 What are Tools?](8-agents/1-what-are-tools.md)
   * [🤖 Agentic Workflows](8-agents/2-agentic-workflows.md)
