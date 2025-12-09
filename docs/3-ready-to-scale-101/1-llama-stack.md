@@ -77,7 +77,7 @@ Let’s deploy the Playground to verify the integration between Llama Stack and 
 
 3. If you scroll on the left menu, there is a `System Prompt` area. We can continue experimenting and iterating on our prompts here. So feel free to bring your latest System prompt to the playground.
 
-    And remember your user prompt from before:
+    Here is a user prompt from previous chapters:
     ```
     Tea preparation involves the controlled extraction of bioactive compounds from processed Camellia sinensis leaves. Begin by heating water to near 100°C to optimize solubility. Introduce a tea bag to a ceramic vessel, then infuse with hot water to initiate steeping—typically 3–5 minutes to allow for the diffusion of polyphenols and caffeine. Upon removal of the bag, optional additives like sucrose or lipid-based emulsions may be introduced to alter flavor profiles. The infusion is then ready for consumption.
     ```

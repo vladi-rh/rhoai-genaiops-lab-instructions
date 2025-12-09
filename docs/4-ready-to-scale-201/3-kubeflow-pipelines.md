@@ -60,7 +60,7 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
         expected_result: "AI and ML have transformed industries through healthcare diagnostics, autonomous vehicles, and recommendation systems, but also raise concerns about bias, job displacement, and privacy."
     ```
 
-3. The code for the kubeflow pipeline that is running these evaluations is inside of `evals-pipeline/kfp_pipeline.py`, go ahead and open it up and take a look. It may look large, but most of it is HTML to create a nice looking output. You will recognize these lines: 
+3. The code for the kubeflow pipeline that is running these evaluations is inside of `evals-pipeline/kfp_pipeline.py`. Go ahead and open it up and take a look. It may look large, but most of it is HTML to create a nice looking output. You will recognize these lines, somewhere around line ~740: 
 
     <div class="highlight" style="background: #f7f7f7">
     <pre><code class="language-python">
@@ -113,7 +113,7 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
 
     ![running-kfp-pipeline](images/running-kfp-pipeline.png)
 
-7.  After it has finished runnig you can go to this URL to see your results:  
+7.  After it has finished runnig you can go to this URL to download your results. If youopen up the HTML file, you'll see your results:  
     ```bash
     https://minio-ui-<USER_NAME>-canopy.<CLUSTER_DOMAIN>/browser/test-results
     ```
