@@ -1,29 +1,35 @@
 # Module 9 - Model Optimization
 
-> Running the smartest AI means nothing if it's too slow or expensive to deploy. Model optimization transforms powerful but heavy LLMs into lean, efficient engines ⚡
+> Your 70B model is brilliant. It's also eating $500/day in GPU costs and making students wait 10 seconds for answers. Time to put it on a diet. 🏋️
 
 # 🧑‍🍳 Module Intro
 
-This module covers model quantization and optimization for production GenAI applications. You'll learn how to compress LLMs, evaluate trade-offs, and deploy optimized models through your GenAIOps pipeline.
+You've built Canopy, connected it to RAG, added guardrails, and set up monitoring. Now finance is asking why your GPU bill looks like a phone number.
 
-**Key Question:** *Which quantization method should I choose for my use case?*
+This module is about making models smaller, faster, and cheaper—without making them dumber. We'll compress LLMs using quantization, test that they still work, and deploy them through your GitOps pipeline.
+
+**The big question:** *How much can we compress before students start noticing?*
 
 # 🖼️ Big Picture
 <!-- TODO: Add architecture diagram showing quantization workflow -->
 ![big-picture-quantization.jpg](images/big-picture-quantization.jpg)
 
-# 🔮 Learning Outcomes
+# 🔮 What You'll Learn
 
-* Understand quantization and precision formats (FP32 → FP16 → FP8 → INT8 → INT4)
-* Examine llm-compressor configurations and quantization recipes
-* Analyze trade-offs between PTQ algorithms (GPTQ, AWQ, SmoothQuant)
-* Integrate quantized models into your GenAIOps deployment pipeline
-* Evaluate quantized models using lm-evaluation-harness
+By the end of this module, you'll be able to:
 
-# 🔨 Tools used in this module
+* **Speak the language** — FP16, INT8, INT4, W8A16... you'll know what these mean and when to use them
+* **Pick your weapon** — GPTQ, AWQ, SmoothQuant—different tools for different jobs
+* **Compress a model** — Hands-on with llm-compressor to shrink models for production
+* **Know if it worked** — Evaluate quantized models to catch quality regressions
+* **Ship it** — Deploy optimized models through your GenAIOps pipeline
 
-* **llm-compressor**: Quantization toolkit from the vLLM project
-* **lm-evaluation-harness**: Benchmarking framework for LLM accuracy
-* **GuideLLM**: Performance testing (TTFT, ITL, throughput)
-* **vLLM/KServe**: Model serving infrastructure
-* **Argo CD**: GitOps deployment for model promotion
+# 🔨 Tools You'll Use
+
+| Tool | What It Does |
+|------|--------------|
+| **llm-compressor** | The quantization toolkit from vLLM—this does the actual compression |
+| **lm-evaluation-harness** | Industry-standard benchmarking to verify you didn't break anything |
+| **GuideLLM** | Performance testing—measure latency, throughput, time-to-first-token |
+| **vLLM/KServe** | Serve your compressed models to production |
+| **Argo CD** | GitOps deployment—promote models through test → staging → prod |

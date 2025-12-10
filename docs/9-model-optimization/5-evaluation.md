@@ -1,140 +1,151 @@
-# 📊 Evaluation with lm-evaluation-harness
+# 📊 Evaluation: Prove It Works
 
-[lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) is the gold standard for LLM benchmarking. It powers Hugging Face's Open LLM Leaderboard and is used by NVIDIA, Cohere, and dozens of other organizations.
+You've compressed your model. Your tests pass. Your gut says it's fine.
 
-## Why Standardized Evaluation?
+But "gut feeling" doesn't fly in production. You need numbers. You need benchmarks. You need *evidence*.
 
-Quantized models need rigorous comparison against baselines:
+Enter [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)—the same tool that powers HuggingFace's Open LLM Leaderboard. If it's good enough for NVIDIA and Cohere, it's good enough for us.
 
-| Question | What Evaluation Answers |
-|----------|------------------------|
-| Did accuracy drop? | Benchmark scores vs baseline |
-| Which tasks suffered? | Per-task breakdown |
-| Is it production-ready? | Comparison to thresholds |
+## Why Bother With Formal Benchmarks?
 
-## Common Benchmarks
+Because "it seems to work" isn't a deployment strategy.
 
-The Open LLM Leaderboard uses these benchmarks to evaluate models:
+| The Question | What Benchmarks Tell You |
+|--------------|--------------------------|
+| Did we break it? | Scores vs baseline—the receipts |
+| Where did it hurt? | Per-task breakdown shows weak spots |
+| Can we ship it? | Compare against your thresholds |
 
-| Benchmark | What It Tests | Shot Count | Why It Matters for Quantization |
-|-----------|---------------|------------|--------------------------------|
-| **MMLU** | 57 academic subjects | 5-shot | General knowledge retention |
-| **HellaSwag** | Commonsense inference | 10-shot | Easy for humans (~95%), hard for models |
-| **ARC-Challenge** | Grade-school science | 25-shot | Reasoning under compression |
-| **Winogrande** | Coreference resolution | 5-shot | Language understanding |
-| **GSM8K** | Math word problems | 5-shot | Most sensitive to quantization |
-| **TruthfulQA** | Factual accuracy | 0-shot | Avoiding hallucinations |
+## The Benchmark Menu
 
-### Task Sensitivity to Quantization
+These are the tests that matter—the same ones used on the Open LLM Leaderboard:
 
-Not all benchmarks respond equally to quantization:
+| Benchmark | What It Tests | Why It Matters for Quantization |
+|-----------|---------------|--------------------------------|
+| **MMLU** | 57 academic subjects | Did the model forget what it learned? |
+| **HellaSwag** | Commonsense inference | Humans ace this (~95%), models struggle |
+| **ARC-Challenge** | Grade-school science | Can it still reason under compression? |
+| **Winogrande** | Pronoun resolution | Basic language understanding intact? |
+| **GSM8K** | Math word problems | ⚠️ **Most sensitive to quantization** |
+| **TruthfulQA** | Factual accuracy | Still avoiding hallucinations? |
 
-| Sensitivity | Benchmarks | Notes |
-|-------------|------------|-------|
-| **High** | GSM8K, math tasks | Numeric precision matters |
-| **Medium** | MMLU, ARC | Knowledge retrieval |
-| **Low** | HellaSwag, Winogrande | Pattern matching robust |
+### Which Tasks Feel the Pain?
 
-Research shows formats with aggressive compression (INT4, Q3) degrade GSM8K performance earlier than other tasks.
+Not all benchmarks are created equal when it comes to quantization sensitivity:
 
-## What Research Shows
+| Sensitivity | Benchmarks | Why |
+|-------------|------------|-----|
+| 🔴 **High** | GSM8K, math tasks | Numeric precision matters—compression hurts |
+| 🟡 **Medium** | MMLU, ARC | Knowledge retrieval—some degradation |
+| 🟢 **Low** | HellaSwag, Winogrande | Pattern matching—pretty robust |
 
-Large-scale studies on quantized LLMs reveal:
+**The warning:** If you're doing math tutoring with Canopy, watch GSM8K like a hawk. It's usually the first to show cracks.
 
-### Accuracy Recovery
+## What the Research Actually Says
 
-All quantization schemes recover **over 99%** of baseline accuracy on OpenLLM Leaderboard benchmarks—regardless of model size. The key findings:
+Here's the good news: large-scale studies show quantization works better than you'd fear.
 
-- **8-bit (INT8):** Nearly lossless (<0.5% drop)
-- **4-bit (INT4):** 1-3% degradation typical
-- **Larger models (70B+):** More resilient to quantization
-- **Smaller models (8B):** More variability, still usable
+### The Headlines
 
-### The "Flip" Phenomenon
+All quantization schemes recover **over 99%** of baseline accuracy on OpenLLM Leaderboard benchmarks. Here's the breakdown:
 
-Accuracy alone can be misleading. Research found that even when overall accuracy stays within 1% of baseline:
+| Precision | What to Expect |
+|-----------|----------------|
+| **INT8** | Nearly lossless—less than 0.5% drop |
+| **INT4** | 1-3% degradation is typical |
+| **70B+ models** | More resilient (bigger = better cushion) |
+| **8B models** | More variability, but still usable |
 
-- Some correct answers become incorrect after quantization
-- Some incorrect answers become correct
-- Math tasks show 12-30% "flip rates"
+### The Plot Twist: Answer Flipping
 
-**Implication:** Don't just check aggregate scores—test your specific use cases.
+Here's something that'll keep you up at night. Even when aggregate accuracy stays within 1% of baseline:
 
-### Algorithm Comparison
+- Some correct answers become *incorrect*
+- Some incorrect answers become *correct*
+- On math tasks, 12-30% of answers "flip"
 
-| Algorithm | Accuracy Retention | Notes |
-|-----------|-------------------|-------|
+**What this means:** The average looks fine, but individual questions behave differently. Don't just check the summary score—test your actual use cases.
+
+### Which Algorithm Wins?
+
+| Algorithm | Accuracy Retention | The Verdict |
+|-----------|-------------------|-------------|
 | AWQ | Higher | More stable across tasks |
-| GPTQ | Slightly lower | More noticeable on GSM8K, ARC |
-| Q5_K_M (GGUF) | Optimal | Best trade-off for most domains |
-| Q3_K_M (GGUF) | Use cautiously | Significant degradation risk |
+| GPTQ | Slightly lower | More variability on GSM8K, ARC |
+| Q5_K_M (GGUF) | Sweet spot | Best trade-off for most use cases |
+| Q3_K_M (GGUF) | Risky | Significant degradation—use carefully |
 
-## Running Evaluations
+## Running Your Own Evaluations
 
-### Against Pre-deployed Models
+### Testing a Deployed Model
 
-lm-evaluation-harness can evaluate models via API endpoints:
+lm-evaluation-harness can hit your model's API endpoint directly:
 
-```
+```bash
 lm_eval --model local-completions \
-        --model_args base_url=<endpoint> \
+        --model_args base_url=<your-endpoint> \
         --tasks hellaswag,winogrande,arc_easy \
         --limit 100
 ```
 
-### Efficient Evaluation with tinyBenchmarks
+### Don't Have All Day? Use tinyBenchmarks
 
-Full benchmarks have tens of thousands of examples. tinyBenchmarks identifies the most informative items:
+Full benchmarks have tens of thousands of questions. tinyBenchmarks cherry-picks the most informative ones:
 
-| Original Benchmark | Full Size | tinyBenchmarks Size |
-|-------------------|-----------|---------------------|
-| MMLU | 14,000+ | ~100 examples |
-| Combined (6 benchmarks) | 50,000+ | <3% of original |
+| Benchmark | Full Size | tinyBenchmarks |
+|-----------|-----------|----------------|
+| MMLU | 14,000+ questions | ~100 questions |
+| All 6 benchmarks | 50,000+ questions | <3% of the total |
 
-This enables quick validation during development while preserving accuracy estimates.
+Same accuracy estimates, fraction of the time. Perfect for quick validation during development.
 
-## Acceptable Accuracy Thresholds
+## The Decision Framework
 
-Use these guidelines for production decisions:
+### General Thresholds
 
-| Accuracy Drop | Recommendation | Action |
-|---------------|----------------|--------|
-| <1% | ✅ Ship it | Deploy with confidence |
-| 1-3% | ⚠️ Acceptable | Monitor in production |
-| 3-5% | 🔍 Marginal | A/B test with users |
-| >5% | ❌ Too high | Try different config (g64, INT8) |
+When should you ship? Here's the rule of thumb:
+
+| Accuracy Drop | Verdict | What to Do |
+|---------------|---------|------------|
+| <1% | ✅ **Ship it** | Deploy with confidence |
+| 1-3% | ⚠️ **Acceptable** | Deploy, but monitor closely |
+| 3-5% | 🔍 **Marginal** | A/B test with real users |
+| >5% | ❌ **Too much** | Try INT8 or smaller group size |
 
 ### Task-Specific Thresholds
 
-For mission-critical tasks, apply stricter thresholds:
+If Canopy is helping with specific tasks, apply stricter standards:
 
-| Use Case | Max Acceptable Drop |
-|----------|---------------------|
+| What Canopy Does | Max Acceptable Drop |
+|------------------|---------------------|
 | Math tutoring | <2% on GSM8K |
-| Code generation | <2% on HumanEval |
+| Code help | <2% on HumanEval |
 | General chat | <5% average |
 | Summarization | <3% on MMLU |
 
-## Making the Decision
+## The Decision Matrix
 
-Build a decision matrix for your quantized models:
+Put it all together in a comparison table:
 
-| Model | Size | GSM8K | MMLU | HellaSwag | Avg Drop | Decision |
-|-------|------|-------|------|-----------|----------|----------|
-| FP16 (baseline) | 6.4 GB | 0.412 | 0.654 | 0.762 | - | Reference |
-| INT8 | 3.2 GB | 0.405 | 0.651 | 0.759 | -0.8% | ✅ Ship |
+| Model Variant | Size | GSM8K | MMLU | HellaSwag | Avg Drop | Ship It? |
+|---------------|------|-------|------|-----------|----------|----------|
+| FP16 (baseline) | 6.4 GB | 0.412 | 0.654 | 0.762 | — | Reference |
+| INT8 | 3.2 GB | 0.405 | 0.651 | 0.759 | -0.8% | ✅ Yes |
 | INT4 g128 | 1.8 GB | 0.389 | 0.640 | 0.751 | -2.5% | ⚠️ Monitor |
-| INT4 g64 | 2.0 GB | 0.398 | 0.647 | 0.755 | -1.5% | ✅ Ship |
+| INT4 g64 | 2.0 GB | 0.398 | 0.647 | 0.755 | -1.5% | ✅ Yes |
 
 ---
 
-## Module Complete! 🎉
+## 🎉 Module Complete!
 
-You've learned:
-- ✅ Quantization fundamentals and precision formats
-- ✅ PTQ algorithms with llm-compressor
-- ✅ Deployment decisions: schemes, group sizes, formats
-- ✅ GenAIOps pipeline for quantized models
-- ✅ Evaluation with lm-evaluation-harness
+You made it. Here's what you now know:
 
-Continue to **[On-Prem Practicum](../10-on-prem-practicum/README.md)** to deploy optimized models!
+- ✅ **Quantization fundamentals** — What it is, why it works, what can go wrong
+- ✅ **The algorithms** — GPTQ, AWQ, SmoothQuant, and when to use each
+- ✅ **Deployment choices** — Schemes, group sizes, output formats
+- ✅ **The pipeline** — Testing, model cards, GitOps deployment
+- ✅ **Evaluation** — Benchmarks, thresholds, and making the call
+
+**The bottom line:** You can cut your model's memory by 4x and still ship something students won't complain about. Now go make finance happy.
+
+Continue to **[On-Prem Practicum](../10-on-prem-practicum/README.md)** to deploy your optimized models!
