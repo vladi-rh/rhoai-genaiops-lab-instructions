@@ -8,15 +8,28 @@
 
 By the end of this lesson, you'll have a fully functional LiteMaaS deployment on OpenShift:
 
-[Image: Deployment architecture diagram showing:
-- OpenShift namespace "maas" containing:
-  - LiteMaaS Frontend (Pod)
-  - LiteMaaS Backend (Pod)
-  - PostgreSQL database (Pod with PVC)
-  - LiteLLM proxy (Pod)
-- Connections to existing model endpoints (vLLM/KServe from previous modules)
-- OpenShift Route exposing the LiteMaaS UI
-- OpenShift OAuth integration for authentication]
+```mermaid
+flowchart TB
+    subgraph OCP["OpenShift Cluster"]
+        subgraph NS["Namespace: maas"]
+            FE["LiteMaaS Frontend<br/>(Pod)"]
+            BE["LiteMaaS Backend<br/>(Pod)"]
+            DB["PostgreSQL<br/>(Pod + PVC)"]
+            PROXY["LiteLLM Proxy<br/>(Pod)"]
+        end
+        ROUTE["OpenShift Route"]
+        OAUTH["OpenShift OAuth"]
+    end
+    subgraph Models["Model Endpoints"]
+        VLLM["vLLM/KServe<br/>(from previous modules)"]
+    end
+    ROUTE --> FE
+    FE --> BE
+    BE --> DB
+    BE --> PROXY
+    PROXY --> VLLM
+    BE <--> OAUTH
+```
 
 ---
 

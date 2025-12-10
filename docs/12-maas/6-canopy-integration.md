@@ -21,38 +21,33 @@ Let's visualize what we're changing:
 
 ### Before (Modules 3-8)
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    Current Canopy Setup                          │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  [Canopy UI] ──→ [Canopy Backend] ──→ [Llama Stack] ──→ [vLLM]  │
-│                          │                                       │
-│                          └── Direct model endpoint               │
-│                                                                  │
-│  Endpoint: https://canopy-llm-<USER_NAME>-canopy.apps.<...>/v1  │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Current["Current Canopy Setup"]
+        UI[Canopy UI] --> BE[Canopy Backend]
+        BE --> LS[Llama Stack]
+        LS --> VLLM[vLLM]
+    end
+    BE -. Direct endpoint .-> NOTE["canopy-llm-....apps.../v1"]
 ```
 
 Your Canopy has its own dedicated model endpoint. It works great... for one Canopy.
 
 ### After (Module 12)
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    MaaS-Connected Canopy                         │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  [Canopy UI] ──→ [Canopy Backend] ──→ [LiteMaaS API] ──→ [vLLM] │
-│                          │                │                      │
-│                          │                ├── Usage Tracking     │
-│                          │                ├── Cost Attribution   │
-│                          └── API Key      └── Shared Model       │
-│                                                                  │
-│  Endpoint: https://litemaas-<USER_NAME>-maas.apps.<...>/v1      │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph MaaSCanopy["MaaS-Connected Canopy"]
+        UI[Canopy UI] --> BE[Canopy Backend]
+        BE -->|API Key| MAAS[LiteMaaS API]
+        MAAS --> VLLM[vLLM]
+    end
+    subgraph Features
+        TRACK[Usage Tracking]
+        COST[Cost Attribution]
+        SHARED[Shared Model]
+    end
+    MAAS --> Features
 ```
 
 Now Canopy goes through LiteMaaS, which provides:
@@ -311,23 +306,24 @@ Click on the key to see detailed usage:
 
 Remember the RDU story? Now imagine multiple AI applications all sharing the same model infrastructure:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    RDU AI Infrastructure (After MaaS)            │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  [Canopy Prod]  ───┐                                            │
-│  Key: canopy-prod  │                                            │
-│                    │                                             │
-│  [Research Bot] ───┼──→ [LiteMaaS] ──→ [Granite 8B] ──→ [1 GPU]│
-│  Key: research-bot │         │                                  │
-│                    │         ├── Track: canopy-prod: $145       │
-│  [Data Pipeline] ──┘         ├── Track: research-bot: $230     │
-│  Key: data-pipeline          └── Track: data-pipeline: $89     │
-│                                                                  │
-│  Total GPU: 1 (was 3!)   Total tracked: $464                    │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Apps
+        C1["Canopy Prod<br/><small>Key: canopy-prod</small>"]
+        C2["Research Bot<br/><small>Key: research-bot</small>"]
+        C3["Data Pipeline<br/><small>Key: data-pipeline</small>"]
+    end
+    subgraph MaaS["LiteMaaS"]
+        GW[Gateway]
+        T1["canopy-prod: $145"]
+        T2["research-bot: $230"]
+        T3["data-pipeline: $89"]
+    end
+    C1 --> GW
+    C2 --> GW
+    C3 --> GW
+    GW --> MODEL["Granite 8B"]
+    MODEL --> GPU["1 GPU<br/><small>(was 3!)</small>"]
 ```
 
 Each application has its own API key, so:

@@ -215,13 +215,19 @@ Proactive cost control is better than reactive budget panic.
 
 LiteMaaS supports quotas at user and API key levels:
 
-```
-Quota Structure:
-├── User Level: Prof. Smith $200/month
-│   ├── API Key: canopy-backend $150/month
-│   └── API Key: experiments $50/month
-└── User Level: Research Assistant $100/month
-    └── API Key: data-pipeline $100/month
+```mermaid
+flowchart TB
+    QUOTA["Quota Structure"]
+    SMITH["Prof. Smith<br/>$200/month"]
+    RA["Research Assistant<br/>$100/month"]
+    K1["canopy-backend<br/>$150/month"]
+    K2["experiments<br/>$50/month"]
+    K3["data-pipeline<br/>$100/month"]
+    QUOTA --> SMITH
+    QUOTA --> RA
+    SMITH --> K1
+    SMITH --> K2
+    RA --> K3
 ```
 
 > 💡 **Note:** Organization-wide and team-level quotas are planned for a future release.

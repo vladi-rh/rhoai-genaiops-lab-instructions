@@ -18,20 +18,14 @@ Being good citizens, each department follows the same pattern you learned in Mod
 
 **The result?**
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    RDU AI Infrastructure                         │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  [CS Canopy] ──→ [Granite Model] ──→ [GPU #1] 💤 (3% utilized)  │
-│                                                                  │
-│  [Biz Canopy] ──→ [Granite Model] ──→ [GPU #2] 💤 (2% utilized) │
-│                                                                  │
-│  [Lib Canopy] ──→ [Granite Model] ──→ [GPU #3] 💤 (1% utilized) │
-│                                                                  │
-│  [Student trying to get GPU access]: "NO GPUS AVAILABLE" 😭     │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph RDU AI Infrastructure
+        CS[CS Canopy] --> G1[Granite Model] --> GPU1["GPU #1 💤 3%"]
+        BIZ[Biz Canopy] --> G2[Granite Model] --> GPU2["GPU #2 💤 2%"]
+        LIB[Lib Canopy] --> G3[Granite Model] --> GPU3["GPU #3 💤 1%"]
+    end
+    STUDENT["Student 😭"] -. NO GPUS AVAILABLE .-> GPU1
 ```
 
 Three identical models. Three GPUs. Combined utilization: 6%.
@@ -120,22 +114,24 @@ The MaaS approach:
 
 **The Architecture:**
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    MaaS Architecture                             │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  [CS Canopy]  ─┐                                                │
-│                │                                                 │
-│  [Biz Canopy] ─┼──→ [MaaS Gateway] ──→ [Granite] ──→ [GPU #1]   │
-│                │      (LiteMaaS)            │                    │
-│  [Lib Canopy] ─┘          │                 │                    │
-│                           │                 └──→ 70% utilized! 🎉│
-│               ┌───────────┘                                      │
-│               ▼                                                  │
-│    [Usage Tracking]  [API Keys]  [Budgets]                      │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Apps
+        CS[CS Canopy]
+        BIZ[Biz Canopy]
+        LIB[Lib Canopy]
+    end
+    subgraph MaaS["MaaS Gateway (LiteMaaS)"]
+        GW[API Gateway]
+        TRACK[Usage Tracking]
+        KEYS[API Keys]
+        BUDGETS[Budgets]
+    end
+    CS --> GW
+    BIZ --> GW
+    LIB --> GW
+    GW --> GRANITE[Granite Model]
+    GRANITE --> GPU["GPU #1 🎉 70%"]
 ```
 
 ---
@@ -170,12 +166,32 @@ If you can't measure it, you can't manage it. MaaS provides full visibility into
 
 For this module, we'll use **LiteMaaS** — a lightweight MaaS implementation built by Red Hat AI Services.
 
-[Image: LiteMaaS architecture diagram showing:
-- Frontend box (React + PatternFly 6) with icons for User Management, API Keys, Usage Dashboard
-- Backend box (Fastify + PostgreSQL) with icons for Auth, API Proxy, Analytics
-- Connection to LiteLLM (OpenAI-compatible proxy)
-- Connection to OpenShift OAuth for authentication
-- Arrow showing how requests flow from Users → LiteMaaS → LiteLLM → Model Backend]
+```mermaid
+flowchart TB
+    subgraph Users
+        U[Users]
+    end
+    subgraph Frontend["Frontend (React + PatternFly 6)"]
+        UM[User Management]
+        AK[API Keys]
+        UD[Usage Dashboard]
+    end
+    subgraph Backend["Backend (Fastify + PostgreSQL)"]
+        AUTH[Auth]
+        PROXY[API Proxy]
+        ANALYTICS[Analytics]
+    end
+    subgraph External
+        OAUTH[OpenShift OAuth]
+        LITELLM[LiteLLM Proxy]
+        MODEL[Model Backend]
+    end
+    U --> Frontend
+    Frontend --> Backend
+    AUTH <--> OAUTH
+    PROXY --> LITELLM
+    LITELLM --> MODEL
+```
 
 **Key Components:**
 

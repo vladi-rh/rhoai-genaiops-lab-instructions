@@ -133,15 +133,23 @@ Budgets are your secret weapon against the dreaded "surprise cloud bill." They l
 
 LiteMaaS currently supports budgets at the user and API key level:
 
-```
-Platform Budget Structure
-├── User: Prof. Smith ($200/month)
-│   ├── API Key: canopy-prod ($150/month)
-│   └── API Key: experiments ($50/month)
-├── User: Student Assistant ($50/month)
-│   └── API Key: research-bot ($50/month)
-└── User: MBA Program ($500/month)
-    └── API Key: analytics-app ($500/month)
+```mermaid
+flowchart TB
+    PLATFORM["Platform Budget Structure"]
+    SMITH["Prof. Smith<br/>$200/month"]
+    STUDENT["Student Assistant<br/>$50/month"]
+    MBA["MBA Program<br/>$500/month"]
+    K1["canopy-prod<br/>$150/month"]
+    K2["experiments<br/>$50/month"]
+    K3["research-bot<br/>$50/month"]
+    K4["analytics-app<br/>$500/month"]
+    PLATFORM --> SMITH
+    PLATFORM --> STUDENT
+    PLATFORM --> MBA
+    SMITH --> K1
+    SMITH --> K2
+    STUDENT --> K3
+    MBA --> K4
 ```
 
 > 💡 **Future Feature:** Team-level budgets are planned for a future LiteMaaS release. For now, you can achieve similar results by coordinating user budgets manually.
