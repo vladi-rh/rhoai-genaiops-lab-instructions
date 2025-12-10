@@ -35,11 +35,7 @@ As you go through each lesson, you'll "wear different hats" to understand MaaS f
 
 # 🖼️ Big Picture
 
-[Image: A before/after comparison diagram showing:
-- LEFT ("Before MaaS"): Multiple Canopy instances (CS Dept, Business School, Library) each with their own arrow pointing to their own GPU, labeled "3 models, 3 GPUs, mostly idle"
-- RIGHT ("After MaaS"): Multiple Canopy instances all pointing to a single "LiteMaaS Gateway" box, which then points to one shared GPU, labeled "1 model, 1 GPU, efficiently shared"
-- A "GPU Utilization" meter showing low utilization on the left vs high utilization on the right
-- Maybe a little "💸" emoji on the left side showing wasted money and a "✅" on the right showing efficiency]
+![Before and After MaaS comparison showing resource consolidation](images/before-after-maas.png)
 
 ---
 
