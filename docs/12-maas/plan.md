@@ -12,6 +12,42 @@ Module 12 teaches students how to implement Models as a Service (MaaS) - a patte
 - Familiar with: OpenShift, GitOps, RAG, Guardrails, Observability, Agents
 - Have working Canopy application from previous modules
 
+---
+
+## Connection to Course Narrative
+
+### The RDU Story Arc
+The course is set at **Redwood Digital University (RDU)**, where students build **Canopy** - an educational AI assistant. Throughout the modules, Canopy evolves:
+
+| Module | Canopy Evolution |
+|--------|------------------|
+| Module 2 | Introduced as a simple Streamlit UI for prompt engineering |
+| Module 3 | Deployed via GitOps to dev/test/prod environments |
+| Module 5 | Enhanced with RAG for document intelligence |
+| Module 6 | Protected with guardrails for academic integrity |
+| Module 8 | Extended with agentic capabilities |
+| **Module 12** | **Connects to centralized MaaS for efficient model access** |
+
+### Current Technical Pattern (What Students Know)
+By Module 8, students deploy models directly:
+- **KServe/vLLM** inference services on OpenShift AI
+- Direct endpoints like `https://canopy-llm-modelmesh-serving.apps.<CLUSTER_DOMAIN>/...`
+- Each team/user can deploy their own model instance
+- Uses **Llama Stack** framework for model interactions
+
+### The Natural Evolution (Module 12's Story)
+**The narrative hook for Module 12:**
+> "Canopy has been a success at RDU! But now the Computer Science department, the Business School, AND the Library all want their own Canopy instances. Each team is deploying Granite models... and the GPUs are running out. Sound familiar?"
+
+This connects to the MaaS origin story - the problem students will solve is exactly what happened at RDU (and at real enterprises like Red Hat).
+
+### How Module 12 Fits
+- **Before MaaS**: Each Canopy instance has its own model endpoint (direct deployment)
+- **After MaaS**: All Canopy instances share models via LiteMaaS API gateway
+- **Student Journey**: From "I deploy my own model" → "I consume models as a service"
+
+This mirrors the real-world transition organizations make as they scale AI adoption.
+
 ### Key Resources
 - **LiteMaaS Repository**: https://github.com/rh-aiservices-bu/litemaas
   - React + PatternFly 6 frontend
@@ -89,6 +125,8 @@ docs/12-maas/
 **Content:**
 - Opening quote (friendly tone, matching other modules like Grounded AI)
 - 🧑‍🍳 Module Intro section explaining the MaaS concept
+  - Reference the RDU journey: "Canopy has grown from a simple chatbot to a full-featured AI assistant..."
+  - Introduce the scaling challenge: "But what happens when everyone at RDU wants their own Canopy?"
 - 🖼️ Big Picture image placeholder
 - 🔮 Learning Outcomes
 - 👥 **Personas Overview** - Introduce the 4 roles with their concerns
@@ -96,6 +134,9 @@ docs/12-maas/
 
 **Example opening quote style:**
 > "Giving everyone a GPU is like giving everyone their own power plant. What if we just... shared the electricity instead?"
+
+**RDU Connection:**
+> "At RDU, Canopy started as one team's experiment. Now the whole university wants AI. Time to think like a service provider, not just a developer."
 
 ---
 
@@ -112,10 +153,15 @@ docs/12-maas/
 **Content Outline:**
 
 1. **The Origin Story - The "Hardware Hoarding" Anti-Pattern** (friendly framing)
-   - Scenario: Enterprise offers OpenShift AI cluster to all 19,000 employees
-   - What happens: 7 people deploy their own Granite 3-8B instance
-   - Result: 7 GPUs at 0% utilization, "no GPUs available" errors
-   - Key insight: 19K employees × 1 GPU each = impossible to scale
+   - **Start with RDU scenario** (relatable to students):
+     - "Canopy was such a hit that the CS department, Business School, and Library all want their own instances"
+     - Each department deploys their own Granite model
+     - Result: 3 identical models, 3 GPUs, sitting idle most of the time
+   - **Scale to enterprise** (the Red Hat story):
+     - Scenario: Enterprise offers OpenShift AI cluster to all 19,000 employees
+     - What happens: 7 people deploy their own Granite 3-8B instance
+     - Result: 7 GPUs at 0% utilization, "no GPUs available" errors
+     - Key insight: 19K employees × 1 GPU each = impossible to scale
    - Persona moment: "This is where the **Owner** says 'wait, what?!'"
 
 2. **Ideas That Don't Work** (with friendly tone)
@@ -317,6 +363,7 @@ docs/12-maas/
 ### 6-canopy-integration.md - Canopy Integration
 
 **Persona focus:** All personas benefit
+- Opening: "Remember your Canopy from Module 3? It's been pointing directly at your model endpoint. Time to upgrade it to use MaaS!"
 
 **Learning Objectives:**
 - Configure Canopy to use LiteMaaS as the model backend
@@ -325,29 +372,38 @@ docs/12-maas/
 
 **Content Outline:**
 
-1. **Why Integrate?**
+1. **The Before/After**
+   - **Before (Module 3-8)**: Canopy → Direct vLLM/KServe endpoint
+   - **After (Module 12)**: Canopy → LiteMaaS API Gateway → Shared models
+   - Diagram showing the transition
+
+2. **Why Integrate?**
    - Centralized model management for applications
    - Usage tracking across applications
    - Consistent access control
+   - RDU can now track all Canopy usage across departments!
 
-2. **Configuration Steps**
+3. **Configuration Steps**
    - Update Canopy environment variables
-   - Point to LiteMaaS API endpoint
-   - Configure API key
+   - Change from direct endpoint to LiteMaaS API endpoint
+   - Configure API key (generated in Lesson 4)
+   - The endpoint format changes from `https://canopy-llm-...` to `https://litemaas.../v1/...`
 
-3. **Testing the Integration**
+4. **Testing the Integration**
    - Use Canopy with MaaS backend
    - Verify requests appear in LiteMaaS usage logs
+   - "Your Canopy queries now show up in the admin dashboard!"
 
-4. **Production Considerations**
+5. **Production Considerations**
    - API key rotation
-   - Budget alerts
-   - Multi-application setup
+   - Budget alerts for applications
+   - Multi-application setup (multiple Canopy instances sharing MaaS)
 
 **Hands-on Exercises:**
-- Update Canopy configuration
-- Test Canopy with LiteMaaS backend
+- Update Canopy configuration to use LiteMaaS
+- Test Canopy with MaaS backend
 - Verify usage tracking in LiteMaaS dashboard
+- Compare the experience: same Canopy, different backend!
 
 ---
 
