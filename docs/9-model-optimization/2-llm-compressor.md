@@ -210,6 +210,8 @@ In this exercise, you'll take a small model and compress it on CPU (yes, CPU—n
 
 4. **See the difference** — Compare file sizes before and after (prepare to be impressed)
 
+5. **Run a test** — Compare the response from the compressed model to the original model
+
 When you're done, come back and we'll dive into the advanced stuff.
 
 ## 🎯 Next Steps
