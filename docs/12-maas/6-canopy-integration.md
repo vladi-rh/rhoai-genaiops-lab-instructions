@@ -307,33 +307,33 @@ Click on the key to see detailed usage:
 
 ---
 
-## 🏢 Step 6: Multiple Canopy Instances
+## 🏢 Step 6: Multiple Applications
 
-Remember the RDU story? Now imagine three departments each have their own Canopy:
+Remember the RDU story? Now imagine multiple AI applications all sharing the same model infrastructure:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    RDU AI Infrastructure (After MaaS)            │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│  [CS Canopy]  ───┐                                              │
-│  Key: cs-canopy  │                                              │
-│                  │                                               │
-│  [Biz Canopy] ───┼──→ [LiteMaaS] ──→ [Granite 8B] ──→ [1 GPU]  │
-│  Key: biz-canopy │         │                                    │
-│                  │         ├── Track: CS used $145              │
-│  [Lib Canopy] ───┘         ├── Track: Biz used $230            │
-│  Key: lib-canopy           └── Track: Lib used $89              │
+│  [Canopy Prod]  ───┐                                            │
+│  Key: canopy-prod  │                                            │
+│                    │                                             │
+│  [Research Bot] ───┼──→ [LiteMaaS] ──→ [Granite 8B] ──→ [1 GPU]│
+│  Key: research-bot │         │                                  │
+│                    │         ├── Track: canopy-prod: $145       │
+│  [Data Pipeline] ──┘         ├── Track: research-bot: $230     │
+│  Key: data-pipeline          └── Track: data-pipeline: $89     │
 │                                                                  │
 │  Total GPU: 1 (was 3!)   Total tracked: $464                    │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-Each Canopy has its own API key, so:
-* ✅ Usage is tracked separately
-* ✅ Costs can be attributed to each department
-* ✅ Budgets can be set per department
+Each application has its own API key, so:
+* ✅ Usage is tracked separately per application
+* ✅ Costs can be attributed to each API key
+* ✅ Budgets can be set per application
 * ✅ All share the same efficient model infrastructure
 
 ---
@@ -435,10 +435,10 @@ env:
 
 ✅ **Answer:** You can now:
 - Track how much Canopy costs to operate
-- Compare usage across multiple Canopy instances
-- Set budgets and alerts
+- Compare usage across multiple applications
+- Set budgets and alerts per API key
 - Make data-driven decisions about scaling
-- Attribute costs to departments that use Canopy
+- Attribute costs to specific applications and users
 </details>
 
 <details>
@@ -485,12 +485,12 @@ Let's recap your journey:
 
 ### The RDU Outcome
 
-Remember where we started? RDU had three departments, each deploying their own Granite model, wasting GPUs.
+Remember where we started? RDU had multiple teams, each deploying their own Granite model, wasting GPUs.
 
 Now?
 - **1 shared model** instead of 3 duplicates
 - **Full visibility** into who uses what
-- **Cost attribution** by department
+- **Cost attribution** by user and application
 - **Canopy** works exactly the same — just better managed!
 
 [Image: "Before and After" meme format:

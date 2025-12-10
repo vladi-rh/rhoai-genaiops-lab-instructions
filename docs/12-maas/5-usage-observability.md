@@ -30,7 +30,7 @@ Let's paint a picture:
 Without observability, AI adoption is a black hole for budget. With observability, you can:
 
 * ✅ Know *who* is using *what*
-* ✅ Attribute costs to departments
+* ✅ Attribute costs to users and applications
 * ✅ Spot runaway usage before it's a problem
 * ✅ Make data-driven decisions about model investments
 
@@ -72,7 +72,6 @@ Filter by:
 ├── Date Range: Last 7 days, 30 days, custom
 ├── Model: granite-8b, llama-3-70b, all
 ├── User: Specific user or all
-├── Team: CS Department, Business School, etc.
 └── API Key: Specific key or all
 ```
 
@@ -99,13 +98,14 @@ Navigate to **Analytics → Users**:
 Click on any user to see their detailed usage:
 
 ```
-Prof. Smith (CS Department)
+Prof. Smith
 ├── Total Requests: 12,345
 ├── Total Tokens: 2.1M
 ├── Estimated Cost: $145.67
 ├── Top Model: granite-8b (89%)
 ├── Peak Usage Time: 2-4 PM (office hours?)
-└── Trend: ↑ 23% vs last month
+├── Trend: ↑ 23% vs last month
+└── API Keys: canopy-prod, research-experiments
 ```
 
 ### Identifying Anomalies
@@ -160,37 +160,39 @@ llama-3-70b:
 
 ## 💰 Cost Tracking & Chargeback
 
-If your organization uses internal cost allocation, MaaS makes it easy.
+If your organization uses internal cost allocation, MaaS provides the data you need.
 
 ### What is Chargeback?
 
 **Chargeback** = billing internal departments for their usage of shared resources.
 
-Instead of AI costs sitting in "IT General," you can attribute costs:
+Instead of AI costs sitting in "IT General," you can attribute costs. LiteMaaS tracks usage per user and per API key, which you can aggregate for cost allocation:
 
 ```
 Monthly AI Costs: $1,500
 
-Breakdown:
-├── CS Department:      $650 (43%)
-├── Business School:    $480 (32%)
-├── Library:            $220 (15%)
-├── Research Lab:       $150 (10%)
+Breakdown by User:
+├── Prof. Smith:           $145 (10%)
+├── Research Bot (API):    $380 (25%)
+├── Canopy Prod (API):     $650 (43%)
+├── Dev Team Users:        $325 (22%)
 ```
 
-This makes department heads think twice about unnecessary usage! 💸
+> 💡 **Tip:** Use descriptive API key names (like `cs-dept-canopy` or `library-assistant`) to make manual department attribution easier. Team-level grouping is planned for a future LiteMaaS release.
 
-### Generating Chargeback Reports
+This makes users think twice about unnecessary usage! 💸
+
+### Generating Usage Reports
 
 1. Navigate to **Analytics → Reports**
-2. Select **Chargeback Report**
+2. Select **Usage Report**
 3. Choose the billing period (month, quarter)
-4. Select grouping (by team, by cost center)
+4. Select grouping (by user or by API key)
 5. Click **Generate**
 
-[Image: Chargeback report showing:
+[Image: Usage report showing:
 - Period: November 2024
-- Table with columns: Department, Total Tokens, Cost, % of Total
+- Table with columns: User/API Key, Total Tokens, Cost, % of Total
 - Pie chart visualization
 - "Export to PDF" and "Export to CSV" buttons]
 
@@ -198,9 +200,9 @@ This makes department heads think twice about unnecessary usage! 💸
 
 | Practice | Why |
 |----------|-----|
-| Use consistent team assignments | Ensures accurate attribution |
+| Use descriptive API key names | Makes attribution clearer (e.g., `cs-dept-canopy`) |
 | Include in monthly reports | Keep stakeholders informed |
-| Set department budgets | Creates accountability |
+| Set user budgets | Creates accountability |
 | Review quarterly | Catch trends early |
 
 ---
@@ -211,15 +213,18 @@ Proactive cost control is better than reactive budget panic.
 
 ### Setting Quotas
 
-Quotas can be set at multiple levels:
+LiteMaaS supports quotas at user and API key levels:
 
 ```
-Quota Hierarchy:
-├── Organization Level: $5,000/month (hard stop)
-├── Team Level: CS Department $1,500/month
+Quota Structure:
 ├── User Level: Prof. Smith $200/month
-└── API Key Level: canopy-backend $500/month
+│   ├── API Key: canopy-backend $150/month
+│   └── API Key: experiments $50/month
+└── User Level: Research Assistant $100/month
+    └── API Key: data-pipeline $100/month
 ```
+
+> 💡 **Note:** Organization-wide and team-level quotas are planned for a future release.
 
 ### Configuring Alerts
 
@@ -242,10 +247,10 @@ Navigate to **Settings → Alerts**:
 1. Navigate to **Settings → Alerts**
 2. Click **Add Alert**
 3. Configure:
-   - **Name:** "CS Department 80% Warning"
-   - **Scope:** Team → CS Department
+   - **Name:** "Prof Smith 80% Warning"
+   - **Scope:** User → Prof. Smith
    - **Threshold:** 80% of monthly budget
-   - **Action:** Email team lead
+   - **Action:** Email user
 4. Click **Save**
 
 ### Quota Enforcement Options

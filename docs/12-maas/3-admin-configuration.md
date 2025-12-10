@@ -64,7 +64,7 @@ As a Service Admin, you control which models users can access. Not all models sh
 
 * 🔒 Still in testing
 * 💰 Very expensive to run
-* 🎯 Intended for specific teams only
+* 🎯 Intended for specific use cases only
 
 ### Viewing Available Models
 
@@ -126,21 +126,25 @@ Example pricing for Granite 8B:
 Budgets are your secret weapon against the dreaded "surprise cloud bill." They let you:
 
 * Set spending limits per user
-* Allocate budgets by team/department
+* Set API key-level budgets for applications
 * Prevent runaway API usage
 
 ### Budget Hierarchy
 
+LiteMaaS currently supports budgets at the user and API key level:
+
 ```
-Organization Budget
-├── Team: CS Department ($1000/month)
-│   ├── User: Prof. Smith ($200/month)
-│   └── User: Student Assistant ($50/month)
-├── Team: Business School ($800/month)
-│   └── User: MBA Program API ($500/month)
-└── Team: Library ($500/month)
-    └── User: Research Bot ($300/month)
+Platform Budget Structure
+├── User: Prof. Smith ($200/month)
+│   ├── API Key: canopy-prod ($150/month)
+│   └── API Key: experiments ($50/month)
+├── User: Student Assistant ($50/month)
+│   └── API Key: research-bot ($50/month)
+└── User: MBA Program ($500/month)
+    └── API Key: analytics-app ($500/month)
 ```
+
+> 💡 **Future Feature:** Team-level budgets are planned for a future LiteMaaS release. For now, you can achieve similar results by coordinating user budgets manually.
 
 ### Setting User Budgets
 
@@ -160,19 +164,6 @@ Organization Budget
 - Hard Cap toggle: ON
 - Current Usage: $42.50 (42.5%)
 - Progress bar visualizing usage]
-
-### Team Budgets
-
-For larger organizations, you can set team-level budgets:
-
-1. Navigate to **Teams** in the sidebar
-2. Create or select a team
-3. Assign users to the team
-4. Set the team's monthly budget
-
-When a team has a budget:
-* Individual user budgets apply within the team limit
-* Team budget is the "ceiling" — no one can exceed it even if their personal budget would allow
 
 ### What Happens When Budget is Exhausted?
 
@@ -266,9 +257,9 @@ To revoke:
 </details>
 
 <details>
-<summary>❓ What's the difference between user budgets and team budgets?</summary>
+<summary>❓ What's the difference between user budgets and API key budgets?</summary>
 
-✅ **Answer:** User budgets limit individual spending. Team budgets set an overall ceiling for all users in that team. Individual users can't exceed their personal budget, AND the combined team usage can't exceed the team budget.
+✅ **Answer:** User budgets limit an individual's total spending across all their API keys. API key budgets limit spending for a specific key, useful when you want to cap a particular application's usage. A user might have multiple API keys for different projects, each with its own budget.
 </details>
 
 <details>
