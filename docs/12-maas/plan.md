@@ -421,8 +421,8 @@ Match existing modules (see `docs/5-grounded-ai/README.md` for reference):
 
 ## Implementation Steps
 
-1. Create `docs/12-maas/archive/` directory
-2. Move `initial-plan.md` and `other-plan.md` to `archive/`
+1. Create `docs/12-maas/archive/` directory -> already done
+2. Move `initial-plan.md` and `other-plan.md` to `archive/` -> already done
 3. Create `docs/12-maas/README.md` with personas overview
 4. Create `docs/12-maas/1-understanding-maas.md` with narrative elements
 5. Create `docs/12-maas/2-deploy-litemaas.md` with persona markers
