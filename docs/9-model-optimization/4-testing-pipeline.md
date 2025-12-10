@@ -37,6 +37,37 @@ Here's where most people get burned. A model can ace benchmarks and still break 
 
 **Always test your actual application flows.**
 
+<!-- 🧪 Quiz: The Testing Trap -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quick Check: The Testing Trap</h3>
+<p style="margin:0 0 12px;color:#666;">Your quantized model scores 98% on MMLU and passes all standard benchmarks. You deploy it to production. A week later, students complain that Canopy is ignoring their system prompts and returning malformed JSON. What went wrong?</p>
+<style>
+.quiz-container-testing{position:relative}
+.quiz-option-testing{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-testing:hover{background:#e9ecef}
+.quiz-radio-testing{display:none}
+.quiz-radio-testing:checked+.quiz-option-testing[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-testing:checked+.quiz-option-testing:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.feedback-testing{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#testing-correct:checked~.feedback-testing[data-feedback="correct"]{display:block;background:#d4edda;color:#155724}
+#testing-wrong1:checked~.feedback-testing[data-feedback="wrong1"],#testing-wrong2:checked~.feedback-testing[data-feedback="wrong2"],#testing-wrong3:checked~.feedback-testing[data-feedback="wrong3"]{display:block;background:#f8d7da;color:#721c24}
+</style>
+<div class="quiz-container-testing">
+<input type="radio" name="quiz-testing" id="testing-wrong1" class="quiz-radio-testing">
+<label for="testing-wrong1" class="quiz-option-testing" data-correct="false">📊 The benchmarks were too easy—you should have used harder tests</label>
+<input type="radio" name="quiz-testing" id="testing-correct" class="quiz-radio-testing">
+<label for="testing-correct" class="quiz-option-testing" data-correct="true">🧪 You only tested Stage 1 (knowledge) but skipped Stage 2 (application flows)</label>
+<input type="radio" name="quiz-testing" id="testing-wrong2" class="quiz-radio-testing">
+<label for="testing-wrong2" class="quiz-option-testing" data-correct="false">🔢 The model needed a smaller group size</label>
+<input type="radio" name="quiz-testing" id="testing-wrong3" class="quiz-radio-testing">
+<label for="testing-wrong3" class="quiz-option-testing" data-correct="false">⏱️ You deployed too quickly—should have waited longer</label>
+<div class="feedback-testing" data-feedback="correct">✅ <strong>Exactly!</strong> Benchmark scores test knowledge retention, but quantization can break instruction-following and output formatting in ways benchmarks don't catch. Always test your actual application flows—system prompts, tool calling, JSON output—before deploying.</div>
+<div class="feedback-testing" data-feedback="wrong1">❌ MMLU is already challenging. The problem isn't test difficulty—it's that benchmarks measure different things than application behavior.</div>
+<div class="feedback-testing" data-feedback="wrong2">❌ Group size affects accuracy, but the issue here is <em>what</em> you tested, not <em>how</em> you quantized.</div>
+<div class="feedback-testing" data-feedback="wrong3">❌ Timing isn't the issue. You could wait a year and still hit this problem if you only run benchmark tests.</div>
+</div>
+</div>
+
 ### About Those "Emergent Abilities"
 
 Good news: Research confirms that the cool stuff—in-context learning, chain-of-thought reasoning, instruction following—survives INT4 quantization.

@@ -115,6 +115,37 @@ Created by Georgi Gerganov for llama.cpp. This is how you run models on laptops,
 
 **The workflow:** Compress with llm-compressor → SafeTensors for GPU. Only convert to GGUF if you're deploying to CPU/edge.
 
+<!-- 📦 Quiz: Output Format Selection -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quick Check: Format Selection</h3>
+<p style="margin:0 0 12px;color:#666;">Your team has quantized a model for Canopy. One developer wants to use GGUF because "it's a single file and easier to manage." But Canopy runs on vLLM in your Kubernetes cluster. What should you tell them?</p>
+<style>
+.quiz-container-format{position:relative}
+.quiz-option-format{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-format:hover{background:#e9ecef}
+.quiz-radio-format{display:none}
+.quiz-radio-format:checked+.quiz-option-format[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-format:checked+.quiz-option-format:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.feedback-format{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#format-correct:checked~.feedback-format[data-feedback="correct"]{display:block;background:#d4edda;color:#155724}
+#format-wrong1:checked~.feedback-format[data-feedback="wrong1"],#format-wrong2:checked~.feedback-format[data-feedback="wrong2"],#format-wrong3:checked~.feedback-format[data-feedback="wrong3"]{display:block;background:#f8d7da;color:#721c24}
+</style>
+<div class="quiz-container-format">
+<input type="radio" name="quiz-format" id="format-wrong1" class="quiz-radio-format">
+<label for="format-wrong1" class="quiz-option-format" data-correct="false">📱 GGUF is fine—single file is easier to deploy</label>
+<input type="radio" name="quiz-format" id="format-correct" class="quiz-radio-format">
+<label for="format-correct" class="quiz-option-format" data-correct="true">🖥️ Use SafeTensors—it's what vLLM expects for GPU serving</label>
+<input type="radio" name="quiz-format" id="format-wrong2" class="quiz-radio-format">
+<label for="format-wrong2" class="quiz-option-format" data-correct="false">🤷 Either works, just pick one</label>
+<input type="radio" name="quiz-format" id="format-wrong3" class="quiz-radio-format">
+<label for="format-wrong3" class="quiz-option-format" data-correct="false">📦 Convert to both and let vLLM choose</label>
+<div class="feedback-format" data-feedback="correct">✅ <strong>Exactly!</strong> GGUF is optimized for CPU inference (llama.cpp, Ollama). vLLM on Kubernetes expects SafeTensors. Using the wrong format means either it won't load or you'll lose performance benefits.</div>
+<div class="feedback-format" data-feedback="wrong1">❌ GGUF is great for llama.cpp and Ollama, but vLLM expects SafeTensors. You'd lose GPU optimizations or fail to load entirely.</div>
+<div class="feedback-format" data-feedback="wrong2">❌ Format matters! GGUF is CPU-optimized, SafeTensors is GPU-optimized. Wrong choice = wrong performance or incompatibility.</div>
+<div class="feedback-format" data-feedback="wrong3">❌ vLLM won't auto-select—it expects SafeTensors. Extra formats just waste storage.</div>
+</div>
+</div>
+
 ## 🎯 Next Steps
 
 You know what to compress and how. Now let's make sure it actually works.

@@ -8,7 +8,7 @@ You've built Canopy, connected it to RAG, added guardrails, and set up monitorin
 
 This module is about making models smaller, faster, and cheaper—without making them dumber. We'll compress LLMs using quantization, test that they still work, and deploy them through your GitOps pipeline.
 
-**The big question:** *How much can we compress before students start noticing?*
+**The big question:** *How much can we compress before students are impacted?*
 
 # 🖼️ Big Picture
 <!-- TODO: Add architecture diagram showing quantization workflow -->

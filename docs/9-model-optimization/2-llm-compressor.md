@@ -27,6 +27,37 @@ Here's what happens under the hood:
 
 **Why calibration matters:** Imagine compressing a photo without knowing what's in it—you might crush the important details. Calibration data teaches the algorithm what "normal" looks like, so it knows what to preserve.
 
+<!-- 🧮 Quiz 1: Calibration Understanding -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quick Check: Why Calibration?</h3>
+<p style="margin:0 0 12px;color:#666;">Your team is quantizing a model for Canopy. Someone suggests skipping calibration data to save time. Why is this a bad idea?</p>
+<style>
+.quiz-container-calib{position:relative}
+.quiz-option-calib{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-calib:hover{background:#e9ecef}
+.quiz-radio-calib{display:none}
+.quiz-radio-calib:checked+.quiz-option-calib[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-calib:checked+.quiz-option-calib:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.feedback-calib{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#calib-correct:checked~.feedback-calib[data-feedback="correct"]{display:block;background:#d4edda;color:#155724}
+#calib-wrong1:checked~.feedback-calib[data-feedback="wrong1"],#calib-wrong2:checked~.feedback-calib[data-feedback="wrong2"],#calib-wrong3:checked~.feedback-calib[data-feedback="wrong3"]{display:block;background:#f8d7da;color:#721c24}
+</style>
+<div class="quiz-container-calib">
+<input type="radio" name="quiz-calib" id="calib-wrong1" class="quiz-radio-calib">
+<label for="calib-wrong1" class="quiz-option-calib" data-correct="false">📊 The model will be larger without calibration</label>
+<input type="radio" name="quiz-calib" id="calib-wrong2" class="quiz-radio-calib">
+<label for="calib-wrong2" class="quiz-option-calib" data-correct="false">⏱️ Inference will be slower</label>
+<input type="radio" name="quiz-calib" id="calib-correct" class="quiz-radio-calib">
+<label for="calib-correct" class="quiz-option-calib" data-correct="true">🎯 The algorithm won't know which values to preserve, crushing important details</label>
+<input type="radio" name="quiz-calib" id="calib-wrong3" class="quiz-radio-calib">
+<label for="calib-wrong3" class="quiz-option-calib" data-correct="false">🔒 Security vulnerabilities will be introduced</label>
+<div class="feedback-calib" data-feedback="correct">✅ <strong>Exactly!</strong> Calibration data teaches the algorithm what "normal" looks like. Without it, the algorithm might crush the values that matter most—like compressing a photo blind.</div>
+<div class="feedback-calib" data-feedback="wrong1">❌ Model size is determined by the target precision (INT4, INT8), not calibration. Calibration affects <em>quality</em>, not <em>size</em>.</div>
+<div class="feedback-calib" data-feedback="wrong2">❌ Inference speed depends on the quantization scheme and hardware, not whether calibration was used.</div>
+<div class="feedback-calib" data-feedback="wrong3">❌ Calibration is about accuracy preservation, not security. The real risk is crushing important information.</div>
+</div>
+</div>
+
 ## Pick Your Algorithm
 
 Not all compression algorithms are created equal. Here are the main contenders—each with its own personality.
@@ -74,6 +105,37 @@ The only way to quantize *both* weights AND activations to INT8. This is how you
 
 **Use it when:** You need W8A8 for maximum throughput on INT8 hardware
 
+<!-- 🧮 Quiz 3: Algorithm Matching -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quick Check: The Outlier Problem</h3>
+<p style="margin:0 0 12px;color:#666;">Your model has activation outliers causing quantization issues. Which algorithm specifically addresses this by "smoothing" the difficulty between weights and activations?</p>
+<style>
+.quiz-container-outlier{position:relative}
+.quiz-option-outlier{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-outlier:hover{background:#e9ecef}
+.quiz-radio-outlier{display:none}
+.quiz-radio-outlier:checked+.quiz-option-outlier[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-outlier:checked+.quiz-option-outlier:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.feedback-outlier{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#outlier-correct:checked~.feedback-outlier[data-feedback="correct"]{display:block;background:#d4edda;color:#155724}
+#outlier-wrong1:checked~.feedback-outlier[data-feedback="wrong1"],#outlier-wrong2:checked~.feedback-outlier[data-feedback="wrong2"],#outlier-wrong3:checked~.feedback-outlier[data-feedback="wrong3"]{display:block;background:#f8d7da;color:#721c24}
+</style>
+<div class="quiz-container-outlier">
+<input type="radio" name="quiz-outlier" id="outlier-wrong1" class="quiz-radio-outlier">
+<label for="outlier-wrong1" class="quiz-option-outlier" data-correct="false">🎯 GPTQ</label>
+<input type="radio" name="quiz-outlier" id="outlier-wrong2" class="quiz-radio-outlier">
+<label for="outlier-wrong2" class="quiz-option-outlier" data-correct="false">🏎️ AWQ</label>
+<input type="radio" name="quiz-outlier" id="outlier-correct" class="quiz-radio-outlier">
+<label for="outlier-correct" class="quiz-option-outlier" data-correct="true">⚖️ SmoothQuant</label>
+<input type="radio" name="quiz-outlier" id="outlier-wrong3" class="quiz-radio-outlier">
+<label for="outlier-wrong3" class="quiz-option-outlier" data-correct="false">🗑️ SparseGPT</label>
+<div class="feedback-outlier" data-feedback="correct">✅ <strong>Correct!</strong> SmoothQuant transfers quantization difficulty from activations (with outliers) to weights (which are well-behaved). Like balancing a seesaw—it smooths out the problem.</div>
+<div class="feedback-outlier" data-feedback="wrong1">❌ GPTQ is great for accuracy but only quantizes weights. It doesn't address activation outliers directly.</div>
+<div class="feedback-outlier" data-feedback="wrong2">❌ AWQ protects "salient" channels but is a weight-only method. SmoothQuant is the one that handles activation outliers.</div>
+<div class="feedback-outlier" data-feedback="wrong3">❌ SparseGPT removes weights entirely (pruning), but doesn't address the activation outlier problem.</div>
+</div>
+</div>
+
 ### SparseGPT: The Marie Kondo 🗑️
 
 Why just compress when you can delete? SparseGPT removes entire weights that don't "spark joy" (contribute to accuracy), then compresses what's left.
@@ -98,6 +160,37 @@ Still not sure? Here's the quick decision guide:
 | "I want W8A8 for max throughput" | SmoothQuant | Only game in town for activation quantization |
 | "Squeeze it as much as possible" | SparseGPT + GPTQ | Pruning + quantization combo |
 | "Just tell me what to use" | GPTQ or AWQ | Battle-tested, vLLM loves them |
+
+<!-- 🧮 Quiz 2: Pick the Right Algorithm -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quick Check: Algorithm Selection</h3>
+<p style="margin:0 0 12px;color:#666;">It's finals week and Canopy is getting slammed with requests. You need to maximize throughput—serving as many students as possible per GPU. Which approach should you use?</p>
+<style>
+.quiz-container-throughput{position:relative}
+.quiz-option-throughput{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-throughput:hover{background:#e9ecef}
+.quiz-radio-throughput{display:none}
+.quiz-radio-throughput:checked+.quiz-option-throughput[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-throughput:checked+.quiz-option-throughput:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.feedback-throughput{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#throughput-correct:checked~.feedback-throughput[data-feedback="correct"]{display:block;background:#d4edda;color:#155724}
+#throughput-wrong1:checked~.feedback-throughput[data-feedback="wrong1"],#throughput-wrong2:checked~.feedback-throughput[data-feedback="wrong2"],#throughput-wrong3:checked~.feedback-throughput[data-feedback="wrong3"]{display:block;background:#f8d7da;color:#721c24}
+</style>
+<div class="quiz-container-throughput">
+<input type="radio" name="quiz-throughput" id="throughput-wrong1" class="quiz-radio-throughput">
+<label for="throughput-wrong1" class="quiz-option-throughput" data-correct="false">🎯 GPTQ with W4A16 for best accuracy</label>
+<input type="radio" name="quiz-throughput" id="throughput-wrong2" class="quiz-radio-throughput">
+<label for="throughput-wrong2" class="quiz-option-throughput" data-correct="false">🏎️ AWQ for fast compression</label>
+<input type="radio" name="quiz-throughput" id="throughput-correct" class="quiz-radio-throughput">
+<label for="throughput-correct" class="quiz-option-throughput" data-correct="true">⚖️ SmoothQuant with W8A8 for maximum throughput</label>
+<input type="radio" name="quiz-throughput" id="throughput-wrong3" class="quiz-radio-throughput">
+<label for="throughput-wrong3" class="quiz-option-throughput" data-correct="false">🗑️ SparseGPT for maximum compression</label>
+<div class="feedback-throughput" data-feedback="correct">✅ <strong>Exactly!</strong> W8A8 (both weights AND activations in INT8) gives you maximum throughput because INT8 math is blazing fast on modern hardware. SmoothQuant is how you get W8A8. More students served per GPU!</div>
+<div class="feedback-throughput" data-feedback="wrong1">❌ GPTQ with W4A16 is great for memory savings and latency, but for maximum throughput you want W8A8. Weight-only quantization doesn't speed up the actual computations as much.</div>
+<div class="feedback-throughput" data-feedback="wrong2">❌ AWQ is fast to <em>run</em> (the compression process), but like GPTQ it's weight-only. For maximum serving throughput, you want W8A8.</div>
+<div class="feedback-throughput" data-feedback="wrong3">❌ SparseGPT gives great compression, but sparsity support varies by hardware. For reliable high-throughput serving, W8A8 via SmoothQuant is the proven choice.</div>
+</div>
+</div>
 
 ## 🧪 Time to Get Your Hands Dirty
 

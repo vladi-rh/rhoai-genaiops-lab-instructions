@@ -123,6 +123,37 @@ If Canopy is helping with specific tasks, apply stricter standards:
 | General chat | <5% average |
 | Summarization | <3% on MMLU |
 
+<!-- 📊 Quiz: Ship or Not? -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quick Check: Ship or Not?</h3>
+<p style="margin:0 0 12px;color:#666;">Your team quantized a model to INT4. Benchmark results show: 4% drop on GSM8K, 1% drop on MMLU, 1% drop on HellaSwag. Canopy is being used as a math tutoring assistant. Should you ship this model?</p>
+<style>
+.quiz-container-ship{position:relative}
+.quiz-option-ship{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-ship:hover{background:#e9ecef}
+.quiz-radio-ship{display:none}
+.quiz-radio-ship:checked+.quiz-option-ship[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-ship:checked+.quiz-option-ship:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.feedback-ship{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#ship-correct:checked~.feedback-ship[data-feedback="correct"]{display:block;background:#d4edda;color:#155724}
+#ship-wrong1:checked~.feedback-ship[data-feedback="wrong1"],#ship-wrong2:checked~.feedback-ship[data-feedback="wrong2"],#ship-wrong3:checked~.feedback-ship[data-feedback="wrong3"]{display:block;background:#f8d7da;color:#721c24}
+</style>
+<div class="quiz-container-ship">
+<input type="radio" name="quiz-ship" id="ship-wrong1" class="quiz-radio-ship">
+<label for="ship-wrong1" class="quiz-option-ship" data-correct="false">✅ Ship it—the average drop is only ~2%, which is acceptable</label>
+<input type="radio" name="quiz-ship" id="ship-wrong2" class="quiz-radio-ship">
+<label for="ship-wrong2" class="quiz-option-ship" data-correct="false">⚠️ Ship and monitor—1-3% overall is within acceptable range</label>
+<input type="radio" name="quiz-ship" id="ship-correct" class="quiz-radio-ship">
+<label for="ship-correct" class="quiz-option-ship" data-correct="true">❌ Don't ship—4% GSM8K drop exceeds the 2% threshold for math tutoring</label>
+<input type="radio" name="quiz-ship" id="ship-wrong3" class="quiz-radio-ship">
+<label for="ship-wrong3" class="quiz-option-ship" data-correct="false">🔍 Run more benchmarks before deciding</label>
+<div class="feedback-ship" data-feedback="correct">✅ <strong>Correct!</strong> Task-specific thresholds matter more than averages. For math tutoring, GSM8K is the critical benchmark—and 4% exceeds your 2% threshold. Try INT8 or a smaller group size (g64) to recover accuracy on math tasks.</div>
+<div class="feedback-ship" data-feedback="wrong1">❌ Averaging hides the problem! For math tutoring, GSM8K is the benchmark that matters—and 4% is double your acceptable threshold.</div>
+<div class="feedback-ship" data-feedback="wrong2">❌ The general thresholds don't apply here. Since Canopy is specifically for math tutoring, GSM8K's 4% drop exceeds the task-specific 2% limit.</div>
+<div class="feedback-ship" data-feedback="wrong3">❌ You already have the data you need. GSM8K is the right benchmark for math tutoring—and it's clearly above threshold. More benchmarks won't change the decision.</div>
+</div>
+</div>
+
 ## The Decision Matrix
 
 Put it all together in a comparison table:
