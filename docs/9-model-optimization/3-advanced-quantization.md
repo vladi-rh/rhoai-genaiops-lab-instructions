@@ -81,20 +81,6 @@ Designed by Georgi Gerganov for llama.cpp and consumer hardware.
 
 **Workflow:** Quantize with llm-compressor to SafeTensors for GPU serving. Convert to GGUF only if deploying to CPU/edge.
 
-## Hands-On: Analyzing Quantization Results
-
-Open notebook: `experiments/9-model-optimization/2-advanced-quantization.ipynb`
-
-Follow the instructions in the notebook to:
-
-1. **Compare quantization schemes** - Examine W8A16, W4A16, and W8A8 configurations and when to use each
-
-2. **Analyze group size impact** - Review pre-computed perplexity for g128 vs g64
-
-3. **Inspect output formats** - Compare SafeTensors and GGUF file structures
-
-4. **Interactive comparison** - Query pre-deployed models and observe quality differences
-
 ## 🎯 Next Steps
 
 Continue to **[Testing Pipeline](./4-testing-pipeline.md)** to learn how to validate and deploy quantized models.

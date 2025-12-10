@@ -93,20 +93,6 @@ Full benchmarks have tens of thousands of examples. tinyBenchmarks identifies th
 
 This enables quick validation during development while preserving accuracy estimates.
 
-## Hands-On: Evaluation
-
-Open notebook: `experiments/9-model-optimization/3-evaluation.ipynb`
-
-Follow the instructions in the notebook to:
-
-1. **Examine evaluation config** - Understand how lm-evaluation-harness connects to model endpoints and configures benchmark tasks
-
-2. **Analyze pre-computed results** - Review accuracy scores across HellaSwag, Winogrande, ARC-Easy, and GSM8K for FP16, INT8, and INT4 models
-
-3. **Run a lightweight API test** - Execute a small sample evaluation against pre-deployed models
-
-4. **Build a decision matrix** - Use benchmark data to determine acceptable accuracy thresholds for your use case
-
 ## Acceptable Accuracy Thresholds
 
 Use these guidelines for production decisions:

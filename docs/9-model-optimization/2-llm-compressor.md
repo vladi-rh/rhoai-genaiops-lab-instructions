@@ -90,21 +90,21 @@ Combines pruning with quantization for maximum compression.
 | Maximum compression | SparseGPT + GPTQ | Sparsity + quantization |
 | Production deployment | GPTQ or AWQ | Well-tested, vLLM support |
 
-## Hands-On: Exploring LLM-Compressor
+## Hands-On: Quantizing a Model with LLM-Compressor
 
 Open notebook: `experiments/9-model-optimization/1-intro-llm-compressor.ipynb`
 
-In this exercise, you'll explore llm-compressor configurations and inspect pre-quantized models. No GPU required—we're using the "cook-and-show" approach with models that have already been quantized.
+In this exercise, you'll use llm-compressor to quantize a small model on CPU.
 
 Follow the instructions in the notebook to:
 
-1. **Explore a quantization recipe** - Examine how llm-compressor configures GPTQ with parameters like `targets`, `scheme`, `ignore`, and `group_size`
+1. **Understand the oneshot API** - Learn llm-compressor's main interface for quantization
 
-2. **Inspect pre-quantized models** - Compare file sizes between FP16, INT8, and INT4 models
+2. **Configure a quantization recipe** - Use `GPTQModifier` with parameters like `scheme`, `targets`, and `ignore`
 
-3. **Examine quantization metadata** - Look inside a quantized model's config to see the algorithm, bits, and group size
+3. **Run quantization** - Quantize `Qwen/Qwen2-0.5B-Instruct` with W8A8 scheme
 
-4. **Compare model outputs** - Query pre-deployed endpoints with identical prompts and observe quality differences
+4. **Compare file sizes** - See how much smaller the quantized model is
 
 ## 🎯 Next Steps
 
