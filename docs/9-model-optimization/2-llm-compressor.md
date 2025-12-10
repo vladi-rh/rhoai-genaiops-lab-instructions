@@ -196,7 +196,7 @@ Still not sure? Here's the quick decision guide:
 
 Enough reading—let's compress a model!
 
-Open the notebook: **`experiments/9-model-optimization/1-intro-llm-compressor.ipynb`**
+Go to your workbench and open up **`experiments/9-model-optimization/1-intro-llm-compressor.ipynb`**
 
 In this exercise, you'll take a small model and compress it on CPU (yes, CPU—no fancy hardware needed to learn).
 
