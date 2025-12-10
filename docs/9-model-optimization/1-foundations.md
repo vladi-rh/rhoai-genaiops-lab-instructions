@@ -249,11 +249,12 @@ Model <strong>weights</strong> are typically centered around zero: <code>[-0.5, 
 
 The granularity determines how many values share a single scale factor:
 
-| Level | Description | Trade-off |
-|-------|-------------|-----------|
-| **Per-tensor** | One scale for entire tensor | Fastest, least accurate |
-| **Per-channel** | One scale per output channel | Good balance |
-| **Group (g128, g64)** | One scale per N weights | Most accurate, more overhead |
+| Level                      | Description                                   | Trade-off                                                                                       |
+| -------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| **Per-tensor**             | One scale for the entire tensor               | Fastest, **least accurate** (too coarse)                                                        |
+| **Per-channel**            | One scale per output channel                  | **Most accurate** (finest granularity commonly used)                                            |
+| **Group (g128, g64, g32)** | One scale per *N* weights within each channel | Accuracy between per-tensor and per-channel; smaller groups = better accuracy but more metadata |
+
 
 **Group quantization** (e.g., group_size=128) is the sweet spot for INT4:
 - `g128`: Good compression, acceptable accuracy
@@ -377,12 +378,14 @@ Your value:    150 → gets squished to 127 (oops)
 
 Not sure what to pick? Here's the cheat sheet:
 
-| Your Situation | Go With |
-|----------------|---------|
-| "I need accuracy, size can wait" | INT8 (W8A16) |
-| "Balance is key" | INT4 with g128 |
-| "Squeeze it till it screams" | INT4 with g64 |
-| "Students write novels" | Add KV cache quantization |
+| If this describes your situation…                 | Choose this…          |
+| ------------------------------------------------- | --------------------- |
+| “Keep accuracy high”                              | INT8 (W8A16)          |
+| “Give me a balanced middle ground”                | INT4 with g128        |
+| “I need more compression, accuracy is negotiable” | INT4 with a larger group g256 | 
+| “Long chats are eating GPU memory”                | KV cache quantization |
+
+
 
 ## 🎯 Ready to Actually Do This?
 

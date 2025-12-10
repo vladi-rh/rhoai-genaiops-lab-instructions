@@ -20,7 +20,7 @@ First, verify the model didn't lose its mind during compression.
 | Task benchmarks | Knowledge retention | MMLU, HellaSwag, GSM8K |
 | Your domain | Performance on *your* data | Custom eval sets |
 
-**The good news:** Research shows 8-bit and 4-bit models stay remarkably close to baseline. Larger models (70B+) barely flinch. Smaller models (8B) wiggle a bit more, but still deliver.
+**The good news:** Studies consistently show that both 8-bit and 4-bit quantized models retain accuracy very close to their FP16 baselines. Large models (70B+) exhibit almost no degradation, while smaller ones (around 8B) show slightly more variation but still perform reliably.
 
 ### Stage 2: Does Canopy Still Work? 🌳
 
@@ -70,9 +70,8 @@ Here's where most people get burned. A model can ace benchmarks and still break 
 
 ### About Those "Emergent Abilities"
 
-Good news: Research confirms that the cool stuff—in-context learning, chain-of-thought reasoning, instruction following—survives INT4 quantization.
-
-Bad news: Drop to 2-bit and it all falls apart. Don't go below 4-bit for anything you care about.
+The upside: Studies show that key capabilities—such as in-context learning, chain-of-thought reasoning, and instruction following—remain intact under INT4 quantization.
+The downside: At 2 bits, these abilities degrade severely. Anything below 4-bit isn’t viable for meaningful workloads.
 
 ## Model Cards: Because Future You Will Forget
 

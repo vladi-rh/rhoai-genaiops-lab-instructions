@@ -29,7 +29,7 @@ Store weights as INT4/INT8, but run math in FP16. It's like storing your photos 
 - Activations stay precise—no accuracy hit from math errors
 - Memory savings unlock bigger KV caches = more parallel requests
 
-**The numbers:** ~2.4x speedup for single requests. Perfect for "one student at a time" scenarios.
+**The numbers:** Up to ~1.5–2.5× depending on model and GPU. Perfect for "one student at a time" scenarios.
 
 ### The "Compress Everything" Approach (W8A8)
 
@@ -38,7 +38,7 @@ Both weights AND activations in INT8. This is the throughput play.
 **Why it works:**
 - INT8 math is *fast* on modern hardware
 - More students per GPU at peak hours
-- A 70B model on 2 GPUs can match FP16 on 4 GPUs
+- INT8 models often deliver ~1.8–2× throughput over FP16, allowing large models to run on fewer GPUs.
 
 **The catch:** You need SmoothQuant to tame those activation outliers.
 
@@ -69,7 +69,8 @@ Think of it like resolution in an image:
 | **128** | ✅ Good | Balanced | **Start here (the default)** |
 | 1024 | 🔽 Lower | Minimal | When speed trumps everything |
 
-**From the research:** Going from per-channel to g1024 improves perplexity by ~0.2 points. Dropping to g128 adds another ~0.1 improvement. After that, diminishing returns.
+**From the research:** Smaller groups (e.g., per-channel or g32) give the best accuracy. g128 is the standard balance point.
+Larger groups like g1024 reduce metadata but typically increase perplexity by ~0.1–0.3 depending on model.
 
 **The rule:** Start with g128. Only go to g64 if your benchmarks scream for mercy on math or code tasks.
 

@@ -92,7 +92,7 @@ Faster than GPTQ, nearly as accurate. Won the MLSys 2024 Best Paper Award—so i
 
 ### SmoothQuant: The Equalizer ⚖️
 
-The only way to quantize *both* weights AND activations to INT8. This is how you get true W8A8.
+Quantize *both* weights AND activations to INT8. This is how you get true W8A8.
 
 **The problem:** Weights are well-behaved and easy to compress. Activations are wild—they have outliers that ruin everything.
 
@@ -138,7 +138,7 @@ The only way to quantize *both* weights AND activations to INT8. This is how you
 
 ### SparseGPT: The Marie Kondo 🗑️
 
-Why just compress when you can delete? SparseGPT removes entire weights that don't "spark joy" (contribute to accuracy), then compresses what's left.
+Why just compress when you can delete? SparseGPT removes entire weights that don't contribute to accuracy, allowing you to compresses what's left with GPTQ.
 
 **The editing analogy:** Like editing a novel—first cut the filler paragraphs entirely (pruning), then tighten the prose (quantization). You end up with something that's both shorter AND better.
 
