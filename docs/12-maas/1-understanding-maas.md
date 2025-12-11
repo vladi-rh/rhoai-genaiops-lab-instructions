@@ -97,10 +97,7 @@ The Owner might think: "Surely there's an easy fix?" Let's explore the options:
 
 What if... instead of giving everyone access to *GPUs*, we gave them access to *models*?
 
-[Image: A lightbulb moment illustration showing:
-- LEFT: Cloud labeled "Everyone deploys their own model" with chaos icons
-- MIDDLE: A lightbulb labeled "MaaS!"
-- RIGHT: Cloud labeled "Everyone uses shared models via API" with order icons]
+![Image: A lightbulb moment illustration showing: LEFT: Cloud labeled "Everyone deploys their own model" with chaos icons, MIDDLE: A lightbulb labeled "MaaS!", RIGHT: Cloud labeled "Everyone uses shared models via API" with order icons](images/lightbulb-moment.png)
 
 The MaaS approach:
 
