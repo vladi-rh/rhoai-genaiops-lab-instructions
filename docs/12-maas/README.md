@@ -35,7 +35,7 @@ As you go through each lesson, you'll "wear different hats" to understand MaaS f
 
 # 🖼️ Big Picture
 
-![Before and After MaaS comparison showing resource consolidation](images/before-after-maas.png)
+![Before and After MaaS comparison showing resource consolidation](images/before-after-maas.svg)
 
 ---
 

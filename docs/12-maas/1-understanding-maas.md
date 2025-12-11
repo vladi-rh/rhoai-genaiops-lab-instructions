@@ -32,7 +32,7 @@ Three identical models. Three GPUs. Combined utilization: 6%.
 
 And yet when a student tries to spin up a GPU for their machine learning project? **"No resources available."**
 
-[Image: The "This is Fine" meme dog sitting in a burning room, but the flames are labeled "Wasted GPUs", "Budget Overruns", "User Complaints", and "IT Tickets"]
+![The "This is Fine" meme dog sitting in a burning room, but the flames are labeled "Wasted GPUs", "Budget Overruns", "User Complaints", and "IT Tickets"](images/this-is-fine.jpg)
 
 ---
 
