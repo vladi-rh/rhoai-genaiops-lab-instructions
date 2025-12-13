@@ -10,6 +10,7 @@ Just like we enabled evaluations for Llama Stack in our `experimentation` enviro
 1. Open up your workbench in the `<USER_NAME>-canopy` namespace.
 
 2. Inside of `genaiops-gitops/canopy/test/llama-stack/config.yaml` add this line:
+   (This is basically the same as checking the `eval` box in the previous section.)
 
     ```yaml
     eval:

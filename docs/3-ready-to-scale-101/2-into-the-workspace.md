@@ -26,10 +26,10 @@ By the end of this section, you'll have a better grasp of how to integrate Llama
 
     **Notebook Image:** 
 
-    - Image selection: `Code Server | Data Science | CPU | Python 3.12` (towards the end of the list😌)
+    - Image selection: `AI501 - Custom Code Server` (atthe end of the list😌)
   
     **Deployment size**
-    - Container size: `Small`
+    - Hardware profile: `default-profile`
 
     **Environment variables**
     - No need to add one at the moment.

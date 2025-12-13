@@ -24,11 +24,8 @@ In the notebook, we directly talked with model and the detectors. But we have Ll
 
 1. In your `<USER_NAME>-canopy` environment, let's update Llama Stack config. Go to Helm > Releases > llama-stack-operator-instance > Upgrade
 
-  Make sure you choose latest, which is `1.1.3` in this case.
 
   ![llama-stack-upgrade.](./images/llama-stack-upgrade.png)
-
-  ![llama-stack-upgrade.](./images/llama-stack-upgrade-2.png)
 
 
 2. In the Form view, find the `guardrails` and enable it by ticking the box. Then you can choose which detector you want to enable! For the exercises sake, let's enable all. Because we can pick and choose in the Llama Stack Playground 🦙🛝

@@ -33,7 +33,7 @@ But first, we need to set up our backend repository to handle the GenAI applicat
     git push
     ```
 
-Now let's deploy backend using ArgoCD!
+Now let's deploy backend to test and prod environments using Argo CD!
 
 ### Set Up Canopy with Argo CD
 

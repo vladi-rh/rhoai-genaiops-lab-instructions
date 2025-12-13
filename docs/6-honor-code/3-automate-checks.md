@@ -81,7 +81,7 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     First we need to install llama-stack-client:
 
     ```bash
-    pip install llama_stack_client==0.2.12 fire
+    pip install llama_stack_client==0.3.0 fire
     ```
     Then let's run the test:
 

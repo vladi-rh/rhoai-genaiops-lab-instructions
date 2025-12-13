@@ -64,7 +64,8 @@ Time to run yet another pipeline!
 
    Much of this processed is based on these settings/arguments you can find close to the bottom of the pipeline code, review them quick to see that we are doing the same thing as before, now just automated:
 
-   ```python
+    <div class="highlight" style="background: #f7f7f7; overflow-x: auto; padding: 8px;">
+    <pre><code class="language-python"> 
    arguments = {
         "minio_secret_name": "documents", 
         "minio_bucket_name": "documents",  
@@ -82,7 +83,8 @@ Time to run yet another pipeline!
         "vector_db_id": "docling_vector_db_genaiops",  
         "test_vector_db_alias": "latest" 
     }
-   ```
+   </code></pre>
+   </div>
 
 2. Let's export it to run it in our `<USER_NAME>-toolings` namespace and point it to test and prod.
    To export our pipeline, compile it by running
@@ -137,4 +139,4 @@ Time to run yet another pipeline!
 
 🎉 **Congratulations!** You now have a production-ready document processing pipeline that we can use to ingest documents into our test and producion databases at scale.
 
-Continue to **[🌳 Integrating RAG within Canopy](5-rag-canopyUI.md)** to enable our RAG feature inside our application! 🚀 
+Continue to the next section to enable our RAG feature inside our application! 🚀 

@@ -69,13 +69,7 @@ In OpenShift, you have an experimentation environment which is called `<USER_NAM
 
 ### 🧪 2. Try the Summarization UI
 
-1. Inside the app, you can paste the following text to let it summarize, taken from Wikipedia on Canopy: https://en.wikipedia.org/wiki/Canopy_(biology):
-   
-    ```
-    Tea preparation involves the controlled extraction of bioactive compounds from processed Camellia sinensis leaves. Begin by heating water to near 100°C to optimize solubility. Introduce a tea bag to a ceramic vessel, then infuse with hot water to initiate steeping—typically 3–5 minutes to allow for the diffusion of polyphenols and caffeine. Upon removal of the bag, optional additives like sucrose or lipid-based emulsions may be introduced to alter flavor profiles. The infusion is then ready for consumption.
-    ```
-
-    Press `Summarize` and then watch the model generate a summary in real-time ✨
+1. You can copy the text about Canopy from Wikipedia: https://en.wikipedia.org/wiki/Canopy_(biology). And paste it to the application to summarize. So paste the content to the text box, press `Summarize` and then watch the model generate a summary in real-time ✨
 
     ![summarize-with-canopy](./images/summarize-with-canopy.png)
 
