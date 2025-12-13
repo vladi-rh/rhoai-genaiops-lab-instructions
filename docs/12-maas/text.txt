@@ -1,0 +1,315 @@
+﻿Here is the text-only transcription of the presentation "How to become the hero of your AI story," designed to be readable by an AI agent or a human reader.
+Presentation: How to become the hero of your AI story
+Topic: Models-as-a-Service (MaaS)
+Title and Introduction
+The presentation begins with the title slide "How to become the hero of your AI story"1. The topic focuses on Models-as-a-Service (MaaS)2. The speakers are listed as:
+
+
+* Erwan Granger, Director, AI Customer Adoption and Innovation, AI BU, Red Hat3.
+
+* Guillaume Moutier, Senior Principal AI Platform Architect, AI Customer Adoption and Innovation, AI BU, Red Hat4.
+
+* Karl Eklund, Principal AI Platform Architect, AI Customer Adoption and Innovation, AI BU, Red Hat5.
+
+
+
+Disclaimer: Any resemblance with real Red Hatters is purely accidental6.
+
+
+The visuals depict a superhero silhouette standing against a city skyline at sunset, setting the theme of becoming a "hero"7. This is followed by the Red Hat OpenShift AI logo8.
+
+
+Chapter 1: An origin story
+The narrative begins with Chapter 19. We see a humorous image of a confused tech support worker (Bill Hader), labeled "Inspired by True Events"10.
+
+
+The story starts with a text message conversation between "Steven" and the protagonist.
+   * Protagonist: "Hey Steven, I think we should have a cluster with OpenShift AI available to all Red Hat employees. This would show us first-hand what it's like to be a provider of that service and let everyone use it. WDYT?" 11
+
+   * Steven: "Great idea! Go ahead and use our Cloud budget and account for that." 12
+
+This marks "How it all started..."13. We see an image of Captain America looking confused or overwhelmed14.
+
+
+Soon enough15, the cluster is set up. A screenshot shows the Red Hat OpenShift console overview. A banner reads: "This environment is available to any Red Hat employee who wants to use RHOAI - More Information"16. The activity log shows various background events like "Container image created" and "Started container"17.
+
+
+We then see the "Customer Adoption and Innovation" details18. A list of MachineSets in the openshift-machine-api namespace is displayed. It highlights specific GPU-powered nodes being used, such as g4dn.2xlarge and g5.2xlarge instances in the us-east-1 region19. The slide emphasizes: GPU-Powered Nodes!20.
+
+
+The narrative asks: "All's well that ends well?"21. A text message conversation with "Chris" ensues:
+
+
+      * Chris: "Hey, I hear you have an OpenShift AI cluster available to all Red Hatters, and that it has GPUs?" 22
+
+      * Response: "That is true! Just head over to [red.ht link] and log in with your Red Hat credentials." 23
+
+We see the interface for OpenShift AI where a user can select a "Deployment size." The user selects a "Large" container size and selects a specific accelerator: "Very Large GPU Card (L40S - 48 GB VRAM)"24.
+A meme of Superman ripping open his shirt implies this looks like a job for a hero25.
+"And so quickly enough ..."26.
+The presentation displays crowded scenes: a packed auditorium of South Park characters, a massive crowd at a race track, and a dense music festival crowd27. This illustrates the scale of the demand. "Because, well ..."28.
+A screenshot from Red Hat's company details page shows the Number of employees: 19,00029.
+The situation deteriorates: "No good deed goes unpunished"30. A text conversation with "Matt":
+
+
+         * Matt: "Hey, there are no GPUs left in your cluster. What's going on?" 31
+
+         * Response: "Oh, sorry Matt. That's strange, we have auto-scaling on, so it should not happen. Let me check and get back to you." 32
+
+         * Update: "Ok, so, it turns out that 7 people deployed the same version of granite, therefore using 7 GPUs, which was the max we had in the cluster." 33
+
+         * Update: "And all 7 instances are completely idle, nobody's using these models at all." 34
+
+A terminal screenshot confirms this. It lists pods in different namespaces (anndrew-test, mike-llm-test, ashesh-s-llm, granite-leigh, chris-genai, etc.). Each user has deployed their own instance of granite-3-8b-inst. There are 7 instances running simultaneously35.
+Meanwhile, the GPU dashboard shows GPU utilization at 0% and Memory utilization at 0% for the NVIDIA A10G cards36.
+A diagram illustrates the inefficiency: Users (Chris, Carolyn, Andrew, Ashesh, Mike, Bobby, Leigh) each have a direct line to their own isolated "Granite" model instance inside the OpenShift AI Model Serving environment. Each instance occupies a GPU chip37.
+
+
+Chapter 2: A coder emerges
+The narrative moves to Chapter 238. "Time for a new strategy"39. We see a meme of Sheldon Cooper hyperventilating into a paper bag, captioned "BREATHE SLOWLY!"40.
+
+
+The speakers analyze the problem:
+            * Again, there are 19K Red Hat employees41.
+
+            * Even providing 1 GPU per Employee is problematic42.
+
+            * We need to determine what the new Maximum should be43.
+
+They review ideas that were discarded along the way44:
+
+
+               1. "Increase Max on Auto-Scaling": Discarded. (Likely too expensive). 45
+
+               2. "Set quotas in OpenShift to prevent GPUs overuse": Discarded. 46
+
+               3. "Use MIG (Multi-Instance GPU) to split whole GPUs in smaller slices. Then let people use slices. With quotas": Discarded. The slices will be too small for large models. People will try to use multiple slices47.
+
+Then, a lightbulb moment: "Models-as-a-Service" (MaaS)48.
+This is the "Idea we kept"49.
+A meme shows Jack Black saluting with a giant "YES"50.
+
+
+The Strategy: Take back the GPUs51.
+
+
+                  1. We deploy each model once52.
+
+                  2. We put an API gateway in front of them53.
+
+                  3. We let people access the model54.
+
+                  4. ... 55
+
+                  5. Profit!56.
+
+Visual Comparison:
+                     * Before MaaS: A diagram shows individual users connecting to individual Granite instances, each consuming a GPU57.
+
+                     * After MaaS: A diagram shows all users (Chris, Carolyn, Andrew, Ashesh, Mike, Bobby, Leigh) connecting to a single central API gateway. This gateway routes requests to a single Granite instance running on a single GPU58.
+
+Chapter 3: All for AI, and AI for all!
+Chapter 3 begins59.
+"To recap"60. A t-shirt image lists "Things we did," "Things we didn't do," etc.61.
+                        * Things we won't do: "Increase the Max," "Set Quotas," "Slice GPUs"62.
+
+                        * Things we WILL do: "MaaS"63.
+
+
+
+Living the MaaS life ...64.
+A new text conversation with "Matt":
+                           * Matt: "Hey, can I get access to a GPU in your cluster?" 65
+
+                           * Response: "Maybe. What is it for?" 66
+
+                           * Matt: "I'd like to deploy Granite to test something" 67
+
+                           * Response: "Then no. We already have Granite running on a GPU, with self-service access to it. Head over to [red.ht link], sign in, and create an access key for it." 68
+
+                           * Matt: "Oh! Wow, that's even better! Thanks!" 69
+
+                           * Response: (Mr. Bean nodding approval meme)70.
+
+The diagram is shown again: All users point to the API gateway, which points to the single Granite model71.
+
+
+
+
+Living the MaaS life (Part 2) ...72.
+A text conversation with "Joe":
+                              * Joe: "Do you have Llama 4 on our MaaS instance yet?" 73
+
+                              * Response: "Not yet. You need it?" 74
+
+                              * Joe: "I would like to test it out" 75
+
+                              * Response: "On it. Done" 76
+
+                              * (Deadpool giving a thumbs up/success gesture) 77.
+
+Diagram Update:
+The diagram now shows a new user, Joe, connecting to the API gateway along with the others. The API gateway now connects to two backend models: Granite (on a GPU) and Llama 4 (on a GPU). The users share access to both models efficiently through the gateway78. A GIF from "The Three Musketeers" plays with the caption "All for one, and one for all!"79.
+Chapter 4: The accountant
+Chapter 4 begins80. The slide is titled "Before MaaS"81.
+Offering self-service access to GPUs can lead to great inefficiencies82:
+                                 * Duplication of models83.
+
+                                 * Duplication of efforts84.
+
+                                 * Lack of accountability85.
+
+                                 * Low GPU utilization86.
+
+                                 * Unnecessarily high costs87.
+(Image of a person sitting on the floor with their head in their hands, looking stressed) 88.
+The slide updates to "After MaaS"89.
+STOP providing access to GPUs90.
+Instead: Offer self-service access to Models91.
+This leads to great benefits92:
+                                    * High traceability93.
+
+                                    * Most people would rather use the models (than manage the GPUs)94.
+
+                                    * Lower TCO / chargeback capabilities95.
+
+                                    * Increased utilization96.
+(Image of a business person meditating in a field, looking peaceful) 97.
+
+
+MaaS Principles98:
+
+
+                                       * Become the provider of Private AI99.
+
+                                       * Don't just "throw GPUs at the problem"100.
+
+                                       * A team of experts serves each model only once101.
+
+                                       * Provide self-service access to the models102.
+
+                                       * Use an API gateway to track model consumption103.
+
+                                       * Internally replicate the business structure of public AI providers (like Gemini, OpenAI, etc.)104.
+
+                                       * Note: None of them give you access to their GPUs105.
+
+
+
+MaaS is your engine for "AI for all"106.
+
+
+                                          * Your devs can now easily build AI-Powered applications107.
+
+                                          * And now, your employees and customers can easily leverage AI-powered applications108.
+
+                                          * Getting access to Private AI models becomes as trivial as using OpenAI/Gemini/etc.109.
+
+
+
+The Implementation: Parasol AI Studio - AI App for ALL110.
+The presentation introduces "Parasol's MaaS" on OpenShift AI. A QR code is provided to follow along at red.ht/parasol-ai-studio-arcade111.
+The Workflow:
+                                             1. Access the API Gateway Self-Serve Portal112. A screenshot shows the portal with a logo of a white umbrella (Parasol). The text explains: "Access to the models hosted by this environment requires API keys to authenticate... Create an application to get an API Key."113.
+
+                                             2. Create a new Application114. The user clicks "Create new application".
+
+                                             3. Select your model115. A list of available services is shown:
+
+                                                * DeepSeek-R1-Distill-Qwen-14B
+                                                * DeepSeek-R1-Distill-Qwen-14B-W4A16
+                                                * Docling
+                                                * Granite-3.1-8B-Instruct-W4A16 (Quantized version)
+                                                * Granite-3.1-8B-Instruct
+The user can read descriptions of each model116.
+                                                   4. Give a name to the Access Key117. The user names it "Mixtral Access Key" under the "Standard" plan118.
+
+                                                   5. Get the model's information119. The screen displays the "Endpoint URL" (e.g., https://mixtral-8x7b-instruct...) and the "API Key" to be used as a Bearer token120.
+
+                                                   6. And test that it works121. A screenshot of a terminal shows a curl command sending a POST request to the Mixtral endpoint with the prompt "Montreal is a".
+
+                                                   7. Results:122. The JSON response shows a completion text describing Montreal as a city full of life, culture, food, and music123.
+
+
+
+"But who's keeping track?"124.
+An image of a busy accountant ("Newman" from Seinfeld) typing frantically is shown125.
+"No such thing as a free AI lunch"126.
+MaaS will minimize the costs 127, and you can further reduce costs by using quantized models128.
+
+
+Check up on your own consumption129.
+The portal allows users to see their own stats.
+                                                      * Manage your models with GitOps130.
+
+                                                      * API gateway keeps tracks of hits and tokens131.
+
+                                                      * Chargeback proportional to usage/tokens132.
+
+Screenshots of the dashboard show:
+                                                         * Statistics: Graphs showing "Total Tokens" over the last 24 hours, with a spike at 09:00133.
+
+                                                         * Long-term tracking: Graphs showing usage over 30 days134.
+
+                                                         * User Breakdown: You can see how many "Apps" developers have created and drill down into details for specific users or models135135135135.
+
+                                                         * Top Consumers: You can identify who is using the model the most136.
+
+                                                         * Action: "Maybe I should start charging for Model Access!" 137or "Cap the usage"138.
+
+Chapter 5: Epilogue
+The presentation concludes with Chapter 5139.
+"With great GPU costs, comes great cost tracking responsibility"140.
+
+
+Simple Pattern Summary: 141
+
+
+                                                            1. "GitOps" the model serving142.
+
+                                                            2. Provide easy access to the models143.
+
+                                                            3. Ensure traceability to prevent a free-for-all144.
+
+                                                            4. Ensure SLAs are respected145.
+
+
+
+Centrally and reliably manage your models via GitOps146.
+A screenshot of a GitHub repository (rhoaibu-cluster) is displayed. It shows the file structure for components/configs/maas/model-serving/base. Files include YAML configurations for various models:
+                                                               * deepseek-r1-distill-qwen-14b.yaml
+                                                               * docling.yaml
+                                                               * granite-3-8b-instruct.yaml
+                                                               * llama-3.1-8b-instruct.yaml
+                                                               * mistral-7b-instruct-v0-3.yaml
+                                                               * mixtral-8x-7b.yaml147.
+
+
+
+Internally deployed at Red Hat: 148
+
+
+                                                                  * Parasol MaaS: A demo environment for POC (Proof of Concept) and research149.
+
+                                                                  * <corporate-version>: A fully private model environment for work with sensitive data150.
+
+
+
+Prepare for success: 151
+
+
+                                                                     * Have a process by which people can request other models be added to the list152.
+
+                                                                     * Don't do "one-offs": Assume more than one person will need access153.
+
+Q&A and Links
+The presentation ends with a Q&A session 154 and a list of resources:
+
+
+                                                                        * Blog: models-service-lets-use-ai-not-just-talk-about-it 155
+
+                                                                        * Demo: red.ht/parasol-ai-studio-arcade 156
+
+                                                                        * MaaS Repo: github.com/rh-aiservices-bu/models-aas 157
+
+                                                                        * PoC App (Parasol Studio) Repo: github.com/rh-aiservices-bu/parasol-ai-studio 158
