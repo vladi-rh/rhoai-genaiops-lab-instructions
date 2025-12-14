@@ -17,18 +17,18 @@ For Canopy, this means we can serve more students with the same hardware, respon
 | **Cost** | Fit more models on fewer GPUs = happy finance team |
 | **Accuracy** | The catch: you might lose some quality (but less than you'd think) |
 
-The question isn't *whether* to quantize—it's *how much* you can get away with before students start noticing.
+The question isn't *whether* to quantize. It's *how much* you can get away with before students start noticing.
 
 ## The Precision Menu
 
-Think of precision formats like coffee sizes—you pick based on what you actually need:
+Think of precision formats like coffee sizes. You can pick what matches your latency, cost, and quality needs.
 
 | Format | Bits | Memory vs FP32 | When to Use It |
 |--------|------|----------------|----------------|
-| FP32 | 32 | 100% | Training (you need all the precision) |
-| FP16/BF16 | 16 | 50% | Standard inference (the default choice) |
-| FP8 | 8 | 25% | Fancy new GPUs (H100, MI300) |
-| INT8 | 8 | 25% | Solid quantization (safe bet) |
+| FP32 | 32 | 100% | Rare in practice; debugging or numerically sensitive ops. Not the default for modern LLM training. |
+| FP16/BF16 | 16 | 50% | Default for most training + inference on modern GPUs |
+| FP8 | 8 | 25% | Throughput-focused training/inference on fancy new GPUs |
+| INT8 | 8 | 25% | SProduction inference "safe bet" (aka good quality/latency/memory tradeoff) |
 | INT4 | 4 | 12.5% | Aggressive compression (living dangerously) |
 
 Most production deployments land somewhere between INT8 and INT4. Let's understand what we're actually compressing.
@@ -93,21 +93,21 @@ How much memory would the <strong>INT4</strong> version need?
 An LLM has three things we can squeeze down, each with its own risk/reward:
 
 ### 1. Weight Quantization (The Easy One)
-The model's learned parameters—billions of numbers that encode everything the model knows. These are static, predictable, and *love* being quantized.
+Weights are the model's learned parameters—billions of numbers that encode everything the model knows stored on disk/VRAM. Fixed at inference time, predictable, and usually quantize well.
 
 - **Most common and safest** approach
 - Do it once, save forever
 - Example: W8A16 means 8-bit weights, 16-bit activations
 
 ### 2. Activation Quantization (The Tricky One)
-The values that flow through the model during inference. They're dynamic, unpredictable, and occasionally throw tantrums (outliers).
+activations are the intermediate values produced while processing your prompt/tokens. Dynamic, input-dependent, and can spike with outliers. So they’re more sensitive to quantization.
 
 - **More challenging**—activations can spike unexpectedly
 - Requires calibration data to get right
 - Example: W8A8 means both weights AND activations are quantized
 
 ### 3. KV Cache Quantization (The Memory Hog)
-When students write essays or ask follow-up questions, the model stores attention state. For long conversations, this cache can eat more memory than the model itself.
+When students write essays or ask follow-up questions, the model stores attention state. Attention is the mechanism that lets the model “look back” at earlier tokens to decide what matters for the next token. For long conversations, this cache can eat more memory than the model itself.
 
 - Particularly useful for chatbots (like Canopy!)
 - Reduces memory for long conversations
@@ -183,6 +183,8 @@ Think of it like a thermometer:
 | **Symmetric** | Scale only | `q = round(x / scale)` | Weights (centered around 0) |
 | **Asymmetric** | Scale + zero-point | `q = round(x / scale) + zero_point` | Activations (non-centered) |
 
+Quantization maps an original float `x` (e.g., FP32) to a small integer `q` (e.g., INT8/INT4) so the model is faster and uses less memory. `scale` sets the step size, and `zero_point` shifts the range when zero isn’t in the middle.
+
 **When to use each:**
 - Symmetric is simpler and faster
 - Asymmetric handles non-zero-centered distributions better
@@ -197,7 +199,9 @@ Think of it like a thermometer:
 
 <p style="color:#495057;font-weight:500;">
 Model <strong>weights</strong> are typically centered around zero: <code>[-0.5, 0.3, -0.1, 0.4]</code><br>
-<strong>Activations</strong> after ReLU are always positive: <code>[0.0, 0.7, 0.2, 1.3]</code><br><br>
+<strong>Activations</strong> after ReLU are always positive: <code>[0.0, 0.7, 0.2, 1.3]</code><br>
+<i>ReLU is a basic rule many neural nets use: if a number is negative, turn it into 0; if it’s positive, keep it.
+That’s why activations “after ReLU” are always zero or positive. Example: [-0.8, 0.7, -0.1, 1.3] → [0.0, 0.7, 0.0, 1.3]</i><br><br>
 <strong>Which statement is correct?</strong>
 </p>
 
@@ -247,14 +251,37 @@ Model <strong>weights</strong> are typically centered around zero: <code>[-0.5, 
 
 ### Granularity
 
-The granularity determines how many values share a single scale factor:
+Imagine that you’re measuring lots of things:
 
-| Level                      | Description                                   | Trade-off                                                                                       |
-| -------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| **Per-tensor**             | One scale for the entire tensor               | Fastest, **least accurate** (too coarse)                                                        |
-| **Per-channel**            | One scale per output channel                  | **Most accurate** (finest granularity commonly used)                                            |
-| **Group (g128, g64, g32)** | One scale per *N* weights within each channel | Accuracy between per-tensor and per-channel; smaller groups = better accuracy but more metadata |
+* some are **tiny** (like paperclips)
+* some are **big** (like tables)
 
+If everyone must use the **same ruler** with big markings (say, only centimeters), you’ll lose detail when measuring small things.
+
+That’s what happens in quantization:
+
+* **The integer `q`** is like writing down a measurement using only a small set of allowed numbers (e.g., 0–15 for INT4).
+* **The scale** is the ruler that says what “1 step” means (like “one step = 1 cm” or “one step = 1 mm”).
+
+#### How granularity changes it?
+
+Granularity is simply: **how many values share the same ruler (scale)**.
+
+* **Per-tensor:** *one ruler for everything*
+
+  Like measuring paperclips and tables with the same “centimeter-only” ruler → fast, but small details get lost.
+
+* **Per-channel:** *one ruler per channel*
+
+  Like giving each group (paperclips vs tables) their own ruler → much more accurate.
+
+* **Group (g128/g64/g32):** *one ruler per small chunk inside a channel*
+
+  Like splitting even further (each drawer gets its own ruler) → best fit, but you now have to keep track of many rulers (overhead/metadata).
+
+#### Why smaller groups help (g32 > g64 > g128 for quality)
+
+Smaller groups = fewer items forced to share one ruler, so each ruler can “fit” its chunk better → **less rounding error**.
 
 **Group quantization** (e.g., group_size=128) is the sweet spot for INT4:
 - `g128`: Good compression, acceptable accuracy
@@ -263,7 +290,7 @@ The granularity determines how many values share a single scale factor:
 
 ### How Quantization Data is Stored
 
-A quantized model doesn't just store the low-precision weights—it also stores the metadata needed to reconstruct the original values during inference.
+A quantized model doesn't just store the quantized (low-precision) weights. It also stores the metadata needed to reconstruct the original values during inference.
 
 **What gets saved:**
 - **Quantized weights**: The actual INT4/INT8 values
@@ -289,7 +316,7 @@ This is why group size affects both accuracy *and* final model size.
 
 ## When Things Go Wrong
 
-Quantization isn't magic—sometimes it breaks things. Here are the usual suspects:
+Quantization isn't magic 🪄 Sometimes it breaks things. 🫣 Here are the usual suspects:
 
 ### The Outlier Problem
 
@@ -301,9 +328,12 @@ That one outlier:       [..., 127.5, ...]  ← Ruins everything!
 ```
 
 **How we fix it:**
-- **SmoothQuant**: Redistribute the problem from activations to weights
-- **AWQ**: Protect the channels that matter most
-- **Mixed precision**: Let the troublemakers stay in FP16
+
+There are some techniques or methods we can apply: 
+
+* **SmoothQuant:** *Make activations less “spiky”* by shifting some of that extreme range into the weights, so activations are easier to quantize.
+* **AWQ:** *Be extra careful with the most important parts* (the “busy” features that strongly affect output) and quantize those more gently.
+* **Mixed precision:** *Don’t quantize everything* — keep the sensitive bits in FP16 and quantize the rest.
 
 <!-- 📊 Quiz 4: Outlier Problem -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);
@@ -312,7 +342,7 @@ That one outlier:       [..., 127.5, ...]  ← Ruins everything!
 <h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Think About It</h3>
 
 <p style="color:#495057;font-weight:500;">
-Your INT8 quantized model has one activation channel that occasionally spikes to <strong>500</strong> while all others stay between <strong>-2 and 2</strong>.<br><br>
+Your INT8 model has one internal value that sometimes jumps to <strong>500</strong>, while almost all other internal values stay between <strong>-2 and 2</strong>.<br><br>
 <strong>What happens to the normal values when you quantize?</strong>
 </p>
 
@@ -370,9 +400,10 @@ Your value:    150 → gets squished to 127 (oops)
 ```
 
 **How we fix it:**
-- Calibrate with data that looks like real usage
-- Pick scales that minimize clipping
-- Use finer granularity (smaller groups)
+* **Calibrate with real data:** you pick scales based on realistic value ranges, not weird edge cases.
+* **Pick scales that minimize clipping:** choose a mapping where most values fit inside [-128, 127].
+* **Finer granularity (smaller groups):** different parts of the model can have different typical ranges. Giving each group its own scale means a “big-range” group doesn’t force a “small-range” group to use the same scale.
+
 
 ## The Decision Tree
 
@@ -391,4 +422,4 @@ Not sure what to pick? Here's the cheat sheet:
 
 Enough theory—let's compress some models!
 
-Continue to **[LLM-Compressor](./2-llm-compressor.md)** to get hands-on with quantization tools and see these concepts in action.
+Continue to next chapter to get hands-on with quantization tools and see these concepts in action.

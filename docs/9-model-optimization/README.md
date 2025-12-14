@@ -14,7 +14,7 @@ This module is about making models smaller, faster, and cheaper—without making
 <!-- TODO: Add architecture diagram showing quantization workflow -->
 ![big-picture-quantization.jpg](images/big-picture-quantization.jpg)
 
-# 🔮 What You'll Learn
+# 🔮 Learning Outcomes
 
 By the end of this module, you'll be able to:
 
@@ -24,7 +24,7 @@ By the end of this module, you'll be able to:
 * **Know if it worked** — Evaluate quantized models to catch quality regressions
 * **Ship it** — Deploy optimized models through your GenAIOps pipeline
 
-# 🔨 Tools You'll Use
+# 🔨 Tools used in this module
 
 | Tool | What It Does |
 |------|--------------|
@@ -32,4 +32,4 @@ By the end of this module, you'll be able to:
 | **lm-evaluation-harness** | Industry-standard benchmarking to verify you didn't break anything |
 | **GuideLLM** | Performance testing—measure latency, throughput, time-to-first-token |
 | **vLLM/KServe** | Serve your compressed models to production |
-| **Argo CD** | GitOps deployment—promote models through test → staging → prod |
+| **Argo CD** | GitOps deployment—promote models through test → prod |
