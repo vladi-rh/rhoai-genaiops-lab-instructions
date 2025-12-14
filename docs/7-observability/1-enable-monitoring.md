@@ -24,13 +24,13 @@ This pre-configured observability stack includes three core components: **OpenTe
 
 This architecture provides health metrics and alerts for OpenShift AI platform components while offering integration points for external observability tools like **Grafana**.
 
-> **Note**: The RHOAI Observability stack has already been deployed and configured for this lab environment. If you're interested in learning more about the underlying platform configuration, see the [Managing Observability in RHOAI](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/3.0/html/managing_openshift_ai/managing-observability_managing-rhoai) documentation.
+> **Note**: The RHOAI Observability stack has already been deployed and configured for this lab environment. If you're interested in learning more about the underlying platform configuration, check the `Managing Observability in RHOAI` section under `Administer OpenShift AI platform access, apps, and operations` [documentation](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed).
 
 ### Deploy Grafana
 
 The RHOAI Observability stack collects platform-wide metrics, but these are generic infrastructure signals that don't reveal application-specific insights about your Canopy deployment. To visualize what matters for your AI assistant - token usage patterns, LLM latency, backend API performance - you need custom Grafana dashboards that query Prometheus with filters specific to your namespace and components.
 
-1. Deploy a Grafana instance in your toolings namespace to support the end-to-end observability journey for CanopyUI. Install it through your GitOps workflow in `genaiops-gitops/toolings/`:
+1. Deploy a Grafana instance in your toolings namespace to support the end-to-end observability journey for Canopy. Install it through your GitOps workflow in `genaiops-gitops/toolings/`:
 
     Create `grafana` folder under `toolings`. And then create a file called `config.yaml` under `grafana` folder. Or simply run the below commands:
 
@@ -72,4 +72,4 @@ The RHOAI Observability stack collects platform-wide metrics, but these are gene
 
 Now everything is deployed and connected to the RHOAI Observability Stack, you're ready to explore the metrics from your AI assistant stack. The dashboards provide real-time visibility into vLLM model performance, Canopy UI/Backend health, and LlamaStack metrics.
 
-Continue to **[Metrics](./2-metrics.md)** to understand what these dashboards reveal about your application's performance and how to use them for debugging and optimization.
+Continue to **[Metrics](7-observability/2-metrics.md)** to understand what these dashboards reveal about your application's performance and how to use them for debugging and optimization.
