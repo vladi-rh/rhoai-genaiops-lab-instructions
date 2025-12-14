@@ -220,50 +220,7 @@ oc get route litemaas -n <USER_NAME>-maas -o jsonpath='{.spec.host}'
 
 ---
 
-## 🔗 Step 5: Configure Model Connections
-
-LiteMaaS uses LiteLLM as its backend proxy. We need to tell LiteLLM about our available models.
-
-### 5.1 Get Your Model Endpoints
-
-```bash
-# Get the inference service URL from your canopy namespace
-oc get inferenceservice llama-32 -n ai501 -o jsonpath='{.status.url}'
-```
-
-### 5.2 Update LiteLLM Configuration
-
-Create or update the LiteLLM config:
-
-```bash
-oc create configmap litellm-config -n <USER_NAME>-maas --from-literal=config.yaml="
-model_list:
-  - model_name: llama-32
-    litellm_params:
-      model: openai/llama-32
-      api_base: http://llama-32-predictor.ai501.svc.cluster.local/v1
-      api_key: none
-
-  - model_name: granite-3b
-    litellm_params:
-      model: openai/granite-3b
-      api_base: https://your-other-model.<CLUSTER_DOMAIN>/v1
-      api_key: none
-
-general_settings:
-  master_key: sk-change-me-litellm-admin-key
-"
-```
-
-### 5.3 Restart LiteLLM to Pick Up Changes
-
-```bash
-oc rollout restart deployment/litellm -n <USER_NAME>-maas
-```
-
----
-
-## ✨ Step 6: Access the LiteMaaS UI
+## ✨ Step 5: Access the LiteMaaS UI
 
 Open your browser and navigate to:
 
@@ -271,75 +228,48 @@ Open your browser and navigate to:
 https://litemaas-<USER_NAME>-maas.apps.<CLUSTER_DOMAIN>
 ```
 
-You should see the LiteMaaS login page!
+You should see the LiteMaaS login page! Use your OpenShift credentials to login!
 
-[Image: LiteMaaS login page showing:
-- LiteMaaS logo
-- "Login with OpenShift" button
-- Clean, professional PatternFly design
-- Footer with version info]
+![litemaas-ui.png](./images/litemaas-ui.png)
 
-### 6.1 First Login
-
-1. Click **"Login with OpenShift"**
-2. Enter your OpenShift credentials (`<USER_NAME>` / `<PASSWORD>`)
-3. Authorize the LiteMaaS application
-4. You're in! 🎉
-
-### 6.2 Initial Admin Setup
-
-The first user to log in becomes the admin by default. You should see:
-
-[Image: LiteMaaS admin dashboard showing:
-- Navigation sidebar with: Dashboard, Users, Models, API Keys, Analytics
-- Main area showing welcome message and quick stats
-- Cards for: Active Users, API Keys Created, Total Requests, Token Usage]
+By default you have admin privileges. That's why you have the `Administrator` section on the left, but other users won't be able to see that. However, you can still consume LiteMaaS as a regular user too. But first, we need to add some models!
 
 ---
 
-## 🔍 Verification Checklist
+## 🔗 Step 6: Configure Model Connections
 
-Before moving on, verify your deployment:
+LiteMaaS uses LiteLLM as its backend proxy. We need to tell LiteLLM about our available models.
 
-| Check | Command | Expected Result |
-|-------|---------|-----------------|
-| All pods running | `oc get pods -n <USER_NAME>-maas` | 4+ pods in Running state |
-| Database accessible | Check backend logs | "Database connected" message |
-| OAuth working | Try logging in | Successful redirect and login |
-| LiteLLM responding | `curl http://litellm:4000/health` | 200 OK |
-| Models visible | Check LiteMaaS UI | Models listed in admin panel |
+### 6.1 Get Your Model Endpoints
 
----
-
-## 🐛 Troubleshooting
-
-### Pod not starting?
+Let's get the inference service URL for the model we've been using for Canopy.
 
 ```bash
-# Check pod events
-oc describe pod <pod-name> -n <USER_NAME>-maas
-
-# Check logs
-oc logs <pod-name> -n <USER_NAME>-maas
+oc get inferenceservice llama-32 -n ai501 -o jsonpath='{.status.url}'
 ```
 
-### OAuth redirect failing?
+### 6.2 Update LiteLLM Configuration
 
-Make sure your OAuth client redirect URI matches exactly:
-```bash
-oc get oauthclient litemaas-<USER_NAME> -o yaml
-```
+1. Go to `Administator` > `Model Management`  and click `Create Model`.
 
-The redirect URI should be: `https://litemaas-<USER_NAME>-maas.apps.<CLUSTER_DOMAIN>/api/auth/callback`
+  ![create-model.png](./images/create-model.png)
 
-### Can't see models?
+2. Fill out the form as below:
 
-Check the LiteLLM configuration and ensure your model endpoints are accessible:
-```bash
-# Test model endpoint from within the cluster
-oc run curl-test --rm -it --restart=Never --image=curlimages/curl -- \
-  curl -s https://your-model-endpoint/v1/models
-```
+**Model Name:** `Llama-3.2-3B`
+**Description:** `Meta Llama 3.2 3B is a lightweight 3B-parameter, multilingual text-only LLM`
+**API Base URL:** `http://llama-32-predictor.ai501.svc.cluster.local:8080/v1`
+**Backend Model Name:** `llama32`  
+**API Key:** `fakekey`
+**Input Cost per Million Tokens:** `0,1`
+**Output Cost per Million Tokens:** `0,5` (or you can use your imagination for cost values 💸💸💸)
+**Features:** You can select `Supports Function Calling` and `Supports Tool Choice`
+
+![maas-model-config.png](./images/maas-model-config.png)
+
+Leave the others default and hit `Create`
+
+![maas-model.png](./images/maas-model.png)
 
 ---
 
@@ -349,10 +279,10 @@ As the AI Engineer, you've just:
 
 * ✅ Deployed a complete MaaS platform on OpenShift
 * ✅ Configured OAuth for seamless authentication
-* ✅ Connected existing model endpoints through LiteLLM
+* ✅ Connected existing Llama 3.2 3B endpoint through LiteLLM
 * ✅ Set up the foundation for centralized model access
 
-[Image: Achievement unlocked style graphic with "🔧 AI Engineer" badge and text "Deployed LiteMaaS - Now everyone can share models instead of hoarding GPUs!"]
+![maas-models-list.png](./images/maas-models-list.png)
 
 ---
 
@@ -360,4 +290,4 @@ As the AI Engineer, you've just:
 
 Your infrastructure is ready! Now it's time to hand off to the 👩‍💼 **Service Admin** to configure users, roles, and budgets.
 
-**Continue to [Admin Configuration](./3-admin-configuration.md)** →
+**Continue to [Admin Configuration](11-maas/3-admin-configuration.md)** →
