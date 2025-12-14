@@ -16,7 +16,7 @@ The vLLM inference engine powering this shared model automatically exports metri
 
 ### Exploring vLLM Metrics in RHOAI Prometheus
 
-You already deployed Grafana in the [previous section](./1-enable-monitoring.md), and Prometheus has been collecting metrics from the shared vLLM model this whole time. Let's query them directly.
+You already deployed Grafana in the previous section, and Prometheus has been collecting metrics from the shared vLLM model this whole time. Let's query them directly.
 
 1. Open the OpenShift Metrics Dashboard for the `ai501` namespace directly [here](https://console-openshift-console.<CLUSTER_DOMAIN>/dev-monitoring/ns/ai501/metrics).
 
@@ -196,4 +196,4 @@ Your AI assistant spans four layers, each with its own metrics:
 
 Metrics tell you **how much** and **how fast**, but not **what's happening** inside your application. When metrics show a problem (success rate dropping, latency spiking), you need details about what went wrong.
 
-For that, we need logs - detailed records of every event in Canopy's operation. Continue to **[Logging](./3-logging.md)** to learn how to collect and query Canopy's logs 📝
+For that, we need logs - detailed records of every event in Canopy's operation. Continue to **[Logging](7-observability/3-logging.md)** to learn how to collect and query Canopy's logs 📝
