@@ -35,34 +35,35 @@ flowchart TB
 
 ## ✅ Prerequisites Check
 
-Before we begin, let's make sure everything is in place:
+Before we begin, let's make sure everything is in place. Go back to your workspace and run the below commands in the terminal.
 
 ### 1. OpenShift Access
 
 Make sure you can access the cluster:
 
-```bash
-oc login https://api.<CLUSTER_DOMAIN>:6443 -u <USER_NAME> -p <PASSWORD>
-```
+  ```bash
+  export CLUSTER_DOMAIN=<CLUSTER_DOMAIN>
+  oc login --server=https://api.${CLUSTER_DOMAIN##apps.}:6443 -u <USER_NAME> -p <PASSWORD>
+  ```
 
 ### 2. Existing Model Endpoints
 
-LiteMaaS is a *gateway* to models — it doesn't deploy models itself. You should have models available from previous modules:
+LiteMaaS is a *gateway* to models — it doesn't deploy models itself. We are going to put the models we've been using behind the gateway:
 
-```bash
-# Check if you have model inference services running
-oc get inferenceservices -n <USER_NAME>-canopy
-```
+  ```bash
+  # Check if you have model inference services running
+  oc get inferenceservices -n ai501
+  ```
 
-You should see your Granite or other model endpoints listed.
+You should see your Llama-3.2-3b or other model endpoints listed.
 
 ### 3. Namespace Preparation
 
-For this exercise, we'll deploy LiteMaaS in a dedicated namespace:
+For this exercise, we'll deploy LiteMaaS in a dedicated project:
 
 ```bash
-# Create the maas namespace (if it doesn't exist)
-oc new-project <USER_NAME>-maas || oc project <USER_NAME>-maas
+# Create the maas project 
+oc new-project <USER_NAME>-maas
 ```
 
 ---
@@ -71,11 +72,11 @@ oc new-project <USER_NAME>-maas || oc project <USER_NAME>-maas
 
 Let's get the LiteMaaS code:
 
-```bash
-cd ~/experiments
-git clone https://github.com/rh-aiservices-bu/litemaas.git
-cd litemaas
-```
+  ```bash
+  cd /opt/app-root/src
+  git clone https://github.com/rh-aiservices-bu/litemaas.git
+  cd litemaas
+  ```
 
 Take a moment to explore the structure:
 
@@ -94,75 +95,34 @@ litemaas/
 
 ## ⚙️ Step 2: Configure the Deployment
 
-The deployment needs a few configuration values. We'll create a Kustomize overlay for our environment.
+The deployment needs a few configuration values. We’ll create a Kustomize overlay for our environment.
 
-### 2.1 Create Your Overlay Directory
+Up to now, we’ve been using Helm to package and parameterize Kubernetes manifests. For this topic, we’ll use Kustomize instead: it takes a base set of YAML manifests and applies environment-specific overlays (patches and substitutions) to produce the final manifests.
+
+### 2.1 Provide your environment variables
+
+Under `litemaas/deployment/openshift` folder, we need to create a `user-values.env` file.
 
 ```bash
-mkdir -p deploy/overlays/<USER_NAME>
+touch litemaas/deployment/openshift/user-values.env
 ```
-
-### 2.2 Create the Kustomization File
-
-Create `deploy/overlays/<USER_NAME>/kustomization.yaml`:
+and paste the below values to this newly created file.
 
 ```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-namespace: <USER_NAME>-maas
-
-resources:
-  - ../../base
-
-patches:
-  - path: patches/config.yaml
+LITEMAAS_VERSION=0.1.2
+CLUSTER_DOMAIN_NAME=<CLUSTER_DOMAIN>
+NAMESPACE=<USER_NAME>-maas
+PG_ADMIN_PASSWORD=change-me-pg-password
+JWT_SECRET=change-me-secure-jwt-secret-for-production
+OAUTH_CLIENT_ID=litemaas-<USER_NAME>
+OAUTH_CLIENT_SECRET=change-me-oauth-secret # 👈 we are going to change it in a moment 
+ADMIN_API_KEY=change-me-admin-key
+LITELLM_API_KEY=sk-change-me-litellm-admin-key
+LITELLM_UI_USERNAME=admin
+LITELLM_UI_PASSWORD=change-me-ui-password
 ```
 
-### 2.3 Create the Configuration Patches
-
-Create `deploy/overlays/<USER_NAME>/patches/config.yaml`:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: litemaas-config
-data:
-  # Database configuration
-  DATABASE_HOST: "postgresql"
-  DATABASE_PORT: "5432"
-  DATABASE_NAME: "litemaas"
-
-  # LiteLLM endpoint (adjust based on your model deployment)
-  LITELLM_ENDPOINT: "http://litellm:4000"
-
-  # Frontend URL (will be updated after route creation)
-  FRONTEND_URL: "https://litemaas-<USER_NAME>-maas.apps.<CLUSTER_DOMAIN>"
-
-  # OAuth configuration (OpenShift)
-  OAUTH_ENABLED: "true"
-  OAUTH_ISSUER: "https://oauth-openshift.apps.<CLUSTER_DOMAIN>"
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: litemaas-secrets
-type: Opaque
-stringData:
-  # Database credentials
-  DATABASE_USER: "litemaas"
-  DATABASE_PASSWORD: "changeme-in-production"
-
-  # JWT secret for token signing
-  JWT_SECRET: "your-super-secret-jwt-key-change-in-production"
-
-  # OAuth client credentials (we'll get these from OpenShift)
-  OAUTH_CLIENT_ID: "litemaas"
-  OAUTH_CLIENT_SECRET: "to-be-configured"
-```
-
-> ⚠️ **Note:** In a real deployment, you'd use proper secrets management (e.g., External Secrets Operator, Vault). For this lab, we're keeping it simple.
+> ⚠️ **Note:** In a real deployment, you'd use proper secrets management (e.g., External Secrets Operator, Vault). For the enablement, we're keeping it simple.
 
 ---
 
@@ -180,7 +140,7 @@ metadata:
   name: litemaas-<USER_NAME>
 grantMethod: auto
 redirectURIs:
-  - https://litemaas-<USER_NAME>-maas.apps.<CLUSTER_DOMAIN>/api/auth/callback
+  - https://litemaas-<USER_NAME>-maas.<CLUSTER_DOMAIN>/api/auth/callback
 secret: $(openssl rand -base64 32)
 EOF
 ```
@@ -192,7 +152,7 @@ EOF
 oc get oauthclient litemaas-<USER_NAME> -o jsonpath='{.secret}'
 ```
 
-Update your `patches/config.yaml` with the actual OAuth client secret.
+Update the `OAUTH_CLIENT_SECRET` variable in your environment file with the actual OAuth client secret.
 
 ---
 
@@ -200,11 +160,32 @@ Update your `patches/config.yaml` with the actual OAuth client secret.
 
 Now the fun part — let's deploy!
 
-### 4.1 Apply the Kustomize Configuration
+### 4.1 Configure the deployment files with your values
 
-```bash
-oc apply -k deploy/overlays/<USER_NAME>
-```
+First run the preparation script. 
+
+  ```bash
+  cd /opt/app-root/src/litemaas/deployment/openshift
+  ./preparation.sh
+  ```
+..and verify the generated files:
+
+   ```bash
+   # Check that .local files were created successfully
+   ls -la *.local
+  ```
+
+  Should show something like this:
+
+  ```bash
+  $ ls -la *.local
+  -rw-r--r--. 1 1000960000 1000960000 4354 Dec 14 16:33 backend-deployment.yaml.local
+  -rw-r--r--. 1 1000960000 1000960000  957 Dec 14 16:33 backend-secret.yaml.local
+  -rw-r--r--. 1 1000960000 1000960000 1808 Dec 14 16:33 frontend-deployment.yaml.local
+  -rw-r--r--. 1 1000960000 1000960000  416 Dec 14 16:33 litellm-secret.yaml.local
+  -rw-r--r--. 1 1000960000 1000960000  292 Dec 14 16:33 namespace.yaml.local
+  -rw-r--r--. 1 1000960000 1000960000  200 Dec 14 16:33 postgres-secret.yaml.local
+  ```
 
 ### 4.2 Watch the Deployment
 
@@ -219,7 +200,9 @@ You should see:
 - `litemaas-frontend-*` — React UI
 - `litellm-*` — OpenAI-compatible proxy
 
-[Image: Terminal screenshot showing all pods in Running state with columns: NAME, READY, STATUS, RESTARTS, AGE]
+![maas-pods.png](./images/maas-pods.png)
+
+Do `Ctrl + C` to break the watch.
 
 ### 4.3 Verify Services
 
@@ -245,7 +228,7 @@ LiteMaaS uses LiteLLM as its backend proxy. We need to tell LiteLLM about our av
 
 ```bash
 # Get the inference service URL from your canopy namespace
-oc get inferenceservice -n <USER_NAME>-canopy -o jsonpath='{.items[0].status.url}'
+oc get inferenceservice llama-32 -n ai501 -o jsonpath='{.status.url}'
 ```
 
 ### 5.2 Update LiteLLM Configuration
@@ -255,10 +238,10 @@ Create or update the LiteLLM config:
 ```bash
 oc create configmap litellm-config -n <USER_NAME>-maas --from-literal=config.yaml="
 model_list:
-  - model_name: granite-8b
+  - model_name: llama-32
     litellm_params:
-      model: openai/granite-8b
-      api_base: https://your-model-endpoint.<CLUSTER_DOMAIN>/v1
+      model: openai/llama-32
+      api_base: http://llama-32-predictor.ai501.svc.cluster.local/v1
       api_key: none
 
   - model_name: granite-3b
@@ -268,7 +251,7 @@ model_list:
       api_key: none
 
 general_settings:
-  master_key: your-litellm-master-key
+  master_key: sk-change-me-litellm-admin-key
 "
 ```
 

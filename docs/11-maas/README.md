@@ -8,7 +8,7 @@ Remember how Canopy started? A simple chatbot experiment in Module 2. Fast forwa
 
 **The Computer Science department wants one. The Business School wants one. The Library wants one.**
 
-And here's the problem: each team is deploying their own Granite model. Three identical models. Three GPUs. Sitting idle 90% of the time. Meanwhile, students can't get GPU access for their projects because there are "no available resources."
+And here's the problem: each team is deploying their own Llama model. Three identical models. Three GPUs. Sitting idle 90% of the time. Meanwhile, students can't get GPU access for their projects because there are "no available resources."
 
 *Sound familiar?*
 
@@ -74,4 +74,4 @@ By the end of this module, you will be able to:
 
 Let's begin by understanding *why* MaaS exists in the first place. Spoiler: it involves a lot of frustrated IT folks and some very expensive paperweights (GPUs).
 
-**Continue to [Understanding MaaS](./1-understanding-maas.md)** →
+Continue to [Understanding MaaS](12-maas/1-understanding-maas.md).

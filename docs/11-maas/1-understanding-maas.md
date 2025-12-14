@@ -14,7 +14,7 @@ Canopy was a hit! What started as a simple AI chatbot for the Computer Science d
 * 📊 **Business School**: "We need Canopy for our analytics curriculum!"
 * 📚 **Library**: "We need Canopy to help students navigate research databases!"
 
-Being good citizens, each department follows the same pattern you learned in Module 3: deploy your own model using KServe/vLLM, connect your application, done!
+Being good citizens, each department follows the same pattern you learned: they either get an access to a cloud model (💸💸💸) or deploy your own model using KServe/vLLM, connect their application, done!
 
 **The result?**
 

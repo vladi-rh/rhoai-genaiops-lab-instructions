@@ -86,7 +86,7 @@ Here's where most people get burned. A model can ace benchmarks and still break 
 <!-- 🧪 Quiz: The Testing Trap -->
 <div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
 <h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quick Check: The Testing Trap</h3>
-<p style="margin:0 0 12px;color:#666;">Your quantized model scores 98% on MMLU and passes all standard benchmarks. You deploy it to production. A week later, students complain that Canopy is ignoring their system prompts and returning malformed JSON. What went wrong?</p>
+<p style="margin:0 0 12px;color:#666;">Your quantized model scores 98% on MMLU and passes all standard benchmarks. You deploy it to production. A week later, students complain that Canopy is ignoring their prompts and returning malformed JSON. What went wrong?</p>
 <style>
 .quiz-container-testing{position:relative}
 .quiz-option-testing{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
