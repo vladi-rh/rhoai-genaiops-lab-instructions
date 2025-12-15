@@ -12,6 +12,8 @@ Llama Stack acts as the middleware between your frontend and the LLM. Currently,
 
 2. Click on the release and select **Upgrade**.
 
+    ![tiny-llama-upgrade.png](./images/tiny-llama-upgrade.png)
+
 3. Update the model configuration to point to your on-prem endpoint:
 
     - **Model Name**: `tinyllama`
@@ -19,7 +21,13 @@ Llama Stack acts as the middleware between your frontend and the LLM. Currently,
 
 4. Click **Upgrade** to apply the changes.
 
-5. Also update the model name and lower the `max_token` because TinyLlama can't handle as much 😅 So find `backend` under **OpenShift Console** → **Helm** → **Releases** and add these under `summarize`.
+    ![tiny-llama-upgrade2.png](./images/tiny-llama-upgrade2.png)
+
+5. Also we need to update the `backend` and lower the `max_token` because TinyLlama can't handle as much as previous 😅 So find `canopybackend` under **OpenShift Console** → **Helm** → **Releases** 
+
+    ![tiny-backend-upgrade.png](./images/tiny-backend-upgrade.png)
+
+6.  And add these under `summarize`.
 
     ```yaml
     summarize:
@@ -29,7 +37,9 @@ Llama Stack acts as the middleware between your frontend and the LLM. Currently,
       prompt: "<your prompt>"
     ```
 
-6. Click **Upgrade** to apply the changes.
+7. Click **Upgrade** to apply the changes.
+
+    ![tiny-backend-upgrade2.png](./images/tiny-backend-upgrade2.png)
 
 ### 🌳 Test Canopy with the New Model
 
