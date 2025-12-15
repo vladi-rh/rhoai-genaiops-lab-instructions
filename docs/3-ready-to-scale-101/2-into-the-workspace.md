@@ -26,7 +26,7 @@ By the end of this section, you'll have a better grasp of how to integrate Llama
 
     **Notebook Image:** 
 
-    - Image selection: `AI501 - Custom Code Server` (atthe end of the list😌)
+    - Image selection: `AI501 - Custom Code Server` (at the end of the list😌)
   
     **Deployment size**
     - Hardware profile: `default-profile`
