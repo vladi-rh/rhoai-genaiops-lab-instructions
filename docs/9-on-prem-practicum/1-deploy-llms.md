@@ -1,28 +1,18 @@
-<!-- ## 📘 LLM 101: Understanding and Deploying Language Models
+# 🏠 Deploy LLMs On-Prem
 
-Before we start building adaptive, student-centered learning tools with Canopy AI, we need to understand the foundational technology behind it: **Large Language Models (LLMs)**.
+Due to data confidentiality requirements, we need to host the model ourselves. Running LLMs in-house keeps sensitive student data within your infrastructure, giving you full control over data governance and compliance.
 
-This chapter will help you:
+We know that high-performance inference typically requires dedicated GPU resources. But IT just informed us they can't spare a GPU at the moment. So how do we continue development without compromising on our privacy requirements?
 
-* Understand what LLMs are
-* Learn how to evaluate which model fits your use case
-* Deploy your first LLM on OpenShift AI
+The answer: start with smaller, CPU-friendly models while building the infrastructure. Let's explore your options.
 
+## 🔍 What Models Can Run On-Prem?
 
-## 🧠 What is a Large Language Model?
-
-A **Large Language Model (LLM)** is a type of AI model trained on vast amounts of text to understand, generate, and manipulate human language. These models are built using **transformer architectures** and learn patterns in text, allowing them to answer questions, generate content, and provide useful responses in natural language.
-
-LLMs power many educational tools—from tutoring chatbots to automatic feedback systems—because they can adapt responses based on input and context.
-
---- -->
-
-## What models are available to me to run on prem? 
-QQ: should we address local development?
+Not all models require massive GPU clusters. The LLM landscape includes models designed for various hardware configurations—from powerful data center GPUs to modest CPU-only deployments.
 
 ### 📄 How to Read a Model Card
 
-Every well-documented LLM (on platforms like [Hugging Face](https://huggingface.co/models)) comes with a **model card**. This is like a fact sheet for the model. When evaluating models for Canopy AI, here’s what to look for:
+Every well-documented LLM on platforms like [Hugging Face](https://huggingface.co/models) comes with a **model card**, essentially a fact sheet for the model. When evaluating models for Canopy, here's what to look for:
 
 | Section                   | What to Look For                                                          |
 | ------------------------- | ------------------------------------------------------------------------- |
@@ -34,79 +24,117 @@ Every well-documented LLM (on platforms like [Hugging Face](https://huggingface.
 | **License**               | Is it open for commercial/educational use?                                |
 | **Hardware Requirements** | CPU-only, GPU-required, or specific memory constraints?                   |
 
-Example: Phi-2 is a small (\~2.7B) model trained for reasoning and aligned with safety for education-friendly use. Mistral 7B is larger but more performant if you have the resources.
+We've been using Llama 3.2 3B for Canopy so far. Take a look at its model card: [meta-llama/Llama-3.2-3B-Instruct](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct)
+
+Notice how the model card specifies the intended use cases, training methodology, and hardware recommendations. This information is crucial when deciding if a model fits your deployment constraints.
 
 ## 💻 What Are the Infrastructure Requirements?
 
-Not every model needs a high-end GPU, but some certainly do. Here's a rough rule of thumb:
+Not every model needs a high-end GPU, but some certainly do. Here's a general sizing guide:
 
-* **<3B models**: Run comfortably on a single modern GPU (\~8–12GB VRAM).
-* **7B–13B models**: Require ≥24GB GPU memory, or offloading with quantization (e.g., 4-bit).
-* **>30B models**: Need multi-GPU setups or high-memory accelerators like A100s.
+| Model Size | GPU Memory Required | Example Models |
+| ---------- | ------------------- | -------------- |
+| **< 3B parameters** | ~8–12GB VRAM (or CPU-only) | TinyLlama 1.1B, Granite 2B |
+| **3B–7B parameters** | ~16–24GB VRAM | Llama 3.2 3B, Mistral 7B |
+| **7B–13B parameters** | ≥24GB GPU memory | Llama 3.1 8B, CodeLlama 13B |
+| **> 30B parameters** | Multi-GPU setups (A100s) | Llama 3.1 70B, Mixtral 8x7B |
 
-🧮 A helpful reference:
-👉 [How to calculate GPU memory needs for LLMs (Substratus.ai)](https://www.substratus.ai/blog/calculating-gpu-memory-for-llm)
+**Don't have a GPU?** You have options:
 
-Example:
+* **CPU-only runtimes**: Slower inference, but perfectly acceptable for development, demos, or low-traffic deployments
+* **Quantized models**: Reduced precision models (4-bit, 8-bit) that require less memory (no more spoilers! 🤫🤫🤫)
+* **Cloud-based endpoints**: What we've been using, but not viable for confidential data
 
-> A 7B parameter model in 16-bit precision needs roughly **14GB of GPU memory**. Using 4-bit quantization can bring it down to \~4–5GB.
-_and don't worry if you are not familiar with quantization concept. We'll tackle that as well 😌_ 
+Since GPU allocation isn't available right now and cloud endpoints are off the table for compliance reasons, let's look at what we can deploy on CPU. And since you love llamas 🦙🦙🦙, you discover [TinyLlama](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)—a compact 1.1B parameter model specifically designed for CPU inference.
 
-**Don’t have a GPU?**
-You can use:
-
-* **CPU-only runtimes** (slow, but OK for demos or small models)
-* **Shared GPU workloads** on OpenShift AI
-* Pre-deployed endpoints (if your environment has them)
+Perfect for getting started while you wait for GPU allocation!
 
 
-## 🚀 How Do I Deploy and Serve a Model?
+## 🚀 How Do I Serve a Model?
 
-Serving a model means making it accessible via an endpoint that applications (like our prompt playground) can call.
+Serving a model means making it accessible via an API endpoint that applications—like Canopy or the Llama Stack Playground—can call. Instead of embedding the model directly in your application, you deploy it as a standalone service that responds to inference requests.
 
-In OpenShift AI, we can use **KServe** to deploy models as containerized workloads.
+In OpenShift AI, we use **KServe** with **vLLM** as the serving runtime to deploy models as containerized workloads. vLLM provides efficient inference with features like continuous batching and PagedAttention for optimized memory usage.
 
-You get to choose between and try a few different models, to pick the one you think fits best.
+### Deploy Your First On-Prem Model
 
-Here's how to deploy the model(s):
+1. Navigate to **OpenShift AI** → **Data Science Projects** → **`<USER_NAME>-canopy`** → **Models**
 
-#TODO: Go through Model Catalog instead
+    ![rhoai-project](./images/rhoai-project.png)
 
-1. Go to OpenShift AI -> Data Science Projects -> <USER_NAME>-canopy -> Models
-![rhoai-project](./images/rhoai-project.png)
-2. Click Deploy model
-![deploy-model](./images/deploy-model.png)
-3. Fill in the form with the following settings (depending on what model you want to deploy):
-- Model deployment name: `tinyllama`, `llama3.2-3b` or `granite-2b`
-- Serving runtime: `vLLM-CPU`
-- Deployment Mode: `Standard`
-- Number of model server replicas to deploy: `1`
-- Model server size: `Medium`
-- Accelerator: `None`
-- Model route:
-  -  **Uncheck** `Make deployed models available through an external route`
-  -  **Uncheck** `Require token authentication`
-- Source model location: `Existing connection` -> `tinyllama`, `llama3.2-3b` or `granite-2b`
+2. Click **Deploy model**
 
+    ![deploy-model](./images/deploy-model.png)
 
-    ..leave the rest as it is and hit `Deploy`
+3. Fill in the form with the following settings:
 
-![deploy-from-form.png](./images/deploy-from-form.png)
+    | Setting | Value |
+    | ------- | ----- |
+    | Model deployment name | `tinyllama` |
+    | Serving runtime | `vLLM-CPU` |
+    | Deployment Mode | `Standard` |
+    | Number of model server replicas | `1` |
+    | Model server size | `Medium` |
+    | Accelerator | `None` |
 
-You should now see a model start deploying, wait until it turns green.
-![model-deployed.png](./images/model-deployed.png)
+    For **Model route** settings:
+    - **Uncheck** `Make deployed models available through an external route`
+    - **Uncheck** `Require token authentication`
 
-Feel free to deploy the other models as well, so that you can compare them and choose which one you like the most.
+    For **Source model location**:
+    - Select `Existing connection` → `tinyllama`
 
+    Leave the remaining settings as defaults and click **Deploy**.
+
+    ![deploy-from-form.png](./images/deploy-from-form.png)
+
+4. Watch the deployment progress. Wait until the status indicator turns green, indicating the model is ready to serve requests.
+
+    ![model-deployed.png](./images/model-deployed.png)
+
+> **Tip**: Feel free to deploy the other available models (`llama3.2-3b` or `granite-2b`) as well. Having multiple models deployed allows you to compare their responses and choose which one best fits Canopy's needs.
 
 ## 🌐 How Do I Access the Model?
 
-Once deployed, your model gets a REST endpoint like:
+Once deployed, your model gets an internal REST endpoint following the OpenAI-compatible API format. The endpoint URL follows this pattern:
 
 ```
-https://canopy-llm-modelmesh-serving.apps.YOUR_CLUSTER_DOMAIN/v2/models/canopy-llm/infer
+http://<model-name>-predictor.<namespace>.svc.cluster.local:8080/v1
 ```
 
-This endpoint accepts **standardized inference requests** and responds with generated text or predictions.
+For example, if you deployed TinyLlama in your `<USER_NAME>-canopy` namespace:
 
-You’ll use this endpoint in the next chapter’s playground app to test prompts and observe model behavior.
+```
+http://tinyllama-predictor.<USER_NAME>-canopy.svc.cluster.local:8080/v1
+```
+
+### Test the Model Endpoint
+
+Go back to your workbench and run this command in the terminal to verify the model is responding:
+
+```bash
+curl -s http://tinyllama-predictor.<USER_NAME>-canopy.svc.cluster.local:8080/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "tinyllama",
+    "messages": [
+      {"role": "system", "content": "You are a helpful assistant."},
+      {"role": "user", "content": "Hello! Can you introduce yourself?"}
+    ],
+    "max_tokens": 100
+  }' | jq .
+```
+
+You should see a JSON response with the model's reply. The response time might be slower than what you experienced with the cloud endpoint—that's expected for CPU-only inference.
+
+> **Note**: The model is only accessible from within the cluster (no external route). This is intentional for security—keeping the model endpoint internal reduces your attack surface.
+
+---
+
+Maybe it's not super fast for your taste, but it works! And most importantly, your data never leaves your infrastructure.
+
+Now let's update Llama Stack and Canopy to use this new on-prem endpoint.
+
+## 🎯 Next Steps
+
+Continue to **[Update Canopy](9-on-prem-practicum/2-update-canopy.md)** to configure Llama Stack and your frontend to use the locally-hosted model.
