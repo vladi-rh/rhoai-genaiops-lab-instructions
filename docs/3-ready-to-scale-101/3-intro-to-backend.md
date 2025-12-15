@@ -54,7 +54,7 @@ We'll separate out the LLM business logic from the frontend into its own backend
 
 3. For the image, point to a newer version:
    
-   - tag: `0.3`
+   - tag: `0.4`
   
   ..and hit `Upgrade`!
 
