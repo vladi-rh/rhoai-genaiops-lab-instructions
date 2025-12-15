@@ -58,41 +58,62 @@ In OpenShift AI, we use **KServe** with **vLLM** as the serving runtime to deplo
 
 ### Deploy Your First On-Prem Model
 
-1. Navigate to **OpenShift AI** → **Data Science Projects** → **`<USER_NAME>-canopy`** → **Models**
+1. Navigate to **OpenShift AI** → **AI Hub** → **Catalog** and choose `Community and custo models`. Find `Tiny Llama` there.
 
-    ![rhoai-project](./images/rhoai-project.png)
+    ![model-catalog.png](./images/model-catalog.png)
 
-2. Click **Deploy model**
+2. Click Tiny Llama and read its model card. Prety much the same thing what we had in Hugging Face. On the upper right corner, click **Deploy**.
 
-    ![deploy-model](./images/deploy-model.png)
+    ![model-catalog-2.png](./images/model-catalog-2.png)
 
-3. Fill in the form with the following settings:
+3. Select `<USER_NAME>-canopy` as **Project**, and fill in the form with the following settings:
 
-    | Setting | Value |
-    | ------- | ----- |
-    | Model deployment name | `tinyllama` |
-    | Serving runtime | `vLLM-CPU` |
-    | Deployment Mode | `Standard` |
-    | Number of model server replicas | `1` |
-    | Model server size | `Medium` |
-    | Accelerator | `None` |
+    **Model deployment name:** `tinyllama`
 
-    For **Model route** settings:
+    **Serving runtime:** `CUSTOM - vLLM Serving Runtime for CPU`
+
+    ![tiny-deploy.png](./images/tiny-deploy.png)
+
+    Expand `Customize resource requests and limits` to give a bit more CPU to Tiny Llama:
+
+    **CPU Request:** 3
+
+    **CPU Limit:** 4
+
+    **Memory Request:** 6 GiB
+
+    **Memory Limit:** 8 GiB
+
+    ![tiny-resources.png](./images/tiny-resources.png)
+
+    For **Model route** and **Token authentication**, leave them unchecked.
     - **Uncheck** `Make deployed models available through an external route`
     - **Uncheck** `Require token authentication`
 
     For **Source model location**:
-    - Select `Existing connection` → `tinyllama`
+    - Select `OCI compliant registry - v1` as **Connection type**
 
-    Leave the remaining settings as defaults and click **Deploy**.
+    **Connection name:** `quay`
 
-    ![deploy-from-form.png](./images/deploy-from-form.png)
+    **Secret details:** copy below json snippet
 
-4. Watch the deployment progress. Wait until the status indicator turns green, indicating the model is ready to serve requests.
+    ```json
+    {
+     "auths": { }
+    }
+    ```
 
-    ![model-deployed.png](./images/model-deployed.png)
+    **Registry host:** `quay.io`
 
-> **Tip**: Feel free to deploy the other available models (`llama3.2-3b` or `granite-2b`) as well. Having multiple models deployed allows you to compare their responses and choose which one best fits Canopy's needs.
+    **Model URI:** leave it as it.
+
+    ![tiny-conn.png](./images/tiny-conn.png)
+
+    And hit `Create`.
+
+4. Watch the deployment progress. Wait until the status becomes `Started`, indicating the model is ready to serve requests.
+
+    ![tiny-deployed.png](./images/tiny-deployed.png)
 
 ## 🌐 How Do I Access the Model?
 
@@ -107,6 +128,10 @@ For example, if you deployed TinyLlama in your `<USER_NAME>-canopy` namespace:
 ```
 http://tinyllama-predictor.<USER_NAME>-canopy.svc.cluster.local:8080/v1
 ```
+
+You can see it by clicking `Internal endpoint` on the dashboard.
+
+![tiny-endpoint.png](./images/tiny-endpoint.png)
 
 ### Test the Model Endpoint
 
@@ -125,9 +150,9 @@ curl -s http://tinyllama-predictor.<USER_NAME>-canopy.svc.cluster.local:8080/v1/
   }' | jq .
 ```
 
-You should see a JSON response with the model's reply. The response time might be slower than what you experienced with the cloud endpoint—that's expected for CPU-only inference.
+You should see a JSON response with the model's reply. The response time might be slower than what you experienced with the cloud endpoint. That's expected for CPU-only inference.
 
-> **Note**: The model is only accessible from within the cluster (no external route). This is intentional for security—keeping the model endpoint internal reduces your attack surface.
+> **Note**: The model is only accessible from within the cluster (no external route). This is intentional for security - keeping the model endpoint internal reduces your attack surface.
 
 ---
 
