@@ -23,7 +23,7 @@ Llama Stack acts as the middleware between your frontend and the LLM. Currently,
 
     ![tiny-llama-upgrade2.png](./images/tiny-llama-upgrade2.png)
 
-5. Also we need to update the `backend` and lower the `max_token` because TinyLlama can't handle as much as previous 😅 So find `canopybackend` under **OpenShift Console** → **Helm** → **Releases** 
+5. Also we need to update the `backend` and lower the `max_token` because TinyLlama can't handle as much as previous 😅 So find `canopy-backend` under **OpenShift Console** → **Helm** → **Releases** 
 
     ![tiny-backend-upgrade.png](./images/tiny-backend-upgrade.png)
 
