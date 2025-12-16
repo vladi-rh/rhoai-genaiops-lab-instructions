@@ -58,11 +58,11 @@ In OpenShift AI, we use **KServe** with **vLLM** as the serving runtime to deplo
 
 ### Deploy Your First On-Prem Model
 
-1. Navigate to **OpenShift AI** → **AI Hub** → **Catalog** and choose `Community and custo models`. Find `Tiny Llama` there.
+1. Navigate to **OpenShift AI** → **AI Hub** → **Catalog** and choose `Community and custom models`. Find `TinyLlama` there.
 
     ![model-catalog.png](./images/model-catalog.png)
 
-2. Click Tiny Llama and read its model card. Prety much the same thing what we had in Hugging Face. On the upper right corner, click **Deploy**.
+2. Click TinyLlama and read its model card. Prety much the same thing what we read in Hugging Face. On the upper right corner, click **Deploy**.
 
     ![model-catalog-2.png](./images/model-catalog-2.png)
 
@@ -74,7 +74,7 @@ In OpenShift AI, we use **KServe** with **vLLM** as the serving runtime to deplo
 
     ![tiny-deploy.png](./images/tiny-deploy.png)
 
-    Expand `Customize resource requests and limits` to give a bit more CPU to Tiny Llama:
+    Expand `Customize resource requests and limits` to give a bit more CPU to TinyLlama:
 
     **CPU Request:** 3
 
@@ -95,7 +95,7 @@ In OpenShift AI, we use **KServe** with **vLLM** as the serving runtime to deplo
 
     **Connection name:** `quay`
 
-    **Secret details:** copy below json snippet
+    **Secret details:** copy below json snippet:
 
     ```json
     {
@@ -117,19 +117,19 @@ In OpenShift AI, we use **KServe** with **vLLM** as the serving runtime to deplo
 
 ## 🌐 How Do I Access the Model?
 
-Once deployed, your model gets an internal REST endpoint following the OpenAI-compatible API format. The endpoint URL follows this pattern:
+Once deployed, your model gets an internal REST endpoint following the OpenAI-compatible API format. The enpoint URL follows this pattern:
 
 ```
 http://<model-name>-predictor.<namespace>.svc.cluster.local:8080/v1
 ```
 
-For example, if you deployed TinyLlama in your `<USER_NAME>-canopy` namespace:
+Since you deployed TinyLlama in your `<USER_NAME>-canopy` namespace, it'll be like below:
 
 ```
 http://tinyllama-predictor.<USER_NAME>-canopy.svc.cluster.local:8080/v1
 ```
 
-You can see it by clicking `Internal endpoint` on the dashboard.
+Alternatively, you can see it by clicking `Internal endpoint` on the dashboard.
 
 ![tiny-endpoint.png](./images/tiny-endpoint.png)
 
