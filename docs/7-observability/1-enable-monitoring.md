@@ -26,7 +26,45 @@ This architecture provides health metrics and alerts for OpenShift AI platform c
 
 > **Note**: The RHOAI Observability stack has already been deployed and configured for this lab environment. If you're interested in learning more about the underlying platform configuration, check the `Managing Observability in RHOAI` section under `Administer OpenShift AI platform access, apps, and operations` [documentation](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed).
 
-### Deploy Grafana
+## 🔍 OpenTelemetry: The Standard for Tracing
+
+Red Hat OpenShift AI uses **OpenTelemetry** (OTel), the open-source standard for distributed tracing. OpenTelemetry provides:
+
+* **Automatic instrumentation** for common frameworks (Flask, FastAPI, Express, etc.)
+* **Manual instrumentation** for custom operations specific to your application
+* **Vendor-neutral format** that works with any tracing backend
+* **Integration with metrics and logs** for complete observability
+
+### OpenTelemetry 🔍 And LlamaStack 🦙
+
+LlamaStack has built-in [OpenTelemetry support](https://llamastack.github.io/docs/building_applications/telemetry#configuration) through its **meta-reference telemetry provider**, which automatically instruments inference operations to generate both traces and metrics. Unlike Canopy's components that use auto-injection, LlamaStack's telemetry is configured directly through environment variables.
+
+**How LlamaStack Telemetry Works:**
+
+When telemetry is enabled, LlamaStack automatically creates spans for each inference request and emits token usage metrics. Each request generates:
+- **Traces**: Distributed traces showing the inference request flow with timing data
+- **Metrics**: Token counters (`llama_stack_prompt_tokens_total`, `llama_stack_completion_tokens_total`, `llama_stack_tokens_total`) labeled by `model_id` and `provider_id`
+
+The telemetry configuration in the LlamaStack deployment includes:
+
+```yaml
+env:
+  - name: OTEL_SERVICE_NAME
+    value: llamastack-user1-canopy  # Identifies this instance
+  - name: OTEL_EXPORTER_OTLP_ENDPOINT
+    value: http://data-science-collector-collector-headless.redhat-ods-monitoring:4318
+  - name: TELEMETRY_SINKS
+    value: otel_trace, otel_metric  # Enables both traces and metrics
+```
+
+These environment variables configure LlamaStack to:
+1. Export telemetry data to the RHOAI OpenTelemetry Collector via OTLP (port 4318)
+2. Enable both trace and metric sinks for comprehensive observability
+3. Tag all telemetry with the service name for filtering in Tempo and Prometheus
+
+> **Note**: OpenTelemetry is pre-configured in your [LlamaStack Helm chart](https://github.com/rhoai-genaiops/genaiops-helmcharts/blob/main/charts/llama-stack-operator-instance/templates/lls-distribution.yaml#L15), so metrics and traces are automatically collected without additional setup.
+
+## Deploy Grafana
 
 The RHOAI Observability stack collects platform-wide metrics, but these are generic infrastructure signals that don't reveal application-specific insights about your Canopy deployment. To visualize what matters for your AI assistant - token usage patterns, LLM latency, backend API performance - you need custom Grafana dashboards that query Prometheus with filters specific to your namespace and components.
 
