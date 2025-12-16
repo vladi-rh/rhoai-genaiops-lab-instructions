@@ -16,7 +16,7 @@ Each service instruments its code to emit **spans** - records of work done. Thes
 
 When spans are connected by parent-child relationships, they form a **trace** - the complete story of a single request from the student's question to Canopy's answer.
 
-![Example Trace Visualization](./images/tracing1.png)
+![Example Trace Visualization](./images/tracing0.png)
 
 In this trace visualization, you can see the waterfall view showing:
 - Total request time and each service's contribution
