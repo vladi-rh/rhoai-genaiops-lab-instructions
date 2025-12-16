@@ -1,4 +1,4 @@
-# Module 6 - Grounded AI
+# Module 5 - Grounded AI
 
 > Teaching an AI to remember is like giving it a library card. Without access to external knowledge, even the smartest model is limited to what it learned during training. With RAG, your AI can look up, learn from, and reason about any document you provide 📚
 
