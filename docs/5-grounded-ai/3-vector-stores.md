@@ -35,6 +35,7 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
 
     ```bash
     cd /opt/app-root/src/genaiops-gitops
+    git pull
     git add .
     git commit -m "📊 ADD - Milvus test & prod vector databases 📊"
     git push
