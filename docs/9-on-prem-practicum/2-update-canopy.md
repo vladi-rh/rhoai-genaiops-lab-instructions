@@ -27,7 +27,7 @@ Llama Stack acts as the middleware between your frontend and the LLM. Currently,
 
     ![tiny-backend-upgrade.png](./images/tiny-backend-upgrade.png)
 
-6.  And add these under `summarize`.
+6.  Let's first evaluate the summarization use case with the new model. Add these under `summarize`.
 
     ```yaml
     summarize:
@@ -47,7 +47,7 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
 
 1. Go to [Canopy UI](https://canopy-ui-<USER_NAME>-canopy.<CLUSTER_DOMAIN>) and test summarization. You can copy the text about Turkish tea from the previous chapters if you wish ☕️
 
-   And please be patient. Tiny Llama is doing its best for you 🦙🏋️‍♀️♥️
+   And please be patient. TinyLlama is doing its best for you 🦙🏋️‍♀️♥️
 
 2. You should receive a response from TinyLlama. Notice how the response style and capabilities might differ from Llama 3.2 3B. That's expected given the smaller model size.
 
@@ -56,6 +56,12 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
 3. Compare the responses to what you experienced with the cloud-hosted model. Consider:
    - **Response quality**: Are answers still helpful and accurate?
    - **Response time**: How does latency compare?
+
+    You can compare the Canopy in your experimentation area with the Canopy in your test environment. Since we haven't touched our GitOps configuration, `test` and `prod` are still using te cloud model. You can access the test Canopy by clicking [here](https://canopy-ui-<USER_NAME>-test.<CLUSTER_DOMAIN>) or copying the below URL to your favourite browser:
+
+    ```bash
+    https://canopy-ui-<USER_NAME>-test.<CLUSTER_DOMAIN>
+    ```
 
 ## 📊 Performance Considerations
 
@@ -74,4 +80,4 @@ You've successfully deployed an LLM on-premises and connected your entire Canopy
 
 But are your fellow students and professors going be happy with this? 
 
-Let's look into model optimization and compression before we settle with Tiny Llama actually 🦙🌿
+Let's look into model optimization and compression before we settle with TinyLlama actually 🦙🌿
