@@ -1,22 +1,43 @@
 # 📊 Evaluation: Prove It Works
 
-You've compressed your model. Your tests pass. Your gut says it's fine.
+You've compressed your model. Your gut says it's fine.
 
 But "gut feeling" doesn't fly in production. You need numbers. You need benchmarks. You need *evidence*.
 
 Enter [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)—the same tool that powers HuggingFace's Open LLM Leaderboard. If it's good enough for NVIDIA and Cohere, it's good enough for us.
 
-## Why Bother With Formal Benchmarks?
+## The Two-Stage Testing Philosophy
 
-Because "it seems to work" isn't a deployment strategy.
+Here's the thing about quantized models: they can pass standardized tests with flying colors and still break your application in weird ways. So we test twice.
 
-| The Question | What Benchmarks Tell You |
-|--------------|--------------------------|
-| Did we break it? | Scores vs baseline—the receipts |
-| Where did it hurt? | Per-task breakdown shows weak spots |
-| Can we ship it? | Compare against your thresholds |
+| Stage | What You're Testing | How |
+|-------|---------------------|-----|
+| **Stage 1** | Does the model still *know* things? | Benchmarks (this section) |
+| **Stage 2** | Does it work in *your* application? | Test Canopy flows (next section) |
 
-## The Benchmark Menu
+This section covers Stage 1. You'll run Stage 2 when you update Canopy to use the quantized model.
+
+## Stage 1: Does the Model Still Know Things? 📚
+
+First, verify the model didn't lose its mind during compression.
+
+| What to Test | Why It Matters | How to Test |
+|--------------|----------------|-------------|
+| Perplexity | Basic language competence | lm-evaluation-harness |
+| Task benchmarks | Knowledge retention | MMLU, HellaSwag, GSM8K |
+| Your domain | Performance on *your* data | Custom eval sets |
+
+### Perplexity: The Sanity Check
+
+Perplexity measures how "surprised" a model is by text. Given a sequence of words, how well does it predict what comes next?
+
+- **Lower perplexity = better model** (less surprised by real text)
+- **How it works:** The model sees text and predicts each word. If it assigns high probability to the correct word, perplexity goes down.
+- **What it catches:** Severe compression damage. If perplexity spikes after quantization, something fundamental broke.
+
+Think of it like a reading comprehension baseline—if the model can't predict common word sequences, it's probably not going to answer questions well either.
+
+### The Benchmark Menu
 
 These are the tests that matter—the same ones used on the Open LLM Leaderboard:
 
@@ -26,8 +47,18 @@ These are the tests that matter—the same ones used on the Open LLM Leaderboard
 | **HellaSwag** | Commonsense inference | Humans ace this (~95%), models struggle |
 | **ARC-Challenge** | Grade-school science | Can it still reason under compression? |
 | **Winogrande** | Pronoun resolution | Basic language understanding intact? |
-| **GSM8K** | Math word problems | ⚠️ **Most sensitive to quantization** |
+| **GSM8K** | Math word problems | Most sensitive to quantization |
 | **TruthfulQA** | Factual accuracy | Still avoiding hallucinations? |
+| **HumanEval** | Python coding problems | Generate code |
+| **MBPP** | Basic Python programming tasks | Generate code |
+
+#### How Benchmarks Actually Work
+
+For **multiple-choice** benchmarks, the model doesn't "pick A, B, C, or D." Instead, you feed each possible completion to the model and measure which one has the lowest perplexity. The model essentially rates how natural each answer sounds given the question.
+
+For **generative** benchmarks (like GSM8K), the model produces an answer, and you check if it matches the correct solution—usually with some parsing to extract the final number.
+
+For **coding** benchmarks (like HumanEval), the model generates a function body, and the test harness runs it against test cases. If the code executes correctly and produces the right output, it passes.
 
 ### Which Tasks Feel the Pain?
 
@@ -75,15 +106,23 @@ Here's something that'll keep you up at night. Even when aggregate accuracy stay
 | Q5_K_M (GGUF) | Sweet spot | Best trade-off for most use cases |
 | Q3_K_M (GGUF) | Risky | Significant degradation—use carefully |
 
+### About Those "Emergent Abilities"
+
+The upside: Studies show that key capabilities—such as in-context learning, chain-of-thought reasoning, and instruction following—remain intact under INT4 quantization.
+
+The downside: At 2 bits, these abilities degrade severely. Anything below 4-bit isn't viable for meaningful workloads.
+
 ## Running Your Own Evaluations
 
 ### Testing a Deployed Model
+
+WIP: go to workbench and run a small one.
 
 lm-evaluation-harness can hit your model's API endpoint directly:
 
 ```bash
 lm_eval --model local-completions \
-        --model_args base_url=<your-endpoint> \
+        --model_args base_url=https://llama32-fp8-ai501.<CLUSTER_DOMAIN> \
         --tasks hellaswag,winogrande,arc_easy \
         --limit 100
 ```
@@ -165,18 +204,37 @@ Put it all together in a comparison table:
 | INT4 g128 | 1.8 GB | 0.389 | 0.640 | 0.751 | -2.5% | ⚠️ Monitor |
 | INT4 g64 | 2.0 GB | 0.398 | 0.647 | 0.755 | -1.5% | ✅ Yes |
 
----
+## But Wait—Stage 1 Isn't Enough
 
-## 🎉 Module Complete!
+<!-- 🧪 Quiz: The Testing Trap -->
+<div style="background:linear-gradient(135deg,#e8f2ff 0%,#f5e6ff 100%);padding:20px;border-radius:10px;margin:20px 0;border:1px solid #d1e7dd;">
+<h3 style="margin:0 0 8px;color:#5a5a5a;">📝 Quick Check: The Testing Trap</h3>
+<p style="margin:0 0 12px;color:#666;">Your quantized model scores 98% on MMLU and passes all standard benchmarks. You deploy it to production. A week later, students complain that Canopy is ignoring their prompts and returning malformed JSON. What went wrong?</p>
+<style>
+.quiz-container-testing{position:relative}
+.quiz-option-testing{display:block;margin:4px 0;padding:8px 16px;background:#f8f9fa;border-radius:6px;cursor:pointer;transition:.2s;border:2px solid #e9ecef;color:#495057}
+.quiz-option-testing:hover{background:#e9ecef}
+.quiz-radio-testing{display:none}
+.quiz-radio-testing:checked+.quiz-option-testing[data-correct="true"]{background:#d4edda;color:#155724;border-color:#c3e6cb}
+.quiz-radio-testing:checked+.quiz-option-testing:not([data-correct="true"]){background:#f8d7da;color:#721c24;border-color:#f5b7b1}
+.feedback-testing{display:none;margin:4px 0;padding:8px 16px;border-radius:6px}
+#testing-correct:checked~.feedback-testing[data-feedback="correct"]{display:block;background:#d4edda;color:#155724}
+#testing-wrong1:checked~.feedback-testing[data-feedback="wrong1"],#testing-wrong2:checked~.feedback-testing[data-feedback="wrong2"],#testing-wrong3:checked~.feedback-testing[data-feedback="wrong3"]{display:block;background:#f8d7da;color:#721c24}
+</style>
+<div class="quiz-container-testing">
+<input type="radio" name="quiz-testing" id="testing-wrong1" class="quiz-radio-testing">
+<label for="testing-wrong1" class="quiz-option-testing" data-correct="false">📊 The benchmarks were too easy—you should have used harder tests</label>
+<input type="radio" name="quiz-testing" id="testing-correct" class="quiz-radio-testing">
+<label for="testing-correct" class="quiz-option-testing" data-correct="true">🧪 You only tested Stage 1 (knowledge) but skipped Stage 2 (application flows)</label>
+<input type="radio" name="quiz-testing" id="testing-wrong2" class="quiz-radio-testing">
+<label for="testing-wrong2" class="quiz-option-testing" data-correct="false">🔢 The model needed a smaller group size</label>
+<input type="radio" name="quiz-testing" id="testing-wrong3" class="quiz-radio-testing">
+<label for="testing-wrong3" class="quiz-option-testing" data-correct="false">⏱️ You deployed too quickly—should have waited longer</label>
+<div class="feedback-testing" data-feedback="correct">✅ <strong>Exactly!</strong> Benchmark scores test knowledge retention, but quantization can break instruction-following and output formatting in ways benchmarks don't catch. Always test your actual application flows—system prompts, tool calling, JSON output—before deploying.</div>
+<div class="feedback-testing" data-feedback="wrong1">❌ MMLU is already challenging. The problem isn't test difficulty—it's that benchmarks measure different things than application behavior.</div>
+<div class="feedback-testing" data-feedback="wrong2">❌ Group size affects accuracy, but the issue here is <em>what</em> you tested, not <em>how</em> you quantized.</div>
+<div class="feedback-testing" data-feedback="wrong3">❌ Timing isn't the issue. You could wait a year and still hit this problem if you only run benchmark tests.</div>
+</div>
+</div>
 
-You made it. Here's what you now know:
-
-- ✅ **Quantization fundamentals** — What it is, why it works, what can go wrong
-- ✅ **The algorithms** — GPTQ, AWQ, SmoothQuant, and when to use each
-- ✅ **Deployment choices** — Schemes, group sizes, output formats
-- ✅ **The pipeline** — Testing, model cards, GitOps deployment
-- ✅ **Evaluation** — Benchmarks, thresholds, and making the call
-
-**The bottom line:** You can cut your model's memory by 4x and still ship something students won't complain about. Now go make finance happy.
-
-Continue to **[On-Prem Practicum](../10-on-prem-practicum/README.md)** to deploy your optimized models!
+**The takeaway:** Benchmarks verify the model still *knows* things. But you also need to verify it still *works* in your application. That's Stage 2—and you'll do it in the next section when you update Canopy to use the quantized model.

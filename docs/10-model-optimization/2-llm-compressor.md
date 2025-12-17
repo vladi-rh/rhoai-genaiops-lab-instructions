@@ -196,7 +196,19 @@ Still not sure? Here's the quick decision guide:
 
 Enough reading! Let's compress a model!
 
-Go to your workbench and open up **`experiments/9-model-optimization/1-intro-llm-compressor.ipynb`**
+But before, we need to beef up our workbench a bit, because compressing a model needs a bit more resources.
+
+1. Go to OpenShift AI dashboard, and find your workbench under `<USER_NAME>-canopy` project. Click on the three dots > `Edit workbench`.
+
+    ![edit-workbench.png](./images/edit-workbench.png)
+
+2. Scroll down to `Deployment size` and increase the CPU and Memory requests & limits as below.
+
+    ![cpu-memory.png](./images/cpu-memory.png)
+
+3. You don't need to change anything else. Just hit `Update workbench`. 
+
+4. This will restart your workbench. When it is up, open up **`experiments/9-model-optimization/1-intro-llm-compressor.ipynb`**
 
 In this exercise, you'll take a small model and compress it on CPU (yes, CPU—no fancy hardware needed to learn).
 
@@ -206,7 +218,7 @@ In this exercise, you'll take a small model and compress it on CPU (yes, CPU—n
 
 2. **Write a recipe** — Configure `GPTQModifier` with parameters like `scheme`, `targets`, and `ignore`
 
-3. **Compress a model** — We'll use `Qwen/Qwen2-0.5B-Instruct` as our guinea pig
+3. **Compress a model** — We'll use `Qwen/Qwen2-0.5B-Instruct` as our guinea pig (compressing Llama 3.2 3B requires more compute power than you have in the workbench. That's why we are experiencing the topic with this Qwen model)
 
 4. **See the difference** — Compare file sizes before and after (prepare to be impressed)
 
