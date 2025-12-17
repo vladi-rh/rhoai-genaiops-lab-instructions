@@ -114,9 +114,30 @@ The downside: At 2 bits, these abilities degrade severely. Anything below 4-bit 
 
 ## Running Your Own Evaluations
 
-### Testing a Deployed Model
+### 🧪 Time to Get Your Hands Dirty
 
-WIP: go to workbench and run a small one.
+Enough theory—let's actually compare a quantized model against its baseline.
+
+Go to your workbench and open up **`experiments/9-model-optimization/4-evaluation.ipynb`**
+
+In this exercise, you'll use `lm-evaluation-harness` to run the same benchmark against two deployed models and compare the results.
+
+**What you'll do:**
+
+1. **Configure endpoints** — Point lm_eval at both the unquantized and FP8 quantized Llama models
+2. **Run MMLU benchmarks** — Test both models on the same academic questions
+3. **Compare results** — See the actual accuracy difference side-by-side
+4. **Interpret the impact** — Understand what the numbers mean for your deployment decision
+
+**What you'll learn:**
+
+- How `lm_eval` works with remote OpenAI-compatible APIs (like vLLM)
+- Why we limit concurrency when multiple users share endpoints
+- How to read benchmark results and calculate accuracy deltas
+
+When you're done, come back and we'll cover the decision framework for shipping.
+
+### Testing a Deployed Model
 
 lm-evaluation-harness can hit your model's API endpoint directly:
 
