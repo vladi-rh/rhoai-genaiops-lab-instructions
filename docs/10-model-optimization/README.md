@@ -12,7 +12,7 @@ This module is about making models smaller, faster, and cheaper—without making
 
 # 🖼️ Big Picture
 <!-- TODO: Add architecture diagram showing quantization workflow -->
-![big-picture-quantization.jpg](images/big-picture-quantization.jpg)
+![big-picture-quantization.jpg](images/big-picture-quantization.png)
 
 # 🔮 Learning Outcomes
 
