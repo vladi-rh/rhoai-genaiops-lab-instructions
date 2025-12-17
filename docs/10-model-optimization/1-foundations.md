@@ -69,7 +69,7 @@ Think of precision formats like coffee sizes. You can pick what matches your lat
 | FP32 | 32 | 100% | Rare in practice; debugging or numerically sensitive ops. Not the default for modern LLM training. |
 | FP16/BF16 | 16 | 50% | Default for most training + inference on modern GPUs |
 | FP8 | 8 | 25% | Throughput-focused training/inference on fancy new GPUs |
-| INT8 | 8 | 25% | SProduction inference "safe bet" (aka good quality/latency/memory tradeoff) |
+| INT8 | 8 | 25% | Production inference "safe bet" (aka good quality/latency/memory tradeoff) |
 | INT4 | 4 | 12.5% | Aggressive compression (living dangerously) |
 
 Most production deployments land somewhere between INT8 and INT4. Let's understand what we're actually compressing.
