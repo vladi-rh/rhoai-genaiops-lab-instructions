@@ -100,7 +100,22 @@ Your Canopy UI is the student-facing interface - the web application where users
 
 1. In Grafana, navigate to **Dashboards → Browse → `<USER_NAME>-toolings Canopy Dashboards`**
 
-2. Open the **Canopy UI Dashboard** to see:
+2. Open the **Canopy UI Dashboard**:
+
+   > **Tip**: Expand the time range to 1-3 hours if metrics appear sparse. It's located in the upper right dashboard  
+
+3. **Generate Traffic to See Metrics**: If the dashboard is empty, open your Canopy UI and interact with it:
+
+   ```bash
+   # Get your Canopy UI URL
+   oc get route canopy-ui -n <USER_NAME>-canopy -o jsonpath='https://{.spec.host}{"\n"}'
+   ```
+
+   Open the URL in your browser and click the **Summarize** button 3-5 times. This generates traffic through the entire stack (UI → Backend → LlamaStack) and populates all panels including "Backend Request Duration".
+
+   Wait 10-15 seconds for Prometheus to scrape the metrics, then refresh the Grafana dashboard.
+
+4. The dashboard displays:
 
    ![Metrics Dashboard](./images/metrics3.png)
 
@@ -156,6 +171,14 @@ LlamaStack orchestrates LLM calls between Canopy Backend and vLLM, tracking toke
 1. Open the **LlamaStack Metrics Dashboard**:
 
    > **Tip**: Expand the time range to 1-3 hours if metrics appear sparse.
+
+2. **Generate Traffic to See Metrics**: If the dashboard is empty, generate some inference requests from your code-server terminal:
+
+   ```bash
+   for i in {1..10}; do echo "Request $i:"; curl -s -X POST "http://llama-stack-service.<USER_NAME>-canopy.svc.cluster.local:8321/v1/chat/completions" -H "Content-Type: application/json" -d '{"model":"llama32","messages":[{"role":"user","content":"Hello, how are you?"}],"stream":false}' | jq -r '.usage.total_tokens // "error"'; sleep 2; done
+   ```
+
+   This sends 10 non-streaming requests to your LlamaStack instance. Remember that metrics are batched every 60 seconds, so wait a minute then refresh the dashboard to see the token counts.
 
    ![Metrics Dashboard](./images/metrics4.png)
 
