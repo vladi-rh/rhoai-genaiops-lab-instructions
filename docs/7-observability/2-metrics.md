@@ -102,7 +102,9 @@ Your Canopy UI is the student-facing interface - the web application where users
 
 2. Open the **Canopy UI Dashboard**:
 
-   > **Tip**: Expand the time range to 1-3 hours if metrics appear sparse. It's located in the upper right dashboard  
+   > **Tip**: Expand the time range to 1-3 hours if metrics appear sparse. The time picker is located in the upper right corner of the dashboard.
+
+   ![Metrics Dashboard](./images/metrics1.2.png)
 
 3. **Generate Traffic to See Metrics**: If the dashboard is empty, open your Canopy UI and interact with it:
 
