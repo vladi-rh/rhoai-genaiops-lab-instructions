@@ -27,7 +27,7 @@ The FP8 version uses **half the memory**. But can you tell the difference in qua
 </iframe>
 
 
-So What did you notice?
+So what did you notice?
 
 - **Quality:** Could you tell which response was "better"?
 - **Consistency:** Did both give similar answers?
