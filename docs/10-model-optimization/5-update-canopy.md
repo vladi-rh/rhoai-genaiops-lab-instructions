@@ -67,7 +67,7 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
     cd /opt/app-root/src/genaiops-gitops
     git pull
     git add .
-    git commit -m "🏦 Switch to FP9 🏦"
+    git commit -m "🏦 Switch to FP8 🏦"
     git push
     ```
 3. Now let's update the `backend`. Open up `backend/chart/values-test.yaml` and update change every `llama32` to `RedHatAI/Llama-3.2-3B-Instruct-FP8`.
@@ -103,7 +103,7 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
     ```bash
     cd /opt/app-root/src/backend
     git add chart/values-test.yaml
-    git commit -m "🏦 Switch to FP9 🏦"
+    git commit -m "🏦 Switch to FP8 🏦"
     git push
     ```
 
