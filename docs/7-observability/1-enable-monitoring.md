@@ -26,9 +26,9 @@ This architecture provides health metrics and alerts for OpenShift AI platform c
 
 > **Note**: The RHOAI Observability stack has already been deployed and configured for this lab environment. If you're interested in learning more about the underlying platform configuration, check the `Managing Observability in RHOAI` section under `Administer OpenShift AI platform access, apps, and operations` [documentation](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed).
 
-## 🔍 OpenTelemetry: The Standard for Tracing
+## 🔍 OpenTelemetry: The Standard for Observability
 
-Red Hat OpenShift AI uses **OpenTelemetry** (OTel), the open-source standard for distributed tracing. OpenTelemetry provides:
+Red Hat OpenShift AI uses **OpenTelemetry** (OTel), the open-source standard for distributed tracing and metrics collection. OpenTelemetry provides:
 
 * **Automatic instrumentation** for common frameworks (Flask, FastAPI, Express, etc.)
 * **Manual instrumentation** for custom operations specific to your application
@@ -37,7 +37,7 @@ Red Hat OpenShift AI uses **OpenTelemetry** (OTel), the open-source standard for
 
 ### OpenTelemetry 🔍 And LlamaStack 🦙
 
-LlamaStack has built-in [OpenTelemetry support](https://llamastack.github.io/docs/building_applications/telemetry#configuration) through its **meta-reference telemetry provider**, which automatically instruments inference operations to generate both traces and metrics. Unlike Canopy's components that use auto-injection, LlamaStack's telemetry is configured directly through environment variables.
+LlamaStack has built-in [OpenTelemetry support](https://llamastack.github.io/docs/building_applications/telemetry#configuration) through its **meta-reference telemetry provider**, which automatically instruments inference operations to generate observability data including traces and metrics. Unlike Canopy's components that use auto-injection, LlamaStack's telemetry is configured directly through environment variables.
 
 **How LlamaStack Telemetry Works:**
 
