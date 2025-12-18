@@ -151,4 +151,4 @@ Created by Georgi Gerganov for llama.cpp. This is how you run models on laptops,
 
 You know what to compress and how. Now let's make sure it actually works.
 
-Continue to **[Testing Pipeline](./4-testing-pipeline.md)** to learn how to validate quantized models before they hit production.
+Continue to **[Evaluation](./4-evaluation.md)** to learn how to validate quantized models before they hit production.
