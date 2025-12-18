@@ -309,6 +309,8 @@ That’s what happens in quantization:
 
 Granularity is simply: **how many values share the same ruler (scale)**.
 
+![per-channel.png](images/per-channel.png)
+
 * **Per-tensor:** *one ruler for everything*
 
   Like measuring paperclips and tables with the same “centimeter-only” ruler → fast, but small details get lost.
