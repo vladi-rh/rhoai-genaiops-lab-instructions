@@ -187,7 +187,16 @@ First run the preparation script.
   -rw-r--r--. 1 1000960000 1000960000  200 Dec 14 16:33 postgres-secret.yaml.local
   ```
 
-### 4.2 Watch the Deployment
+### 4.2 Run the deployment command
+
+Run the below command to kick off the deployment:
+
+   ```bash
+   oc apply -k .
+  ```
+
+
+### 4.3 Watch the Deployment
 
 ```bash
 # Watch pods come up
@@ -204,14 +213,14 @@ You should see:
 
 Do `Ctrl + C` to break the watch.
 
-### 4.3 Verify Services
+### 4.4 Verify Services
 
 ```bash
 # Check all services are running
 oc get svc -n <USER_NAME>-maas
 ```
 
-### 4.4 Get the Route URL
+### 4.5 Get the Route URL
 
 ```bash
 # Find your LiteMaaS URL
