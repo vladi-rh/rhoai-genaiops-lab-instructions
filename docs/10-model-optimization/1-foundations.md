@@ -148,7 +148,8 @@ activations are the intermediate values produced while processing your prompt/to
 - Example: W8A8 means both weights AND activations are quantized
 
 ### 3. KV Cache Quantization (The Memory Hog)
-When students write essays or ask follow-up questions, the model stores attention state. Attention is the mechanism that lets the model “look back” at earlier tokens to decide what matters for the next token. For long conversations, this cache can eat more memory than the model itself.
+Attention is the mechanism that lets the model “look back” at earlier tokens to decide what matters for the next token. When students write essays or ask follow-up questions, the model often stores attention state in a cache called the KV-cache so they don't need to be re-calculated.  
+For long conversations, this KV-cache can eat more memory than the model itself.
 
 - Particularly useful for chatbots (like Canopy!)
 - Reduces memory for long conversations
