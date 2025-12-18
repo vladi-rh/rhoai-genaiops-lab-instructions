@@ -472,6 +472,6 @@ Not sure what to pick? Here's the cheat sheet:
 
 ## 🎯 Ready to Actually Do This?
 
-Enough theory—let's compress some models!
+Enought background, let's look at some specific methods and get hands-on!
 
-Continue to next chapter to get hands-on with quantization tools and see these concepts in action.
+Continue to the next chapter to see how we can implement this 🪄
