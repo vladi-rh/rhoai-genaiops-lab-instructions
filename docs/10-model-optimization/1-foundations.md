@@ -307,9 +307,17 @@ That’s what happens in quantization:
 
 #### How granularity changes it?
 
-Granularity is simply: **how many values share the same ruler (scale)**.
+Inside a Neural Network you store information such as weights inside of "Tensors" (multi-dimensional lists/arrays of numbers).
+
+You can visualize a Neural Network as many of these tensors put together: 
+
+![neural-network.png](images/neural-network.png)
+
+And each tensor can be broken into smaller parts:
 
 ![per-channel.png](images/per-channel.png)
+
+Granularity is simply: **how many values share the same ruler (scale)**.
 
 * **Per-tensor:** *one ruler for everything*
 
