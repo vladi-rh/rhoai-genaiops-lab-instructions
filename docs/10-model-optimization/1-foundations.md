@@ -148,7 +148,8 @@ activations are the intermediate values produced while processing your prompt/to
 - Example: W8A8 means both weights AND activations are quantized
 
 ### 3. KV Cache Quantization (The Memory Hog)
-When students write essays or ask follow-up questions, the model stores attention state. Attention is the mechanism that lets the model “look back” at earlier tokens to decide what matters for the next token. For long conversations, this cache can eat more memory than the model itself.
+Attention is the mechanism that lets the model “look back” at earlier tokens to decide what matters for the next token. When students write essays or ask follow-up questions, the model often stores attention state in a cache called the KV-cache so they don't need to be re-calculated.  
+For long conversations, this KV-cache can eat more memory than the model itself.
 
 - Particularly useful for chatbots (like Canopy!)
 - Reduces memory for long conversations
@@ -306,6 +307,16 @@ That’s what happens in quantization:
 
 #### How granularity changes it?
 
+Inside a Neural Network you store information such as weights inside of "Tensors" (multi-dimensional lists/arrays of numbers).
+
+You can visualize a Neural Network as many of these tensors put together: 
+
+![neural-network.png](images/neural-network.png)
+
+And each tensor can be broken into smaller parts:
+
+![per-channel.png](images/per-channel.png)
+
 Granularity is simply: **how many values share the same ruler (scale)**.
 
 * **Per-tensor:** *one ruler for everything*
@@ -461,6 +472,6 @@ Not sure what to pick? Here's the cheat sheet:
 
 ## 🎯 Ready to Actually Do This?
 
-Enough theory—let's compress some models!
+Enought background, let's look at some specific methods and get hands-on!
 
-Continue to next chapter to get hands-on with quantization tools and see these concepts in action.
+Continue to the next chapter to see how we can implement this 🪄

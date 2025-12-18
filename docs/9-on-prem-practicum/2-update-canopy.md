@@ -51,7 +51,7 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
 
 2. You should receive a response from TinyLlama. Notice how the response style and capabilities might differ from Llama 3.2 3B. That's expected given the smaller model size.
 
-> **Observation**: TinyLlama responses will be faster to start (lower latency to first token) but may be less sophisticated than larger models. This is the trade-off you make for CPU-only deployment.
+> **Observation**: TinyLlama responses may be less sophisticated (and slower) than larger models running on GPUs, but is often a whole lot cheaper as it runs on CPU. This is the trade-off you make for CPU-only deployment.
 
 3. Compare the responses to what you experienced with the cloud-hosted model. Consider:
    - **Response quality**: Are answers still helpful and accurate?
