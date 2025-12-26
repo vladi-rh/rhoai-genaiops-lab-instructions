@@ -20,24 +20,26 @@ That’s where **prompt versioning** and a **prompt registry** concept come in. 
 
 You already standardized your prompts using a simple format that captures:
 
-```yaml
+<div class="highlight" style="background: #f7f7f7">
+<pre><code class="language-yaml">
 LLAMA_STACK_URL: "http://llama-stack-service:8321"
 summarize:
   enabled: true
-  model: llama32
+  model: vllm-llama32/llama32
   prompt: |
     Give me a good summary of the following text.
-```
+</code></pre>
+</div>
 
 There are a variety of different strategies here on where to store your prompts and how to load them into the backend.  
 In our case, we store this inside the Canopy backend repo as the one who develop the backend likely is the same persona to iterate on the prompts.
 
-More specifically, we load them into a ConfigMap which then gets mounted to our backend pod. This way, we can make sure that when the `values.yaml` file changes, GitOps will update, and the pod will automatically be restarted with the latest prompt.
+More specifically, we load them into a ConfigMap which then gets mounted to our backend pod. This way, we can make sure that when the `values.yaml` file changes, Argo CD updates the ConfigMap, and the pod automatically is restarted with the latest prompt.
 
 
 ## 🧪 Updating a prompt
 
-1. Go to your backend folder in your workbench and update the `values-test.yaml` file to have a new prompt. Perhaps something like `Summarize the text no more than 10 sentences.` 
+1. Go to your `backend` folder in your workbench and update the `values-test.yaml` file to have a new prompt. Perhaps something like `Summarize the text no more than 10 sentences.` 
 
 2. Then commit & push the changes:
 
@@ -53,7 +55,7 @@ More specifically, we load them into a ConfigMap which then gets mounted to our 
 
     ![canopy-be-pr.png](./images/canopy-be-pr.png)
 
-    Open up that link and document why you picked this prompt. Perhaps your user research revealed that people need summary not longer than 10 sentences. This adds narrative and visibility to prompt decisions. And then click `Create Pull Request`  
+    Open up that link and document why you picked this prompt. Perhaps your user research revealed that people need summary not longer than 10 sentences. This adds narrative and visibility to prompt decisions. And then click `Create Pull Request`.  
 
     ![canopy-be-pr-2.png](./images/canopy-be-pr-2.png)
 

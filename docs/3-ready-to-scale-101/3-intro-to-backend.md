@@ -21,8 +21,8 @@ We'll separate out the LLM business logic from the frontend into its own backend
     ```yaml
     LLAMA_STACK_URL: 'http://llama-stack-service:8321'
     summarize:  
-      enabled: true  # 👈 enable the Summarization
-      model: llama32
+      enabled: true
+      model: vllm-llama32/llama32
       prompt: |               
         Summarize this text.  # 👈 update this line with your own prompt
     ```

@@ -13,9 +13,16 @@ Let's setup the foundation of our GitOps system and deploy all the components we
 
 1. Let's get your hands warm with GitOps and Argo CD first. An Argo CD instance is already installed to your `<USER_NAME>-toolings` environment. You can either get the URL from the above `Quick Links` tile or simply by running the below command on the terminal of your workbench.
 
+  First log in to the cluster:
+
   ```bash
     export CLUSTER_DOMAIN=<CLUSTER_DOMAIN>
     oc login --server=https://api.${CLUSTER_DOMAIN##apps.}:6443 -u <USER_NAME> -p <PASSWORD>
+  ```
+
+  Then get the URL (or you can use the `Quick Links` from top right corner) and connect to your Argo CD.
+
+  ```bash
     echo https://$(oc get route argocd-server --template='{{ .spec.host }}' -n <USER_NAME>-toolings)
   ```
 

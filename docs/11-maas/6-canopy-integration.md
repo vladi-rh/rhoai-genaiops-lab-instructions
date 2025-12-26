@@ -28,18 +28,19 @@ flowchart LR
         BE --> LS[Llama Stack]
         LS --> VLLM[vLLM]
     end
-    BE -. Direct endpoint .-> NOTE["canopy-llm-....apps.../v1"]
+    BE -. Direct endpoint .-> NOTE["http://llama-32-predictor.ai501.svc.cluster.local:8080/v1"]
 ```
 
 Your Canopy has its own dedicated model endpoint. It works great... for one Canopy.
 
-### After (Module 12)
+### After (Module 11)
 
 ```mermaid
 flowchart LR
     subgraph MaaSCanopy["MaaS-Connected Canopy"]
         UI[Canopy UI] --> BE[Canopy Backend]
-        BE -->|API Key| MAAS[LiteMaaS API]
+        BE --> LS[Llama Stack]
+        LS[Llama Stack] -->|API Key| MAAS[LiteMaaS API]
         MAAS --> VLLM[vLLM]
     end
     subgraph Features
