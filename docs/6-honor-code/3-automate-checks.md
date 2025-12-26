@@ -122,24 +122,29 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     Attack Success Rate (Improvement from Dynamic Attack): 0.00%
     ```
 
-8. This was only a couple prompts though. If you'd like to do a more realistic test, you can create a dataset based on the different tests provided by Spikee under `dataset` folder. It'll take some time (like ~7 hours with this setup) but then it'll give you a more realistic results. If you are still curious;
-
-    Let's generate the dataset:
+8. This was only a couple prompts though. If you'd like to do a more realistic test, you can run a test based on the different datasets provided by Spikee under `dataset` folder. But these datasets are huge, for example `seeds-cybersec-2025-04` would take ~7 hours with our setup, but then it'll give you a more realistic results. If you are still curious; this is how you can use the existing dataset:
 
     ```bash
     spikee generate --seed-folder datasets/seeds-cybersec-2025-04 --plugins 1337 --tag mytest
     ```
 
-    And start the test by pointing to the generated dataset:
+    And then you can start the test by pointing to the generated dataset as below. ‼️ BUUUTT, as in all good cooking shows, you don't have to wait for the results. We got you covered! Continue to read for the results 😌
 
-    ```bash
+    <div class="highlight" style="background: #f7f7f7; overflow-x: auto; padding: 8px;">
+    <pre><code class="language-bash"> 
     spikee test --dataset datasets/cybersec-2025-04-user-input-mytest-dataset-*.jsonl --target llama_stack_shields  --attack best_of_n --attack-iterations 1
-    ```
-9. Let's check the results:
+    </code></pre> 
+    </div>
 
-    ```bash
+9. After some waiting, when we checked the results with below command..
+
+    <div class="highlight" style="background: #f7f7f7; overflow-x: auto; padding: 8px;">
+    <pre><code class="language-bash"> 
     spikee results analyze --result-file  results/results_llama_stack_shields-shields_enabled_cybersec-2025-04-user-input-mytest-dataset*.jsonl | sed -n '1,/=== Breakdown by Jailbreak Type ===/p' | head -n -1
-    ```  
+    </code></pre> 
+    </div>  
+
+    ..and this is what we got:
 
     ```bash
     _____ _____ _____ _  ________ ______ 
@@ -165,4 +170,4 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     Attack Success Rate (Without Dynamic Attack): 27.30%
     Attack Success Rate (Improvement from Dynamic Attack): 10.20%
     ```
-    You can check the details in the report and see wat kind of attacks got successfull and see what you need to improve (maybe a better prompt injection model or retrain the existing one, maybe some simple addition to regex..)
+    When you run such test, you can check the details in the report and see what kind of attacks got successfull and plan what you need to improve; maybe a better prompt injection model or retrain the existing one, maybe some simple additions to regex..
