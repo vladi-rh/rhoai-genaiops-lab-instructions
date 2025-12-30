@@ -47,15 +47,17 @@ When telemetry is enabled, LlamaStack automatically creates spans for each infer
 
 The telemetry configuration in the LlamaStack deployment includes:
 
-```yaml
-env:
-  - name: OTEL_SERVICE_NAME
-    value: llamastack-user1-canopy  # Identifies this instance
-  - name: OTEL_EXPORTER_OTLP_ENDPOINT
-    value: http://data-science-collector-collector-headless.redhat-ods-monitoring:4318
-  - name: TELEMETRY_SINKS
-    value: otel_trace, otel_metric  # Enables both traces and metrics
-```
+  <div class="highlight" style="background: #f7f7f7; overflow-x: auto; padding: 8px;">
+  <pre><code class="language-yaml"> 
+  env:
+    - name: OTEL_SERVICE_NAME
+      value: llamastack-user1-canopy  # Identifies this instance
+    - name: OTEL_EXPORTER_OTLP_ENDPOINT
+      value: http://data-science-collector-collector-headless.redhat-ods-monitoring:4318
+    - name: TELEMETRY_SINKS
+      value: otel_trace, otel_metric  # Enables both traces and metrics
+  </code></pre>
+  </div>
 
 These environment variables configure LlamaStack to:
 1. Export telemetry data to the RHOAI OpenTelemetry Collector via OTLP (port 4318)

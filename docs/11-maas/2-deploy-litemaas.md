@@ -104,7 +104,7 @@ Up to now, we’ve been using Helm to package and parameterize Kubernetes manife
 Under `litemaas/deployment/openshift` folder, we need to create a `user-values.env` file.
 
 ```bash
-touch litemaas/deployment/openshift/user-values.env
+touch deployment/openshift/user-values.env
 ```
 and paste the below values to this newly created file.
 
@@ -113,6 +113,7 @@ LITEMAAS_VERSION=0.1.2
 CLUSTER_DOMAIN_NAME=<CLUSTER_DOMAIN>
 NAMESPACE=<USER_NAME>-maas
 PG_ADMIN_PASSWORD=change-me-pg-password
+NODE_TLS_REJECT_UNAUTHORIZED=0
 JWT_SECRET=change-me-secure-jwt-secret-for-production
 OAUTH_CLIENT_ID=litemaas-<USER_NAME>
 OAUTH_CLIENT_SECRET=change-me-oauth-secret # 👈 we are going to change it in a moment 
@@ -195,6 +196,18 @@ Run the below command to kick off the deployment:
    oc apply -k .
   ```
 
+**Note:** Do not worry about the error below. It won't affect the installation. It happens because your user doesn't have enough privilege to edit a namespace.
+
+  <div class="highlight" style="background: #f7f7f7; overflow-x: auto; padding: 8px;">
+    <pre><code class="language-bash"> 
+    Error from server (Forbidden): error when applying patch:
+    {"metadata":{"annotations":{"kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"v1\",\"kind\":\"Namespace\",\"metadata\":{\"annotations\":{},\"labels\":{\"app.kubernetes.io/component\":\"<USER_NAME>-maas\",\"app.kubernetes.io/instance\":\"litemaas\",\"app.kubernetes.io/name\":\"litemaas\",\"app.kubernetes.io/part-of\":\"litemaas\",\"app.kubernetes.io/version\":\"0.1.2\",\"name\":\"<USER_NAME>-maas\"},\"name\":\"<USER_NAME>-maas\"}}\n"},"labels":{"app.kubernetes.io/component":"<USER_NAME>-maas","app.kubernetes.io/instance":"litemaas","app.kubernetes.io/name":"litemaas","app.kubernetes.io/part-of":"litemaas","app.kubernetes.io/version":"0.1.2","name":"<USER_NAME>-maas"}}}
+    to:
+    Resource: "/v1, Resource=namespaces", GroupVersionKind: "/v1, Kind=Namespace"
+    Name: "<USER_NAME>-maas", Namespace: ""
+    for: ".": error when patching ".": namespaces "<USER_NAME>-maas" is forbidden: User "<USER_NAME>" cannot patch resource "namespaces" in API group "" in the namespace "<USER_NAME>-maas"
+   </code></pre>
+  </div>
 
 ### 4.3 Watch the Deployment
 
@@ -213,20 +226,6 @@ You should see:
 
 Do `Ctrl + C` to break the watch.
 
-### 4.4 Verify Services
-
-```bash
-# Check all services are running
-oc get svc -n <USER_NAME>-maas
-```
-
-### 4.5 Get the Route URL
-
-```bash
-# Find your LiteMaaS URL
-oc get route litemaas -n <USER_NAME>-maas -o jsonpath='{.spec.host}'
-```
-
 ---
 
 ## ✨ Step 5: Access the LiteMaaS UI
@@ -234,7 +233,7 @@ oc get route litemaas -n <USER_NAME>-maas -o jsonpath='{.spec.host}'
 Open your browser and navigate to:
 
 ```
-https://litemaas-<USER_NAME>-maas.apps.<CLUSTER_DOMAIN>
+https://litemaas-<USER_NAME>-maas.<CLUSTER_DOMAIN>
 ```
 
 You should see the LiteMaaS login page! Use your OpenShift credentials to login!
@@ -247,56 +246,86 @@ By default you have admin privileges. That's why you have the `Administrator` se
 
 ## 🔗 Step 6: Configure Model Connections
 
-LiteMaaS uses LiteLLM as its backend proxy. We need to tell LiteLLM about our available models.
+LiteMaaS uses [LiteLLM](https://github.com/BerriAI/litellm) as its backend proxy. We need to tell LiteLLM about our available models.
 
-### 6.1 Get Your Model Endpoints
+### 6.1 Add Llama 3.2 3B to MaaS
 
-Let's get the inference service URL for the model we've been using for Canopy.
-
-```bash
-oc get inferenceservice llama-32 -n ai501 -o jsonpath='{.status.url}'
-```
-
-### 6.2 Update LiteLLM Configuration
-
-1. Go to `Administator` > `Model Management`  and click `Create Model`.
+1. Let's add our initial cloud model to our  first. Go to `Administator` > `Model Management`  and click `Create Model`.
 
   ![create-model.png](./images/create-model.png)
 
 2. Fill out the form as below:
 
-**Model Name:** `Llama-3.2-3B`
-**Description:** `Meta Llama 3.2 3B is a lightweight 3B-parameter, multilingual text-only LLM`
-**API Base URL:** `http://llama-32-predictor.ai501.svc.cluster.local:8080/v1`
-**Backend Model Name:** `llama32`  
-**API Key:** `fakekey`
-**Input Cost per Million Tokens:** `0,1`
-**Output Cost per Million Tokens:** `0,5` (or you can use your imagination for cost values 💸💸💸)
-**Features:** You can select `Supports Function Calling` and `Supports Tool Choice`
+  **Model Name:** `Llama-3.2-3B`
 
-![maas-model-config.png](./images/maas-model-config.png)
+  **Description:** `Meta Llama 3.2 3B is a lightweight 3B-parameter, multilingual text-only LLM`
 
-Leave the others default and hit `Create`
+  **API Base URL:** `http://llama-32-predictor.ai501.svc.cluster.local:8080/v1`
 
-![maas-model.png](./images/maas-model.png)
+  **Backend Model Name:** `llama32`  
 
----
+  **API Key:** `fakekey`
 
-## 🎯 What You've Accomplished
+  **Input Cost per Million Tokens:** `0,1`
 
-As the AI Engineer, you've just:
+  **Output Cost per Million Tokens:** `0,5` (or you can use your imagination for cost values 💸💸💸)
 
-* ✅ Deployed a complete MaaS platform on OpenShift
-* ✅ Configured OAuth for seamless authentication
-* ✅ Connected existing Llama 3.2 3B endpoint through LiteLLM
-* ✅ Set up the foundation for centralized model access
+  **Features:** You can select `Supports Function Calling` and `Supports Tool Choice`
 
-![maas-models-list.png](./images/maas-models-list.png)
+
+  ![maas-model-config.png](./images/maas-model-config.png)
+
+  Leave the others default and hit `Create`
+
+  ![maas-model.png](./images/maas-model.png)
+
+3. If you want, you can add your `TinyLlama` and quantized `Llama-3.2-3B-Instruct-FP8` to your MaaS for others to use them. 
+
+  You can use the below options to add them:
+
+  <details>
+  <summary>TinyLLama</summary>
+
+    **Model Name:** `TinyLlama-1.1B`
+
+    **Description:** `TinyLlama is a compact 1.1B parameter language model`
+
+    **API Base URL:** `http://tinyllama-predictor.<USER_NAME>-canopy.svc.cluster.local:8080/v1`
+
+    **Backend Model Name:** `tinyllama`  
+
+    **API Key:** `fakekey`
+
+    **Input Cost per Million Tokens:** `0,001`
+
+    **Output Cost per Million Tokens:** `0,005`
+
+  </details>
+
+  <details>
+  <summary>Llama-3.2-3B-Instruct-FP8</summary>
+
+    **Model Name:** `Llama-3.2-3B-Instruct-FP8`
+
+    **Description:** `Meta Llama 3.2 3B Instruct quantized to FP8 for efficient inference`
+
+    **API Base URL:** `http://llama-32-fp8-predictor.ai501.svc.cluster.local:8080/v1`
+
+    **Backend Model Name:** `RedHatAI/Llama-3.2-3B-Instruct-FP8`  
+
+    **API Key:** `fakekey`
+
+    **Input Cost per Million Tokens:** `0,01`
+
+    **Output Cost per Million Tokens:** `0,05`
+
+    **Features:** You can select `Supports Function Calling` and `Supports Tool Choice`
+  </details>
+
+  ![maas-models-list.png](./images/maas-models-list.png)
 
 ---
 
 ## 🎯 Next Steps
 
 Your infrastructure is ready! Now it's time to hand off to the 👩‍💼 **Service Admin** to configure users, roles, and budgets.
-
-**Continue to [Admin Configuration](11-maas/3-admin-configuration.md)** →

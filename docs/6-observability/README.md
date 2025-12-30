@@ -4,7 +4,7 @@
 
 # 🧑‍🍳 Module Intro
 
-You've built Canopy with RAG capabilities and safety guardrails, but how do you know it's actually working well in production? This module introduces the three pillars of observability that transform your AI application from a black box into a transparent, monitorable system you can trust.
+You've built Canopy with summarization and RAG capabilities, but how do you know it's actually working well in production? This module introduces the three pillars of observability that transform your AI application from a black box into a transparent, monitorable system you can trust.
 
 You'll learn to use OpenShift AI's built-in observability stack: metrics to quantify performance, logs to understand behavior, and traces to follow requests through your distributed system. By the end, you'll have dashboards that show Canopy's health at a glance and the skills to debug issues quickly.
 

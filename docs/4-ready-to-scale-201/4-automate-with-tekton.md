@@ -22,6 +22,9 @@ Just like we enabled evaluations for Llama Stack in our `experimentation` enviro
     <div class="highlight" style="background: #f7f7f7; overflow-x: auto; padding: 8px;">
     <pre><code class="language-yaml"> 
     chart_path: charts/llama-stack-operator-instance
+    models:
+     - name: "llama32"
+       url: "http://llama-32-predictor.ai501.svc.cluster.local:8080/v1"
     eval:
       enabled: true
     </code></pre>

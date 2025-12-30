@@ -16,7 +16,7 @@ But first, we need to set up our backend repository to handle the GenAI applicat
   
   summarize:
     enabled: true
-    model: llama32
+    model: vllm-llama32/llama32
     temperature: 0.9
     max_tokens: 4096
     prompt: |
@@ -82,11 +82,14 @@ Now let's deploy backend to test and prod environments using Argo CD!
 
     ```yaml
     chart_path: charts/llama-stack-operator-instance
+    models:
+     - name: "llama32"
+       url: "http://llama-32-predictor.ai501.svc.cluster.local:8080/v1"
     ```
 
   For now, we are happy with the default Llama Stack values. We will get some exciting updates as we continue to the other chapters :)
 
-5. Let's get all of these deployed! Of course - they are not real unless they are in git!
+1. Let's get all of these deployed! Of course - they are not real unless they are in git!
 
     ```bash
     cd /opt/app-root/src/genaiops-gitops
@@ -95,18 +98,18 @@ Now let's deploy backend to test and prod environments using Argo CD!
     git push 
     ```
 
-6. With all the application values stored in Git, let's tell Argo CD to start picking up changes to these environments. To do this, simply we need to create ApplicationSets:
+2. With all the application values stored in Git, let's tell Argo CD to start picking up changes to these environments. To do this, simply we need to create ApplicationSets:
 
     ```bash
     oc apply -f /opt/app-root/src/genaiops-gitops/appset-test.yaml -n <USER_NAME>-toolings
     oc apply -f /opt/app-root/src/genaiops-gitops/appset-prod.yaml -n <USER_NAME>-toolings
     ```
 
-7. You should see the two canopy applications, one for `test` and one for `prod` each deployed in Argo CD. 
+3. You should see the two canopy applications, one for `test` and one for `prod` each deployed in Argo CD. 
 
     ![canopy-gitops.png](./images/canopy-gitops.png)
 
-8. You can also go to OpenShift Console, check `<USER_NAME>-test` namespace to see if Canopy is deployed.
+4. You can also go to OpenShift Console, check `<USER_NAME>-test` namespace to see if Canopy is deployed.
 
     ![canopy-test-ns.png](./images/canopy-test-ns.png)
 

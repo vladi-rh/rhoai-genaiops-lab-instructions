@@ -28,10 +28,10 @@ In short: Llama Stack helps us move from *experimentation* to *production readin
 
     ![llama-stack-helmchart.png](./images/llama-stack-helmchart.png)
 
-3. We need to provide our LLM endpoint to Llama Stack, the same way we did to Canopy frontend. The helm chart already comes with good default values. Check if the below values are like below:
+3. We need to provide our LLM endpoint to Llama Stack, the same way we did to Canopy frontend. The helm chart already comes with good default values. Check if the below values are set correctly under `models`:
 
-    - Model Name: `llama32`
-    - Model URL: `http://llama-32-predictor.ai501.svc.cluster.local:8080/v1`
+    - name: `llama32`
+    - url: `http://llama-32-predictor.ai501.svc.cluster.local:8080/v1`
 
 ..and click `Create`.
 
