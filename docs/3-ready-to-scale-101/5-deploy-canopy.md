@@ -83,8 +83,8 @@ Now let's deploy backend to test and prod environments using Argo CD!
     ```yaml
     chart_path: charts/llama-stack-operator-instance
     models:
-     - name: "llama32"
-       url: "http://llama-32-predictor.ai501.svc.cluster.local:8080/v1"
+      - name: "llama32"
+        url: "http://llama-32-predictor.ai501.svc.cluster.local:8080/v1"
     ```
 
   For now, we are happy with the default Llama Stack values. We will get some exciting updates as we continue to the other chapters :)

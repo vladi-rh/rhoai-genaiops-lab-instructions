@@ -10,7 +10,9 @@ Let's take our experiment environment from Tiny Llama and point it to the FP8 on
 
     ![fp8-llama-upgrade.png](./images/fp8-llama-upgrade.png)
 
-3. Update the model configuration to point to your on-prem endpoint:
+3. Add the quantized Llama 3.2 FP8 model as another model endpoint to your Llama Stack like you did with TinyLlama previously. That way, we'd be able to access cloud model, TinyLlama, and to this new model.
+    
+    Add it under `models` by clicking `Add models`:
 
     - **Model Name**: `RedHatAI/Llama-3.2-3B-Instruct-FP8`
     - **Model URL**: `http://llama-32-fp8-predictor.ai501.svc.cluster.local:8080/v1`
@@ -19,7 +21,7 @@ Let's take our experiment environment from Tiny Llama and point it to the FP8 on
 
     ![fp8-llama-upgrade2.png](./images/fp8-llama-upgrade2.png)
 
-5. Also we need to update the `backend` 😌 Find `canopy-backend` under **OpenShift Console** → **Helm** → **Releases** 
+5. Now let's point `backend` to this newly available model 😌 Find `canopy-backend` under **OpenShift Console** → **Helm** → **Releases** 
 
     ![fp8-backend-upgrade.png](./images/fp8-backend-upgrade.png)
 
@@ -52,8 +54,11 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
     ```yaml
     ---
     chart_path: charts/llama-stack-operator-instance
-    MODEL_NAME: "RedHatAI/Llama-3.2-3B-Instruct-FP8" # 👈 Add this 
-    MODEL_URL: "http://llama-32-fp8-predictor.ai501.svc.cluster.local:8080/v1" # 👈 Add this 
+    models:
+      - name: "llama32"
+        url: "http://llama-32-predictor.ai501.svc.cluster.local:8080/v1"
+      - name: "RedHatAI/Llama-3.2-3B-Instruct-FP8"     # 👈 Add this
+        url: "http://llama-32-fp8-predictor.ai501.svc.cluster.local:8080/v1" # 👈 Add this 
     eval:
     enabled: true
     rag:                  

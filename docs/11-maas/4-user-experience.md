@@ -1,3 +1,5 @@
+# WIP 
+
 # 👤 User Experience
 
 > 👤 **Persona Focus: The Consumer** — Forget infrastructure. Forget budgets. Forget OAuth configurations. You're a developer who just wants to call an AI model. "Give me an endpoint and an API key, and let me build cool stuff!"

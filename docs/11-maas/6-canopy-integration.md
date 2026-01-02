@@ -1,3 +1,5 @@
+# WIP 
+
 # 🌳 Canopy Integration
 
 > 🌳 **Persona Focus: Everyone** — This is the moment where it all comes together! Remember your Canopy from Module 3? It's been talking directly to your model endpoint. Time to upgrade it to use MaaS — and see the full lifecycle in action.

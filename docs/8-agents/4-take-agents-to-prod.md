@@ -106,14 +106,14 @@ There are a few things we want to do, such as evaluating and observing the agent
 6. Deploy calendar API for your test environment as well so that you can freely continue iterating on your experiment environment while further evluation tests can happen in the test environment before taking the current setup to production. 
   But this time, let's deploy it via GitOps! Create `calendar-mcp` folder under `/opt/app-root/src/genaiops-gitops/canopy/test` , then create `config.yaml` file, or simply run below command:
 
-  ```
+  ```bash
    mkdir /opt/app-root/src/genaiops-gitops/canopy/test/calendar-mcp
    touch /opt/app-root/src/genaiops-gitops/canopy/test/calendar-mcp/config.yaml
   ```
 
   And add the following config that points to the related helm chart:
 
-  ```
+  ```yaml
   repo_url: https://github.com/rhoai-genaiops/mcp.git
   chart_path: mcp-calendar-app/helm
   fullnameOverride: canopy-mcp-calendar
