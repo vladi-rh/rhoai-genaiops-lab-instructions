@@ -1,3 +1,5 @@
+# WIP 
+
 # 📊 Usage & Observability
 
 > 📊 **Persona Focus: The Owner / Accountant** — "With great GPU costs comes great cost tracking responsibility." You're the one who gets the cloud bill and has to explain to leadership why AI costs went from $0 to $50,000 in three months. This lesson is your survival guide.
