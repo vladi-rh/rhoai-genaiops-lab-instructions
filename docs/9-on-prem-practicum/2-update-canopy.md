@@ -14,7 +14,9 @@ Llama Stack acts as the middleware between your frontend and the LLM. Currently,
 
     ![tiny-llama-upgrade.png](./images/tiny-llama-upgrade.png)
 
-3. Update the model configuration to point to your on-prem endpoint:
+3. Let's add your newly deployed on-prem TinyLlama as another model endpoint to your Llama Stack. That way, you'd be able to access both cloud model Llama 3.2 3B and TinyLlama via Llama Stack. 
+
+    Add the TinyLlama endpoint to the Llama Stack configuration under `models` by clicking `Add models`:
 
     - **Model Name**: `tinyllama`
     - **Model URL**: `http://tinyllama-predictor:8080/v1`
@@ -23,7 +25,7 @@ Llama Stack acts as the middleware between your frontend and the LLM. Currently,
 
     ![tiny-llama-upgrade2.png](./images/tiny-llama-upgrade2.png)
 
-5. Also we need to update the `backend` and lower the `max_token` because TinyLlama can't handle as much as previous 😅 So find `canopy-backend` under **OpenShift Console** → **Helm** → **Releases** 
+5. Now we can point the `backend` to TinyLlama for summarization use case (and lower the `max_token` because TinyLlama can't handle as much as previous 😅). So find `canopy-backend` under **OpenShift Console** → **Helm** → **Releases** 
 
     ![tiny-backend-upgrade.png](./images/tiny-backend-upgrade.png)
 
@@ -40,6 +42,8 @@ Llama Stack acts as the middleware between your frontend and the LLM. Currently,
 7. Click **Upgrade** to apply the changes.
 
     ![tiny-backend-upgrade2.png](./images/tiny-backend-upgrade2.png)
+
+    While the rest of the use cases (document search, student assistant) continue using Llama 3.2 3B through the same Llama Stack, we can experiment with TinyLlama for Canopy's summarization feature.
 
 ### 🌳 Test Canopy with the New Model
 

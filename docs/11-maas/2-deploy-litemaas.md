@@ -284,7 +284,7 @@ LiteMaaS uses [LiteLLM](https://github.com/BerriAI/litellm) as its backend proxy
   You can use the below options to add them:
 
   <details>
-  <summary>TinyLLama</summary>
+  <summary>TinyLLama 🦙</summary>
 
     **Model Name:** `TinyLlama-1.1B`
 
@@ -303,7 +303,7 @@ LiteMaaS uses [LiteLLM](https://github.com/BerriAI/litellm) as its backend proxy
   </details>
 
   <details>
-  <summary>Llama-3.2-3B-Instruct-FP8</summary>
+  <summary>Llama-3.2-3B-Instruct-FP8 🦙🦙</summary>
 
     **Model Name:** `Llama-3.2-3B-Instruct-FP8`
 
