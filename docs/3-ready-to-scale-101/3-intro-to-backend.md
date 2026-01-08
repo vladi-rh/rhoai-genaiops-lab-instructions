@@ -48,10 +48,6 @@ We'll separate out the LLM business logic from the frontend into its own backend
     http://canopy-backend:8000
     ```
 
-    ![update-canopy-ui-2.png](./images/update-canopy-ui-2.png)
-
-    Don't hit `Upgrade` yet. We need to change the image version as well!
-
 3. For the image, point to a newer version:
    
    - tag: `0.4`

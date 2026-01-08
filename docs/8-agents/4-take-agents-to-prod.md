@@ -9,6 +9,9 @@ There are a few things we want to do, such as evaluating and observing the agent
 
     ```yaml
     chart_path: charts/llama-stack-operator-instance
+    models:
+      - name: "llama32"
+        url: "http://llama-32-predictor.ai501.svc.cluster.local:8080/v1"
     eval:
       enabled: true
     rag:                  

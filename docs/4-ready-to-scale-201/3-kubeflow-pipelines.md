@@ -99,8 +99,6 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
 
     ```bash
     cd /opt/app-root/src/evals
-    pip install kfp==2.14.6
-    pip install kfp-kubernetes==2.14.6
     python evals-pipeline/kfp_pipeline.py
     ```
     You should see an output like this:

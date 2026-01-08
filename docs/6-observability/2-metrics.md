@@ -62,7 +62,7 @@ This dashboard shows the health and performance of the shared llama-3.2 inferenc
 
 3. Go to **Dashboards → Browse** and look for dashboards in the `<USER_NAME>-toolings Canopy Dashboards` folder.
 
-4. Open the **vLLM AI501 Dashboard** to see AI-specific performance metrics:
+4. Open the **vLLM AI501 Metrics Dashboard** to see AI-specific performance metrics:
 
 > This dashboard update in real-time. Since the vLLM model is shared, you'll see activity from all users in the lab. This is normal - you're observing the collective workload on the inference service.
 
@@ -100,7 +100,7 @@ Your Canopy UI is the student-facing interface - the web application where users
 
 1. In Grafana, navigate to **Dashboards → Browse → `<USER_NAME>-toolings Canopy Dashboards`**
 
-2. Open the **Canopy UI Dashboard**:
+2. Open the **Canopy UI Metrics Dashboard**:
 
    > **Tip**: Expand the time range to 1-3 hours if metrics appear sparse. The time picker is located in the upper right corner of the dashboard.
 
@@ -141,7 +141,7 @@ The UI dashboard helps you understand the student experience. High latencies or 
 
 Your Canopy Backend is the API layer that orchestrates calls between the UI and LlamaStackThis dashboard reveals backend performance and bottlenecks.
 
-1. In the same Grafana folder, open the **Canopy Backend Dashboard** to see:
+1. In the same Grafana folder, open the **Canopy Backend Metrics Dashboard** to see:
 
    **High-Level Stats (Top Row):**
    - **Total API Requests (Last Hour)**: Volume of backend API calls

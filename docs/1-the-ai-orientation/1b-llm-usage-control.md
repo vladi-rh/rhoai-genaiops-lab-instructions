@@ -250,22 +250,6 @@ Here’s a quiz that explores when to use guardrails and when to be more flexibl
   </td>
   </tr>
 
-  <!-- 2 Latency-critical internal -->
-  <tr>
-    <td>⚡ <b>Internal Alert Router</b></td>
-
-  <td align="center">
-    <input type="radio" id="r2y" name="r2" class="grad">
-    <label for="r2y" class="gopt" data-good="no"
-            data-msg="Adds avoidable delay"></label>
-  </td>
-
-  <td align="center">
-    <input type="radio" id="r2n" name="r2" class="grad">
-    <label for="r2n" class="gopt" data-good="yes"></label>
-  </td>
-  </tr>
-
   <!-- 3 Medical assistant -->
   <tr>
     <td>🏥 <b>Health-Advice Assistant</b></td>

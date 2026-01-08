@@ -133,7 +133,7 @@ We will be triggering it from a Tekton Pipeline, where we both will have a step 
 
     ![githook](images/githook.png)
 
-9. Now do the same for `canopy-backend`. Go to `backend` repository > Settings > Webhook > Add > Gitea and add the same webhook:
+9. Now do the same for `backend`. Go to `backend` repository > Settings > Webhook > Add > Gitea and add the same webhook:
 
     ```bash
     http://el-canopy-evals-event-listener.<USER_NAME>-toolings.svc.cluster.local:8080

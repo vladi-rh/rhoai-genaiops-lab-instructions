@@ -30,7 +30,8 @@ Let's deploy the Tekton pipeline by creating a folder under `genaiops-gitops/too
     git push
     ```
 
-4. This pipeline will give you a webhook to add to MinIO so that when we upload a file, MinIO can trigger the Tekton pipeline. Go to MinIO > Events and click on `Add Event Destination` on the right top. Select `Webhook`:
+4. This pipeline will give you a webhook to add to MinIO so that when we upload a file, MinIO can trigger the Tekton pipeline.  
+Go to MinIO ([https://minio-ui-<USER_NAME>-toolings<CLUSTER_DOMAIN>](https://minio-ui-<USER_NAME>-toolings<CLUSTER_DOMAIN>)) > Events and click on `Add Event Destination` on the right top. Select `Webhook`:
 
     ![minio-webhook-1.png](./images/minio-webhook-1.png)
 
