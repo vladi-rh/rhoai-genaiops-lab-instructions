@@ -65,6 +65,9 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
     ```yaml
     ---
     chart_path: charts/llama-stack-operator-instance
+    models:
+      - name: "llama32"
+        url: "http://llama-32-predictor.ai501.svc.cluster.local:8080/v1"
     eval:
       enabled: true
     rag:                  # 👈 Add this 
@@ -76,6 +79,9 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
     ```yaml
     ---
     chart_path: charts/llama-stack-operator-instance
+    models:
+      - name: "llama32"
+        url: "http://llama-32-predictor.ai501.svc.cluster.local:8080/v1"
     eval:
       enabled: true
     rag:                        # 👈 Add this 

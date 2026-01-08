@@ -32,13 +32,20 @@ Before we start, we need to enable MCP support in your Llama Stack instance:
 
 1. Go to **OpenShift Console** → **Helm** → **Releases**
 
+    ![helm-release-2.png](images/helm-release-2.png)
+
 2. Find `llama-stack-operator-instance`, click the **three dots** → **Upgrade**
 
+    ![upgrade-lls](images/upgrade-lls.png)
+
 3. Open the **MCP section**, select **`enabled`**, and click **Upgrade**
+
+    ![enable-mcp](images/enable-mcp.png)
 
 This enables our MCP Calendar tool that LangGraph will use.
 
 ## Let's Build It!
 
 Ready to see how much easier this gets? You'll build the same agentic capabilities with **~70% less code**.  
-No manual parsing. No iteration loops. Just clean, declarative agent definitions.
+No manual parsing. No iteration loops. Just clean, declarative agent definitions.  
+Go to your workbench and open **`experiments/8-agents/4-agentic-llamas.ipynb`**

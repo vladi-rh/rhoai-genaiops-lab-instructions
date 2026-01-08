@@ -89,7 +89,7 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     spikee test --dataset datasets/quick-test-diverse.jsonl --target llama_stack_shields  --attack best_of_n --attack-iterations 1
     ```
 
-7. Did you realize how fast that was? Let's see the results:
+7. Let's see the results:
 
     ```bash
     spikee results analyze --result-file  results/results_llama_stack_shields-shields_enabled_quick-test-diverse*.jsonl | sed -n '1,/=== Breakdown by Jailbreak Type ===/p' | head -n -1
