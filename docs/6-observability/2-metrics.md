@@ -264,4 +264,4 @@ Your AI assistant spans four layers, each with its own metrics:
 
 Metrics tell you **how much** and **how fast**, but not **what's happening** inside your application. When metrics show a problem (success rate dropping, latency spiking), you need details about what went wrong.
 
-For that, we need logs - detailed records of every event in Canopy's operation. Continue to **[Logging](7-observability/3-logging.md)** to learn how to collect and query Canopy's logs 📝
+For that, we need logs - detailed records of every event in Canopy's operation. Continue to **[Logging](6-observability/3-logging.md)** to learn how to collect and query Canopy's logs 📝

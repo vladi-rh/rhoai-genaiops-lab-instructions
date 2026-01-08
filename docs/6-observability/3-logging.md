@@ -98,4 +98,4 @@ You just simulated what happens when you're debugging an issue: you know what to
 
 Logs show what happened in individual components, but modern AI systems are distributed - a single student question touches multiple services. How do you see the complete journey of a request through your entire system?
 
-That's where distributed tracing comes in. Continue to **[Tracing](7-observability/4-tracing.md)** to see how requests flow through Canopy's architecture 🔍
+That's where distributed tracing comes in. Continue to **[Tracing](6-observability/4-tracing.md)** to see how requests flow through Canopy's architecture 🔍

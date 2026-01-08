@@ -70,4 +70,4 @@ These environment variables configure LlamaStack to:
 
 With the RHOAI Observability platform and UWM configured, it is now collecting metrics from vLLM (token generation, latency), LlamaStack (token usage), and Canopy UI/Backend (HTTP requests, response times). In the next section, you'll query these metrics in Prometheus, deploy Grafana for visualization, and interpret dashboards to understand your AI stack's performance.
 
-Continue to **[Metrics](7-observability/2-metrics.md)** to explore what your AI stack is telling you about its performance.
+Continue to **[Metrics](6-observability/2-metrics.md)** to explore what your AI stack is telling you about its performance.
