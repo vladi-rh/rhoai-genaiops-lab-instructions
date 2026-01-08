@@ -66,50 +66,8 @@ These environment variables configure LlamaStack to:
 
 > **Note**: OpenTelemetry is pre-configured in your [LlamaStack Helm chart](https://github.com/rhoai-genaiops/genaiops-helmcharts/blob/main/charts/llama-stack-operator-instance/templates/lls-distribution.yaml#L15), so metrics and traces are automatically collected without additional setup.
 
-## Deploy Grafana
+## 🎯 Next Steps: Understanding Metrics
 
-The RHOAI Observability stack collects platform-wide metrics, but these are generic infrastructure signals that don't reveal application-specific insights about your Canopy deployment. To visualize what matters for your AI assistant - token usage patterns, LLM latency, backend API performance - you need custom Grafana dashboards that query Prometheus with filters specific to your namespace and components.
+With the RHOAI Observability platform and UWM configured, it is now collecting metrics from vLLM (token generation, latency), LlamaStack (token usage), and Canopy UI/Backend (HTTP requests, response times). In the next section, you'll query these metrics in Prometheus, deploy Grafana for visualization, and interpret dashboards to understand your AI stack's performance.
 
-1. Deploy a Grafana instance in your toolings namespace to support the end-to-end observability journey for Canopy. Install it through your GitOps workflow in `genaiops-gitops/toolings/`:
-
-    Create `grafana` folder under `toolings`. And then create a file called `config.yaml` under `grafana` folder. Or simply run the below commands:
-
-    ```bash
-    mkdir /opt/app-root/src/genaiops-gitops/toolings/grafana
-    touch /opt/app-root/src/genaiops-gitops/toolings/grafana/config.yaml
-    ```
-
-2. Open up the `grafana/config.yaml` file and paste the below line to let Argo CD know which chart we want to deploy.
-
-    ```yaml
-    chart_path: charts/grafana
-    ```
-
-3. Commit the changes to the repo as you’ve done before.
-
-    ```bash
-    cd /opt/app-root/src/genaiops-gitops
-    git pull
-    git add .
-    git commit -m "📈 Grafana added 📈"
-    git push
-    ```
-
-4. Once this change has been sync’d (you can check this in Argo CD), let’s login to Grafana by clicking [here](https://canopy-grafana-route-<USER_NAME>-toolings.<CLUSTER_DOMAIN>) and view the predefined dashboards for canopy. Alternatively, you can use the run the below command in your code-server workbench terminal:
-
-    ```bash
-    # get the route and open it in your browser
-    echo https://$(oc get route canopy-grafana-route --template='{{ .spec.host }}' -n <USER_NAME>-toolings)
-    ```
-
-    Use your OpenShift credentials and click `Allow selected permissions` to log in.
-
-5. To view the dashboards, navigate to **Dashboards** → **Browse** and look for the `<USER_NAME>-toolings Canopy Dashboards` folder.
-
-   ![Obsv 1](./images/metrics1.png)
-
-## 🎯 Next Steps: Exploring Your AI Stack Metrics
-
-Now everything is deployed and connected to the RHOAI Observability Stack, you're ready to explore the metrics from your AI assistant stack. The dashboards provide real-time visibility into vLLM model performance, Canopy UI/Backend health, and LlamaStack metrics.
-
-Continue to **[Metrics](7-observability/2-metrics.md)** to understand what these dashboards reveal about your application's performance and how to use them for debugging and optimization.
+Continue to **[Metrics](7-observability/2-metrics.md)** to explore what your AI stack is telling you about its performance.

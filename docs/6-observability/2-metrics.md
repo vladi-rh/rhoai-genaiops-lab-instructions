@@ -1,12 +1,16 @@
 # 📊 Metrics: Measuring What Matters
 
-Think of metrics like a teacher's gradebook combined with attendance records. A gradebook doesn't just tell you "students learned something" - it shows **how much**, **how consistently**, and **how the trend changes over time**. 
+Think of metrics like a teacher's gradebook combined with attendance records. A gradebook doesn't just tell you "students learned something" - it shows **how much**, **how consistently**, and **how the trend changes over time**.
 
-Metrics do the same for Canopy: not just "is it working?" but "how well is it working, and is that improving or degrading?". Let's see what Canopy is already telling us about its performance.
+Metrics do the same for Canopy: not just "is it working?" but "how well is it working, and is that improving or degrading?".
+
+In the previous section, you learned how OpenTelemetry instruments your AI stack to emit telemetry data. Now let's explore what that data reveals about your application's performance.
 
 ## Exploring vLLM Metrics in RHOAI Observability Stack
 
-Before diving into Canopy's specific application metrics, it's important to understand the infrastructure powering your AI assistant. In this lab environment, **all users share a single llama-3.2 model** deployed in the `ai501` namespace. This shared model serves as the LLM backend for everyone's CanopyUI applications.
+Before deploying visualization tools, it's valuable to query metrics directly in Prometheus. This helps you understand the raw data before abstracting it into dashboards.
+
+In this lab environment, **all users share a single llama-3.2 model** deployed in the `ai501` namespace. This shared model serves as the LLM backend for everyone's CanopyUI applications.
 
 <!-- Why share a model? Running large language models requires significant GPU resources. By deploying one shared inference service, the lab environment can support many students simultaneously without requiring dedicated GPUs for each user. Your Canopy application sends requests to this shared vLLM endpoint, which processes them and returns generated text. -->
 
@@ -16,7 +20,7 @@ The vLLM inference engine powering this shared model automatically exports metri
 
 ### Exploring vLLM Metrics in RHOAI Prometheus
 
-You already deployed Grafana in the previous section, and Prometheus has been collecting metrics from the shared vLLM model this whole time. Let's query them directly.
+Prometheus has been collecting metrics from the shared vLLM model since it was deployed. Let's query them directly to understand what raw metrics look like before we visualize them in Grafana.
 
 1. Open the OpenShift Metrics Dashboard for the `ai501` namespace directly [here](https://console-openshift-console.<CLUSTER_DOMAIN>/dev-monitoring/ns/ai501/metrics).
 
@@ -45,6 +49,50 @@ You already deployed Grafana in the previous section, and Prometheus has been co
 ## Visualizing Metrics in Grafana
 
 While Prometheus queries are powerful for investigation, Grafana dashboards make metrics accessible to everyone on your team. No one wants to write PromQL just to check if the system is healthy!
+
+The RHOAI Observability stack collects platform-wide metrics, but these are generic infrastructure signals that don't reveal application-specific insights about your Canopy deployment. To visualize what matters for your AI assistant - token usage patterns, LLM latency, backend API performance - you need custom Grafana dashboards that query Prometheus with filters specific to your namespace and components.
+
+### Deploy Grafana
+
+Let's deploy a Grafana instance in your toolings namespace to support the end-to-end observability journey for Canopy. Install it through your GitOps workflow in `genaiops-gitops/toolings/`:
+
+1. Create `grafana` folder under `toolings`. And then create a file called `config.yaml` under `grafana` folder. Or simply run the below commands:
+
+    ```bash
+    mkdir /opt/app-root/src/genaiops-gitops/toolings/grafana
+    touch /opt/app-root/src/genaiops-gitops/toolings/grafana/config.yaml
+    ```
+
+2. Open up the `grafana/config.yaml` file and paste the below line to let Argo CD know which chart we want to deploy.
+
+    ```yaml
+    chart_path: charts/grafana
+    ```
+
+3. Commit the changes to the repo as you've done before.
+
+    ```bash
+    cd /opt/app-root/src/genaiops-gitops
+    git pull
+    git add .
+    git commit -m "📈 Grafana added 📈"
+    git push
+    ```
+
+4. Once this change has been sync'd (you can check this in Argo CD), let's login to Grafana by clicking [here](https://canopy-grafana-route-<USER_NAME>-toolings.<CLUSTER_DOMAIN>) and view the predefined dashboards for canopy. Alternatively, you can use the run the below command in your code-server workbench terminal:
+
+    ```bash
+    # get the route and open it in your browser
+    echo https://$(oc get route canopy-grafana-route --template='{{ .spec.host }}' -n <USER_NAME>-toolings)
+    ```
+
+    Use your OpenShift credentials and click `Allow selected permissions` to log in.
+
+5. To view the dashboards, navigate to **Dashboards** → **Browse** and look for the `<USER_NAME>-toolings Canopy Dashboards` folder.
+
+   ![Obsv 1](./images/metrics1.png)
+
+### Exploring Pre-configured Dashboards
 
 The Grafana instance you deployed includes several pre-configured dashboards for monitoring your complete AI stack: the shared vLLM model, your Canopy UI, your Canopy Backend and LlamaStack.
 
