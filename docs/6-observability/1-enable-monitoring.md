@@ -24,7 +24,7 @@ This pre-configured observability stack includes three core components: **OpenTe
 
 This architecture provides health metrics and alerts for OpenShift AI platform components while offering integration points for external observability tools like **Grafana**.
 
-> **Note**: The RHOAI Observability stack has already been deployed and configured for this lab environment. If you're interested in learning more about the underlying platform configuration, check the `Managing Observability in RHOAI` section under `Administer OpenShift AI platform access, apps, and operations` [documentation](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed).
+> **Pre-configured Infrastructure:** The RHOAI Observability stack, including the OpenTelemetry Collector, Prometheus, and Tempo, has been deployed and configured for this lab environment. Canopy components (UI, Backend) and LlamaStack are instrumented to send telemetry data to these collectors automatically.
 
 ## 🔍 OpenTelemetry: The Standard for Observability
 
