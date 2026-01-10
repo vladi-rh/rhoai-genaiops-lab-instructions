@@ -1,7 +1,7 @@
 ## AI501 Cluster Setup
 
 <p class="warn">
-    ⛷️ <b>NOTE</b> ⛷️ - You need an OpenShift 4.14+ cluster with cluster-admin privilege.
+    ⛷️ <b>NOTE</b> ⛷️ - You need an OpenShift 4.19+ cluster with cluster-admin privilege.
 </p>
 
 Just like we practice throughout the course, we keep the cluster configuration as code in a GitHub repository: https://github.com/rhoai-genaiops/deploy-lab
