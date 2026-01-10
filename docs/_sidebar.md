@@ -59,3 +59,5 @@
   * [👤 User Experience](11-maas/4-user-experience.md)
   * [📊 Usage & Observability](11-maas/5-usage-observability.md)
   * [🌳 Canopy Integration](11-maas/6-canopy-integration.md)
+* [Campus Setup](15-campus-setup/README.md)
+  * [🏫 Cluster Setup](15-campus-setup/1-cluster-setup.md)
