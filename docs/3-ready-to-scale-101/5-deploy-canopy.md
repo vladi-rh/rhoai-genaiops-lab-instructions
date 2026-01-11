@@ -10,7 +10,7 @@ But first, we need to set up our backend repository to handle the GenAI applicat
     cd /opt/app-root/src
     git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/backend.git
   ```
-2. We will store the prompts under `chart/values-test.yaml` and `chart/values-prod.yaml`. This will give us the traceability of prompt changes. Copy the below info to both files under the `LLAMA_STACK_URL` and make sure to bring your new favourite prompt to summarize the topics along with the settings you find the best in Llama Stack Playground:
+2. We will store the prompts under `chart/values-test.yaml` and `chart/values-prod.yaml`. This will give us the traceability of prompt changes. Copy the below info to both files **under the `LLAMA_STACK_URL`** and make sure to bring your new favourite prompt to summarize the topics along with the settings you find the best in Llama Stack Playground:
 
   ```yaml
   

@@ -68,4 +68,8 @@ We'll separate out the LLM business logic from the frontend into its own backend
    
    ![canopy-ui-llamastack.png](./images/canopy-ui-llamastack.png)
 
-Now that we're happy with the first iteration of our Canopy assistant, it’s time to put it in the hands of real users. To do that, we need to deploy everything we've built so far into a test—and eventually a production—environment. But this time, we’ll do it in a more robust, consistent, and repeatable way. That’s why we’re stepping into the world of: GitOps.
+Now that we're happy with the first iteration of our Canopy student assistant, it's time to put it in the hands of real users. To do that, we need to deploy everything we've built so far into a test, and eventually a production environment. But this time, we'll do it in a more robust, consistent, and repeatable way. That's why we're stepping into the world of: GitOps 🐙.
+
+By releasing early, we get feedback sooner that allowing us to course correct before investing too much. By investing in automation and GitOps, we can release often.
+
+  ![keep-calm.png](./images/keep-calm.png ':size=300 :class=center')
