@@ -17,6 +17,6 @@ This setup process deploys a complete multi-tenant AI/ML learning environment on
 
 ## 🔨 Tools used in this exercise!
 
-* OpenShift 4.14+
+* OpenShift 4.19+
 * <span style="color:blue;">[Helm](https://helm.sh/)</span> - Helps us to define, install, and upgrade Kubernetes applications
 * <span style="color:blue;">[oc CLI](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html)</span> - OpenShift command line tool
