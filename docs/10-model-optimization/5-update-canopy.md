@@ -14,7 +14,7 @@ Let's take our experiment environment from Tiny Llama and point it to the FP8 on
     
     Add it under `models` by clicking `Add models`:
 
-    - **Model Name**: `RedHatAI/Llama-3.2-3B-Instruct-FP8`
+    - **Model Name**: `llama32-fp8`
     - **Model URL**: `http://llama-32-fp8-predictor.ai501.svc.cluster.local:8080/v1`
 
 4. Click **Upgrade** to apply the changes.
@@ -25,13 +25,13 @@ Let's take our experiment environment from Tiny Llama and point it to the FP8 on
 
     ![fp8-backend-upgrade.png](./images/fp8-backend-upgrade.png)
 
-6.  We need to change every `llama32` and/or `tinyllama` to `RedHatAI/Llama-3.2-3B-Instruct-FP8`. And we can bump the `max_token` again. For `summarize`:
+6.  We need to change every `llama32` and/or `tinyllama` to `llama32-fp8`. And we can bump the `max_token` again. For `summarize`:
 
     ```yaml
     summarize:
       enabled: true
       max_tokens: 2048 # 👈 update this ❗️❗️❗️
-      model: RedHatAI/Llama-3.2-3B-Instruct-FP8 # 👈 update this ❗️❗️❗️
+      model: llama32-fp8 # 👈 update this ❗️❗️❗️
       prompt: "<your prompt>"
     ```
 
@@ -57,7 +57,7 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
     models:
       - name: "llama32"
         url: "http://llama-32-predictor.ai501.svc.cluster.local:8080/v1"
-      - name: "RedHatAI/Llama-3.2-3B-Instruct-FP8"     # 👈 Add this
+      - name: "llama32-fp8"     # 👈 Add this
         url: "http://llama-32-fp8-predictor.ai501.svc.cluster.local:8080/v1" # 👈 Add this 
     eval:
     enabled: true
@@ -75,14 +75,14 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
     git commit -m "🏦 Switch to FP8 🏦"
     git push
     ```
-3. Now let's update the `backend`. Open up `backend/chart/values-test.yaml` and update change every `llama32` to `RedHatAI/Llama-3.2-3B-Instruct-FP8`.
+3. Now let's update the `backend`. Open up `backend/chart/values-test.yaml` and update change every `llama32` to `llama32-fp8`.
 
     ```yaml
 
     LLAMA_STACK_URL: "http://llama-stack-service:8321"
     summarize:
     enabled: true
-    model: RedHatAI/Llama-3.2-3B-Instruct-FP8 # 👈 Update this 
+    model: llama32-fp8 # 👈 Update this 
     temperature: 0.9
     max_tokens: 4096
     prompt: |
@@ -90,12 +90,12 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
     information-search:
     enabled: true
     vector_db_id: latest
-    model: RedHatAI/Llama-3.2-3B-Instruct-FP8 # 👈 Update this 
+    model: llama32-fp8 # 👈 Update this 
     prompt: |
         You are a helpful assistant specializing in document intelligence and academic content analysis.
     student-assistant:         
     enabled: true
-    model: RedHatAI/Llama-3.2-3B-Instruct-FP8 # 👈 Update this 
+    model: llama32-fp8 # 👈 Update this 
     temperature: 0.1
     vector_db_id: latest
     mcp_calendar_url: "http://canopy-mcp-calendar-mcp-server:8080/sse"

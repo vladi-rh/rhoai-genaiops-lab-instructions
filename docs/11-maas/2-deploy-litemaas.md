@@ -311,7 +311,7 @@ LiteMaaS uses [LiteLLM](https://github.com/BerriAI/litellm) as its backend proxy
 
     **API Base URL:** `http://llama-32-fp8-predictor.ai501.svc.cluster.local:8080/v1`
 
-    **Backend Model Name:** `RedHatAI/Llama-3.2-3B-Instruct-FP8`  
+    **Backend Model Name:** `llama32-fp8`  
 
     **API Key:** `fakekey`
 
