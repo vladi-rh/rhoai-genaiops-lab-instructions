@@ -32,6 +32,7 @@ In short: Llama Stack helps us move from *experimentation* to *production readin
 
     - name: `llama32`
     - url: `http://llama-32-predictor.ai501.svc.cluster.local:8080/v1`
+    - token: (leave it empty)
 
 ..and click `Create`.
 

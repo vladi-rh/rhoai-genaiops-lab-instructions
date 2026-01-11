@@ -20,6 +20,7 @@ Llama Stack acts as the middleware between your frontend and the LLM. Currently,
 
     - **Model Name**: `tinyllama`
     - **Model URL**: `http://tinyllama-predictor:8080/v1`
+    - **Token**: (leave it empty)
 
 4. Click **Upgrade** to apply the changes.
 

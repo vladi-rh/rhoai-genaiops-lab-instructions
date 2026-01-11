@@ -279,7 +279,7 @@ LiteMaaS uses [LiteLLM](https://github.com/BerriAI/litellm) as its backend proxy
 
   ![maas-model.png](./images/maas-model.png)
 
-3. If you want, you can add your `TinyLlama` and quantized `Llama-3.2-3B-Instruct-FP8` to your MaaS for others to use them. 
+3. Let's also add your `TinyLlama` and quantized `llama32-fp8` to your MaaS to make them available via MaaS. 
 
   You can use the below options to add them:
 

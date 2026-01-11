@@ -16,6 +16,7 @@ Let's take our experiment environment from Tiny Llama and point it to the FP8 on
 
     - **Model Name**: `llama32-fp8`
     - **Model URL**: `http://llama-32-fp8-predictor.ai501.svc.cluster.local:8080/v1`
+    - **Token**: (leave it empty)
 
 4. Click **Upgrade** to apply the changes.
 
@@ -31,7 +32,7 @@ Let's take our experiment environment from Tiny Llama and point it to the FP8 on
     summarize:
       enabled: true
       max_tokens: 2048 # 👈 update this ❗️❗️❗️
-      model: llama32-fp8 # 👈 update this ❗️❗️❗️
+      model: vllm-llama32-fp8/llama32-fp8 # 👈 update this ❗️❗️❗️
       prompt: "<your prompt>"
     ```
 
@@ -82,7 +83,7 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
     LLAMA_STACK_URL: "http://llama-stack-service:8321"
     summarize:
     enabled: true
-    model: llama32-fp8 # 👈 Update this 
+    model: vllm-llama32-fp8/llama32-fp8 # 👈 Update this 
     temperature: 0.9
     max_tokens: 4096
     prompt: |
@@ -90,12 +91,12 @@ Once Llama Stack and backend are back up, let's verify it can communicate with t
     information-search:
     enabled: true
     vector_db_id: latest
-    model: llama32-fp8 # 👈 Update this 
+    model: vllm-llama32-fp8/llama32-fp8 # 👈 Update this 
     prompt: |
         You are a helpful assistant specializing in document intelligence and academic content analysis.
     student-assistant:         
     enabled: true
-    model: llama32-fp8 # 👈 Update this 
+    model: vllm-llama32-fp8/llama32-fp8 # 👈 Update this 
     temperature: 0.1
     vector_db_id: latest
     mcp_calendar_url: "http://canopy-mcp-calendar-mcp-server:8080/sse"
