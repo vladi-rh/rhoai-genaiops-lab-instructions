@@ -93,7 +93,7 @@ Which single change will <b>most directly</b> improve what users feel?
 
 Models come in different sizes. The bigger the model (measured in billions of parameters), the smarter and more detailed its responses can be. But bigger models need more powerful GPUs and more memory, which can make them slower or more expensive to run.
 
-The biggest bottleneck for being able to load and run a model is going to be GPU memory.  
+The biggest bottleneck for loading and running a model is GPU memory.  
 An easy way to think of it is: Number of parameters x 4 = GPU memory needed.  
 For example, a 3B parameter model requires ~12GB of GPU memory to load and run.  
 
@@ -108,7 +108,7 @@ For example, a 3B parameter model requires ~12GB of GPU memory to load and run.
 _* Quantization makes models take up less space, so they can run faster and fit on smaller GPUs. It slightly reduces quality but often works well enough._
 
 
-## 📃 How to Understand Model Resource Requirements from Modelcards
+## 📃 How to Understand Model Resource Requirements from Model Cards
 
 
 [Hugging Face](https://huggingface.co/) is a platform and model hub where developers share, explore, and deploy machine learning models — especially Large Language Models.  
