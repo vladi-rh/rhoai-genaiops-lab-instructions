@@ -108,7 +108,7 @@ For example, a 3B parameter model requires ~12GB of GPU memory to load and run.
 _* Quantization makes models take up less space, so they can run faster and fit on smaller GPUs. It slightly reduces quality but often works well enough._
 
 
-## 👀 How to Understand Model Resource Requirements from Modelcards
+## 📃 How to Understand Model Resource Requirements from Modelcards
 
 
 [Hugging Face](https://huggingface.co/) is a platform and model hub where developers share, explore, and deploy machine learning models — especially Large Language Models.  
@@ -183,6 +183,44 @@ GPU budget: single A10 24 GB.
   </div>
 </div>
 </div>
+
+## 👀 Let's see this in practice
+
+Below you'll see two versions of Llama 3.2 3B side by side:
+
+- **Model 1 (Llama 3.2 3B):** The original model in FP16 precision
+- **Model 2 (Llama 3.2 3B FP8):** The same model, compressed to FP8 precision (we'll learn about what we mean with FP8 precision soon)
+
+The FP8 version uses **half the memory**. But can you tell the difference in quality?
+
+**Try these prompts and compare the responses:**
+
+1. `Explain photosynthesis in simple terms`
+2. `Write a haiku about debugging code`
+3. `What are Ireland's chances in the upcoming Six Nations?`
+
+<iframe
+    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/optimization"
+    frameborder="0"
+    width="850"
+    height="1200"
+    style="border: 1px solid #e0e0e0; border-radius: 8px;"
+    loading="lazy">
+</iframe>
+
+
+So what did you notice?
+
+- **Quality:** Could you tell which response was "better"?
+- **Consistency:** Did both give similar answers?
+- **Speed:** Was one noticeably faster? (Note: they're on different GPUs, so speed isn't a fair comparison here)
+
+If the responses seemed similar in quality... that's the point. The FP8 model uses **half the bits per parameter** while producing nearly identical outputs.
+
+How does compressing a model to half its size *not* break it? That's what this module is about.
+
+---
+
 
 ## ✅ Summary
 
