@@ -1,44 +1,5 @@
 # 🧮 Understanding Quantization
 
-## 👀 See It Before You Learn It
-
-Before we explain anything, let's just *try* something.
-
-Below you'll see two versions of Llama 3.2 3B side by side:
-
-- **Model 1 (Llama 3.2 3B):** The original model in FP16 precision
-- **Model 2 (Llama 3.2 3B FP8):** The same model, compressed to FP8 precision (we'll learn about what we mean with FP8 precision soon)
-
-The FP8 version uses **half the memory**. But can you tell the difference in quality?
-
-**Try these prompts and compare the responses:**
-
-1. `Explain photosynthesis in simple terms`
-2. `Write a haiku about debugging code`
-3. `What are Ireland's chances in the upcoming Six Nations?`
-
-<iframe
-    src="https://gradio-app-ai501.<CLUSTER_DOMAIN>/optimization"
-    frameborder="0"
-    width="850"
-    height="1200"
-    style="border: 1px solid #e0e0e0; border-radius: 8px;"
-    loading="lazy">
-</iframe>
-
-
-So what did you notice?
-
-- **Quality:** Could you tell which response was "better"?
-- **Consistency:** Did both give similar answers?
-- **Speed:** Was one noticeably faster? (Note: they're on different GPUs, so speed isn't a fair comparison here)
-
-If the responses seemed similar in quality... that's the point. The FP8 model uses **half the bits per parameter** while producing nearly identical outputs.
-
-How does compressing a model to half its size *not* break it? That's what this module is about.
-
----
-
 ## The Problem: Great Models, Expensive Hardware
 
 You tried Tiny Llama, but you were not so happy. And you had a shiny big model that answers student questions beautifully. Why can't we have it again? But it needs 14GB of GPU memory, and your deployment budget says "absolutely not." 😭😭😭
