@@ -21,7 +21,7 @@ These are the basic building blocks the model sees. It doesn’t understand text
 
 You may ask "why not just feed it words or letters?"  
 There are two main reasons to use tokens:
-- Regardless of what we use, we need to convert it into numbers because ultimately the computer only understands numbers 🔢 Aaand, there are too many words to give them all a number each.
+- Regardless of what we use, we need to convert it into numbers because ultimately the computer only understands numbers 🔢 And, there are too many words to give them all a number each.
 - They are designed to be as large but also as reusable as possible, so that the **number** of inputs we send to the LLM is as few as possible. For example, if I send the word `unbelievable` it would be 12 inputs if I sent each letter, but only 3 tokens. The number of inputs are important which we explain... now 👇
 
 When you start working with LLMs you will often see people counting tokens. We don't just do this for fun, it's because the number of tokens is now how large our input into the LLM is.  
