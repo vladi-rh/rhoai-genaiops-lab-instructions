@@ -11,7 +11,8 @@ In the context of GenAIOps, we’ll leverage Argo CD to deploy our applications,
 
 Let's setup the foundation of our GitOps system and deploy all the components we used so far via Argo CD to `<USER_NAME>-test` and `<USER_NAME>-prod` environments.
 
-1. Let's get your hands warm with GitOps and Argo CD first. An Argo CD instance is already installed to your `<USER_NAME>-toolings` environment. You can either get the URL from the above `Quick Links` tile or simply by running the below command on the terminal of your workbench.
+1. Let's get your hands warm with GitOps and Argo CD first. An Argo CD instance is already installed to your `<USER_NAME>-toolings` environment. You can either get the URL from the above `Quick Links` tile or simply by running the below command on the **terminal of your workbench**.
+   * NOTE: If your own workstation already has the `oc` CLI installed locally, you could be using that. But, if you need an easily accessible way to run these commands in a foolproof way, we encourage you to go back to the VSCode Workbench you created earlier. (if you remember, you started a terminal to run a `git clone` in it). Thanks to the beauty of Web Browser and containers, that is a way to garanteee it will work, regardless of how your local workstation is configured. You're welcome! 
 
   First log in to the cluster:
 
