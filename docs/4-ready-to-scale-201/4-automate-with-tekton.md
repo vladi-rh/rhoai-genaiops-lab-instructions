@@ -51,9 +51,9 @@ We also need to set up our pipeline server for our `toolings` namespace, but thi
     mkdir /opt/app-root/src/genaiops-gitops/toolings/dspa
     touch /opt/app-root/src/genaiops-gitops/toolings/dspa/config.yaml
     ```
-    We don't have any specific settings inside for our dspa, so we can leave the config.yaml blank
+    We don't have any specific settings inside for our dspa, let's add it to the config.yaml in the next step
 
-3. Inside of `genaiops-gitops/canopy/toolings/dspa/config.yaml` add this:
+3. Inside of `genaiops-gitops/toolings/dspa/config.yaml` add this:
     ```yaml
     ---
     chart_path: charts/dspa
