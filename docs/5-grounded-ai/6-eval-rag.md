@@ -20,12 +20,12 @@ To do that, we simply need to add a new eval folder with some tests in it.
     mv /opt/app-root/src/evals/information-search/summary_tests.yaml /opt/app-root/src/evals/information-search/information_search_tests.yaml
     ```
 
-3. After that, there are a few things we need to change in our new `information-search` folder, specifically inside `information-search.yaml`:
+3. After that, there are a few things we need to change in our new `information-search` folder, specifically inside `information_search_tests.yaml`:
     - The name
     - The endpoint 
     - And of course the prompts
 
-  Open up `evals/information-search/information-search.yaml` and paste this and overwrite the whole file for a good baseline:
+  Open up `evals/information-search/information_search_tests.yaml` and paste this and overwrite the whole file for a good baseline:
 
 
 ```yaml
