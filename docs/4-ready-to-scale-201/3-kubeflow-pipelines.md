@@ -70,7 +70,7 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
     </code></pre>
     </div>
 
-4. Scroll down to near the bottom of the file (around line 830) and edit the `repo_url` argument as below:
+4. Scroll down to near the bottom of the file (around line 840) and edit the `repo_url` argument as below:
     ```python
     arguments = {
         "repo_url": "https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/evals.git", # 🚨 replace with your own repo URL
