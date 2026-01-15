@@ -40,7 +40,7 @@ We are specifically looking to automate the top part, how new documents go into 
 
    [🌲 Redwood Digital University website](https://rdu-website-ai501.<CLUSTER_DOMAIN>)
 
-   Head over to the webpage, look through the programs and download the syllabus from your favourite program! Save it locally, we are going to upload it to `documents` bucket in MinIO. 
+   Go to the webpage, browse the programs in the "Academic Excellence" section, and download the syllabus for your favorite programs by clicking the "Learn More" link. Once on a program page, click "Download Program Info Sheet (PDF)" to download it! Save it locally, we are going to upload it to `documents` bucket in MinIO.
 
 4. Go to your [MinIO instance](https://minio-ui-<USER_NAME>-toolings.<CLUSTER_DOMAIN>) and login with your credentials.
 
