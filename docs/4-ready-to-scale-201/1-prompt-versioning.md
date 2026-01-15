@@ -32,7 +32,7 @@ summarize:
 </div>
 
 There are a variety of different strategies here on where to store your prompts and how to load them into the backend.  
-In our case, we store this inside the Canopy backend repo as the one who develop the backend likely is the same persona to iterate on the prompts.
+In our case, we store this inside the Canopy backend repo, as the person who develops the backend is likely the same persona who iterates on the prompts.
 
 More specifically, we load them into a ConfigMap which then gets mounted to our backend pod. This way, we can make sure that when the `values.yaml` file changes, Argo CD updates the ConfigMap, and the pod automatically is restarted with the latest prompt.
 
