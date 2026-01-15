@@ -111,7 +111,7 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
 
     ![running-kfp-pipeline](images/running-kfp-pipeline.png)
 
-7.  After it has finished runnig you can login to this URL with <USER_NAME> and <PASSWORD> to download your results. If you open up the HTML file, you'll see your results:  
+7.  After it has finished running, you can login to this URL with <USER_NAME> and <PASSWORD> to download your results. If you open up the HTML file, you'll see your results:  
     ```bash
     https://minio-ui-<USER_NAME>-canopy.<CLUSTER_DOMAIN>/browser/test-results
     ```
