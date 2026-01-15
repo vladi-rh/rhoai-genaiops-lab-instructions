@@ -105,7 +105,7 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
 
     ![trigger-kfp.png](./images/trigger-kfp.png)
 
-    > Note: if you get an error, please restart the workbench by stop and starting it.
+    > Note: If you get an error, please restart the workbench by stopping and starting it.
 
     And now navigate to the OpenShift AI dashboard -> Develop & train -> Pipelines -> Runs
 
