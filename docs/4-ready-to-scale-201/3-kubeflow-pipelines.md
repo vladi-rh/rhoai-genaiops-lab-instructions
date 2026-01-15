@@ -12,7 +12,7 @@ Kubeflow pipelines are handy for data science/AI engineering tasks as it is Pyth
 
 As always we'll start in the experimentation environment and develop this automation there. But before we can use Kubeflow Pipelines, we need to install a Data Science Pipeline Server and MinIO as lightweight storage option to store pipeline artifacts in our Canopy environment. Yet again, we will use Helm charts for them.
 
-1. Go to the OpenShift Console > Helm > Releases > Create Helm Release.
+1. Go to the OpenShift Console > `Helm` > `Releases` > `Create Helm Release`.
 
     ![dspa-helm-1.png](./images/dspa-helm-1.png)
 
@@ -28,7 +28,7 @@ As always we'll start in the experimentation environment and develop this automa
 
     ![dspa-helm-2.png](./images/dspa-helm-2.png)
 
-5. Just hit create and wait for the pipeline server to be ready!
+5. Just hit `Create` and wait for the pipeline server to be ready!
 
     ![dspa-helm-3.png](./images/dspa-helm-3.png)
 
@@ -107,7 +107,7 @@ The evaluation pipeline is inside of a repository called `evals`, where both the
 
     > Note: If you get an error, please restart the workbench by stopping and starting it.
 
-    And now navigate to the OpenShift AI dashboard -> Develop & train -> Pipelines -> Runs
+    And now navigate to the OpenShift AI dashboard > `Develop & train` > `Pipelines` > `Runs`
 
     ![running-kfp-pipeline](images/running-kfp-pipeline.png)
 
