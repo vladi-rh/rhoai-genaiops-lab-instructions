@@ -100,6 +100,10 @@ The Grafana instance you deployed includes several pre-configured dashboards for
 
 This dashboard shows the health and performance of the shared llama-3.2 inference service that all users depend on. Unlike traditional web applications that focus on request count and response time, LLM systems require specialized metrics that reflect the unique characteristics of AI workloads.
 
+Before trying below steps make sure you are logged-in to OpenShift through CLI. To log in to OpenShift, go to the web console, click on your account name, select "Copy Login Command," and then use the command to login to the terminal.
+
+
+
 1. Navigate to Grafana - you can use the Quick Links dropdown in OpenShift, or run this command to get the URL:
 
    ```bash
