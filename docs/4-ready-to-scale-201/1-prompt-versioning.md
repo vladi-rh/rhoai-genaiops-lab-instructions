@@ -69,7 +69,7 @@ More specifically, we load them into a ConfigMap which then gets mounted to our 
 
 ## Prompt Tracker
 
-We use Git to track our changes and able to tell which prompts and settings are at the moment effective in Canopy, or _were_ at a given time. But going through a Git commit history and figure out such answer can be tedious. For that reason we built and deploy a tracker for you to visualize your changes. 
+We use Git to track our changes and to be able to tell which prompts and settings are currently effective in Canopy, or _were_ at a given time. But going through a Git commit history to figure out such answers can be tedious. For that reason, we built and deployed a tracker for you to visualize your changes.
 
 You can find the link in the Quick Link drop down or simply clicking [here](https://prompt-tracker-ai501.<CLUSTER_DOMAIN>/<USER_NAME>/<CLUSTER_DOMAIN>). 
 
