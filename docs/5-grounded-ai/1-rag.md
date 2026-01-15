@@ -16,7 +16,7 @@ For Canopy at RDU, RAG means students can ask questions about course materials, 
 Llama Stack provides some out of the box capabilities for RAG. Let's quickly implement a simple RAG solution to see how it can improve Canopy. 
 
 1. First, let's enable RAG capability on `<USER_NAME>-canopy` environment to experiment.
-    From the OpenShift console, navigate to the Helm > Released and click the three little dots next to `llama-stack-operator-instance`
+    From the OpenShift console, navigate to the Helm > Releases and click the three little dots next to `llama-stack-operator-instance`
 
     ![llama-stack-upgrade-1.png](images/llama-stack-upgrade-1.png)
 

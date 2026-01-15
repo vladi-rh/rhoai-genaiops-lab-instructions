@@ -12,7 +12,7 @@ For this, we are going to set up Milvus. If you recognize the name it's because 
 
 1. Go back to your workbench 🧑‍🏭
 
-2. Under `canopy-gitops` folder, we'll create separate configurations for test and prod environments:
+2. Under `genaiops-gitops` folder, we'll create separate configurations for test and prod environments:
 
     ```bash
     mkdir -p /opt/app-root/src/genaiops-gitops/canopy/test/milvus
