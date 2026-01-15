@@ -179,11 +179,11 @@ Well, test first.
         url: "https://litellm-user1-maas.<CLUSTER_DOMAIN>/v1" # 👈 Add this 
         token: `your-token-sk-xxxx`  # 👈 Update this 
     eval:
-    enabled: true
+      enabled: true
     rag:                  
-    enabled: true
+      enabled: true
     mcp:                
-    enabled: true     
+      enabled: true     
     ```
 
   Yes, you are very right to think _why we are pushing an API key to Git? I don't think this is right!_, and we totally agree with you. We'll come to secret management conversation, promise!
@@ -204,25 +204,25 @@ Well, test first.
 
     LLAMA_STACK_URL: "http://llama-stack-service:8321"
     summarize:
-    enabled: true
-    model: vllm-Llama-3.2-3B-Instruct-FP8/Llama-3.2-3B-Instruct-FP8 # 👈 Update this 
-    temperature: 0.9
-    max_tokens: 4096
-    prompt: |
+      enabled: true
+      model: vllm-Llama-3.2-3B-Instruct-FP8/Llama-3.2-3B-Instruct-FP8 # 👈 Update this 
+      temperature: 0.9
+      max_tokens: 4096
+      prompt: |
         You are a helpful assistant. Summarize the given text please.
     information-search:
-    enabled: true
-    vector_db_id: latest
-    model: vllm-Llama-3.2-3B-Instruct-FP8/Llama-3.2-3B-Instruct-FP8 # 👈 Update this 
-    prompt: |
+      enabled: true
+      vector_db_id: latest
+      model: vllm-Llama-3.2-3B-Instruct-FP8/Llama-3.2-3B-Instruct-FP8 # 👈 Update this 
+      prompt: |
         You are a helpful assistant specializing in document intelligence and academic content analysis.
     student-assistant:         
-    enabled: true
-    model: vllm-Llama-3.2-3B-Instruct-FP8/Llama-3.2-3B-Instruct-FP8 # 👈 Update this 
-    temperature: 0.1
-    vector_db_id: latest
-    mcp_calendar_url: "http://canopy-mcp-calendar-mcp-server:8080/sse"
-    prompt: |
+      enabled: true
+      model: vllm-Llama-3.2-3B-Instruct-FP8/Llama-3.2-3B-Instruct-FP8 # 👈 Update this 
+      temperature: 0.1
+      vector_db_id: latest
+      mcp_calendar_url: "http://canopy-mcp-calendar-mcp-server:8080/sse"
+      prompt: |
         You are ...
     ```
 
