@@ -116,7 +116,7 @@ Before trying below steps make sure you are logged-in to OpenShift through CLI. 
 
 4. Open the **vLLM AI501 Metrics Dashboard** to see AI-specific performance metrics:
 
-> This dashboard update in real-time. Since the vLLM model is shared, you'll see activity from all users in the lab. This is normal - you're observing the collective workload on the inference service.
+> This dashboard is updated in real-time. Since the vLLM model is shared, you'll see activity from all users in the lab. This is normal - you're observing the collective workload on the inference service.
 
    ![Metrics Dashboard](./images/metrics2.1.png)
 
